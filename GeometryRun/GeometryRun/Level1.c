@@ -1,4 +1,4 @@
-/* Project:		GProj_Asteroid
+/* Project:		
    File Name:	Level1.c
    Author:		闷声发大财
    Date:		
@@ -16,10 +16,7 @@
 // Private Consts:
 //------------------------------------------------------------------------------
 //Player
-#define MOVE_VELOCITY_HERO 130.0f
-#define MOVE_VELOCITY_ENEMY 75.0f
-#define JUMP_VELOCITY 100.0f
-#define GRAVITY 100.0f
+
 
 Vector2D zero = { 0.0f, 0.0f };
 

@@ -31,6 +31,10 @@ typedef int Status;
 #define BLOCK_NUM 4
 #define COLOR_PLAYER 0xFFFFFFFF
 #define COLOR_BACKGROUND 0x000000FF
+#define MOVE_VELOCITY_HERO 130.0f
+#define MOVE_VELOCITY_ENEMY 75.0f
+#define JUMP_VELOCITY 100.0f
+#define GRAVITY 100.0f
 
 typedef struct
 {
