@@ -20,6 +20,7 @@ Purpose:		游戏对象管理 */
 #include "Vector2D.h"
 #include "Matrix2D.h"
 #include "Math2D.h"
+#include <time.h>
 
 typedef int Status;
 
@@ -31,10 +32,10 @@ typedef int Status;
 #define BLOCK_NUM 4
 #define COLOR_PLAYER 0xFFFFFFFF
 #define COLOR_BACKGROUND 0x000000FF
-#define MOVE_VELOCITY_HERO 130.0f
-#define MOVE_VELOCITY_ENEMY 75.0f
-#define JUMP_VELOCITY 100.0f
-#define GRAVITY 100.0f
+#define MOVE_VELOCITY_HERO 300.0f
+#define JUMP_VELOCITY 200.0f
+#define GRAVITY 200.0f
+#define MOVE_MAXVELOCITY_BLOCK 5.0f
 
 typedef struct
 {
@@ -107,10 +108,20 @@ typedef struct
 
 // 游戏对象链表
 static GameObjBaseList theBaseList;
+Vector2D zero;
+
+
+// Player对象：因为是Player，所以单独声明，方便程序设计
+static GameObj* pHero;
+
+static AEGfxTexture* pTex_Hero;
+//jumpCheck:跳跃次数，用于二级跳
+int jumpCheck;
+
 // 用于调试输出对象类型名称
 static char ObjTypeName[TYPE_COUNT][20];
 
-void SetObjTypeName();
+void SetConstants();
 
 Status InitialGameObjList(GameObjList *L);
 

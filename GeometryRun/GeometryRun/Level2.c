@@ -22,34 +22,20 @@ Purpose:		关卡1  */
 //------------------------------------------------------------------------------
 // Private Consts:
 //------------------------------------------------------------------------------
-//Player
-#define MOVE_VELOCITY_HERO 130.0f
-#define MOVE_VELOCITY_ENEMY 75.0f
-#define JUMP_VELOCITY 100.0f
-#define GRAVITY 100.0f
-
-Vector2D zero = { 0.0f, 0.0f };
-
-// Player对象：因为是Player，所以单独声明，方便程序设计
-static GameObj* pHero;
-
-static AEGfxTexture* pTex_Hero;
-//jumpCheck:跳跃次数，用于二级跳
-int jumpCheck = 0;
-
 
 //------------------------------------------------------------------------------
 // Public Functions:
 //------------------------------------------------------------------------------
 
-void Load1(void)
+void Load2(void)
 {
-	printf("Level1: Load\n");
+	srand(time(0));
+	printf("Level2: Load\n");
 	GameObjBase* pObjBase;
 	theBaseList = NULL;
 
-	// 设置调试信息
-	SetObjTypeName();
+	// 设置常量
+	SetConstants();
 	// 初始化游戏对象基类的实例列表
 	InitialGameObjBaseList(&theBaseList);
 
@@ -126,38 +112,18 @@ void Load1(void)
 		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
 		1.0f, 1.0f, COLOR_PLAYER, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-	CreateGameObjBase(TYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/theBlock.png"), theBaseList);
+	CreateGameObjBase(TYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/theBlock2.png"), theBaseList);
 
 }
 
-void Ini1(void)
+void Ini2(void)
 {
-	printf("Level1: Ini\n");
+	printf("Level2: Ini\n");
 	GameObj* pObj;
 	int i;
 	Vector2D iniPosition_Player = { -200.0f, 34.0f };
-	Vector2D iniPosition_Block[BLOCK_NUM];
 	Vector2D iniVelocity_Background = { -3.0f, 0.0f };
 	Vector2D iniVelocity_Platform = { -3.0f, 0.0f };
-	Vector2D iniVelocity_Block[BLOCK_NUM];
-	iniPosition_Block[0].x = -70.0f;
-	iniPosition_Block[0].y = 170.0f;
-	iniPosition_Block[1].x = 120.0f;
-	iniPosition_Block[1].y = 100.0f;
-	iniPosition_Block[2].x = 40.0f;
-	iniPosition_Block[2].y = 240.0f;
-	iniPosition_Block[3].x = 80.0f;
-	iniPosition_Block[3].y = 180.0f;
-
-	iniVelocity_Block[0].x = -2.0f;
-	iniVelocity_Block[0].y = 1.0f;
-	iniVelocity_Block[1].x = -1.5f;
-	iniVelocity_Block[1].y = -0.5f;
-	iniVelocity_Block[2].x = 1.5f;
-	iniVelocity_Block[2].y = -1.0f;
-	iniVelocity_Block[3].x = 0.5f;
-	iniVelocity_Block[3].y = 1.5f;
-
 
 	// 对象实例化：
 	// 玩家对象实例化
@@ -168,17 +134,10 @@ void Ini1(void)
 	// 平台对象实例化
 	pObj = CreateGameObj(TYPE_PLATFORM, SIZE_PLATFORM, zero, iniVelocity_Platform, 0, theBaseList, 0, NULL);
 	AE_ASSERT(pHero);
-	// 对象实例化 并 初始化
-	for (i = 0; i < BLOCK_NUM; i++)
-	{
-		// 实例化
-		pObj = CreateGameObj(TYPE_BLOCK, SIZE_BLOCK, iniPosition_Block[i], iniVelocity_Block[i], 0, theBaseList, 0, NULL);
-		AE_ASSERT(pObj);
-	}
 
 }
 
-void Update1(void)
+void Update2(void)
 {
 	unsigned long i;
 	baseNode *pbasenode, *pbasenode2;
@@ -187,6 +146,10 @@ void Update1(void)
 	float winMaxX, winMaxY, winMinX, winMinY;
 	double frameTime;
 	int deathFlag = 0;
+	Vector2D iniPosition_Block;
+	Vector2D iniVelocity_Block;
+	GameObj *pObj;
+	static int counter = 0, counterMax = 100;
 
 	// ==========================================================================================
 	// 获取窗口四条边的坐标，当窗口发生移动或缩放，以下值会发生变化
@@ -200,7 +163,16 @@ void Update1(void)
 	// 帧时间：Unity中的dt
 	// ======================
 	frameTime = AEFrameRateControllerGetFrameTime();
-
+	counter += 1;
+	if (counter == counterMax)
+	{
+		iniPosition_Block.x = (float)(rand() % (int)(winMaxX - winMinX)) * 0.5 + 0.5 * (winMaxX + winMinX);
+		iniPosition_Block.y = (float)(rand() % (int)(winMaxY - winMinY)) * 0.5;
+		iniVelocity_Block.x = (float)(rand() % (int)MOVE_MAXVELOCITY_BLOCK) * -1.0f;
+		iniVelocity_Block.y = (float)(rand() % (int)MOVE_MAXVELOCITY_BLOCK) * -1.0f;
+		pObj = CreateGameObj(TYPE_BLOCK, SIZE_BLOCK, iniPosition_Block, iniVelocity_Block, 0, theBaseList, 0, NULL);
+		counter = 0;
+	}
 	// =========================
 	// 游戏逻辑响应输入
 	// =========================
@@ -233,30 +205,31 @@ void Update1(void)
 				continue;
 			switch (pbasenode->gameobj_base.type)
 			{
-			case TYPE_BACKGROUND:
-			{
-									pInst->posCurr.x += pInst->velCurr.x;
-									pInst->posCurr.y += pInst->velCurr.y;
-									if (pInst->posCurr.x <= winMinX - winMaxX)
-										pInst->posCurr.x = 0.0f;
-									break;
-			}
-			case TYPE_PLATFORM:
-			{
-								  pInst->posCurr.x += pInst->velCurr.x;
-								  pInst->posCurr.y += pInst->velCurr.y;
-								  if (pInst->posCurr.x <= winMinX)
-									  pInst->posCurr.x = 0.0f;
-								  break;
-			}
-			case TYPE_BLOCK:
-			{
-							   pInst->posCurr.x += pInst->velCurr.x;
-							   pInst->posCurr.y += pInst->velCurr.y;
-							   if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
-								   GameObjDelete(pInst);
-							   break;
-			}
+				case TYPE_BACKGROUND:
+				{
+					pInst->posCurr.x += pInst->velCurr.x;
+					pInst->posCurr.y += pInst->velCurr.y;
+					if (pInst->posCurr.x <= winMinX - winMaxX)
+						pInst->posCurr.x = 0.0f;
+					break;
+				}
+				case TYPE_PLATFORM:
+				{
+					pInst->posCurr.x += pInst->velCurr.x;
+					pInst->posCurr.y += pInst->velCurr.y;
+					if (pInst->posCurr.x <= winMinX)
+						pInst->posCurr.x = 0.0f;
+					break;
+				}
+				case TYPE_BLOCK:
+				{
+					pInst->posCurr.x += pInst->velCurr.x;
+					pInst->posCurr.y += pInst->velCurr.y;
+					pInst->dirCurr += 1.5f;
+					if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
+						GameObjDelete(pInst);
+					break;
+				}
 			}
 
 
@@ -390,7 +363,7 @@ void Update1(void)
 	}
 }
 
-void Draw1(void)
+void Draw2(void)
 {
 	baseNode *pbasenode;
 	insNode *pinsnode;
@@ -425,9 +398,9 @@ void Draw1(void)
 	}
 }
 
-void Free1(void)
+void Free2(void)
 {
-	printf("Level1: free\n");
+	printf("Level2: free\n");
 	int i = 0;
 	baseNode *pbasenode;
 	insNode *pinsnode;
@@ -446,8 +419,8 @@ void Free1(void)
 	}
 }
 
-void Unload1(void)
+void Unload2(void)
 {
-	printf("Level1: Unload\n");
+	printf("Level2: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

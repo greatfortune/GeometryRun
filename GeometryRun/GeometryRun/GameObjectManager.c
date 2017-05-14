@@ -6,10 +6,9 @@ Purpose:		游戏对象管理 */
 
 #include "GameObjectManager.h"
 
-
 static baseNode* GetBaseNodeWithType(unsigned long theType, GameObjBaseList L);
 
-void SetObjTypeName()
+void SetConstants()
 {
 	strcpy(ObjTypeName[TYPE_PLAYER], "TYPE_PLAYER");
 	strcpy(ObjTypeName[TYPE_PLATFORM], "TYPE_PLATFORM");
@@ -17,6 +16,8 @@ void SetObjTypeName()
 	strcpy(ObjTypeName[TYPE_MONSTER], "TYPE_MONSTER");
 	strcpy(ObjTypeName[TYPE_BLOCK], "TYPE_BLOCK");
 	strcpy(ObjTypeName[TYPE_BOSS], "TYPE_BOSS");
+	zero.x = 0, zero.y = 0;
+	jumpCheck = 0;
 }
 
 Status InitialGameObjList(GameObjList *L)
