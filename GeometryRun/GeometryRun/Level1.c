@@ -15,18 +15,6 @@
 //------------------------------------------------------------------------------
 // Private Consts:
 //------------------------------------------------------------------------------
-//Player
-
-
-Vector2D zero = { 0.0f, 0.0f };
-
-// Player对象：因为是Player，所以单独声明，方便程序设计
-static GameObj* pHero;
-
-static AEGfxTexture* pTex_Hero;
-//jumpCheck:跳跃次数，用于二级跳
-int jumpCheck = 0;
-
 
 //------------------------------------------------------------------------------
 // Public Functions:
@@ -38,8 +26,8 @@ void Load1(void)
 	GameObjBase* pObjBase;
 	theBaseList = NULL;
 
-	// 设置调试信息
-	SetObjTypeName();
+	// 设置常量
+	SetConstants();
 	// 初始化游戏对象基类的实例列表
 	InitialGameObjBaseList(&theBaseList);
 
