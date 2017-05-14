@@ -59,26 +59,27 @@ void GSM_Update(void)
 {
 	switch (Current)
 	{
-	case GS_L1: {
-		pLoad = Load1;
-		pIni = Ini1;
-		pUpdate = Update1;
-		pDraw = Draw1;
-		pFree = Free1;
-		pUnload = Unload1;
-		break;
-	}
-	case GS_L2: {
-		pLoad = Load2;
-		pIni = Ini2;
-		pUpdate = Update2;
-		pDraw = Draw2;
-		pFree = Free2;
-		pUnload = Unload2;
-		break;
-	}
+		case GS_L1: {
+			pLoad = Load1;
+			pIni = Ini1;
+			pUpdate = Update1;
+			pDraw = Draw1;
+			pFree = Free1;
+			pUnload = Unload1;
+			break;
+		}
+		case GS_L2: {
+			pLoad = Load2;
+			pIni = Ini2;
+			pUpdate = Update2;
+			pDraw = Draw2;
+			pFree = Free2;
+			pUnload = Unload2;
+			break;
+		}
 	}
 	fprintf(fp, "GSM: Update\n");
+	printf("GSM: Update\n");
 }
 
 //------------------------------------------------------------------------------

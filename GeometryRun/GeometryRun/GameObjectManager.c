@@ -67,7 +67,6 @@ Status DestroyGameObjList(GameObjList *L)
 	}
 	free(pt2);
 	free(*L);
-	printf("DestroyGameObjList\n");
 	return OK;
 }
 
@@ -80,6 +79,7 @@ Status DestroyGameObjBaseList(GameObjBaseList *L)
 		if ((pt1 != (*L)->head) && (pt1 != (*L)->tail))
 		{
 			DestroyGameObjList(&(pt1->gameobj_list));
+			printf("DestroyGameObjList:type: %-16s\n", ObjTypeName[pt1->gameobj_base.type]);
 			// 卸载对象形状定义资源，使用函数：AEGfxMeshFree
 			AEGfxMeshFree(pt1->gameobj_base.pMesh);
 		}
@@ -185,7 +185,6 @@ Status BaseListTraverse(GameObjBaseList L, void(*visit)())
 	}
 	return OK;
 }
-
 
 static baseNode* GetBaseNodeWithType(unsigned long theType, GameObjBaseList L)
 {
