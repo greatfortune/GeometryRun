@@ -146,6 +146,7 @@
     <ClInclude Include="GameStateList.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="KeyAndObjUpdate.h" />
     <ClInclude Include="Level1.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="Math2D.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="GameObjectManager.c" />
     <ClCompile Include="GameStateManager.c" />
     <ClCompile Include="Input.c" />
+    <ClCompile Include="KeyAndObjUpdate.c" />
     <ClCompile Include="Level1.c" />
     <ClCompile Include="Level2.c" />
     <ClCompile Include="main.c" />

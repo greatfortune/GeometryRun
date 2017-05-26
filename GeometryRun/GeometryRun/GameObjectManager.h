@@ -10,6 +10,19 @@ Purpose:		游戏对象管理 */
 #define OK 1
 #define FLAG_ACTIVE 1
 #define FLAG_INACTIVE 0
+#define MAXPROPERTIES 5
+#define COLOR_DEFAULT 0xFFFFFFFF
+#define COLOR_PLAYER 0xFFFFFFFF
+#define COLOR_BACKGROUND 0x000000FF
+
+#define SIZE_HERO 30.0f			// 角色尺寸
+#define SIZE_BLOCK 38.0f			// 障碍物尺寸
+#define SIZE_BACKGROUND 400.0f	// 背景尺寸
+#define SIZE_PLATFORM 1000.0f	// 平台尺寸
+#define GRAVITY 200.0f	// 重力
+#define MOVE_VELOCITY_HERO 300.0f// 主角横向移动速度
+#define JUMP_VELOCITY 200.0f		// 主角纵向移动速度
+#define MOVE_MAXVELOCITY_BLOCK 5.0f// 障碍物最大移动速度
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -24,19 +37,6 @@ Purpose:		游戏对象管理 */
 
 typedef int Status;
 
-#define MAXPROPERTIES 5
-#define SIZE_HERO					30.0f	// 角色尺寸
-#define SIZE_BLOCK					38.0f	// 障碍物尺寸
-#define SIZE_BACKGROUND				400.0f	// 背景尺寸
-#define SIZE_PLATFORM				1000.0f	// 平台尺寸
-#define BLOCK_NUM 4
-#define COLOR_PLAYER 0xFFFFFFFF
-#define COLOR_BACKGROUND 0x000000FF
-#define MOVE_VELOCITY_HERO 300.0f
-#define JUMP_VELOCITY 200.0f
-#define GRAVITY 200.0f
-#define MOVE_MAXVELOCITY_BLOCK 5.0f
-
 typedef struct
 {
 	char name[10];
@@ -45,13 +45,21 @@ typedef struct
 
 enum objType
 {
-	TYPE_PLAYER = 0,
-	TYPE_PLATFORM,
-	TYPE_BACKGROUND,
-	TYPE_MONSTER,
-	TYPE_BLOCK,
-	TYPE_BOSS,
-	TYPE_COUNT
+	OTYPE_PLAYER = 0,
+	OTYPE_PLATFORM,
+	OTYPE_BACKGROUND,
+	OTYPE_MONSTER,
+	OTYPE_BLOCK,
+	OTYPE_BOSS,
+	OTYPE_COUNT
+};
+
+enum visitType
+{
+	VTYPE_WITH_INSNODE = 0,
+	VTYPE_WITH_INSNODE_OBJLIST,
+	VTYPE_WITH_INSNODE_INSNODE,
+	VTYPE_COUNT
 };
 
 // 游戏对象基类/结构
@@ -107,19 +115,21 @@ typedef struct
 
 
 // 游戏对象链表
-static GameObjBaseList theBaseList;
+GameObjBaseList theBaseList;
 Vector2D zero;
 
-
 // Player对象：因为是Player，所以单独声明，方便程序设计
-static GameObj* pHero;
+GameObj* pHero;
 
-static AEGfxTexture* pTex_Hero;
+// 碰撞检测主对象，方便遍历时使用
+GameObj *pInstForCollisionDetect;
+
+AEGfxTexture* pTex_Hero;
 //jumpCheck:跳跃次数，用于二级跳
 int jumpCheck;
 
 // 用于调试输出对象类型名称
-static char ObjTypeName[TYPE_COUNT][20];
+static char ObjTypeName[OTYPE_COUNT][20];
 
 void SetConstants();
 
@@ -147,10 +157,14 @@ GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2
 
 Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L);
 
-Status GameObjDelete(GameObj* theGameObj);
+Status GameObjDelete(GameObj* theGameObj, GameObjList L);
 
-Status ListTraverse(GameObjList L, void(*visit)());
+Status ListTraverse(GameObjList L, int theVisitType, Status(*Visit)(insNode* pinsNode, GameObjList L));
 
-Status BaseListTraverse(GameObjBaseList L, void(*visit)());
+Status BaseListTraverse(GameObjBaseList L, Status(*Visit)(insNode* pinsNode, GameObjList L));
+
+Status Visit_DestroyObj(insNode* pinsNode, GameObjList L);
+
+Status Visit_DrawObj(insNode* pinsNode, GameObjList L);
 
 #endif 

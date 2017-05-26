@@ -48,6 +48,9 @@
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="KeyAndObjUpdate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectManager.c">
@@ -78,6 +81,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Level2.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyAndObjUpdate.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

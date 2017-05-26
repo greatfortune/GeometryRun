@@ -36,7 +36,7 @@ enum {
 	KeySpace,
 	KeyNUM    // 总放在最后一个
 };
-boolean KeyPressed[KeyNUM];
+int KeyPressed[KeyNUM];
 
  //------------------------------------------------------------------------------
  // Public Functions:

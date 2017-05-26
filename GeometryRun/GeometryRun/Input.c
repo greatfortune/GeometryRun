@@ -92,16 +92,6 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			fprintf(fp, "Input:2\n");
 			printf("Input:2\n");
 		}
-		if (wParam == VK_UP)
-			KeyPressed[KeyUp] = TRUE;
-		if (wParam == VK_DOWN)
-			KeyPressed[KeyDown] = TRUE;
-		if (wParam == VK_LEFT)
-			KeyPressed[KeyLeft] = TRUE;
-		if (wParam == VK_RIGHT)
-			KeyPressed[KeyRight] = TRUE;
-		if (wParam == VK_SPACE)
-			KeyPressed[KeySpace] = TRUE;
 		break;
 
 		// 窗口发生移动

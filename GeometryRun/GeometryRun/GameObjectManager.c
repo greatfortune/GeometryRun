@@ -6,16 +6,28 @@ Purpose:		游戏对象管理 */
 
 #include "GameObjectManager.h"
 
-static baseNode* GetBaseNodeWithType(unsigned long theType, GameObjBaseList L);
+static Status GetpBaseNodeWithType(unsigned long theType, GameObjBaseList L, baseNode** ppBaseNode);
+
+static Status GetpBaseNodeWithType(unsigned long theType, GameObjBaseList L, baseNode** ppBaseNode)
+{
+	baseNode *pBaseNode = NULL;
+	for (pBaseNode = L->head->next; pBaseNode != L->tail; pBaseNode = pBaseNode->next)
+		if (pBaseNode->gameobj_base.type == theType)
+		{
+			*ppBaseNode = pBaseNode;
+			return OK;
+		}
+	return ERROR;
+}
 
 void SetConstants()
 {
-	strcpy(ObjTypeName[TYPE_PLAYER], "TYPE_PLAYER");
-	strcpy(ObjTypeName[TYPE_PLATFORM], "TYPE_PLATFORM");
-	strcpy(ObjTypeName[TYPE_BACKGROUND], "TYPE_BACKGROUND");
-	strcpy(ObjTypeName[TYPE_MONSTER], "TYPE_MONSTER");
-	strcpy(ObjTypeName[TYPE_BLOCK], "TYPE_BLOCK");
-	strcpy(ObjTypeName[TYPE_BOSS], "TYPE_BOSS");
+	strcpy(ObjTypeName[OTYPE_PLAYER], "TYPE_PLAYER");
+	strcpy(ObjTypeName[OTYPE_PLATFORM], "TYPE_PLATFORM");
+	strcpy(ObjTypeName[OTYPE_BACKGROUND], "TYPE_BACKGROUND");
+	strcpy(ObjTypeName[OTYPE_MONSTER], "TYPE_MONSTER");
+	strcpy(ObjTypeName[OTYPE_BLOCK], "TYPE_BLOCK");
+	strcpy(ObjTypeName[OTYPE_BOSS], "TYPE_BOSS");
 	zero.x = 0, zero.y = 0;
 	jumpCheck = 0;
 }
@@ -148,13 +160,13 @@ int BaseListLength(GameObjBaseList L)
 	return L->count;
 }
 
-Status GameObjDelete(GameObj* theGameObj, GameObjList* L)
+Status GameObjDelete(GameObj* theGameObj, GameObjList L)
 {
 	int i;
 	if (theGameObj->flag == FLAG_INACTIVE)
 		printf("Warn: trying to delete an inactive gameobj.\n");
 	theGameObj->flag = FLAG_INACTIVE;
-	(*L)->count--;
+	L->count--;
 	printf("DeleteGameObj:type: %-16s scale:%.2f pos: (%.1f, %.1f) vel: (%.1f, %.1f) dir: %.1f\n", ObjTypeName[theGameObj->pObject->type], theGameObj->scale, theGameObj->posCurr.x, theGameObj->posCurr.y, theGameObj->velCurr.x, theGameObj->velCurr.y, theGameObj->dirCurr);
 	if (theGameObj->propertyCount)
 	for (i = 0; i < theGameObj->propertyCount; i++)
@@ -163,45 +175,30 @@ Status GameObjDelete(GameObj* theGameObj, GameObjList* L)
 }
 
 //遍历函数，可能无用
-Status ListTraverse(GameObjList L, void(*visit)())
+Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode, GameObjList theL))
 {
-	insNode *pt = L->head->next;
-	while (pt != L->tail)
-	{
-		visit(&(pt));
-		pt = pt->next;
-	}
+	insNode *pt;
+	for (pt = L->head->next; pt != L->tail; pt = pt->next)
+		Visit(pt, L);
 	return OK;
 }
 
 //遍历函数，可能无用
-Status BaseListTraverse(GameObjBaseList L, void(*visit)())
+Status BaseListTraverse(GameObjBaseList L, Status(*Visit)(insNode* pinsNode, GameObjList theL))
 {
-	baseNode *pt = L->head->next;
-	while (pt != L->tail)
-	{
-		visit(&(pt));
-		pt = pt->next;
-	}
+	baseNode *pt;
+	for (pt = L->head->next; pt != L->tail; pt = pt->next)
+		ListTraverse(pt->gameobj_list, Visit);
 	return OK;
 }
 
-static baseNode* GetBaseNodeWithType(unsigned long theType, GameObjBaseList L)
-{
-	baseNode *pBaseNode = NULL;
-	for (pBaseNode = L->head->next;; pBaseNode = pBaseNode->next)
-	{
-		if (pBaseNode == L->tail)
-			return NULL;
-		else if (pBaseNode->gameobj_base.type == theType)
-			return pBaseNode;
-	}
-}
+//static Status Visit_SearchInactiveObj(insNode** ppInsNode, int *pflag);
 
 //创建新实例对象
 GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties)
 {
-	baseNode *pBaseNode = GetBaseNodeWithType(theType, L);
+	baseNode *pBaseNode;
+	GetpBaseNodeWithType(theType, L, &pBaseNode);
 
 	insNode *pt1, *pt2, *pInstNode = NULL;
 	int flag = 0, i;
@@ -267,3 +264,24 @@ Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxT
 	return OK;
 }
 
+Status Visit_DestroyObj(insNode* pinsNode, GameObjList L)
+{
+	GameObj* pInst = &(pinsNode->gameobj);
+	if (pInst->flag == FLAG_ACTIVE)
+		GameObjDelete(pInst, L);
+}
+
+Status Visit_DrawObj(insNode* pinsNode, GameObjList L)
+{
+	GameObj* pInst = &(pinsNode->gameobj);
+
+	// 跳过非活动对象
+	if ((pInst->flag & FLAG_ACTIVE) == 0)
+		return OK;
+	// 设置纹理
+	AEGfxTextureSet(pInst->pObject->pTex, 0, 0);
+	// 设置对象的2D变换矩阵，使用函数：AEGfxSetTransform
+	AEGfxSetTransform(pInst->transform.m);
+	// 绘制当前对象，使用函数：AEGfxMeshDraw
+	AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
+}
