@@ -1,9 +1,10 @@
 #pragma once
 
 #include "GameObjectManager.h"
-#include "input.h"
+#include "Input.h"
 
 #define FLAG_IMPORTANTKEY 2
+
 
 float winMaxX, winMaxY, winMinX, winMinY;
 

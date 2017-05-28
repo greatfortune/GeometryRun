@@ -35,20 +35,48 @@ Status KeyUpdate()
 	KeyPressed[KeyLeft] = GetKeyState(VK_LEFT);
 	KeyPressed[KeyRight] = GetKeyState(VK_RIGHT);
 	KeyPressed[KeySpace] = GetKeyState(VK_SPACE);
+	KeyPressed[KeyS] = GetKeyState('S');
 	// 控制玩家player左右移动 及 跳跃(匀速)
 	if (KeyPressed[KeyRight] < 0)
-		pHero->velCurr.x = MOVE_VELOCITY_HERO;
-	else if (KeyPressed[KeyLeft] < 0)
-		pHero->velCurr.x = -MOVE_VELOCITY_HERO;
-	else
-		pHero->velCurr.x = 0.0f;
-
-	if (KeyPressed[KeySpace] < 0)
 	{
-		if (jumpCheck<2)
-			pHero->velCurr.y = JUMP_VELOCITY;
-		jumpCheck++;
+		pHero->velCurr.x = MOVE_VELOCITY_HERO;
 	}
+	else
+	if (KeyPressed[KeyLeft] < 0)
+	{
+		pHero->velCurr.x = -MOVE_VELOCITY_HERO;
+	}
+	else
+		pHero->velCurr.x = 0.f;
+	if (KeyPressed[KeyDown] < 0 || KeyPressed[KeyS] < 0)
+	{
+		if (jumpCheck > 0)
+		{
+			jumpCheck = -1;
+			dropCheck = 1;
+			pHero->velCurr.y = -DROP_VELOCITY;
+		}
+		else if (jumpCheck == 0)
+		{
+			jumpCheck = -1;
+			dropCheck = 0;
+			pHero->velCurr.y = -DROP_VELOCITY;
+		}
+	}
+	if (KeyPressed[KeySpace] < 0 || KeyPressed[KeyUp] < 0)
+	{
+		if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
+		{
+			jumpCheck = 0;
+			pHero->velCurr.y = DROP_VELOCITY;
+		}
+		else if (jumpCheck < 2 && !dropCheck)
+		{
+			pHero->velCurr.y = JUMP_VELOCITY;
+			jumpCheck++;
+		}
+	}
+	
 	return OK;
 }
 
@@ -119,12 +147,56 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 				}
 				case OTYPE_PLATFORM:
 				{
+					if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
+					{
+						jumpCheck = 0;
+						pHero->velCurr.y = DROP_VELOCITY;
+					}
+					else if (jumpCheck < 2 && !dropCheck)
+					{
+						pHero->velCurr.y = JUMP_VELOCITY;
+						jumpCheck++;
+					}
+					// 检测位置调整主角方向
+					if (pInstForCollisionDetect->posCurr.y >= 0)
+					{
+						pInstForCollisionDetect->properties[0].value = 1;
+					}
+					else
+					{
+						pInstForCollisionDetect->properties[0].value = -1;
+					}
 					//是否在平台上
 					if ((pInstForCollisionDetect->posCurr.y) <= pInstForCollisionDetect->scale + 10.0f)
 					{
-						jumpCheck = 0;
-						pInstForCollisionDetect->velCurr.y = 0.0f;
-						pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + 10.0f;
+						dropCheck = 0;
+						if (jumpCheck > 0)	// 自由落体过程
+						{
+							jumpCheck = 0;
+							pInstForCollisionDetect->velCurr.y = 0.0f;
+							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + 10.0f;
+						}
+						else if (jumpCheck == 0)
+						{
+							if (pInstForCollisionDetect->posCurr.y >= pInstForCollisionDetect->scale)			// 翻转回地上过程
+							{
+								pInstForCollisionDetect->velCurr.y = 0.0f;
+								pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + 10.0f;
+							}
+						}
+						else if (pInstForCollisionDetect->posCurr.y <= -1 * pInstForCollisionDetect->scale - 10.0f)		// 迅速下落过程
+						{
+							pInstForCollisionDetect->velCurr.y = 0.0f;
+							pInstForCollisionDetect->posCurr.y = -1 * pInstForCollisionDetect->scale - 10.0f;
+						}
+					}
+					else
+					{
+						if (jumpCheck == 0)
+						{
+							pInstForCollisionDetect->velCurr.y = 0.0f;
+							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + 10.0f;
+						}
 					}
 					break;
 				}

@@ -23,6 +23,7 @@ Purpose:		游戏对象管理 */
 #define MOVE_VELOCITY_HERO 300.0f// 主角横向移动速度
 #define JUMP_VELOCITY 200.0f		// 主角纵向移动速度
 #define MOVE_MAXVELOCITY_BLOCK 5.0f// 障碍物最大移动速度
+#define DROP_VELOCITY 600.0f
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -126,7 +127,7 @@ GameObj *pInstForCollisionDetect;
 
 AEGfxTexture* pTex_Hero;
 //jumpCheck:跳跃次数，用于二级跳
-int jumpCheck;
+int jumpCheck, dropCheck;
 
 // 用于调试输出对象类型名称
 static char ObjTypeName[OTYPE_COUNT][20];

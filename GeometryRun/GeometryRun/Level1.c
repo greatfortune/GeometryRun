@@ -31,10 +31,12 @@ void Load1(void)
 	printf("Level1: Load\n");
 	theBaseList = NULL;
 
+
 	// 设置常量
 	SetConstants();
 	// 初始化游戏对象基类的实例列表
 	InitialGameObjBaseList(&theBaseList);
+	
 
 	// 初始化游戏对象类的实例列表
 

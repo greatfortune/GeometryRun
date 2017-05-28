@@ -19,6 +19,7 @@ Purpose:		关卡1  */
 #include "Input.h"
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
+#include "TimeManager.h"
 
 //------------------------------------------------------------------------------
 // Private Consts:
@@ -28,18 +29,18 @@ Purpose:		关卡1  */
 // Public Functions:
 //------------------------------------------------------------------------------
 
+time_t time_start_level2;
+
 void Load2(void)
 {
-	srand(time(0));
+	// 初始化时间系统
+	TimerIni(&time_start_level2);
 	printf("Level2: Load\n");
 	theBaseList = NULL;
-
 	// 设置常量
 	SetConstants();
 	// 初始化游戏对象基类的实例列表
 	InitialGameObjBaseList(&theBaseList);
-
-	// 初始化游戏对象类的实例列表
 
 	// 创建基类的实例	
 
@@ -122,12 +123,20 @@ void Ini2(void)
 	Vector2D iniPosition_Player = { -200.0f, 34.0f };
 	Vector2D iniVelocity_Background = { -3.0f, 0.0f };
 	Vector2D iniVelocity_Platform = { -3.0f, 0.0f };
-
+	Vector2D iniPosition_Block = { 10.0f, 10.0f };
+	Vector2D iniVelocity_Block = { -1.0f, -1.0f };
+	float iniFloat = 1.0f;
+	float iniMinX = 0.0f, iniMaxX = 100.0f, iniMinY = 70.0f, iniMaxY = 500.0f, iniMinVx = -1.0f, iniMaxVx = 1.0f;
+	float iniMinVy = -1.0f, iniMaxVy = 1.0f, iniMinDir = -3.0f, iniMaxDir = 3.0f;
+	// 获取当前关卡时间
+	time(&time_start_level2);
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
 	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, zero, iniVelocity_Background, 0, theBaseList, 0, NULL);
 	CreateGameObj(OTYPE_PLATFORM, SIZE_PLATFORM, zero, iniVelocity_Platform, 0, theBaseList, 0, NULL);
-
+	// 分别是在3s时固定创建一个block和在5s时随机创建5个block（少了是范围外的被删了）
+	CreateOneObjAtTime(3.0f, OTYPE_BLOCK, SIZE_BLOCK, iniPosition_Block, iniVelocity_Block, iniFloat, theBaseList, 0, NULL);
+	CreateSomeObjAtSameTimeWithRange(5.0f, 5, OTYPE_BLOCK, SIZE_BLOCK, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
 }
 
 void Update2(void)
@@ -138,6 +147,7 @@ void Update2(void)
 
 	GetWinMaxMinXY();
 
+	TimerUpdate(time_start_level2);
 
 	// =========================
 	// 游戏逻辑响应输入
@@ -149,25 +159,11 @@ void Update2(void)
 	// ======================
 	frameTime = AEFrameRateControllerGetFrameTime();
 
-	
-	static int counter = 0, counterMax = 100;
-
-
 	// ======================
 	// 帧时间：Unity中的dt
 	// ======================
 	frameTime = AEFrameRateControllerGetFrameTime();
 
-	counter += 1;
-	if (counter == counterMax)
-	{
-		iniPosition_Block.x = (float)(rand() % (int)(winMaxX - winMinX)) * 0.5 + 0.5 * (winMaxX + winMinX);
-		iniPosition_Block.y = (float)(rand() % (int)(winMaxY - winMinY)) * 0.5;
-		iniVelocity_Block.x = (float)(rand() % (int)MOVE_MAXVELOCITY_BLOCK) * -1.0f;
-		iniVelocity_Block.y = (float)(rand() % (int)MOVE_MAXVELOCITY_BLOCK) * -1.0f;
-		CreateGameObj(OTYPE_BLOCK, SIZE_BLOCK, iniPosition_Block, iniVelocity_Block, 0, theBaseList, 0, NULL);
-		counter = 0;
-	}
 	// 更新Hero外的对象位置
 	BaseListTraverse(theBaseList, Visit_PositionUpdate);
 	// 更新Hero的位置
@@ -202,9 +198,13 @@ void Draw2(void)
 
 void Free2(void)
 {
+	
 	printf("Level1: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
+	
 	BaseListTraverse(theBaseList, Visit_DestroyObj);
+
+	TimerFree();
 }
 
 void Unload2(void)
