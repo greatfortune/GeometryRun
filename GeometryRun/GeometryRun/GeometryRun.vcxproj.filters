@@ -54,6 +54,9 @@
     <ClInclude Include="TimeManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CreateObjectInMap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectManager.c">
@@ -90,6 +93,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TimeManager.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateObjectInMap.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

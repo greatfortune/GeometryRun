@@ -1,3 +1,5 @@
+#pragma once
+
 #include <time.h>
 #include "GameObjectManager.h"
 #include <stdlib.h>
@@ -35,7 +37,17 @@ typedef struct{
 Timer Timers[MaxTimers];
 int timerCount;
 
-Status TimerIni(time_t* LevelTime);
+Status SetCreateRange(Timer *pTimer, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
+
+Status SetBaseObjToCreate(Timer *pTimer, unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L);
+
+Status SetObjToCreate(Timer *pTimer, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties);
+
+float GetRanFloatFromTo(float min, float max);
+
+Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *theDir, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
+
+Status TimerIni(clock_t* LevelTime);
 
 Status CreateBaseObjAtTime(unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L, float theTime);
 
@@ -45,6 +57,6 @@ Status CreateOneObjAtTimeWithRange(float theTime, unsigned long theType, float s
 
 Status CreateSomeObjAtSameTimeWithRange(float theTime, int theAmountToCreate, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
 
-Status TimerUpdate(time_t LevelTime);
+Status TimerUpdate(clock_t LevelTime);
 
 Status TimerFree();

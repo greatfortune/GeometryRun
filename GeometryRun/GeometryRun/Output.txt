@@ -1,5 +1,12 @@
 System:Initialize
 GSM: Initialize
 GSM: Update
+Input:R
+Input:R
+Input:2
+GSM: Update
+Input:R
+Input:R
+Input:R
 Input:Forcing Shut Down
 System:Exit

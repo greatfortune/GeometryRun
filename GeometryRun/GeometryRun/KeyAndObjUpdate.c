@@ -25,30 +25,30 @@ Status KeyUpdate()
 		Next = GS_Quit;
 		return FLAG_IMPORTANTKEY;
 	}
+	if (KeyPressed[Key1] == TRUE)
+	{
+		Next = GS_L1;
+		return FLAG_IMPORTANTKEY;
+	}
 	if (KeyPressed[Key2] == TRUE)
 	{
 		Next = GS_L2;
 		return FLAG_IMPORTANTKEY;
 	}
-	KeyPressed[KeyUp] = GetKeyState(VK_UP);
-	KeyPressed[KeyDown] = GetKeyState(VK_DOWN);
-	KeyPressed[KeyLeft] = GetKeyState(VK_LEFT);
-	KeyPressed[KeyRight] = GetKeyState(VK_RIGHT);
-	KeyPressed[KeySpace] = GetKeyState(VK_SPACE);
-	KeyPressed[KeyS] = GetKeyState('S');
+
 	// 控制玩家player左右移动 及 跳跃(匀速)
-	if (KeyPressed[KeyRight] < 0)
+	if (KeyPressed[KeyRight] == TRUE)
 	{
 		pHero->velCurr.x = MOVE_VELOCITY_HERO;
 	}
 	else
-	if (KeyPressed[KeyLeft] < 0)
+	if (KeyPressed[KeyLeft] == TRUE)
 	{
 		pHero->velCurr.x = -MOVE_VELOCITY_HERO;
 	}
 	else
 		pHero->velCurr.x = 0.f;
-	if (KeyPressed[KeyDown] < 0 || KeyPressed[KeyS] < 0)
+	if (KeyPressed[KeyDown] == TRUE || KeyPressed[KeyS] == TRUE)
 	{
 		if (jumpCheck > 0)
 		{
@@ -63,8 +63,9 @@ Status KeyUpdate()
 			pHero->velCurr.y = -DROP_VELOCITY;
 		}
 	}
-	if (KeyPressed[KeySpace] < 0 || KeyPressed[KeyUp] < 0)
+	if (KeyPressed[KeySpace] == TRUE || KeyPressed[KeyUp] == TRUE)
 	{
+		printf("Input : up\n");
 		if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
 		{
 			jumpCheck = 0;
@@ -101,6 +102,14 @@ Status Visit_PositionUpdate(insNode* pinsNode, GameObjList L)
 			pInst->posCurr.y += pInst->velCurr.y;
 			if (pInst->posCurr.x <= winMinX)
 				pInst->posCurr.x = 0.0f;
+			break;
+		}
+		case OTYPE_MONSTER:
+		{
+			pInst->posCurr.x += pInst->velCurr.x;
+			pInst->posCurr.y += pInst->velCurr.y;
+			if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
+				GameObjDelete(pInst, L);
 			break;
 		}
 		case OTYPE_BLOCK:
@@ -147,16 +156,6 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 				}
 				case OTYPE_PLATFORM:
 				{
-					if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
-					{
-						jumpCheck = 0;
-						pHero->velCurr.y = DROP_VELOCITY;
-					}
-					else if (jumpCheck < 2 && !dropCheck)
-					{
-						pHero->velCurr.y = JUMP_VELOCITY;
-						jumpCheck++;
-					}
 					// 检测位置调整主角方向
 					if (pInstForCollisionDetect->posCurr.y >= 0)
 					{
@@ -235,7 +234,14 @@ Status Visit_Matrix2DCount(insNode* pinsNode, GameObjList L)
 		return OK;
 
 	// 缩放矩阵
-	Matrix2DScale(&scale, pInst->scale, pInst->scale);
+	if (pInst->pObject->type == OTYPE_PLAYER)
+	{
+		Matrix2DScale(&scale, pInst->scale, pInst->scale * pInst->properties->value);
+	}
+	else
+	{
+		Matrix2DScale(&scale, pInst->scale, pInst->scale);
+	}
 	// 旋转矩阵
 	Matrix2DRotDeg(&rot, pInst->dirCurr);
 	// 平移矩阵

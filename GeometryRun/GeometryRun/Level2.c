@@ -20,6 +20,7 @@ Purpose:		关卡1  */
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
 #include "TimeManager.h"
+#include "CreateObjectInMap.h"
 
 //------------------------------------------------------------------------------
 // Private Consts:
@@ -29,7 +30,7 @@ Purpose:		关卡1  */
 // Public Functions:
 //------------------------------------------------------------------------------
 
-time_t time_start_level2;
+clock_t time_start_level2;
 
 void Load2(void)
 {
@@ -101,6 +102,20 @@ void Load2(void)
 	CreateGameObjBase(OTYPE_PLAYER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/thePlayer.png"), theBaseList);
 
 	// ========================
+	// 怪物
+	// ========================
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
+		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
+		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+	AEGfxTriAdd(
+		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
+		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
+		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+	CreateGameObjBase(OTYPE_MONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/star.png"), theBaseList);
+
+	// ========================
 	// 障碍物
 	// ========================
 
@@ -114,13 +129,12 @@ void Load2(void)
 		1.0f, 1.0f, COLOR_PLAYER, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
 	CreateGameObjBase(OTYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/theBlock2.png"), theBaseList);
-
 }
 
 void Ini2(void)
 {
 	printf("Level2: Ini\n");
-	Vector2D iniPosition_Player = { -200.0f, 34.0f };
+	Vector2D iniPosition_Player = { -200.0f, 40.0f };
 	Vector2D iniVelocity_Background = { -3.0f, 0.0f };
 	Vector2D iniVelocity_Platform = { -3.0f, 0.0f };
 	Vector2D iniPosition_Block = { 10.0f, 10.0f };
@@ -128,15 +142,27 @@ void Ini2(void)
 	float iniFloat = 1.0f;
 	float iniMinX = 0.0f, iniMaxX = 100.0f, iniMinY = 70.0f, iniMaxY = 500.0f, iniMinVx = -1.0f, iniMaxVx = 1.0f;
 	float iniMinVy = -1.0f, iniMaxVy = 1.0f, iniMinDir = -3.0f, iniMaxDir = 3.0f;
+
+	// 设置当前障碍物默认速度
+	defaultBlockVel.x = -5.0f;
+	defaultBlockVel.y = 0.0f;
+
 	// 获取当前关卡时间
-	time(&time_start_level2);
+	time_start_level2 = clock();
+
+	//数值初始化
+	jumpCheck = 0;
+	dropCheck = 0;
+
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
 	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, zero, iniVelocity_Background, 0, theBaseList, 0, NULL);
 	CreateGameObj(OTYPE_PLATFORM, SIZE_PLATFORM, zero, iniVelocity_Platform, 0, theBaseList, 0, NULL);
 	// 分别是在3s时固定创建一个block和在5s时随机创建5个block（少了是范围外的被删了）
-	CreateOneObjAtTime(3.0f, OTYPE_BLOCK, SIZE_BLOCK, iniPosition_Block, iniVelocity_Block, iniFloat, theBaseList, 0, NULL);
-	CreateSomeObjAtSameTimeWithRange(5.0f, 5, OTYPE_BLOCK, SIZE_BLOCK, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
+	//CreateOneObjAtTime(3.0f, OTYPE_BLOCK, SIZE_BLOCK, iniPosition_Block, iniVelocity_Block, iniFloat, theBaseList, 0, NULL);
+	
+	CreateObjInMap1(2.0f);
+	CreateObjInMap0(4.0f);
 }
 
 void Update2(void)
@@ -148,7 +174,7 @@ void Update2(void)
 	GetWinMaxMinXY();
 
 	TimerUpdate(time_start_level2);
-
+	
 	// =========================
 	// 游戏逻辑响应输入
 	// =========================

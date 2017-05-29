@@ -16,14 +16,15 @@ Purpose:		游戏对象管理 */
 #define COLOR_BACKGROUND 0x000000FF
 
 #define SIZE_HERO 30.0f			// 角色尺寸
-#define SIZE_BLOCK 38.0f			// 障碍物尺寸
+#define SIZE_BLOCK 34.0f			// 障碍物尺寸
 #define SIZE_BACKGROUND 400.0f	// 背景尺寸
 #define SIZE_PLATFORM 1000.0f	// 平台尺寸
-#define GRAVITY 200.0f	// 重力
+#define PLATFORM_HEIGHT 10.0f	// 平台高度 = 0.01 * SIZE_PLATFORM
+#define GRAVITY 500.0f	// 重力
 #define MOVE_VELOCITY_HERO 300.0f// 主角横向移动速度
-#define JUMP_VELOCITY 200.0f		// 主角纵向移动速度
-#define MOVE_MAXVELOCITY_BLOCK 5.0f// 障碍物最大移动速度
-#define DROP_VELOCITY 600.0f
+#define JUMP_VELOCITY 300.0f		// 主角纵向移动速度
+#define DROP_VELOCITY 600.0f		// 主角降落速度
+#define MOVE_MAXVELOCITY_BLOCK 5.0f	// 障碍物最大移动速度
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -160,9 +161,9 @@ Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxT
 
 Status GameObjDelete(GameObj* theGameObj, GameObjList L);
 
-Status ListTraverse(GameObjList L, int theVisitType, Status(*Visit)(insNode* pinsNode, GameObjList L));
+Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode, GameObjList theL));
 
-Status BaseListTraverse(GameObjBaseList L, Status(*Visit)(insNode* pinsNode, GameObjList L));
+Status BaseListTraverse(GameObjBaseList L, Status(*Visit)(insNode* pinsNode, GameObjList theL));
 
 Status Visit_DestroyObj(insNode* pinsNode, GameObjList L);
 

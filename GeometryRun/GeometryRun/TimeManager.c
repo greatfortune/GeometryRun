@@ -1,16 +1,16 @@
 #include "TimeManager.h"
 
-static Status SetCreateRange(Timer *pTimer, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
+//static Status SetCreateRange(Timer *pTimer, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
+//
+//static Status SetBaseObjToCreate(Timer *pTimer, unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L);
+//
+//static Status SetObjToCreate(Timer *pTimer, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties);
+//
+//static float GetRanFloatFromTo(float min, float max);
+//
+//static Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *theDir, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
 
-static Status SetBaseObjToCreate(Timer *pTimer, unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L);
-
-static Status SetObjToCreate(Timer *pTimer, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties);
-
-static float GetRanFloatFromTo(float min, float max);
-
-static Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *theDir, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
-
-Status TimerIni(time_t* LevelTime)
+Status TimerIni(clock_t* LevelTime)
 {
 	int i;
 	time(LevelTime);
@@ -153,15 +153,14 @@ static Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *t
 	return OK;
 }
 
-Status TimerUpdate(time_t LevelTime)
+Status TimerUpdate(clock_t LevelTime)
 {
 	int i, dealTimers = 0, j;
-	double passTime;
-	time_t poiTime;
+	float passTime;
+	clock_t poiTime = clock();
 	Vector2D iniPos, iniVel;
 	float iniDir;
-	time(&poiTime);
-	passTime = difftime(poiTime, LevelTime);
+	passTime = (poiTime - LevelTime) / 1000.0f;
 
 	for (i = 0; i < MaxTimers && dealTimers < timerCount; i++)
 	{
