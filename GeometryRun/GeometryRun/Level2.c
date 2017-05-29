@@ -83,7 +83,7 @@ void Load2(void)
 		1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
 
 
-	CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background.png"), theBaseList);
+	CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/level2.png"), theBaseList);
 
 	// =========================
 	// Ö÷½Ç

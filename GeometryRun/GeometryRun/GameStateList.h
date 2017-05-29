@@ -30,6 +30,7 @@ int Next;
 
 enum
 {
+	GS_L0,              //Level0
 	GS_L1,              // Level1
 	GS_L2,              // Level2
 	GS_NUM,             // Total Number

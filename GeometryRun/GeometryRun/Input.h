@@ -36,6 +36,7 @@ enum {
 	KeyRight,
 	KeySpace,
 	KeyS,
+	KeyLButton,
 	KeyNUM    // 总放在最后一个
 };
 int KeyPressed[KeyNUM];

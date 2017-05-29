@@ -36,48 +36,60 @@ Status KeyUpdate()
 		return FLAG_IMPORTANTKEY;
 	}
 
-	// 控制玩家player左右移动 及 跳跃(匀速)
-	if (KeyPressed[KeyRight] == TRUE)
+	// 画面播放完毕/点击鼠标左键 进入Level1
+	if (Current == GS_L0)
 	{
-		pHero->velCurr.x = MOVE_VELOCITY_HERO;
+		KeyPressed[KeyLButton] = GetKeyState(VK_LBUTTON);
+		if (KeyPressed[KeyLButton] < 0 || xcurrentFrame>11)
+		{
+			Next = GS_L1;
+			return FLAG_IMPORTANTKEY;
+		}
 	}
 	else
-	if (KeyPressed[KeyLeft] == TRUE)
 	{
-		pHero->velCurr.x = -MOVE_VELOCITY_HERO;
-	}
-	else
-		pHero->velCurr.x = 0.f;
-	if (KeyPressed[KeyDown] == TRUE || KeyPressed[KeyS] == TRUE)
-	{
-		if (jumpCheck > 0)
+		// 控制玩家player左右移动 及 跳跃(匀速)
+		if (KeyPressed[KeyRight] == TRUE)
 		{
-			jumpCheck = -1;
-			dropCheck = 1;
-			pHero->velCurr.y = -DROP_VELOCITY;
+			pHero->velCurr.x = MOVE_VELOCITY_HERO;
 		}
-		else if (jumpCheck == 0)
+		else
+			if (KeyPressed[KeyLeft] == TRUE)
+			{
+				pHero->velCurr.x = -MOVE_VELOCITY_HERO;
+			}
+			else
+				pHero->velCurr.x = 0.f;
+		if (KeyPressed[KeyDown] == TRUE || KeyPressed[KeyS] == TRUE)
 		{
-			jumpCheck = -1;
-			dropCheck = 0;
-			pHero->velCurr.y = -DROP_VELOCITY;
+			if (jumpCheck > 0)
+			{
+				jumpCheck = -1;
+				dropCheck = 1;
+				pHero->velCurr.y = -DROP_VELOCITY;
+			}
+			else if (jumpCheck == 0)
+			{
+				jumpCheck = -1;
+				dropCheck = 0;
+				pHero->velCurr.y = -DROP_VELOCITY;
+			}
 		}
-	}
-	if (KeyPressed[KeySpace] == TRUE || KeyPressed[KeyUp] == TRUE)
-	{
-		printf("Input : up\n");
-		if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
+		if (KeyPressed[KeySpace] == TRUE || KeyPressed[KeyUp] == TRUE)
 		{
-			jumpCheck = 0;
-			pHero->velCurr.y = DROP_VELOCITY;
+			printf("Input : up\n");
+			if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
+			{
+				jumpCheck = 0;
+				pHero->velCurr.y = DROP_VELOCITY;
+			}
+			else if (jumpCheck < 2 && !dropCheck)
+			{
+				pHero->velCurr.y = JUMP_VELOCITY;
+				jumpCheck++;
+			}
 		}
-		else if (jumpCheck < 2 && !dropCheck)
-		{
-			pHero->velCurr.y = JUMP_VELOCITY;
-			jumpCheck++;
-		}
-	}
-	
+	}	
 	return OK;
 }
 

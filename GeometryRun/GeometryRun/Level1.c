@@ -79,7 +79,7 @@ void Load1(void)
 		1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
 
 
-	CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background.png"), theBaseList);
+	CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/level1.png"), theBaseList);
 
 	// =========================
 	// 主角

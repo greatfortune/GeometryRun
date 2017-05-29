@@ -123,6 +123,11 @@ Vector2D zero;
 // Player对象：因为是Player，所以单独声明，方便程序设计
 GameObj* pHero;
 
+// 仅在Level0中控制动画播放
+GameObj* pImage;
+int xcurrentFrame;
+float elpasedTime;
+
 // 碰撞检测主对象，方便遍历时使用
 GameObj *pInstForCollisionDetect;
 

@@ -8,6 +8,7 @@
 
 #include "System.h"
 #include "GameStateList.h"
+#include "Level0.h"
 #include "Level1.h"
 #include "Level2.h"
 
@@ -59,6 +60,15 @@ void GSM_Update(void)
 {
 	switch (Current)
 	{
+    	case GS_L0: {
+	    	pLoad = Load0;
+		    pIni = Ini0;
+		    pUpdate = Update0;
+		    pDraw = Draw0;
+		    pFree = Free0;
+		    pUnload = Unload0;
+		    break;
+	    }
 		case GS_L1: {
 			pLoad = Load1;
 			pIni = Ini1;
