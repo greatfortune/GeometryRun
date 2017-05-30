@@ -1,2 +1,298 @@
-﻿  GeometryRun.vcxproj -> F:\学习\专业课\游戏导论\游戏核心开发技术导论\SAVE\GeometryRun\Debug\GeometryRun.exe
-  GeometryRun.vcxproj -> F:\学习\专业课\游戏导论\游戏核心开发技术导论\SAVE\GeometryRun\Debug\GeometryRun.pdb (Full PDB)
+﻿生成启动时间为 2017/5/30 15:16:23。
+     1>项目“C:\Users\dell\Desktop\GeometryRun\GeometryRun\GeometryRun\GeometryRun.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_WARNINGS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TC /showIncludes /analyze- /errorReport:prompt Level2.c
+         Level2.c
+         注意: 包含文件:  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h
+         注意: 包含文件:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\sal.h
+         注意: 包含文件:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ConcurrencySal.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\vadefs.h
+         注意: 包含文件:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\swprintf.inl
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\GameStateList.h
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\System.h
+         注意: 包含文件:   C:\Program Files (x86)\Windows Kits\8.1\Include\um\Windows.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\shared\sdkddkver.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\excpt.h
+         注意: 包含文件:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdarg.h
+         注意: 包含文件:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\shared\windef.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\minwindef.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\specstrings.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\specstrings_strict.h
+         注意: 包含文件:        C:\Program Files (x86)\Windows Kits\8.1\Include\shared\specstrings_undef.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\driverspecs.h
+         注意: 包含文件:        c:\program files (x86)\windows kits\8.1\include\shared\sdv_driverspecs.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnt.h
+         注意: 包含文件:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ctype.h
+         注意: 包含文件:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\kernelspecs.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\basetsd.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\guiddef.h
+         注意: 包含文件:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h
+         注意: 包含文件:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\pshpack4.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\pshpack4.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack4.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\pshpack4.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\pshpack2.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\pshpack2.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\pshpack8.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\apiset.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\ktmtypes.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winbase.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\apisetcconv.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\minwinbase.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\processenv.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\fileapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\debugapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\utilapiset.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\handleapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\errhandlingapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\fibersapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\namedpipeapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\profileapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\heapapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\ioapiset.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\synchapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\interlockedapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\processthreadsapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\sysinfoapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\memoryapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\threadpoollegacyapiset.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\threadpoolapiset.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\bemapiset.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\jobapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\wow64apiset.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\libloaderapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\securitybaseapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\namespaceapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\systemtopologyapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\processtopologyapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\securityappcontainer.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\realtimeapiset.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winerror.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\timezoneapi.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\wingdi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack4.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack4.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\tvout.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnls.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\datetimeapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\stringapiset.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnls.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\wincon.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\consoleapi.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winver.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\verrsrc.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winreg.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\reason.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnetwk.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\wnnc.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\shared\cderr.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\dde.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\ddeml.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\dlgs.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\lzexpand.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsystem.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsyscom.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\mciapi.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsyscom.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmiscapi.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsyscom.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmiscapi2.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsyscom.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsyscom.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmeapi.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsyscom.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\timeapi.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsyscom.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\joystickapi.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\mmsyscom.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\nb30.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpc.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcdce.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcdcep.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\rpcnsi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcnterr.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcasync.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\shellapi.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winperf.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winsock.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\inaddr.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\wincrypt.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\bcrypt.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\ncrypt.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\dpapi.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winefs.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winscard.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\wtypes.h
+         注意: 包含文件:      c:\program files (x86)\windows kits\8.1\include\shared\rpcndr.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\um\rpcnsip.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcsal.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:      c:\program files (x86)\windows kits\8.1\include\shared\wtypesbase.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\shared\guiddef.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\winioctl.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winsmcrd.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winspool.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\prsht.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack4.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\ole2.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\objbase.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\combaseapi.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+         注意: 包含文件:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h
+         注意: 包含文件:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\limits.h
+         注意: 包含文件:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\um\unknwnbase.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\um\objidlbase.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\guiddef.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\um\cguid.h
+         注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\objidl.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\um\unknwn.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\urlmon.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\um\oleidl.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\um\servprov.h
+         注意: 包含文件:       c:\program files (x86)\windows kits\8.1\include\um\msxml.h
+         注意: 包含文件:        c:\program files (x86)\windows kits\8.1\include\um\oaidl.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\propidl.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\oleauto.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+         注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\commdlg.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\prsht.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\shared\stralign.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\winsvc.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\mcx.h
+         注意: 包含文件:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\imm.h
+         注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\ime_cmodes.h
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\Level2.h
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEEngine.h
+         注意: 包含文件:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\assert.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEExport.h
+         注意: 包含文件:   C:\Program Files (x86)\Windows Kits\8.1\Include\shared\windowsx.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AETypes.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEMath.h
+         注意: 包含文件:    c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEVec2.h
+         注意: 包含文件:    c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEMtx33.h
+         注意: 包含文件:    c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AELineSegment2.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\float.h
+         注意: 包含文件:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtwrn.h
+         注意: 包含文件:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\math.h
+         注意: 包含文件:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEUtil.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEFrameRateController.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AESystem.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEGraphics.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEInput.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\AEGameStateMgr.h
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\Input.h
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\gameobjectmanager.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\GameObjectManager.h
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\gameobjectmanager.h(16): warning C4005: “COLOR_BACKGROUND”: 宏重定义
+                 c:\program files (x86)\windows kits\8.1\include\um\winuser.h(9065) : 参见“COLOR_BACKGROUND”的前一个定义
+         注意: 包含文件:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdbool.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\GameObjectManager.h
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\Vector2D.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\math.h
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\matrix2d.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\Matrix2D.h
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\matrix2d.h(4): warning C4005: “PI”: 宏重定义
+                 c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\aeexport.h(20) : 参见“PI”的前一个定义
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\math2d.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         注意: 包含文件:   c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\Math2D.h
+         注意: 包含文件:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\time.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wtime.inl
+         注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\time.inl
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\KeyAndObjUpdate.h
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\TimeManager.h
+         注意: 包含文件:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\math.h
+         注意: 包含文件:  c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\CreateObjectInMap.h
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\level2.c(164): warning C4013: “CreateObjInMap4”未定义；假设外部返回 int
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\level2.c(199): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\level2.c(200): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\level2.c(203): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\level2.c(175): warning C4101: “iniVelocity_Block”: 未引用的局部变量
+     1>c:\users\dell\desktop\geometryrun\geometryrun\geometryrun\level2.c(174): warning C4101: “iniPosition_Block”: 未引用的局部变量
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\dell\Desktop\GeometryRun\GeometryRun\Debug\GeometryRun.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\dell\Desktop\GeometryRun\GeometryRun\Debug\GeometryRun.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\dell\Desktop\GeometryRun\GeometryRun\Debug\GeometryRun.lib" /MACHINE:X86 Debug\GeometryRun.res
+         Debug\CreateObjectInMap.obj
+         Debug\GameObjectManager.obj
+         Debug\GameStateManager.obj
+         Debug\Input.obj
+         Debug\KeyAndObjUpdate.obj
+         Debug\Level0.obj
+         Debug\Level1.obj
+         Debug\Level2.obj
+         Debug\main.obj
+         Debug\Math2D.obj
+         Debug\Matrix2D.obj
+         Debug\System.obj
+         Debug\TimeManager.obj
+         Debug\Vector2D.obj
+         GeometryRun.vcxproj -> C:\Users\dell\Desktop\GeometryRun\GeometryRun\Debug\GeometryRun.exe
+     1>已完成生成项目“C:\Users\dell\Desktop\GeometryRun\GeometryRun\GeometryRun\GeometryRun.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.41

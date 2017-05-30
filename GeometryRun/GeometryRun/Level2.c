@@ -161,8 +161,11 @@ void Ini2(void)
 	// 分别是在3s时固定创建一个block和在5s时随机创建5个block（少了是范围外的被删了）
 	//CreateOneObjAtTime(3.0f, OTYPE_BLOCK, SIZE_BLOCK, iniPosition_Block, iniVelocity_Block, iniFloat, theBaseList, 0, NULL);
 	
-	CreateObjInMap1(2.0f);
-	CreateObjInMap0(4.0f);
+	CreateObjInMap4(1.0f);
+	CreateObjInMap3(2.0f);
+	CreateObjInMap2(3.0f);
+	CreateObjInMap1(6.0f);
+	CreateObjInMap0(8.0f);
 }
 
 void Update2(void)
