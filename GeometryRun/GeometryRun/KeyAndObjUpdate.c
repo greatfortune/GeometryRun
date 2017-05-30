@@ -93,6 +93,7 @@ Status KeyUpdate()
 	return OK;
 }
 
+//更新对象位置
 Status Visit_PositionUpdate(insNode* pinsNode, GameObjList L)
 {
 	GameObj* pInst = &(pinsNode->gameobj);
@@ -138,16 +139,17 @@ Status Visit_PositionUpdate(insNode* pinsNode, GameObjList L)
 	return OK;
 }
 
-static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L);
 
+//对象碰撞检测
 static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 {
 	GameObj* pInstOther = &(pinsNode->gameobj);
-	// 跳过非活动对象和自身
+	// 跳过非活动对象和主对象自身
 	if (pInstOther->flag == FLAG_INACTIVE || (pInstOther->pObject->type == pInstForCollisionDetect->pObject->type))
 		return OK;
 	switch (pInstForCollisionDetect->pObject->type)
 	{
+		//主对象
 		case OTYPE_PLAYER:
 		{
 			switch (pInstOther->pObject->type)
@@ -158,14 +160,16 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 					// 碰撞检测
 					if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
 					{
-						// 装上BLOCK死亡
+						// 撞上BLOCK死亡
 						// 重新开始关卡
 						Next = GS_Restart;
 						printf("\n Collision with the Block: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
 						break;
 					}
 				break;
-				}
+				}// Player vs. Block结束
+
+				// Player vs. Platform
 				case OTYPE_PLATFORM:
 				{
 					// 检测位置调整主角方向
@@ -210,12 +214,42 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 						}
 					}
 					break;
-				}
+				}//Player VS Platform结束
+
+				//Player VS Monster
+				case OTYPE_MONSTER:
+				{
+					// 碰撞检测
+					if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
+					{
+						// 撞上Monster死亡
+						// 重新开始关卡
+						Next = GS_Restart;
+						printf("\n Collision with the Monster: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
+						break;
+					}
+					break;
+				}//Player VS Monster结束
+
 				default:
 					break;
 			}
 			break;
+       /*
+			//主对象为子弹BULLET
+		case OTYPE_BULLET:
+		{
+			switch (pInstOther->pObject->type)
+			{
+			case OTYPE_MONSTER:
+			{
+
+			}
+			}
+		
 		}
+		*/
+		}//主对象比较结束
 		default:
 			break;
 	}
@@ -235,7 +269,7 @@ Status Visit_CollisionDetect(insNode* pinsNode, GameObjList L)
 	BaseListTraverse(theBaseList, Visit_CollisionDetectAnother);
 	return OK;
 }
-
+ 
 Status Visit_Matrix2DCount(insNode* pinsNode, GameObjList L)
 {
 	GameObj* pInst = &(pinsNode->gameobj);
