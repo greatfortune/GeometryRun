@@ -13,7 +13,7 @@
 Status TimerIni(clock_t* LevelTime)
 {
 	int i;
-	time(LevelTime);
+	*LevelTime = clock();
 	for (i = 0; i < MaxTimers; i++)
 		Timers[i].flag = FLAG_INACTIVE;
 	timerCount = 0;

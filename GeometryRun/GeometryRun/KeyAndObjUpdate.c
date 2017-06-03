@@ -75,7 +75,7 @@ Status KeyUpdate()
 				pHero->velCurr.y = -DROP_VELOCITY;
 			}
 		}
-		if (KeyPressed[KeySpace] == TRUE || KeyPressed[KeyUp] == TRUE)
+		if (KeyPressed[KeyW] == TRUE || KeyPressed[KeyUp] == TRUE)
 		{
 			printf("Input : up\n");
 			if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
@@ -88,6 +88,12 @@ Status KeyUpdate()
 				pHero->velCurr.y = JUMP_VELOCITY;
 				jumpCheck++;
 			}
+		}
+		if (KeyPressed[KeyJ] == TRUE || KeyPressed[KeySpace] == TRUE)
+		{
+			
+			Vector2D iniBulletPos = { pHero->posCurr.x + 1.5 * SIZE_HERO, pHero->posCurr.y };
+			CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 0, NULL);
 		}
 	}	
 	return OK;
@@ -118,14 +124,8 @@ Status Visit_PositionUpdate(insNode* pinsNode, GameObjList L)
 			break;
 		}
 		case OTYPE_MONSTER:
-		{
-			pInst->posCurr.x += pInst->velCurr.x;
-			pInst->posCurr.y += pInst->velCurr.y;
-			if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
-				GameObjDelete(pInst, L);
-			break;
-		}
 		case OTYPE_BLOCK:
+		case OTYPE_BULLET:
 		{
 			pInst->posCurr.x += pInst->velCurr.x;
 			pInst->posCurr.y += pInst->velCurr.y;
@@ -154,6 +154,53 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 		{
 			switch (pInstOther->pObject->type)
 			{
+				// Player vs. Platform
+				case OTYPE_PLATFORM:
+				{
+					// 检测位置调整主角方向
+					if (pInstForCollisionDetect->posCurr.y >= 0)
+					{
+						pInstForCollisionDetect->properties[0].value = 1;
+					}
+					else
+					{
+						pInstForCollisionDetect->properties[0].value = -1;
+					}
+					//是否在平台上
+					if ((pInstForCollisionDetect->posCurr.y) <= pInstForCollisionDetect->scale + PLATFORM_HEIGHT)
+					{
+						dropCheck = 0;
+						if (jumpCheck > 0)	// 自由落体过程
+						{
+							jumpCheck = 0;
+							pInstForCollisionDetect->velCurr.y = 0.0f;
+							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
+						}
+						else if (jumpCheck == 0)
+						{
+							if (pInstForCollisionDetect->posCurr.y >= pInstForCollisionDetect->scale)			// 翻转回地上过程
+							{
+								pInstForCollisionDetect->velCurr.y = 0.0f;
+								pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
+							}
+						}
+						else if (pInstForCollisionDetect->posCurr.y <= -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT)		// 迅速下落过程
+						{
+							pInstForCollisionDetect->velCurr.y = 0.0f;
+							pInstForCollisionDetect->posCurr.y = -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT;
+						}
+					}
+					else
+					{
+						if (jumpCheck == 0)
+						{
+							pInstForCollisionDetect->velCurr.y = 0.0f;
+							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
+						}
+					}
+					break;
+				}//Player VS Platform结束
+
 				// Player vs. Block
 				case OTYPE_BLOCK:
 				{
@@ -168,53 +215,6 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 					}
 				break;
 				}// Player vs. Block结束
-
-				// Player vs. Platform
-				case OTYPE_PLATFORM:
-				{
-					// 检测位置调整主角方向
-					if (pInstForCollisionDetect->posCurr.y >= 0)
-					{
-						pInstForCollisionDetect->properties[0].value = 1;
-					}
-					else
-					{
-						pInstForCollisionDetect->properties[0].value = -1;
-					}
-					//是否在平台上
-					if ((pInstForCollisionDetect->posCurr.y) <= pInstForCollisionDetect->scale + 10.0f)
-					{
-						dropCheck = 0;
-						if (jumpCheck > 0)	// 自由落体过程
-						{
-							jumpCheck = 0;
-							pInstForCollisionDetect->velCurr.y = 0.0f;
-							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + 10.0f;
-						}
-						else if (jumpCheck == 0)
-						{
-							if (pInstForCollisionDetect->posCurr.y >= pInstForCollisionDetect->scale)			// 翻转回地上过程
-							{
-								pInstForCollisionDetect->velCurr.y = 0.0f;
-								pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + 10.0f;
-							}
-						}
-						else if (pInstForCollisionDetect->posCurr.y <= -1 * pInstForCollisionDetect->scale - 10.0f)		// 迅速下落过程
-						{
-							pInstForCollisionDetect->velCurr.y = 0.0f;
-							pInstForCollisionDetect->posCurr.y = -1 * pInstForCollisionDetect->scale - 10.0f;
-						}
-					}
-					else
-					{
-						if (jumpCheck == 0)
-						{
-							pInstForCollisionDetect->velCurr.y = 0.0f;
-							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + 10.0f;
-						}
-					}
-					break;
-				}//Player VS Platform结束
 
 				//Player VS Monster
 				case OTYPE_MONSTER:

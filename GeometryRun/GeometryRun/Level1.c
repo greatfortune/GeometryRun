@@ -113,25 +113,37 @@ void Load1(void)
 	// ========================
 	// 障碍物
 	// ========================
-
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_PLAYER, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
+		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
+		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
+		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
 	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_PLAYER, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
+		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
+		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
+		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
 	CreateGameObjBase(OTYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/theBlock2.png"), theBaseList);
 
+	// ========================
+	// 子弹
+	// ========================
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
+		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
+		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+	AEGfxTriAdd(
+		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
+		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
+		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+	CreateGameObjBase(OTYPE_BULLET, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/bullet.png"), theBaseList);
 }
 
 void Ini1(void)
 {
 	printf("Level1: Ini\n");
 	int i;
-	Vector2D iniPosition_Player = {-200.0f, 40.0f};
+	Vector2D iniPosition_Player = {-250.0f, 40.0f};
 	Vector2D iniPosition_Block[BLOCK_NUM];
 	Vector2D iniVelocity_Background = {-3.0f, 0.0f};
 	Vector2D iniVelocity_Platform = {-3.0f, 0.0f };
@@ -155,8 +167,7 @@ void Ini1(void)
 	iniVelocity_Block[3].y = 1.5f;
 	
 	// 数值初始化
-	jumpCheck = 0;
-	dropCheck = 0;
+	SetIniValue();
 
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);

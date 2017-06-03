@@ -16,7 +16,8 @@ Purpose:		游戏对象管理 */
 #define COLOR_BACKGROUND 0x000000FF
 
 #define SIZE_HERO 30.0f			// 角色尺寸
-#define SIZE_BLOCK 34.0f			// 障碍物尺寸
+#define SIZE_BLOCK 30.0f		// 障碍物尺寸
+#define SIZE_BULLET 9.0f		// 子弹尺寸
 #define SIZE_BACKGROUND 400.0f	// 背景尺寸
 #define SIZE_PLATFORM 1000.0f	// 平台尺寸
 #define PLATFORM_HEIGHT 10.0f	// 平台高度 = 0.01 * SIZE_PLATFORM
@@ -52,6 +53,7 @@ enum objType
 	OTYPE_BACKGROUND,
 	OTYPE_MONSTER,
 	OTYPE_BLOCK,
+	OTYPE_BULLET,
 	OTYPE_BOSS,
 	OTYPE_COUNT
 };
@@ -128,6 +130,9 @@ GameObj* pImage;
 int xcurrentFrame;
 float elpasedTime;
 
+// 子弹速度
+Vector2D Velocity_Bullet;
+
 // 碰撞检测主对象，方便遍历时使用
 GameObj *pInstForCollisionDetect;
 
@@ -139,6 +144,8 @@ int jumpCheck, dropCheck;
 static char ObjTypeName[OTYPE_COUNT][20];
 
 void SetConstants();
+
+void SetIniValue();
 
 Status InitialGameObjList(GameObjList *L);
 

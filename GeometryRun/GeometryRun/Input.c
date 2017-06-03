@@ -106,11 +106,23 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			fprintf(fp, "Input:Space\n");
 			printf("Input:Space\n");
 		}
+		if (wParam == 'W')
+		{
+			KeyPressed[KeyW] = TRUE;
+			fprintf(fp, "Input:W\n");
+			printf("Input:W\n");
+		}
 		if (wParam == 'S')
 		{
 			KeyPressed[KeyS] = TRUE;
 			fprintf(fp, "Input:S\n");
 			printf("Input:S\n");
+		}
+		if (wParam == 'J')
+		{
+			KeyPressed[KeyJ] = TRUE;
+			fprintf(fp, "Input:J\n");
+			printf("Input:J\n");
 		}
 		break;
 

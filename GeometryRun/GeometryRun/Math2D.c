@@ -29,7 +29,7 @@ Circle1: 圆心pCenter1，半径pRadius1
 */
 int StaticCircleToStaticCircle(Vector2D *pCenter0, float Radius0, Vector2D *pCenter1, float Radius1)
 {
-	if (Vector2DDistance(pCenter0, pCenter1) <= Radius0 + Radius1) return 1; //碰撞发生
+	if (Vector2DDistance(pCenter0, pCenter1) < Radius0 + Radius1) return 1; //碰撞发生
 	return 0;
 }
 

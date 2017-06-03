@@ -118,7 +118,6 @@ void Load2(void)
 	// ========================
 	// 障碍物
 	// ========================
-
 	AEGfxMeshStart();
 	AEGfxTriAdd(
 		-1.0f, -1.0f, COLOR_PLAYER, 0.0f, 1.0f,
@@ -129,12 +128,26 @@ void Load2(void)
 		1.0f, 1.0f, COLOR_PLAYER, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
 	CreateGameObjBase(OTYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/theBlock2.png"), theBaseList);
+
+	// ========================
+	// 子弹
+	// ========================
+	AEGfxMeshStart();
+	AEGfxTriAdd(
+		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
+		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
+		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+	AEGfxTriAdd(
+		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
+		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
+		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+	CreateGameObjBase(OTYPE_BULLET, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/bullet.png"), theBaseList);
 }
 
 void Ini2(void)
 {
 	printf("Level2: Ini\n");
-	Vector2D iniPosition_Player = { -200.0f, 40.0f };
+	Vector2D iniPosition_Player = { -250.0f, 40.0f };
 	Vector2D iniVelocity_Background = { -3.0f, 0.0f };
 	Vector2D iniVelocity_Platform = { -3.0f, 0.0f };
 	Vector2D iniPosition_Block = { 10.0f, 10.0f };
@@ -151,8 +164,7 @@ void Ini2(void)
 	time_start_level2 = clock();
 
 	//数值初始化
-	jumpCheck = 0;
-	dropCheck = 0;
+	SetIniValue();
 
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
@@ -164,8 +176,9 @@ void Ini2(void)
 	CreateObjInMap4(1.0f);
 	CreateObjInMap3(2.0f);
 	CreateObjInMap2(3.0f);
-	CreateObjInMap1(6.0f);
-	CreateObjInMap0(8.0f);
+	CreateObjInMap5(6.0f);
+	CreateObjInMap0(9.0f);
+	CreateObjInMap1(19.0f);
 }
 
 void Update2(void)
@@ -228,7 +241,7 @@ void Draw2(void)
 void Free2(void)
 {
 	
-	printf("Level1: free\n");
+	printf("Level2: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	
 	BaseListTraverse(theBaseList, Visit_DestroyObj);
@@ -238,6 +251,6 @@ void Free2(void)
 
 void Unload2(void)
 {
-	printf("Level1: Unload\n");
+	printf("Level2: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

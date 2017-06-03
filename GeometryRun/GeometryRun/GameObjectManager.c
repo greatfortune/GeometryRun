@@ -27,9 +27,17 @@ void SetConstants()
 	strcpy(ObjTypeName[OTYPE_BACKGROUND], "TYPE_BACKGROUND");
 	strcpy(ObjTypeName[OTYPE_MONSTER], "TYPE_MONSTER");
 	strcpy(ObjTypeName[OTYPE_BLOCK], "TYPE_BLOCK");
+	strcpy(ObjTypeName[OTYPE_BULLET], "TYPE_BULLET");
 	strcpy(ObjTypeName[OTYPE_BOSS], "TYPE_BOSS");
 	zero.x = 0, zero.y = 0;
+	Velocity_Bullet.x = 4.0f;
+	Velocity_Bullet.y = 0.0f;
+}
+
+void SetIniValue()
+{
 	jumpCheck = 0;
+	dropCheck = 0;
 }
 
 Status InitialGameObjList(GameObjList *L)
@@ -269,6 +277,7 @@ Status Visit_DestroyObj(insNode* pinsNode, GameObjList L)
 	GameObj* pInst = &(pinsNode->gameobj);
 	if (pInst->flag == FLAG_ACTIVE)
 		GameObjDelete(pInst, L);
+	return OK;
 }
 
 Status Visit_DrawObj(insNode* pinsNode, GameObjList L)
@@ -284,4 +293,5 @@ Status Visit_DrawObj(insNode* pinsNode, GameObjList L)
 	AEGfxSetTransform(pInst->transform.m);
 	// 绘制当前对象，使用函数：AEGfxMeshDraw
 	AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
+	return OK;
 }
