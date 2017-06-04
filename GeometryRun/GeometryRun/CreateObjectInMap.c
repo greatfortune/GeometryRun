@@ -156,3 +156,39 @@ Status CreateObjInMap5(float startTime)
 	CreateOneObjAtTime(startTime + 1.2f, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
 	return OK;
 }
+
+
+/*
+* By WYZ
+* 连续三个小怪物（左高右低）
+* 占用时间：0.4s
+*/
+Status CreateObjInMap6(float startTime)
+{
+	float maxX = AEGfxGetWinMaxX();
+	Vector2D pos1 = { maxX, 100 };
+	Vector2D pos2 = { maxX, 65 };
+	Vector2D pos3 = { maxX, 30 };
+	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime+0.2, OTYPE_MONSTER, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime+0.4, OTYPE_MONSTER, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
+	return OK;
+}
+
+
+/*
+* By WYZ
+* 连续三个小怪物（左低右高）
+* 占用时间：0.4s
+*/
+Status CreateObjInMap7(float startTime)
+{
+	float maxX = AEGfxGetWinMaxX();
+	Vector2D pos1 = { maxX, 100 };
+	Vector2D pos2 = { maxX, 65 };
+	Vector2D pos3 = { maxX, 30 };
+	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime + 0.2, OTYPE_MONSTER, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime + 0.4, OTYPE_MONSTER, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	return OK;
+}

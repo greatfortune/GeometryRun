@@ -24,3 +24,8 @@ Status CreateObjInMap3(float startTime);
 Status CreateObjInMap4(float startTime);
 
 Status CreateObjInMap5(float startTime);
+
+Status CreateObjInMap6(float startTime);
+
+Status CreateObjInMap7(float startTime);
+
