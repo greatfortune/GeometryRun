@@ -155,101 +155,120 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 			switch (pInstOther->pObject->type)
 			{
 				// Player vs. Platform
-				case OTYPE_PLATFORM:
+			case OTYPE_PLATFORM:
+			{
+				// 检测位置调整主角方向
+				if (pInstForCollisionDetect->posCurr.y >= 0)
 				{
-					// 检测位置调整主角方向
-					if (pInstForCollisionDetect->posCurr.y >= 0)
+					pInstForCollisionDetect->properties[0].value = 1;
+				}
+				else
+				{
+					pInstForCollisionDetect->properties[0].value = -1;
+				}
+				//是否在平台上
+				if ((pInstForCollisionDetect->posCurr.y) <= pInstForCollisionDetect->scale + PLATFORM_HEIGHT)
+				{
+					dropCheck = 0;
+					if (jumpCheck > 0)	// 自由落体过程
 					{
-						pInstForCollisionDetect->properties[0].value = 1;
+						jumpCheck = 0;
+						pInstForCollisionDetect->velCurr.y = 0.0f;
+						pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
 					}
-					else
+					else if (jumpCheck == 0)
 					{
-						pInstForCollisionDetect->properties[0].value = -1;
-					}
-					//是否在平台上
-					if ((pInstForCollisionDetect->posCurr.y) <= pInstForCollisionDetect->scale + PLATFORM_HEIGHT)
-					{
-						dropCheck = 0;
-						if (jumpCheck > 0)	// 自由落体过程
-						{
-							jumpCheck = 0;
-							pInstForCollisionDetect->velCurr.y = 0.0f;
-							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
-						}
-						else if (jumpCheck == 0)
-						{
-							if (pInstForCollisionDetect->posCurr.y >= pInstForCollisionDetect->scale)			// 翻转回地上过程
-							{
-								pInstForCollisionDetect->velCurr.y = 0.0f;
-								pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
-							}
-						}
-						else if (pInstForCollisionDetect->posCurr.y <= -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT)		// 迅速下落过程
-						{
-							pInstForCollisionDetect->velCurr.y = 0.0f;
-							pInstForCollisionDetect->posCurr.y = -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT;
-						}
-					}
-					else
-					{
-						if (jumpCheck == 0)
+						if (pInstForCollisionDetect->posCurr.y >= pInstForCollisionDetect->scale)			// 翻转回地上过程
 						{
 							pInstForCollisionDetect->velCurr.y = 0.0f;
 							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
 						}
 					}
-					break;
-				}//Player VS Platform结束
-
-				// Player vs. Block
-				case OTYPE_BLOCK:
-				{
-					// 碰撞检测
-					if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
+					else if (pInstForCollisionDetect->posCurr.y <= -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT)		// 迅速下落过程
 					{
-						// 撞上BLOCK死亡
-						// 重新开始关卡
-						Next = GS_Restart;
-						printf("\n Collision with the Block: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
-						break;
+						pInstForCollisionDetect->velCurr.y = 0.0f;
+						pInstForCollisionDetect->posCurr.y = -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT;
 					}
-				break;
-				}// Player vs. Block结束
-
-				//Player VS Monster
-				case OTYPE_MONSTER:
+				}
+				else
 				{
-					// 碰撞检测
-					if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
+					if (jumpCheck == 0)
 					{
-						// 撞上Monster死亡
-						// 重新开始关卡
-						Next = GS_Restart;
-						printf("\n Collision with the Monster: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
-						break;
+						pInstForCollisionDetect->velCurr.y = 0.0f;
+						pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
 					}
-					break;
-				}//Player VS Monster结束
-
-				default:
-					break;
+				}
 			}
-			break;
-       /*
-			//主对象为子弹BULLET
+			break;//Player VS Platform结束
+
+			// Player vs. Block
+			case OTYPE_BLOCK:
+			{
+				// 碰撞检测
+				if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
+				{
+					// 撞上BLOCK死亡
+					// 重新开始关卡
+					Next = GS_Restart;
+					printf("\n Collision with the Block: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
+				}
+			}
+			break;// Player vs. Block结束
+
+			//Player VS Monster
+			case OTYPE_MONSTER:
+			{
+				// 碰撞检测
+				if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
+				{
+					// 撞上Monster死亡
+					// 重新开始关卡
+					Next = GS_Restart;
+					printf("\n Collision with the Monster: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
+				}
+			}
+			break;//Player VS Monster结束
+
+			default:
+				break;
+			}
+		}
+		break;
+   
+//主对象为子弹BULLET
 		case OTYPE_BULLET:
 		{
 			switch (pInstOther->pObject->type)
 			{
+			//BULLET VS MONSTER
 			case OTYPE_MONSTER:
 			{
+				// 碰撞检测
+				if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
+				{
+					// 撞上Monster，消灭子弹和MONSTER
+					GameObjDelete(pInstOther, L);
+					GameObjDelete(pInstForCollisionDetect, L);
+				}
+			}
+			break;//BULLET VS MONSTER结束
 
+			//BULLET VS BLOCK
+			case OTYPE_BLOCK:
+			{
+				// 碰撞检测
+				if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
+				{
+					// 撞上BLOCK，消灭BULLET
+					GameObjDelete(pInstForCollisionDetect,L);
+				}
 			}
-			}
-		
+			break;//BULLET VS BLOCK结束
+			}		
 		}
-		*/
-		}//主对象比较结束
+		break;//BULLET碰撞检测结束
+
+		//主对象比较结束
 		default:
 			break;
 	}

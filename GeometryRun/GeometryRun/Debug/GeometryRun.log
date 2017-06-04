@@ -1,25 +1,25 @@
 ﻿  KeyAndObjUpdate.c
-  注意: 包含文件:  e:\git\geometryrun\geometryrun\geometryrun\KeyAndObjUpdate.h
-e:\git\geometryrun\geometryrun\geometryrun\gameobjectmanager.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  注意: 包含文件:   e:\git\geometryrun\geometryrun\geometryrun\GameObjectManager.h
+  注意: 包含文件:  d:\gitfile\geometryrun\geometryrun\geometryrun\KeyAndObjUpdate.h
+d:\gitfile\geometryrun\geometryrun\geometryrun\gameobjectmanager.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  注意: 包含文件:   d:\gitfile\geometryrun\geometryrun\geometryrun\GameObjectManager.h
   注意: 包含文件:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h
   注意: 包含文件:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt.h
-  注意: 包含文件:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
-  注意: 包含文件:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
-  注意: 包含文件:        C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
-  注意: 包含文件:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+  注意: 包含文件:      H:\visual studio\VC\include\vcruntime.h
+  注意: 包含文件:       H:\visual studio\VC\include\sal.h
+  注意: 包含文件:        H:\visual studio\VC\include\ConcurrencySal.h
+  注意: 包含文件:       H:\visual studio\VC\include\vadefs.h
   注意: 包含文件:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wstdio.h
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_stdio_config.h
-  注意: 包含文件:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdbool.h
-  注意: 包含文件:    e:\git\geometryrun\geometryrun\geometryrun\GameStateList.h
-  注意: 包含文件:    e:\git\geometryrun\geometryrun\geometryrun\System.h
+  注意: 包含文件:    H:\visual studio\VC\include\stdbool.h
+  注意: 包含文件:    d:\gitfile\geometryrun\geometryrun\geometryrun\GameStateList.h
+  注意: 包含文件:    d:\gitfile\geometryrun\geometryrun\geometryrun\System.h
   注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\Windows.h
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\sdkddkver.h
-  注意: 包含文件:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\excpt.h
-  注意: 包含文件:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
-  注意: 包含文件:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
-  注意: 包含文件:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+  注意: 包含文件:      H:\visual studio\VC\include\excpt.h
+  注意: 包含文件:       H:\visual studio\VC\include\vcruntime.h
+  注意: 包含文件:      H:\visual studio\VC\include\stdarg.h
+  注意: 包含文件:       H:\visual studio\VC\include\vcruntime.h
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\windef.h
   注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\minwindef.h
   注意: 包含文件:        C:\Program Files (x86)\Windows Kits\8.1\Include\shared\specstrings.h
@@ -37,8 +37,8 @@ e:\git\geometryrun\geometryrun\geometryrun\gameobjectmanager.h : warning C4819: 
   注意: 包含文件:           C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_memory.h
   注意: 包含文件:            C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_memcpy_s.h
   注意: 包含文件:             C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\errno.h
-  注意: 包含文件:             C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
-  注意: 包含文件:              C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+  注意: 包含文件:             H:\visual studio\VC\include\vcruntime_string.h
+  注意: 包含文件:              H:\visual studio\VC\include\vcruntime.h
   注意: 包含文件:           C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wstring.h
   注意: 包含文件:         c:\program files (x86)\windows kits\8.1\include\shared\pshpack4.h
   注意: 包含文件:         c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
@@ -106,7 +106,7 @@ e:\git\geometryrun\geometryrun\geometryrun\gameobjectmanager.h : warning C4819: 
   注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
   注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
 c:\program files (x86)\windows kits\8.1\include\um\winuser.h(9067): warning C4005: “COLOR_BACKGROUND”: 宏重定义
-  e:\git\geometryrun\geometryrun\geometryrun\gameobjectmanager.h(16): note: 参见“COLOR_BACKGROUND”的前一个定义
+  d:\gitfile\geometryrun\geometryrun\geometryrun\gameobjectmanager.h(16): note: 参见“COLOR_BACKGROUND”的前一个定义
   注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\shared\tvout.h
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnls.h
   注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\um\datetimeapi.h
@@ -205,8 +205,8 @@ c:\program files (x86)\windows kits\8.1\include\um\winuser.h(9067): warning C400
   注意: 包含文件:          C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_search.h
   注意: 包含文件:           C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stddef.h
   注意: 包含文件:          C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wstdlib.h
-  注意: 包含文件:          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
-  注意: 包含文件:           C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+  注意: 包含文件:          H:\visual studio\VC\include\limits.h
+  注意: 包含文件:           H:\visual studio\VC\include\vcruntime.h
   注意: 包含文件:         C:\Program Files (x86)\Windows Kits\8.1\Include\um\unknwnbase.h
   注意: 包含文件:         C:\Program Files (x86)\Windows Kits\8.1\Include\um\objidlbase.h
   注意: 包含文件:         C:\Program Files (x86)\Windows Kits\8.1\Include\shared\guiddef.h
@@ -234,36 +234,36 @@ c:\program files (x86)\windows kits\8.1\include\um\winuser.h(9067): warning C400
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\mcx.h
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\8.1\Include\um\imm.h
   注意: 包含文件:       C:\Program Files (x86)\Windows Kits\8.1\Include\um\ime_cmodes.h
-  注意: 包含文件:    e:\git\geometryrun\geometryrun\geometryrun\AEEngine.h
+  注意: 包含文件:    d:\gitfile\geometryrun\geometryrun\geometryrun\AEEngine.h
   注意: 包含文件:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\assert.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AEExport.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AEExport.h
   注意: 包含文件:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\windowsx.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AETypes.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AEMath.h
-  注意: 包含文件:      e:\git\geometryrun\geometryrun\geometryrun\AEVec2.h
-  注意: 包含文件:      e:\git\geometryrun\geometryrun\geometryrun\AEMtx33.h
-  注意: 包含文件:      e:\git\geometryrun\geometryrun\geometryrun\AELineSegment2.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AETypes.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AEMath.h
+  注意: 包含文件:      d:\gitfile\geometryrun\geometryrun\geometryrun\AEVec2.h
+  注意: 包含文件:      d:\gitfile\geometryrun\geometryrun\geometryrun\AEMtx33.h
+  注意: 包含文件:      d:\gitfile\geometryrun\geometryrun\geometryrun\AELineSegment2.h
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\float.h
   注意: 包含文件:      C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\math.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AEUtil.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AEFrameRateController.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AESystem.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AEGraphics.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AEInput.h
-  注意: 包含文件:     e:\git\geometryrun\geometryrun\geometryrun\AEGameStateMgr.h
-e:\git\geometryrun\geometryrun\geometryrun\gameobjectmanager.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  注意: 包含文件:    e:\git\geometryrun\geometryrun\geometryrun\GameObjectManager.h
-  注意: 包含文件:    e:\git\geometryrun\geometryrun\geometryrun\Vector2D.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AEUtil.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AEFrameRateController.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AESystem.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AEGraphics.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AEInput.h
+  注意: 包含文件:     d:\gitfile\geometryrun\geometryrun\geometryrun\AEGameStateMgr.h
+d:\gitfile\geometryrun\geometryrun\geometryrun\gameobjectmanager.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  注意: 包含文件:    d:\gitfile\geometryrun\geometryrun\geometryrun\GameObjectManager.h
+  注意: 包含文件:    d:\gitfile\geometryrun\geometryrun\geometryrun\Vector2D.h
   注意: 包含文件:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\math.h
-e:\git\geometryrun\geometryrun\geometryrun\matrix2d.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  注意: 包含文件:    e:\git\geometryrun\geometryrun\geometryrun\Matrix2D.h
-e:\git\geometryrun\geometryrun\geometryrun\matrix2d.h(4): warning C4005: “PI”: 宏重定义
-  e:\git\geometryrun\geometryrun\geometryrun\aeexport.h(20): note: 参见“PI”的前一个定义
-e:\git\geometryrun\geometryrun\geometryrun\math2d.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  注意: 包含文件:    e:\git\geometryrun\geometryrun\geometryrun\Math2D.h
+d:\gitfile\geometryrun\geometryrun\geometryrun\matrix2d.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  注意: 包含文件:    d:\gitfile\geometryrun\geometryrun\geometryrun\Matrix2D.h
+d:\gitfile\geometryrun\geometryrun\geometryrun\matrix2d.h(4): warning C4005: “PI”: 宏重定义
+  d:\gitfile\geometryrun\geometryrun\geometryrun\aeexport.h(20): note: 参见“PI”的前一个定义
+d:\gitfile\geometryrun\geometryrun\geometryrun\math2d.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  注意: 包含文件:    d:\gitfile\geometryrun\geometryrun\geometryrun\Math2D.h
   注意: 包含文件:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\time.h
   注意: 包含文件:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wtime.h
-  注意: 包含文件:   e:\git\geometryrun\geometryrun\geometryrun\Input.h
-e:\git\geometryrun\geometryrun\geometryrun\keyandobjupdate.c(95): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-  GeometryRun.vcxproj -> E:\git\GeometryRun\GeometryRun\Debug\GeometryRun.exe
-  GeometryRun.vcxproj -> E:\git\GeometryRun\GeometryRun\Debug\GeometryRun.pdb (Full PDB)
+  注意: 包含文件:   d:\gitfile\geometryrun\geometryrun\geometryrun\Input.h
+d:\gitfile\geometryrun\geometryrun\geometryrun\keyandobjupdate.c(95): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  GeometryRun.vcxproj -> D:\GitFile\GeometryRun\GeometryRun\Debug\GeometryRun.exe
+  GeometryRun.vcxproj -> D:\GitFile\GeometryRun\GeometryRun\Debug\GeometryRun.pdb (Full PDB)
