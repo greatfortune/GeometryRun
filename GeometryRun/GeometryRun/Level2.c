@@ -75,7 +75,7 @@ void Update2(void)
 	KeyUpdate();
 
 	// 更新对象
-	BaseListTraverse(theBaseList, Visit_Update);
+	ObjUpdate();
 
 	// ====================
 	// 碰撞检测

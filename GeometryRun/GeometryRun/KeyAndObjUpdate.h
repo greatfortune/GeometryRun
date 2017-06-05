@@ -16,11 +16,11 @@ Status GetWinMaxMinXY();
 
 Status KeyUpdate();
 
-Status Visit_Update(insNode* pinsNode, GameObjList L);
+Status Visit_Update(insNode* pinsNode);
 
-Status Visit_CollisionDetect(insNode* pinsNode, GameObjList L);
+Status Visit_CollisionDetect(insNode* pinsNode);
 
-Status Visit_Matrix2DCount(insNode* pinsNode, GameObjList L);
+Status Visit_Matrix2DCount(insNode* pinsNode);
 
 Status BossUpdate(int level, clock_t LevelTime, float bossOccurTime);
 

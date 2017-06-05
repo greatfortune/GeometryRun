@@ -51,7 +51,7 @@ Status Boss2Start();
 
 Status Boss2Update(GameObj* pInst);
 
-Status Boss2Collision(insNode* pinsNode, GameObjList L);
+Status Boss2Collision(insNode* pinsNode);
 
 Status Boss2SkillLoad();
 

@@ -26,10 +26,12 @@ Status BlockStart()
 
 Status BlockUpdate(GameObj* pInst)
 {
+	pInst->posCurr.x += pInst->velCurr.x;
+	pInst->posCurr.y += pInst->velCurr.y;
 	return OK;
 }
 
-Status BlockCollision(insNode* pinsNode, GameObjList L)
+Status BlockCollision(insNode* pinsNode)
 {
 	return OK;
 }

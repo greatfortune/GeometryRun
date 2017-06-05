@@ -62,6 +62,8 @@ Status BackGroundStart()
 
 Status BackGroundUpdate(GameObj* pInst)
 {
+	pInst->posCurr.x += pInst->velCurr.x;
+	pInst->posCurr.y += pInst->velCurr.y;
 	if (pInst->posCurr.x <= winMinX - winMaxX)
 		pInst->posCurr.x = 0.0f;
 	return OK;

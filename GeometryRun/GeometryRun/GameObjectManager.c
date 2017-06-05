@@ -152,23 +152,12 @@ bool BaseListIsEmpty(GameObjBaseList L)
 		return false;
 }
 
-int ListLength(GameObjList L)
-{
-	return L->count;
-}
-
-int BaseListLength(GameObjBaseList L)
-{
-	return L->count;
-}
-
 Status GameObjDelete(GameObj* theGameObj)
 {
 	int i;
 	if (theGameObj->flag == FLAG_INACTIVE)
 		printf("Warn: trying to delete an inactive gameobj.\n");
 	theGameObj->flag = FLAG_INACTIVE;
-	theBaseList->count--;
 	printf("DeleteGameObj:type: %-16s scale:%.2f pos: (%.1f, %.1f) vel: (%.1f, %.1f) dir: %.1f\n", ObjTypeName[theGameObj->pObject->type], theGameObj->scale, theGameObj->posCurr.x, theGameObj->posCurr.y, theGameObj->velCurr.x, theGameObj->velCurr.y, theGameObj->dirCurr);
 	if (theGameObj->propertyCount)
 	for (i = 0; i < theGameObj->propertyCount; i++)
@@ -177,16 +166,16 @@ Status GameObjDelete(GameObj* theGameObj)
 }
 
 //遍历函数，可能无用
-Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode, GameObjList theL))
+Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode))
 {
 	insNode *pt;
 	for (pt = L->head->next; pt != L->tail; pt = pt->next)
-		Visit(pt, L);
+		Visit(pt);
 	return OK;
 }
 
 //遍历函数，可能无用
-Status BaseListTraverse(GameObjBaseList L, Status(*Visit)(insNode* pinsNode, GameObjList theL))
+Status BaseListTraverse(GameObjBaseList L, Status(*Visit)(insNode* pinsNode))
 {
 	baseNode *pt;
 	for (pt = L->head->next; pt != L->tail; pt = pt->next)
@@ -266,7 +255,7 @@ Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxT
 	return OK;
 }
 
-Status Visit_DestroyObj(insNode* pinsNode, GameObjList L)
+Status Visit_DestroyObj(insNode* pinsNode)
 {
 	GameObj* pInst = &(pinsNode->gameobj);
 	if (pInst->flag == FLAG_ACTIVE)
@@ -274,7 +263,7 @@ Status Visit_DestroyObj(insNode* pinsNode, GameObjList L)
 	return OK;
 }
 
-Status Visit_DrawObj(insNode* pinsNode, GameObjList L)
+Status Visit_DrawObj(insNode* pinsNode)
 {
 	GameObj* pInst = &(pinsNode->gameobj);
 

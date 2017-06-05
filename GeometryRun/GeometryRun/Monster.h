@@ -12,6 +12,6 @@ Status MonsterStart();
 
 Status MonsterUpdate(GameObj* pInst);
 
-Status MonsterCollision(insNode* pinsNode, GameObjList L);
+Status MonsterCollision(insNode* pinsNode);
 
 #endif

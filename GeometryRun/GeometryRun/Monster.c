@@ -25,10 +25,12 @@ Status MonsterStart()
 
 Status MonsterUpdate(GameObj* pInst)
 {
+	pInst->posCurr.x += pInst->velCurr.x;
+	pInst->posCurr.y += pInst->velCurr.y;
 	return OK;
 }
 
-Status MonsterCollision(insNode* pinsNode, GameObjList L)
+Status MonsterCollision(insNode* pinsNode)
 {
 	return OK;
 }

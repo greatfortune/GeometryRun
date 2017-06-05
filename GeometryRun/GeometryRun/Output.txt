@@ -24,24 +24,5 @@ Input:Space
 Input:Space
 Input:Space
 Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
 Input:Forcing Shut Down
 System:Exit

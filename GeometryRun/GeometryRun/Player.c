@@ -42,8 +42,7 @@ Status PlayerUpdate(GameObj* pInst)
 	if (KeyPressed[KeyRight] == TRUE)
 	{
 		pHero->velCurr.x = MOVE_VELOCITY_HERO;
-	}
-	else
+	} else
 	if (KeyPressed[KeyLeft] == TRUE)
 	{
 		pHero->velCurr.x = -MOVE_VELOCITY_HERO;
@@ -86,10 +85,12 @@ Status PlayerUpdate(GameObj* pInst)
 		SetProperty(&properties_Bullet[damage], "damage", 3);
 		CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 1, &properties_Bullet);
 	}
+	pHero->posCurr.x += pHero->velCurr.x;
+	pHero->posCurr.y += pHero->velCurr.y;
 	return OK;
 }
 
-Status PlayerCollision(insNode* pinsNode, GameObjList L)
+Status PlayerCollision(insNode* pinsNode)
 {
 	GameObj* pInstOther = &(pinsNode->gameobj);
 	switch (pInstOther->pObject->type)
@@ -172,5 +173,6 @@ Status PlayerCollision(insNode* pinsNode, GameObjList L)
 		default:
 			break;
 	}
+
 	return OK;
 }

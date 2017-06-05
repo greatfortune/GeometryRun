@@ -28,6 +28,8 @@ Status PlatformStart()
 
 Status PlatformUpdate(GameObj* pInst)
 {
+	pInst->posCurr.x += pInst->velCurr.x;
+	pInst->posCurr.y += pInst->velCurr.y;
 	if (pInst->posCurr.x <= winMinX)
 		pInst->posCurr.x = 0.0f;
 	return OK;

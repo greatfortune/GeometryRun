@@ -50,7 +50,8 @@ Status Boss2SkillLoad()
 
 Status Boss2Update(GameObj* pInst)
 {
-	
+	pInst->posCurr.x += pInst->velCurr.x;
+	pInst->posCurr.y += pInst->velCurr.y;
 	switch (Boss2Status)
 	{
 		case B2STATUS_ENTER:
@@ -105,7 +106,7 @@ Status Boss2Update(GameObj* pInst)
 	return OK;
 }
 
-Status Boss2Collision(insNode* pinsNode, GameObjList L)
+Status Boss2Collision(insNode* pinsNode)
 {
 	return OK;
 }

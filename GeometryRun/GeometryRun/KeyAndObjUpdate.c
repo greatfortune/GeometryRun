@@ -50,44 +50,44 @@ Status KeyUpdate()
 }
 
 //更新对象
-Status Visit_Update(insNode* pinsNode, GameObjList L)
+Status ObjUpdate(insNode* pinsNode)
 {
-	GameObj* pInst = &(pinsNode->gameobj);
-	if (pInst->flag == FLAG_INACTIVE)
-		return OK;
-	switch (pInst->pObject->type)
+	baseNode *pBaseNode;
+	GameObjList *pL;
+	for (pBaseNode = theBaseList->head->next; pBaseNode != theBaseList->tail; pBaseNode = pBaseNode->next)
 	{
-		case OTYPE_PLAYER:
-			PlayerUpdate(pInst);
+		pL = pBaseNode->gameobj_list;
+		switch (pBaseNode->gameobj_base.type)
+		{
+			case OTYPE_PLAYER:
+				ListTraverse(pL, PlayerUpdate);
+				break;
+			case OTYPE_BACKGROUND:
+				ListTraverse(pL, BackGroundUpdate);
+				break;
+			case OTYPE_PLATFORM:
+				ListTraverse(pL, PlatformUpdate);
+				break;
+			case OTYPE_MONSTER:
+				ListTraverse(pL, MonsterUpdate);
+				break;
+			case OTYPE_BLOCK:
+				ListTraverse(pL, BlockUpdate);
+				break;
+			case OTYPE_BULLET:
+				ListTraverse(pL, BulletUpdate);
+				break;
+			case OTYPE_BOSS2:
+				ListTraverse(pL, Boss2Update);
+				break;
+			default:
 			break;
-		case OTYPE_BACKGROUND:
-			BackGroundUpdate(pInst);
-			break;
-		case OTYPE_PLATFORM:
-			PlatformUpdate(pInst);
-			break;
-		case OTYPE_MONSTER:
-			MonsterUpdate(pInst);
-			break;
-		case OTYPE_BLOCK:
-			BlockUpdate(pInst);
-			break;
-		case OTYPE_BULLET:
-			BulletUpdate(pInst);
-			break;
-		case OTYPE_BOSS2:
-			Boss2Update(pInst);
-			break;
-		default:
-			break;
+		}
 	}
-	pInst->posCurr.x += pInst->velCurr.x;
-	pInst->posCurr.y += pInst->velCurr.y;
-	return OK;
 }
 
 //对象碰撞检测
-static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
+static Status Visit_CollisionDetectAnother(insNode* pinsNode)
 {
 	GameObj* pInstOther = &(pinsNode->gameobj);
 	// 跳过非活动对象和主对象自身
@@ -96,10 +96,10 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 	switch (pInstForCollisionDetect->pObject->type)
 	{
 		case OTYPE_PLAYER:
-			PlayerCollision(pinsNode, L);
+			PlayerCollision(pinsNode);
 			break;
 		case OTYPE_BULLET:
-			BulletCollision(pinsNode, L);
+			BulletCollision(pinsNode);
 			break;
 		
 		default:
@@ -109,7 +109,7 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 	return OK;
 }
 
-Status Visit_CollisionDetect(insNode* pinsNode, GameObjList L)
+Status Visit_CollisionDetect(insNode* pinsNode)
 {
 	pInstForCollisionDetect = &(pinsNode->gameobj);
 
@@ -122,7 +122,7 @@ Status Visit_CollisionDetect(insNode* pinsNode, GameObjList L)
 	return OK;
 }
  
-Status Visit_Matrix2DCount(insNode* pinsNode, GameObjList L)
+Status Visit_Matrix2DCount(insNode* pinsNode)
 {
 	GameObj* pInst = &(pinsNode->gameobj);
 	Matrix2D		 trans, rot, scale;

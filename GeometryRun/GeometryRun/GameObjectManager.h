@@ -131,23 +131,19 @@ bool ListIsEmpty(GameObjList L);
 
 bool BaseListIsEmpty(GameObjBaseList L);
 
-int ListLength(GameObjList L);
-
-int BaseListLength(GameObjBaseList L);
-
 GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties);
 
 Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L);
 
 Status GameObjDelete(GameObj* theGameObj);
 
-Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode, GameObjList theL));
+Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode));
 
-Status BaseListTraverse(GameObjBaseList L, Status(*Visit)(insNode* pinsNode, GameObjList theL));
+Status BaseListTraverse(Status(*Visit)(insNode* pinsNode));
 
-Status Visit_DestroyObj(insNode* pinsNode, GameObjList L);
+Status Visit_DestroyObj(insNode* pinsNode);
 
-Status Visit_DrawObj(insNode* pinsNode, GameObjList L); 
+Status Visit_DrawObj(insNode* pinsNode); 
 
 Status SetProperty(Property* theProperty, char* name, int value);
 

@@ -16,6 +16,6 @@ Status BlockStart();
 
 Status BlockUpdate(GameObj* pInst);
 
-Status BlockCollision(insNode* pinsNode, GameObjList L);
+Status BlockCollision(insNode* pinsNode);
 
 #endif

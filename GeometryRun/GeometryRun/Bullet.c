@@ -27,12 +27,14 @@ Status BulletStart()
 
 Status BulletUpdate(GameObj* pInst)
 {
+	pInst->posCurr.x += pInst->velCurr.x;
+	pInst->posCurr.y += pInst->velCurr.y;
 	if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
 		GameObjDelete(pInst);
 	return OK;
 }
 
-Status BulletCollision(insNode* pinsNode, GameObjList L)
+Status BulletCollision(insNode* pinsNode)
 {
 	GameObj* pInstOther = &(pinsNode->gameobj);
 

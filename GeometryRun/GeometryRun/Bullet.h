@@ -22,6 +22,6 @@ Status BulletStart();
 
 Status BulletUpdate(GameObj* pInst);
 
-Status BulletCollision(insNode* pinsNode, GameObjList L);
+Status BulletCollision(insNode* pinsNode);
 
 #endif
