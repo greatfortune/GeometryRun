@@ -5,148 +5,47 @@
    Purpose:		关卡1  */
 
 #include "Level1.h"
-#include <stdio.h>
-#include "GameStateList.h"
-#include "System.h"
-#include "AEEngine.h"
-#include "Input.h"
-#include "GameObjectManager.h"
-#include <time.h>
-#include "KeyAndObjUpdate.h"
 
 #define BLOCK_NUM 4	// 初始障碍物数量
-//------------------------------------------------------------------------------
-// Private Consts:
 
-clock_t time_level1;
+clock_t timeStart_level1;
 
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// Public Functions:
-//------------------------------------------------------------------------------
 
 void Load1(void)
 {
 	printf("Level1: Load\n");
 	theBaseList = NULL;
 
+	// 获取当前关卡时间
+	timeStart_level1 = clock();
 
 	// 设置常量
 	SetConstants();
 	// 初始化游戏对象基类的实例列表
 	InitialGameObjBaseList(&theBaseList);
 	
+	PlayerLoad();
+	BlockLoad();
+	BulletLoad();
+	MonsterLoad();
+	PlatformLoad();
+	BackGroundLoad(1);
 
-	// 初始化游戏对象类的实例列表
-
-	// 创建基类的实例	
-
-	// =======================
-	// 平台
-	// =======================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -0.05f, COLOR_DEFAULT, 0.0f, 1.0f,
-		1.0f, -0.05f, COLOR_DEFAULT, 1.0f, 1.0f,
-		-1.0f, 0.05f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -0.05f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 0.05f, COLOR_DEFAULT, 1.0f, 0.0f,
-		-1.0f, 0.05f, COLOR_DEFAULT, 0.0f, 0.0f);
-
-	CreateGameObjBase(OTYPE_PLATFORM, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/thePlatForm.png"), theBaseList);
-
-	// =======================
-	// 背景
-	// =======================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		3.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		3.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		3.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-
-
-	CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/level1.png"), theBaseList);
-
-	// =========================
-	// 主角
-	// =========================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-
-	CreateGameObjBase(OTYPE_PLAYER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/thePlayer.png"), theBaseList);
-
-	// ========================
-	// 怪物
-	// ========================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_MONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/star.png"), theBaseList);
-
-	// ========================
-	// 障碍物
-	// ========================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/theBlock2.png"), theBaseList);
-
-	// ========================
-	// 子弹
-	// ========================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_BULLET, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/bullet.png"), theBaseList);
 }
 
 void Ini1(void)
 {
 	printf("Level1: Ini\n");
 	int i;
-	Vector2D iniPosition_Player = {-250.0f, 40.0f};
+
+	PlayerStart();
+	BlockStart();
+	PlatformStart();
+	BackGroundStart();
+	MonsterStart();
+	BulletStart();
+
 	Vector2D iniPosition_Block[BLOCK_NUM];
-	Vector2D iniVelocity_Background = {-3.0f, 0.0f};
-	Vector2D iniVelocity_Platform = {-3.0f, 0.0f };
 	Vector2D iniVelocity_Block[BLOCK_NUM];
 	iniPosition_Block[0].x = -70.0f;
 	iniPosition_Block[0].y = 170.0f;
@@ -165,9 +64,6 @@ void Ini1(void)
 	iniVelocity_Block[2].y = -1.0f;
 	iniVelocity_Block[3].x = 0.5f;
 	iniVelocity_Block[3].y = 1.5f;
-	
-	// 数值初始化
-	SetIniValue();
 
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
@@ -180,8 +76,6 @@ void Ini1(void)
 
 void Update1(void)
 {
-	double frameTime;
-
 	GetWinMaxMinXY();
 
 	// =========================
@@ -189,19 +83,8 @@ void Update1(void)
 	// =========================
 	KeyUpdate();
 
-	// ======================
-	// 帧时间：Unity中的dt
-	// ======================
-	frameTime = AEFrameRateControllerGetFrameTime();
-
-	// 更新Hero外的对象位置
-	BaseListTraverse(theBaseList, Visit_PositionUpdate);
-	// 更新Hero的位置
-	pHero->posCurr.x += frameTime * pHero->velCurr.x;
-	pHero->posCurr.y += frameTime * pHero->velCurr.y;
-	// Player跳起后的重力效应
-	if (jumpCheck > 0)
-		pHero->velCurr.y -= GRAVITY * frameTime;
+	// 更新对象位置及属性
+	BaseListTraverse(theBaseList, Visit_Update);
 
 	// ====================
 	// 碰撞检测

@@ -7,8 +7,6 @@
 */
 
 #include "CreateObjectInMap.h"
-
-
 /*
  * By WJ
  * 从上至下再至上依次出现小怪物
@@ -100,12 +98,12 @@ Status CreateObjInMap2(float startTime)
 	Vector2D pos1 = { maxX, SIZE_BLOCK + 70.0f };
 	Vector2D pos2 = { maxX, -SIZE_BLOCK - PLATFORM_HEIGHT };
 	Vector2D pos3 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
-	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.5f, OTYPE_MONSTER, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime + 0.5f, OTYPE_MONSTER, SIZE_MONSTER, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 0.5f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 1.1f, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.8f, OTYPE_MONSTER, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime + 1.8f, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 2.3f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
 	return OK;
 }
@@ -157,38 +155,9 @@ Status CreateObjInMap5(float startTime)
 	return OK;
 }
 
-
-/*
-* By WYZ
-* 连续三个小怪物（左高右低）
-* 占用时间：0.4s
-*/
-Status CreateObjInMap6(float startTime)
+Status CreateBossInMap_Level2(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, 100 };
-	Vector2D pos2 = { maxX, 65 };
-	Vector2D pos3 = { maxX, 30 };
-	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime+0.2, OTYPE_MONSTER, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime+0.4, OTYPE_MONSTER, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
-	return OK;
-}
-
-
-/*
-* By WYZ
-* 连续三个小怪物（左低右高）
-* 占用时间：0.4s
-*/
-Status CreateObjInMap7(float startTime)
-{
-	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, 100 };
-	Vector2D pos2 = { maxX, 65 };
-	Vector2D pos3 = { maxX, 30 };
-	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.2, OTYPE_MONSTER, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.4, OTYPE_MONSTER, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime, OTYPE_BOSS2, SIZE_BOSS2, Boss2IniPos, Boss2EnterVel, 0, theBaseList, 0, NULL);
 	return OK;
 }

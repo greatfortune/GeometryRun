@@ -5,13 +5,12 @@
 * Date:			2017-5-28
 * Purpose:		障碍物创建模型素材库
 */
-
 #pragma once
 
-#include "TimeManager.h"
-
-// 障碍物默认速度，在每个关卡Ini()中初始化其值
-Vector2D defaultBlockVel;
+#include "GameObjectManager.h"
+#include "Block.h"
+#include "Platform.h"
+#include "Boss2.h"
 
 Status CreateObjInMap0(float startTime);
 
@@ -25,7 +24,4 @@ Status CreateObjInMap4(float startTime);
 
 Status CreateObjInMap5(float startTime);
 
-Status CreateObjInMap6(float startTime);
-
-Status CreateObjInMap7(float startTime);
-
+Status CreateBossInMap_Level2(float startTime);

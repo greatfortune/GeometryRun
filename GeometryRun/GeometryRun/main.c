@@ -85,7 +85,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// System Exit
 	System_Exit();
-	system("pause");
 	return 0;
 }
 

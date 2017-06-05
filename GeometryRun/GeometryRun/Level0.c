@@ -5,58 +5,20 @@ Date:
 Purpose:		关卡0（故事模式）  */
 
 #include "Level0.h"
-#include <stdio.h>
-#include "GameStateList.h"
-#include "System.h"
-#include "AEEngine.h"
-#include "Input.h"
-#include "GameObjectManager.h"
-#include <time.h>
-#include "KeyAndObjUpdate.h"
-
-//------------------------------------------------------------------------------
-// Private Consts:
 
 #define MAX_TIME 2.0f
-
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// Public Functions:
-//------------------------------------------------------------------------------
 
 void Load0(void)
 {
 	printf("Level0: Load\n");
 	theBaseList = NULL;
 
-
 	// 设置常量
 	SetConstants();
 	// 初始化游戏对象基类的实例列表
 	InitialGameObjBaseList(&theBaseList);
 
-
-	// 初始化游戏对象类的实例列表
-
-	// 创建基类的实例	
-
-	// =======================
-	// 背景
-	// =======================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f / 12.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f / 12.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 1.0f / 12.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-
-
-	CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/level0.png"), theBaseList);
-
+	BackGroundLoad(0);
 
 }
 

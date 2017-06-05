@@ -28,17 +28,11 @@ void SetConstants()
 	strcpy(ObjTypeName[OTYPE_MONSTER], "TYPE_MONSTER");
 	strcpy(ObjTypeName[OTYPE_BLOCK], "TYPE_BLOCK");
 	strcpy(ObjTypeName[OTYPE_BULLET], "TYPE_BULLET");
-	strcpy(ObjTypeName[OTYPE_BOSS], "TYPE_BOSS");
+	strcpy(ObjTypeName[OTYPE_BOSS1], "TYPE_BOSS1");
+	strcpy(ObjTypeName[OTYPE_BOSS2], "TYPE_BOSS2");
 	zero.x = 0, zero.y = 0;
-	Velocity_Bullet.x = 4.0f;
-	Velocity_Bullet.y = 0.0f;
 }
 
-void SetIniValue()
-{
-	jumpCheck = 0;
-	dropCheck = 0;
-}
 
 Status InitialGameObjList(GameObjList *L)
 {
@@ -168,13 +162,13 @@ int BaseListLength(GameObjBaseList L)
 	return L->count;
 }
 
-Status GameObjDelete(GameObj* theGameObj, GameObjList L)
+Status GameObjDelete(GameObj* theGameObj)
 {
 	int i;
 	if (theGameObj->flag == FLAG_INACTIVE)
 		printf("Warn: trying to delete an inactive gameobj.\n");
 	theGameObj->flag = FLAG_INACTIVE;
-	L->count--;
+	theBaseList->count--;
 	printf("DeleteGameObj:type: %-16s scale:%.2f pos: (%.1f, %.1f) vel: (%.1f, %.1f) dir: %.1f\n", ObjTypeName[theGameObj->pObject->type], theGameObj->scale, theGameObj->posCurr.x, theGameObj->posCurr.y, theGameObj->velCurr.x, theGameObj->velCurr.y, theGameObj->dirCurr);
 	if (theGameObj->propertyCount)
 	for (i = 0; i < theGameObj->propertyCount; i++)
@@ -276,7 +270,7 @@ Status Visit_DestroyObj(insNode* pinsNode, GameObjList L)
 {
 	GameObj* pInst = &(pinsNode->gameobj);
 	if (pInst->flag == FLAG_ACTIVE)
-		GameObjDelete(pInst, L);
+		GameObjDelete(pInst);
 	return OK;
 }
 
@@ -293,5 +287,25 @@ Status Visit_DrawObj(insNode* pinsNode, GameObjList L)
 	AEGfxSetTransform(pInst->transform.m);
 	// 绘制当前对象，使用函数：AEGfxMeshDraw
 	AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
+	return OK;
+}
+
+Status SetProperty(Property* theProperty, char* theName, int theValue)
+{
+	strcpy((*theProperty).name, theName);
+	(*theProperty).value = theValue;
+	return OK;
+}
+
+Status SetObjSpeed(GameObj* theObj, Vector2D theVel)
+{
+	theObj->velCurr = theVel;
+	return OK;
+}
+
+Status AddObjSpeed(GameObj* theObj, Vector2D theVel)
+{
+	theObj->velCurr.x += theVel.x;
+	theObj->velCurr.y += theVel.y;
 	return OK;
 }

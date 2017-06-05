@@ -46,99 +46,45 @@ Status KeyUpdate()
 			return FLAG_IMPORTANTKEY;
 		}
 	}
-	else
-	{
-		// 控制玩家player左右移动 及 跳跃(匀速)
-		if (KeyPressed[KeyRight] == TRUE)
-		{
-			pHero->velCurr.x = MOVE_VELOCITY_HERO;
-		}
-		else
-			if (KeyPressed[KeyLeft] == TRUE)
-			{
-				pHero->velCurr.x = -MOVE_VELOCITY_HERO;
-			}
-			else
-				pHero->velCurr.x = 0.f;
-		if (KeyPressed[KeyDown] == TRUE || KeyPressed[KeyS] == TRUE)
-		{
-			if (jumpCheck > 0)
-			{
-				jumpCheck = -1;
-				dropCheck = 1;
-				pHero->velCurr.y = -DROP_VELOCITY;
-			}
-			else if (jumpCheck == 0)
-			{
-				jumpCheck = -1;
-				dropCheck = 0;
-				pHero->velCurr.y = -DROP_VELOCITY;
-			}
-		}
-		if (KeyPressed[KeyW] == TRUE || KeyPressed[KeyUp] == TRUE)
-		{
-			printf("Input : up\n");
-			if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
-			{
-				jumpCheck = 0;
-				pHero->velCurr.y = DROP_VELOCITY;
-			}
-			else if (jumpCheck < 2 && !dropCheck)
-			{
-				pHero->velCurr.y = JUMP_VELOCITY;
-				jumpCheck++;
-			}
-		}
-		if (KeyPressed[KeyJ] == TRUE || KeyPressed[KeySpace] == TRUE)
-		{
-			
-			Vector2D iniBulletPos = { pHero->posCurr.x + 1.5 * SIZE_HERO, pHero->posCurr.y };
-			CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 0, NULL);
-		}
-	}	
 	return OK;
 }
 
-//更新对象位置
-Status Visit_PositionUpdate(insNode* pinsNode, GameObjList L)
+//更新对象
+Status Visit_Update(insNode* pinsNode, GameObjList L)
 {
 	GameObj* pInst = &(pinsNode->gameobj);
 	if (pInst->flag == FLAG_INACTIVE)
 		return OK;
 	switch (pInst->pObject->type)
 	{
+		case OTYPE_PLAYER:
+			PlayerUpdate(pInst);
+			break;
 		case OTYPE_BACKGROUND:
-		{
-			pInst->posCurr.x += pInst->velCurr.x;
-			pInst->posCurr.y += pInst->velCurr.y;
-			if (pInst->posCurr.x <= winMinX - winMaxX)
-				pInst->posCurr.x = 0.0f;
+			BackGroundUpdate(pInst);
 			break;
-		}
 		case OTYPE_PLATFORM:
-		{
-			pInst->posCurr.x += pInst->velCurr.x;
-			pInst->posCurr.y += pInst->velCurr.y;
-			if (pInst->posCurr.x <= winMinX)
-				pInst->posCurr.x = 0.0f;
+			PlatformUpdate(pInst);
 			break;
-		}
 		case OTYPE_MONSTER:
-		case OTYPE_BLOCK:
-		case OTYPE_BULLET:
-		{
-			pInst->posCurr.x += pInst->velCurr.x;
-			pInst->posCurr.y += pInst->velCurr.y;
-			if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
-				GameObjDelete(pInst, L);
+			MonsterUpdate(pInst);
 			break;
-		}
+		case OTYPE_BLOCK:
+			BlockUpdate(pInst);
+			break;
+		case OTYPE_BULLET:
+			BulletUpdate(pInst);
+			break;
+		case OTYPE_BOSS2:
+			Boss2Update(pInst);
+			break;
 		default:
-		break;
+			break;
 	}
+	pInst->posCurr.x += pInst->velCurr.x;
+	pInst->posCurr.y += pInst->velCurr.y;
 	return OK;
 }
-
 
 //对象碰撞检测
 static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
@@ -149,126 +95,13 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode, GameObjList L)
 		return OK;
 	switch (pInstForCollisionDetect->pObject->type)
 	{
-		//主对象
 		case OTYPE_PLAYER:
-		{
-			switch (pInstOther->pObject->type)
-			{
-				// Player vs. Platform
-			case OTYPE_PLATFORM:
-			{
-				// 检测位置调整主角方向
-				if (pInstForCollisionDetect->posCurr.y >= 0)
-				{
-					pInstForCollisionDetect->properties[0].value = 1;
-				}
-				else
-				{
-					pInstForCollisionDetect->properties[0].value = -1;
-				}
-				//是否在平台上
-				if ((pInstForCollisionDetect->posCurr.y) <= pInstForCollisionDetect->scale + PLATFORM_HEIGHT)
-				{
-					dropCheck = 0;
-					if (jumpCheck > 0)	// 自由落体过程
-					{
-						jumpCheck = 0;
-						pInstForCollisionDetect->velCurr.y = 0.0f;
-						pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
-					}
-					else if (jumpCheck == 0)
-					{
-						if (pInstForCollisionDetect->posCurr.y >= pInstForCollisionDetect->scale)			// 翻转回地上过程
-						{
-							pInstForCollisionDetect->velCurr.y = 0.0f;
-							pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
-						}
-					}
-					else if (pInstForCollisionDetect->posCurr.y <= -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT)		// 迅速下落过程
-					{
-						pInstForCollisionDetect->velCurr.y = 0.0f;
-						pInstForCollisionDetect->posCurr.y = -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT;
-					}
-				}
-				else
-				{
-					if (jumpCheck == 0)
-					{
-						pInstForCollisionDetect->velCurr.y = 0.0f;
-						pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
-					}
-				}
-			}
-			break;//Player VS Platform结束
-
-			// Player vs. Block
-			case OTYPE_BLOCK:
-			{
-				// 碰撞检测
-				if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
-				{
-					// 撞上BLOCK死亡
-					// 重新开始关卡
-					Next = GS_Restart;
-					printf("\n Collision with the Block: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
-				}
-			}
-			break;// Player vs. Block结束
-
-			//Player VS Monster
-			case OTYPE_MONSTER:
-			{
-				// 碰撞检测
-				if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
-				{
-					// 撞上Monster死亡
-					// 重新开始关卡
-					Next = GS_Restart;
-					printf("\n Collision with the Monster: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
-				}
-			}
-			break;//Player VS Monster结束
-
-			default:
-				break;
-			}
-		}
-		break;
-   
-//主对象为子弹BULLET
+			PlayerCollision(pinsNode, L);
+			break;
 		case OTYPE_BULLET:
-		{
-			switch (pInstOther->pObject->type)
-			{
-			//BULLET VS MONSTER
-			case OTYPE_MONSTER:
-			{
-				// 碰撞检测
-				if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
-				{
-					// 撞上Monster，消灭子弹和MONSTER
-					GameObjDelete(pInstOther, L);
-					GameObjDelete(pInstForCollisionDetect, L);
-				}
-			}
-			break;//BULLET VS MONSTER结束
-
-			//BULLET VS BLOCK
-			case OTYPE_BLOCK:
-			{
-				// 碰撞检测
-				if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
-				{
-					// 撞上BLOCK，消灭BULLET
-					GameObjDelete(pInstForCollisionDetect,L);
-				}
-			}
-			break;//BULLET VS BLOCK结束
-			}		
-		}
-		break;//BULLET碰撞检测结束
-
-		//主对象比较结束
+			BulletCollision(pinsNode, L);
+			break;
+		
 		default:
 			break;
 	}
@@ -300,13 +133,9 @@ Status Visit_Matrix2DCount(insNode* pinsNode, GameObjList L)
 
 	// 缩放矩阵
 	if (pInst->pObject->type == OTYPE_PLAYER)
-	{
 		Matrix2DScale(&scale, pInst->scale, pInst->scale * pInst->properties->value);
-	}
 	else
-	{
 		Matrix2DScale(&scale, pInst->scale, pInst->scale);
-	}
 	// 旋转矩阵
 	Matrix2DRotDeg(&rot, pInst->dirCurr);
 	// 平移矩阵
