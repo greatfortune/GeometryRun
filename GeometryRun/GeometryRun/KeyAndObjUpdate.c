@@ -25,6 +25,16 @@ Status KeyUpdate()
 		Next = GS_Quit;
 		return FLAG_IMPORTANTKEY;
 	}
+	if (KeyPressed[KeyM] == TRUE)
+	{
+		Next = GS_Menu;
+		return FLAG_IMPORTANTKEY;
+	}
+	if (KeyPressed[Key0] == TRUE)
+	{
+		Next = GS_L0;
+		return FLAG_IMPORTANTKEY;
+	}
 	if (KeyPressed[Key1] == TRUE)
 	{
 		Next = GS_L1;
@@ -35,12 +45,24 @@ Status KeyUpdate()
 		Next = GS_L2;
 		return FLAG_IMPORTANTKEY;
 	}
+	if (KeyPressed[Key3] == TRUE)
+	{
+		Next = GS_L3;
+		return FLAG_IMPORTANTKEY;
+	}
+	//if (KeyPressed[KeyP] == TRUE)
+	//{
+	//	if (isPaused)
+	//	{
+	//		AEGfx
+	//	}
+	//	return FLAG_IMPORTANTKEY;
+	//}
 
 	// 画面播放完毕/点击鼠标左键 进入Level1
 	if (Current == GS_L0)
 	{
-		KeyPressed[KeyLButton] = GetKeyState(VK_LBUTTON);
-		if (KeyPressed[KeyLButton] < 0 || xcurrentFrame>11)
+		if (KeyPressed[KeySpace] == TRUE || xcurrentFrame>11)
 		{
 			Next = GS_L1;
 			return FLAG_IMPORTANTKEY;
@@ -118,7 +140,7 @@ Status Visit_CollisionDetect(insNode* pinsNode)
 		return OK;
 
 	// Player 与 background / block 的碰撞检测
-	BaseListTraverse(theBaseList, Visit_CollisionDetectAnother);
+	BaseListTraverse(Visit_CollisionDetectAnother);
 	return OK;
 }
  
@@ -146,3 +168,39 @@ Status Visit_Matrix2DCount(insNode* pinsNode)
 	return OK;
 }
 
+
+Status Visit_DestroyObj(insNode* pinsNode)
+{
+	GameObj* pInst = &(pinsNode->gameobj);
+	if (pInst->flag == FLAG_ACTIVE)
+		GameObjDelete(pInst);
+	return OK;
+}
+
+Status Visit_DrawObj(insNode* pinsNode)
+{
+	GameObj* pInst = &(pinsNode->gameobj);
+
+	// 跳过非活动对象
+	if ((pInst->flag & FLAG_ACTIVE) == 0)
+		return OK;
+	// 制造一闪一闪的效果
+	if (pInst == pHero && isProtected)
+	{
+		ProtectCur += 1;
+		if (ProtectCur >= MaxProtectCur)
+		{
+			ProtectCur = 0;
+			isProtected = 0;
+		}
+		else if (ProtectCur % 10 <= 5)
+			return OK;
+	}
+	// 设置纹理
+	AEGfxTextureSet(pInst->pObject->pTex, 0, 0);
+	// 设置对象的2D变换矩阵，使用函数：AEGfxSetTransform
+	AEGfxSetTransform(pInst->transform.m);
+	// 绘制当前对象，使用函数：AEGfxMeshDraw
+	AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
+	return OK;
+}

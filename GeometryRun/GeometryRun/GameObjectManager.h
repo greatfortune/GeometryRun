@@ -141,10 +141,6 @@ Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode));
 
 Status BaseListTraverse(Status(*Visit)(insNode* pinsNode));
 
-Status Visit_DestroyObj(insNode* pinsNode);
-
-Status Visit_DrawObj(insNode* pinsNode); 
-
 Status SetProperty(Property* theProperty, char* name, int value);
 
 Status SetObjSpeed(GameObj* theObj, Vector2D theVel);

@@ -24,6 +24,9 @@ Status PlayerStart()
 	Vector2DSet(&iniPosition_Player, -250.0f, 40.0f);
 	jumpCheck = 1;
 	dropCheck = 0;
+	PlayerHP = 3;
+	ProtectCur = 0;
+	MaxProtectCur = 40;
 	return OK;
 }
 
@@ -150,7 +153,8 @@ Status PlayerCollision(insNode* pinsNode)
 			{
 				// 撞上BLOCK死亡
 				// 重新开始关卡
-				Next = GS_Restart;
+				if (!isProtected)
+					PlayerGetHurt(1);
 				printf("\n Collision with the Block: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
 			}
 		}
@@ -162,17 +166,45 @@ Status PlayerCollision(insNode* pinsNode)
 			// 碰撞检测
 			if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
 			{
-				// 撞上Monster死亡
-				// 重新开始关卡
-				Next = GS_Restart;
+				// hero HP-1
+				if (!isProtected)
+					PlayerGetHurt(1);
 				printf("\n Collision with the Monster: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
 			}
 		}
 		break;//Player VS Monster结束
-
+		case OTYPE_BOSS2:
+		// 碰撞检测
+		if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
+		{
+			// hero HP-1
+			if (!isProtected)
+				PlayerGetHurt(1);
+			printf("\n Collision with the Boss2: Pos(%.1f, %.1f)\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
+		}
+		break;
 		default:
 			break;
 	}
 
+	return OK;
+}
+
+Status PlayerGetHurt(int hurt)
+{
+	PlayerHP -= hurt;
+	if (PlayerHP <= 0)
+		PlayerDead();
+	else
+	{
+		isProtected = 1;
+	}
+	return OK;
+}
+
+Status PlayerDead()
+{
+	GameObjDelete(pHero);
+	Next = GS_Restart;
 	return OK;
 }

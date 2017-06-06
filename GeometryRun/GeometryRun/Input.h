@@ -28,20 +28,27 @@
 enum {
 	KeyR,
 	KeyESC,
+	Key0,
 	Key1,
 	Key2,
+	Key3,
 	KeyUp,
 	KeyDown,
 	KeyLeft,
 	KeyRight,
 	KeySpace,
+	KeyM,
 	KeyW,
 	KeyS,
 	KeyJ,
+	KeyP,
 	KeyLButton,
 	KeyNUM    // 总放在最后一个
 };
 int KeyPressed[KeyNUM];
+
+POINT mousPos;
+int posType;
 
  //------------------------------------------------------------------------------
  // Public Functions:

@@ -31,6 +31,7 @@ void SetConstants()
 	strcpy(ObjTypeName[OTYPE_BOSS1], "TYPE_BOSS1");
 	strcpy(ObjTypeName[OTYPE_BOSS2], "TYPE_BOSS2");
 	zero.x = 0, zero.y = 0;
+	isPaused = false;
 }
 
 
@@ -170,15 +171,17 @@ Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode))
 {
 	insNode *pt;
 	for (pt = L->head->next; pt != L->tail; pt = pt->next)
-		Visit(pt);
+		if (pt->gameobj.flag == FLAG_ACTIVE)
+			Visit(pt);
+
 	return OK;
 }
 
 //遍历函数，可能无用
-Status BaseListTraverse(GameObjBaseList L, Status(*Visit)(insNode* pinsNode))
+Status BaseListTraverse(Status(*Visit)(insNode* pinsNode))
 {
 	baseNode *pt;
-	for (pt = L->head->next; pt != L->tail; pt = pt->next)
+	for (pt = theBaseList->head->next; pt != theBaseList->tail; pt = pt->next)
 		ListTraverse(pt->gameobj_list, Visit);
 	return OK;
 }
@@ -252,30 +255,6 @@ Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxT
 	pBaseNode->gameobj_base.pTex = theTexture;
 	L->count++;
 	printf("CreateGameObjBase:type: %-16s\n", ObjTypeName[theType]);
-	return OK;
-}
-
-Status Visit_DestroyObj(insNode* pinsNode)
-{
-	GameObj* pInst = &(pinsNode->gameobj);
-	if (pInst->flag == FLAG_ACTIVE)
-		GameObjDelete(pInst);
-	return OK;
-}
-
-Status Visit_DrawObj(insNode* pinsNode)
-{
-	GameObj* pInst = &(pinsNode->gameobj);
-
-	// 跳过非活动对象
-	if ((pInst->flag & FLAG_ACTIVE) == 0)
-		return OK;
-	// 设置纹理
-	AEGfxTextureSet(pInst->pObject->pTex, 0, 0);
-	// 设置对象的2D变换矩阵，使用函数：AEGfxSetTransform
-	AEGfxSetTransform(pInst->transform.m);
-	// 绘制当前对象，使用函数：AEGfxMeshDraw
-	AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
 	return OK;
 }
 

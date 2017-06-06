@@ -70,7 +70,7 @@ Status BulletCollision(insNode* pinsNode)
 			if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
 			{
 				// ×²ÉÏBOSS2, ¼õÑª,ÏûÃðBULLET
-				Boss2HP -= pInstForCollisionDetect->properties[damage].value;
+				Boss2GetHurt(pInstForCollisionDetect->properties[damage].value);
 				GameObjDelete(pInstForCollisionDetect);
 			}
 		}

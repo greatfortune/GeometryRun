@@ -47,11 +47,6 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		//  ´°¿Ú´´½¨
 	case WM_CREATE:
 		break;
-
-	case WM_LBUTTONDOWN:
-		//GS_Running = 0;
-		break;
-
 	case WM_MOUSEMOVE:
 		break;
 
@@ -66,7 +61,15 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		fprintf(fp, "Input:Forcing Shut Down\n");
 		printf("Input:Forcing Shut Down\n");
 		break;
-
+	case WM_LBUTTONDOWN:
+		KeyPressed[KeyLButton] = TRUE;
+		GetCursorPos(&mousPos);
+		ScreenToClient(hWnd, &mousPos);
+		printf("MousePos: %d, %d\n", mousPos.x, mousPos.y);
+		break;
+	case WM_LBUTTONUP:
+		KeyPressed[KeyLButton] = FALSE;
+		break;
 	case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE)
 		{
@@ -80,6 +83,18 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			fprintf(fp, "Input:R\n");
 			printf("Input:R\n");
 		}
+		if (wParam == 'M')
+		{
+			KeyPressed[KeyM] = TRUE;
+			fprintf(fp, "Input:M\n");
+			printf("Input:M\n");
+		}
+		if (wParam == '0')
+		{
+			KeyPressed[Key0] = TRUE;
+			fprintf(fp, "Input:0\n");
+			printf("Input:0\n");
+		}
 		if (wParam == '1')
 		{
 			KeyPressed[Key1] = TRUE;
@@ -91,6 +106,12 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			KeyPressed[Key2] = TRUE;
 			fprintf(fp, "Input:2\n");
 			printf("Input:2\n");
+		}
+		if (wParam == '3')
+		{
+			KeyPressed[Key3] = TRUE;
+			fprintf(fp, "Input:3\n");
+			printf("Input:3\n");
 		}
 		if (wParam == VK_UP)
 			KeyPressed[KeyUp] = TRUE;
@@ -123,6 +144,12 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			KeyPressed[KeyJ] = TRUE;
 			fprintf(fp, "Input:J\n");
 			printf("Input:J\n");
+		}
+		if (wParam == 'P')
+		{
+			KeyPressed[KeyP] = TRUE;
+			fprintf(fp, "Input:P\n");
+			printf("Input:P\n");
 		}
 		break;
 

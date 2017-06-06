@@ -31,10 +31,14 @@ Status Boss2Start()
 	Boss2PatrolMinY = -100.0f;
 	// 进入的距离
 	Boss2EnterX = 30.0f;
+	// 冲撞至的x
+	Boss2ImpactX = -400.0f;
 	Vector2DSet(&Boss2EnterVel, -2.3f, 0.0f);
 	Vector2DSet(&Boss2MoveUpward, 0.0f, 1.0f);
 	Vector2DSet(&Boss2MoveDownward, 0.0f, -1.0f);
 	Vector2DSet(&Boss2IniPos, 500.0f, 0.0f);
+	Vector2DSet(&Boss2ImpactVelLeft, -10.0f, 0.0f);
+	Vector2DSet(&Boss2ImpactVelRight, 10.0f, 0.0f);
 	Boss2SkillLoad();
 	return OK;
 }
@@ -50,16 +54,16 @@ Status Boss2SkillLoad()
 
 Status Boss2Update(GameObj* pInst)
 {
-	pInst->posCurr.x += pInst->velCurr.x;
-	pInst->posCurr.y += pInst->velCurr.y;
+	pBoss2->posCurr.x += pBoss2->velCurr.x;
+	pBoss2->posCurr.y += pBoss2->velCurr.y;
 	switch (Boss2Status)
 	{
 		case B2STATUS_ENTER:
 		{
-			if (pInst->posCurr.x <= winMaxX - Boss2EnterX)
+			if (pBoss2->posCurr.x <= winMaxX - Boss2EnterX)
 			{
-				Boss2Status = B2STATUS_NORMAL;
-				SetObjSpeed(pInst, Boss2MoveUpward);
+ 				Boss2Status = B2STATUS_NORMAL;
+				SetObjSpeed(pBoss2, Boss2MoveUpward);
 				break;
 			}
 			break;
@@ -72,12 +76,12 @@ Status Boss2Update(GameObj* pInst)
 				Boss2Skill_GetAngey();
 				break;
 			}
-			if (pInst->posCurr.y >= Boss2PatrolMaxY)
+			if (pBoss2->posCurr.y >= Boss2PatrolMaxY)
 			{
 				SetObjSpeed(pBoss2, Boss2MoveDownward);
 				Boss2UseSkillRandomly(passTime);
 			}
-			else if (pInst->posCurr.y <= Boss2PatrolMinY)
+			else if (pBoss2->posCurr.y <= Boss2PatrolMinY)
 			{
 				SetObjSpeed(pBoss2, Boss2MoveUpward);
 				Boss2UseSkillRandomly(passTime);
@@ -86,15 +90,33 @@ Status Boss2Update(GameObj* pInst)
 		}
 		case B2STATUS_ANGRY:
 		{
-			if (pInst->posCurr.y >= Boss2PatrolMaxY)
+			if (pBoss2->posCurr.y >= Boss2PatrolMaxY)
 			{
 				SetObjSpeed(pBoss2, Boss2MoveDownward);
 				Boss2UseSkillRandomly(passTime);
 			}
-			else if (pInst->posCurr.y <= Boss2PatrolMinY)
+			else if (pBoss2->posCurr.y <= Boss2PatrolMinY)
 			{
 				SetObjSpeed(pBoss2, Boss2MoveUpward);
 				Boss2UseSkillRandomly(passTime);
+			}
+			break;
+		}
+		case B2STATUS_IMPACTL:
+		{
+			if (pBoss2->posCurr.x <= Boss2ImpactX)
+			{
+				SetObjSpeed(pBoss2, Boss2ImpactVelRight);
+				Boss2Status = B2STATUS_IMPACTR;
+			}
+			break;
+		}
+		case B2STATUS_IMPACTR:
+		{
+			if (pBoss2->posCurr.x >= winMaxX - Boss2EnterX)
+			{
+				SetObjSpeed(pBoss2, Boss2MoveUpward);
+				Boss2Status = B2STATUS_ANGRY;
 			}
 			break;
 		}
@@ -102,7 +124,7 @@ Status Boss2Update(GameObj* pInst)
 			break;
 	}
 	if (Boss2HP <= 0)
-		GameObjDelete(pInst);
+		Boss2Dead();
 	return OK;
 }
 
@@ -132,9 +154,8 @@ Status Boss2Skill_CreateBlock(float curTime)
 
 Status Boss2Skill_Impact(float curTime)
 {
-	AddSpeedForObjAtTime(curTime, pBoss2, -Boss2ImpactSpeed, 0.0f);
-	AddSpeedForObjAtTime(curTime + Boss2SkillCycle / 2, pBoss2, 2 * Boss2ImpactSpeed, 0.0f);
-	AddSpeedForObjAtTime(curTime + Boss2SkillCycle, pBoss2, -Boss2ImpactSpeed, 0.0f);
+	Boss2Status = B2STATUS_IMPACTL;
+	SetObjSpeed(pBoss2, Boss2ImpactVelLeft);
 	return OK;
 }
 
@@ -142,7 +163,7 @@ Status Boss2Skill_GetAngey()
 {
 	Vector2DSet(&Boss2MoveUpward, 0.0f, 1.7f);
 	Vector2DSet(&Boss2MoveDownward, 0.0f, -1.7f);
-	Boss2SkillCount = 2;
+	Boss2SkillCount = 3;
 	boss2skills[2] = Boss2Skill_Impact;
 	return OK;
 }
@@ -154,3 +175,13 @@ Status Boss2UseSkillRandomly(float curTime)
 	return OK;
 }
 
+Status Boss2GetHurt(int hurt)
+{
+	Boss2HP -= hurt;
+	if (PlayerHP <= 0)
+		PlayerDead();
+}
+
+Status Boss2Dead(){
+	GameObjDelete(pBoss2);
+}

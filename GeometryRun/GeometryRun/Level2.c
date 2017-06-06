@@ -8,7 +8,7 @@
 #include "Level2.h"
 
 clock_t timeStart_level2;
-const float bossOccurTime_level2 = 23.0f;
+const float bossOccurTime_level2 = 27.0f;
 
 void Load2(void)
 {
@@ -28,7 +28,7 @@ void Load2(void)
 	MonsterLoad();
 	PlatformLoad();
 	Boss2Load();
-	BackGroundLoad(2);
+	BackGroundLoad();
 }
 
 void Ini2(void)
@@ -80,12 +80,12 @@ void Update2(void)
 	// ====================
 	// 碰撞检测
 	// ====================
-	BaseListTraverse(theBaseList, Visit_CollisionDetect);
+	BaseListTraverse(Visit_CollisionDetect);
 
 	// =====================================
 	// 计算所有对象的2D变换矩阵
 	// =====================================
-	BaseListTraverse(theBaseList, Visit_Matrix2DCount);
+	BaseListTraverse(Visit_Matrix2DCount);
 }
 
 void Draw2(void)
@@ -96,7 +96,7 @@ void Draw2(void)
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 
 	// 逐个绘制对象列表中的所有对象
-	BaseListTraverse(theBaseList, Visit_DrawObj);
+	BaseListTraverse(Visit_DrawObj);
 
 }
 
@@ -105,7 +105,7 @@ void Free2(void)
 	
 	printf("Level2: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
-	BaseListTraverse(theBaseList, Visit_DestroyObj);
+	BaseListTraverse(Visit_DestroyObj);
 	TimerFree();
 }
 

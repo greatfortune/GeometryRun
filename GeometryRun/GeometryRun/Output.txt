@@ -2,16 +2,10 @@ System:Initialize
 GSM: Initialize
 GSM: Update
 GSM: Update
+Input:Space
+GSM: Update
 Input:2
 GSM: Update
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
 Input:Space
 Input:Space
 Input:Space

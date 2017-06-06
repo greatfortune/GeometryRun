@@ -8,9 +8,11 @@
 
 #include "System.h"
 #include "GameStateList.h"
+#include "Menu.h"
 #include "Level0.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "Level3.h"
 
 //------------------------------------------------------------------------------
 // Private Consts:
@@ -60,6 +62,15 @@ void GSM_Update(void)
 {
 	switch (Current)
 	{
+		case GS_Menu: {
+			pLoad = Load_Menu;
+			pIni = Ini_Menu;
+			pUpdate = Update_Menu;
+			pDraw = Draw_Menu;
+			pFree = Free_Menu;
+			pUnload = Unload_Menu;
+			break;
+		}
     	case GS_L0: {
 	    	pLoad = Load0;
 		    pIni = Ini0;
@@ -85,6 +96,15 @@ void GSM_Update(void)
 			pDraw = Draw2;
 			pFree = Free2;
 			pUnload = Unload2;
+			break;
+		}
+		case GS_L3: {
+			pLoad = Load3;
+			pIni = Ini3;
+			pUpdate = Update3;
+			pDraw = Draw3;
+			pFree = Free3;
+			pUnload = Unload3;
 			break;
 		}
 	}

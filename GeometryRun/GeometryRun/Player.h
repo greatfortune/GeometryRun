@@ -23,6 +23,10 @@ Vector2D iniPosition_Player;
 AEGfxTexture* pTex_Hero;
 //jumpCheck:跳跃次数，用于二级跳
 int jumpCheck, dropCheck;
+int isProtected;
+// 用于设置保护时间的长短
+int ProtectCur, MaxProtectCur;
+int PlayerHP;
 
 Status PlayerLoad();
 
@@ -31,5 +35,7 @@ Status PlayerStart();
 Status PlayerUpdate(GameObj* pInst);
 
 Status PlayerCollision(insNode* pinsNode);
+
+Status PlayerDead();
 
 #endif

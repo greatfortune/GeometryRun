@@ -18,7 +18,7 @@ void Load0(void)
 	// 初始化游戏对象基类的实例列表
 	InitialGameObjBaseList(&theBaseList);
 
-	BackGroundLoad(0);
+	BackGroundLoad();
 
 }
 
@@ -61,7 +61,7 @@ void Update0(void)
 	// =====================================
 	// 计算所有对象的2D变换矩阵
 	// =====================================
-	BaseListTraverse(theBaseList, Visit_Matrix2DCount);
+	BaseListTraverse(Visit_Matrix2DCount);
 
 }
 
@@ -86,7 +86,7 @@ void Free0(void)
 {
 	printf("Level0: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
-	BaseListTraverse(theBaseList, Visit_DestroyObj);
+	BaseListTraverse(Visit_DestroyObj);
 }
 
 void Unload0(void)

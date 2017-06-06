@@ -24,3 +24,7 @@ Status Visit_Matrix2DCount(insNode* pinsNode);
 
 Status BossUpdate(int level, clock_t LevelTime, float bossOccurTime);
 
+Status Visit_DestroyObj(insNode* pinsNode);
+
+Status Visit_DrawObj(insNode* pinsNode);
+

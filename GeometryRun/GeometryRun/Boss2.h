@@ -19,9 +19,10 @@ int Boss2HP, Boss2AngerHP;
 // 上下巡逻范围
 float Boss2PatrolMaxY, Boss2PatrolMinY;
 // 进入的距离
-float Boss2EnterX;
+float Boss2EnterX, Boss2ImpactX;
 Vector2D Boss2IniPos;
 Vector2D Boss2EnterVel, Boss2MoveUpward, Boss2MoveDownward;
+Vector2D Boss2ImpactVelLeft, Boss2ImpactVelRight;
 float Boss2ImpactSpeed;
 
 // Boss2的技能
@@ -39,9 +40,12 @@ int Boss2SkillCount;
 // Boss2的状态
 enum boss2Status
 {
+	//B2STATUS_
 	B2STATUS_ENTER,
 	B2STATUS_NORMAL,
 	B2STATUS_ANGRY,
+	B2STATUS_IMPACTL,
+	B2STATUS_IMPACTR,
 	B2STATUS_Count
 };
 
@@ -64,5 +68,9 @@ Status Boss2Skill_GetAngey();
 Status Boss2Skill_Impact(float curTime, float impactSpeed);
 
 Status Boss2UseSkillRandomly();
+
+Status Boss2Dead();
+
+Status Boss2GetHurt(int hurt);
 
 #endif

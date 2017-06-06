@@ -3,8 +3,18 @@
 
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
+#include "GameStateList.h"
+#include "input.h"
 
 #define SIZE_BACKGROUND 400.0f	// 背景尺寸
+
+enum {
+	BTYPE_MENU_START = 0,
+	BTYPE_MENU_CHOOSE,
+	BTYPE_MENU_HELPSTAFF,
+	BTYPE_MENU_EXIT,
+	BTYPE_COUNT
+};
 
 // 仅在Level0中控制动画播放
 GameObj* pImage;
@@ -15,10 +25,12 @@ float elpasedTime;
 Vector2D iniPosition_Background;
 Vector2D iniVelocity_Background;
 
-Status BackGroundLoad(int level);
+Status BackGroundLoad();
 
 Status BackGroundStart();
 
 Status BackGroundUpdate(GameObj* pInst);
+
+int JudgeMousPos();
 
 #endif

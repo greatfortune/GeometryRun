@@ -29,7 +29,7 @@ void Load1(void)
 	BulletLoad();
 	MonsterLoad();
 	PlatformLoad();
-	BackGroundLoad(1);
+	BackGroundLoad();
 
 }
 
@@ -89,12 +89,12 @@ void Update1(void)
 	// ====================
 	// 碰撞检测
 	// ====================
-	BaseListTraverse(theBaseList, Visit_CollisionDetect);
+	BaseListTraverse(Visit_CollisionDetect);
 
 	// =====================================
 	// 计算所有对象的2D变换矩阵
 	// =====================================
-	BaseListTraverse(theBaseList, Visit_Matrix2DCount);
+	BaseListTraverse(Visit_Matrix2DCount);
 }
 
 void Draw1(void)
@@ -105,7 +105,7 @@ void Draw1(void)
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 
 	// 逐个绘制对象列表中的所有对象
-	BaseListTraverse(theBaseList, Visit_DrawObj);
+	BaseListTraverse(Visit_DrawObj);
 
 }
 
@@ -113,7 +113,7 @@ void Free1(void)
 {
 	printf("Level1: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
-	BaseListTraverse(theBaseList, Visit_DestroyObj);
+	BaseListTraverse(Visit_DestroyObj);
 }
 
 void Unload1(void)

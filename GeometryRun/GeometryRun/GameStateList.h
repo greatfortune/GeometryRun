@@ -27,12 +27,15 @@
 int Previous;
 int Current;
 int Next;
+int isPaused;
 
 enum
 {
-	GS_L0,              //Level0
+	GS_Menu,			// Menu
+	GS_L0,              // Level0
 	GS_L1,              // Level1
 	GS_L2,              // Level2
+	GS_L3,				// Level3
 	GS_NUM,             // Total Number
 	GS_Restart,			// Restart
 	GS_Quit				// Quit
