@@ -13,6 +13,9 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
+#include "Win.h"
+#include "Lose.h"
+#include "Pass.h"
 
 //------------------------------------------------------------------------------
 // Private Consts:
@@ -105,6 +108,33 @@ void GSM_Update(void)
 			pDraw = Draw3;
 			pFree = Free3;
 			pUnload = Unload3;
+			break;
+		}
+		case GS_Win: {
+			pLoad = Load_Win;
+			pIni = Ini_Win;
+			pUpdate = Update_Win;
+			pDraw = Draw_Win;
+			pFree = Free_Win;
+			pUnload = Unload_Win;
+			break;
+		}
+		case GS_Lose: {
+			pLoad = Load_Lose;
+			pIni = Ini_Lose;
+			pUpdate = Update_Lose;
+			pDraw = Draw_Lose;
+			pFree = Free_Lose;
+			pUnload = Unload_Lose;
+			break;
+		}
+		case GS_Pass: {
+			pLoad = Load_Pass;
+			pIni = Ini_Pass;
+			pUpdate = Update_Pass;
+			pDraw = Draw_Pass;
+			pFree = Free_Pass;
+			pUnload = Unload_Pass;
 			break;
 		}
 	}

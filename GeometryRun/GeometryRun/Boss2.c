@@ -25,8 +25,8 @@ Status Boss2Start()
 	Boss2ImpactSpeed = 60.0f;
 	Boss2Status = B2STATUS_ENTER;
 	Boss2SkillCycle = 100.0f;
-	Boss2HP = 80;
-	Boss2AngerHP = 50;
+	Boss2HP = 10;
+	Boss2AngerHP = 5;
 	// ÉÏÏÂÑ²Âß·¶Î§
 	Boss2PatrolMaxY = 100.0f;
 	Boss2PatrolMinY = -100.0f;
@@ -192,5 +192,9 @@ Status Boss2GetHurt(int hurt)
 
 Status Boss2Dead(){
 	GameObjDelete(pBoss2);
+	if (Current == GS_L2)
+		Next = GS_Pass;
+	else if (Current = GS_L3)
+		Next = GS_Win;
 	return OK;
 }

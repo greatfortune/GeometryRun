@@ -65,7 +65,7 @@ Status KeyUpdate()
 		return FLAG_IMPORTANTKEY;
 	}
 
-	// 画面播放完毕/点击鼠标左键 进入Level1
+	// 画面播放完毕/空格键 进入Level1
 	if (Current == GS_L0)
 	{
 		if (KeyPressed[KeySpace] == TRUE || xcurrentFrame>11)
@@ -73,6 +73,26 @@ Status KeyUpdate()
 			Next = GS_L1;
 			return FLAG_IMPORTANTKEY;
 		}
+	}
+
+	if (Current == GS_Pass && KeyPressed[KeyLButton] == TRUE)
+	{
+		switch (Previous)
+		{
+			case GS_L1:
+				Next = GS_L2;
+				break;
+			case GS_L2:
+				Next = GS_L3;
+				break;
+			default:
+				break;
+		}
+	}
+
+	if (Current == GS_Win && KeyPressed[KeyLButton] == TRUE)
+	{
+		Next = GS_Menu;
 	}
 	return OK;
 }

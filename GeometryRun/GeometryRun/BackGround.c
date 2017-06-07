@@ -21,7 +21,7 @@ Status BackGroundLoad()
 		CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/level0.png"), theBaseList);
 		return OK;
 	}
-	else if (Current == GS_Menu)
+	else if (Current == GS_Menu || Current == GS_Win || Current == GS_Lose || Current == GS_Pass)
 	{
 		AEGfxMeshStart();
 		AEGfxTriAdd(
@@ -33,8 +33,24 @@ Status BackGroundLoad()
 			1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
 			-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
 
+		switch (Current)
+		{
+			case GS_Menu:
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Menu.png"), theBaseList);
+				break;
+			case GS_Win:
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Win.jpg"), theBaseList);
+				break;
+			case GS_Lose:
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Lose.jpg"), theBaseList);
+				break;
+			case GS_Pass:
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Pass.jpg"), theBaseList);
+				break;
+			default:
+				return -1;
+		}
 
-		CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Menu.png"), theBaseList);
 		return OK;
 	}
 	
@@ -64,6 +80,7 @@ Status BackGroundLoad()
 		case GS_L3:
 			CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/level2.png"), theBaseList);
 			break;
+		
 		default:
 			return ERROR;
 	}
@@ -85,23 +102,25 @@ Status BackGroundUpdate(GameObj* pInst)
 		click = JudgeMousPos();
 		switch (click)
 		{
-			case BTYPE_MENU_START:
-				Next = GS_L0;
-				break;
-			case BTYPE_MENU_CHOOSE:
-				Next = GS_L0;
-				break;
-			case BTYPE_MENU_HELPSTAFF:
-				Next = GS_L0;
-				break;
-			case BTYPE_MENU_EXIT:
-				Next = GS_Quit;
-				break;
-			default:
-				break;
+		case BTYPE_MENU_START:
+		Next = GS_L0;
+		break;
+		case BTYPE_MENU_CHOOSE:
+		Next = GS_L0;
+		break;
+		case BTYPE_MENU_HELPSTAFF:
+		Next = GS_L0;
+		break;
+		case BTYPE_MENU_EXIT:
+		Next = GS_Quit;
+		break;
+		default:
+		break;
 		}
 		return OK;
 	}
+	else if (Current == GS_Win || Current == GS_Lose || Current == GS_Pass)
+		return OK;
 
 	pInst->posCurr.x += pInst->velCurr.x * frameTime;
 	pInst->posCurr.y += pInst->velCurr.y * frameTime;

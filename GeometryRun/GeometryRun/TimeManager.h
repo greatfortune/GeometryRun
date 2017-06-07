@@ -11,7 +11,8 @@ enum TimerType{
 	TTYPE_OBJ_RANDOM,
 	TTYPE_OBJ,
 	TTYPE_SOMEOBJ,
-	TTYPE_ADDSPEED
+	TTYPE_ADDSPEED,
+	TTYPE_SWITCHSCENE
 };
 
 typedef struct{
@@ -57,6 +58,7 @@ typedef union{
 	TDataCreateOneObjRandomly TDCreateOneObjRandomly;
 	TDataCreateOneObj TDCreateOneObj;
 	TDataChangeSpeed TDChangeSpeed;
+	int nextScene;
 }TimerData;
 // 此处改为联合体,按类型存储所需数据
 
@@ -96,6 +98,8 @@ Status CreateOneObjAtTimeWithRange(float theTime, unsigned long theType, float s
 Status CreateSomeObjAtSameTimeWithRange(float theTime, int theAmountToCreate, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
 
 Status AddSpeedForObjAtTime(float theTime, GameObj* theObj, float Offset_Vx, float Offset_Vy);
+
+Status SwithSceneAtTime(float theTime, int theScene);
 
 Status TimerUpdate(clock_t LevelTime);
 

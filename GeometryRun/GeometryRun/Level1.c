@@ -55,7 +55,7 @@ void Ini1(void)
 	CreateObjInMap5(4.0f);
 	CreateObjInMap0(6.0f);
 	CreateObjInMap6(16.0f);
-	
+	SwithSceneAtTime(20.0f, GS_Pass);
 
 }
 

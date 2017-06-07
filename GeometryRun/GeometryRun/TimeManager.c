@@ -143,6 +143,24 @@ Status AddSpeedForObjAtTime(float theTime, GameObj* theObj, float theOffset_Vx, 
 	return ERROR;
 }
 
+Status SwithSceneAtTime(float theTime, int theScene)
+{
+	int i;
+	for (i = 0; i < MaxTimers; i++)
+	{
+		if (Timers[i].flag == FLAG_INACTIVE)
+		{
+			timerCount++;
+			Timers[i].flag = FLAG_ACTIVE;
+			Timers[i].type = TTYPE_SWITCHSCENE;
+			Timers[i].time = theTime;
+			Timers[i].data.nextScene = theScene;
+			return OK;
+		}
+	}
+	return ERROR;
+}
+
 Status TimerUpdate(clock_t LevelTime)
 {
 	int i, dealTimers = 0, j;
@@ -219,6 +237,12 @@ Status TimerUpdate(clock_t LevelTime)
 					}
 					break;
 				}
+				case TTYPE_SWITCHSCENE:
+				{
+					Next = Timers[i].data.nextScene;
+					break;
+				}
+
 				default:
 						break;
 				}

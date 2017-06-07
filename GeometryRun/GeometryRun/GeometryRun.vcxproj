@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -158,10 +158,12 @@
     <ClInclude Include="Level1.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="Level3.h" />
+    <ClInclude Include="Lose.h" />
     <ClInclude Include="Math2D.h" />
     <ClInclude Include="Matrix2D.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Pass.h" />
     <ClInclude Include="Pause.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
@@ -170,6 +172,7 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="CreateObjectInMap.h" />
+    <ClInclude Include="Win.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.c" />
@@ -185,17 +188,20 @@
     <ClCompile Include="Level1.c" />
     <ClCompile Include="Level2.c" />
     <ClCompile Include="Level3.c" />
+    <ClCompile Include="Lose.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="Math2D.c" />
     <ClCompile Include="Matrix2D.c" />
     <ClCompile Include="Menu.c" />
     <ClCompile Include="Monster.c" />
+    <ClCompile Include="Pass.c" />
     <ClCompile Include="Pause.c" />
     <ClCompile Include="Platform.c" />
     <ClCompile Include="Player.c" />
     <ClCompile Include="System.c" />
     <ClCompile Include="TimeManager.c" />
     <ClCompile Include="Vector2D.c" />
+    <ClCompile Include="Win.c" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GeometryRun.rc" />
