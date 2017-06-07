@@ -76,6 +76,7 @@ Status ObjUpdate(insNode* pinsNode)
 {
 	baseNode *pBaseNode;
 	GameObjList *pL;
+	frameTime = AEFrameRateControllerGetFrameTime();
 	for (pBaseNode = theBaseList->head->next; pBaseNode != theBaseList->tail; pBaseNode = pBaseNode->next)
 	{
 		pL = pBaseNode->gameobj_list;

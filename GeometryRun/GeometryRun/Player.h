@@ -7,10 +7,10 @@
 #include "Platform.h"
 
 #define SIZE_HERO 30.0f			// 角色尺寸
-#define GRAVITY 10.0f	// 重力
-#define MOVE_VELOCITY_HERO 3.0f// 主角横向移动速度
-#define JUMP_VELOCITY 5.0f		// 主角纵向移动速度
-#define DROP_VELOCITY 8.0f		// 主角降落速度
+#define GRAVITY 600.0f	// 重力
+#define MOVE_VELOCITY_HERO 180.0f// 主角横向移动速度
+#define JUMP_VELOCITY 300.0f		// 主角纵向移动速度
+#define DROP_VELOCITY 480.0f		// 主角降落速度
 
 
 
@@ -19,6 +19,8 @@ GameObj* pHero;
 
 // 初始坐标
 Vector2D iniPosition_Player;
+
+int MaxBulletCount, CurSupplyTime, SupplyTime, BulletCount;
 
 AEGfxTexture* pTex_Hero;
 //jumpCheck:跳跃次数，用于二级跳

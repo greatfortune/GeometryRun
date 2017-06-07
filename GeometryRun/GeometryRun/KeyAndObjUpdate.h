@@ -12,6 +12,11 @@ float winMaxX, winMaxY, winMinX, winMinY;
 // 碰撞检测主对象，方便遍历时使用
 GameObj *pInstForCollisionDetect;
 
+// ======================
+// 帧时间：Unity中的dt
+// ======================
+double frameTime;
+
 Status GetWinMaxMinXY();
 
 Status KeyUpdate();

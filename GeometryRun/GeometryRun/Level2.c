@@ -61,7 +61,6 @@ void Ini2(void)
 
 void Update2(void)
 {
-	double frameTime;
 	Vector2D iniPosition_Block;
 	Vector2D iniVelocity_Block;
 

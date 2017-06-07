@@ -25,8 +25,8 @@ Status MonsterStart()
 
 Status MonsterUpdate(GameObj* pInst)
 {
-	pInst->posCurr.x += pInst->velCurr.x;
-	pInst->posCurr.y += pInst->velCurr.y;
+	pInst->posCurr.x += pInst->velCurr.x * frameTime;
+	pInst->posCurr.y += pInst->velCurr.y * frameTime;
 	return OK;
 }
 

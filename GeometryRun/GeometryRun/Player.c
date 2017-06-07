@@ -26,17 +26,19 @@ Status PlayerStart()
 	dropCheck = 0;
 	PlayerHP = 3;
 	ProtectCur = 0;
-	MaxProtectCur = 40;
+	MaxProtectCur = 70;
+
+	MaxBulletCount = 5;
+	CurSupplyTime = 0;
+	SupplyTime = 70;
+	BulletCount = 4;
+
 	return OK;
 }
 
 Status PlayerUpdate(GameObj* pInst)
 {
-	double frameTime;
-	// ======================
-	// 帧时间：Unity中的dt
-	// ======================
-	frameTime = AEFrameRateControllerGetFrameTime();
+
 	// Player跳起后的重力效应
 	if (jumpCheck > 0)
 		pHero->velCurr.y -= GRAVITY * frameTime;
@@ -81,15 +83,32 @@ Status PlayerUpdate(GameObj* pInst)
 			jumpCheck++;
 		}
 	}
+	if (CurSupplyTime <= SupplyTime)
+	{
+		CurSupplyTime++;
+	}
+	else
+	{
+		BulletCount = MaxBulletCount;
+		CurSupplyTime = 0;
+	}
 	if (KeyPressed[KeyJ] == TRUE || KeyPressed[KeySpace] == TRUE)
 	{
 		Vector2D iniBulletPos = { pHero->posCurr.x + 1.5 * SIZE_HERO, pHero->posCurr.y };
 		Property properties_Bullet[BULLETPCount];
+		if (BulletCount > 0)
+		{
+			BulletCount--;
+		}
+		else
+		{
+			return OK;
+		}
 		SetProperty(&properties_Bullet[damage], "damage", 3);
 		CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 1, &properties_Bullet);
 	}
-	pHero->posCurr.x += pHero->velCurr.x;
-	pHero->posCurr.y += pHero->velCurr.y;
+	pHero->posCurr.x += pHero->velCurr.x * frameTime;
+	pHero->posCurr.y += pHero->velCurr.y * frameTime;
 	return OK;
 }
 
@@ -179,7 +198,7 @@ Status PlayerCollision(insNode* pinsNode)
 		{
 			// hero HP-1
 			if (!isProtected)
-				PlayerGetHurt(1);
+				PlayerGetHurt(2);
 			printf("\n Collision with the Boss2: Pos(%.1f, %.1f)\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
 		}
 		break;

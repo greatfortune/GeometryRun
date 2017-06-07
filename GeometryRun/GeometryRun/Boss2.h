@@ -25,6 +25,9 @@ Vector2D Boss2EnterVel, Boss2MoveUpward, Boss2MoveDownward;
 Vector2D Boss2ImpactVelLeft, Boss2ImpactVelRight;
 float Boss2ImpactSpeed;
 
+// Boss2上一次使用的技能
+int Boss2LastSkill;
+
 // Boss2的技能
 enum boss2Skills{
 	B2SKILL_CREATEMONSTERS,

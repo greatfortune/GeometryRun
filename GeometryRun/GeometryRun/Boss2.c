@@ -21,11 +21,12 @@ Status Boss2Load()
 Status Boss2Start()
 {
 	pBoss2 = NULL;
-	Boss2ImpactSpeed = 1.0f;
+	Boss2LastSkill = B2SKILL_CREATEBLOCKS;
+	Boss2ImpactSpeed = 60.0f;
 	Boss2Status = B2STATUS_ENTER;
 	Boss2SkillCycle = 100.0f;
-	Boss2HP = 50;
-	Boss2AngerHP = 40;
+	Boss2HP = 80;
+	Boss2AngerHP = 50;
 	// 上下巡逻范围
 	Boss2PatrolMaxY = 100.0f;
 	Boss2PatrolMinY = -100.0f;
@@ -33,12 +34,12 @@ Status Boss2Start()
 	Boss2EnterX = 30.0f;
 	// 冲撞至的x
 	Boss2ImpactX = -400.0f;
-	Vector2DSet(&Boss2EnterVel, -2.3f, 0.0f);
-	Vector2DSet(&Boss2MoveUpward, 0.0f, 1.0f);
-	Vector2DSet(&Boss2MoveDownward, 0.0f, -1.0f);
+	Vector2DSet(&Boss2EnterVel, -138.0f, 0.0f);
+	Vector2DSet(&Boss2MoveUpward, 0.0f, 60.0f);
+	Vector2DSet(&Boss2MoveDownward, 0.0f, -60.0f);
 	Vector2DSet(&Boss2IniPos, 500.0f, 0.0f);
-	Vector2DSet(&Boss2ImpactVelLeft, -10.0f, 0.0f);
-	Vector2DSet(&Boss2ImpactVelRight, 10.0f, 0.0f);
+	Vector2DSet(&Boss2ImpactVelLeft, -600.0f, 0.0f);
+	Vector2DSet(&Boss2ImpactVelRight, 600.0f, 0.0f);
 	Boss2SkillLoad();
 	return OK;
 }
@@ -54,8 +55,8 @@ Status Boss2SkillLoad()
 
 Status Boss2Update(GameObj* pInst)
 {
-	pBoss2->posCurr.x += pBoss2->velCurr.x;
-	pBoss2->posCurr.y += pBoss2->velCurr.y;
+	pBoss2->posCurr.x += pBoss2->velCurr.x * frameTime;
+	pBoss2->posCurr.y += pBoss2->velCurr.y * frameTime;
 	switch (Boss2Status)
 	{
 		case B2STATUS_ENTER:
@@ -115,7 +116,10 @@ Status Boss2Update(GameObj* pInst)
 		{
 			if (pBoss2->posCurr.x >= winMaxX - Boss2EnterX)
 			{
-				SetObjSpeed(pBoss2, Boss2MoveUpward);
+				if (pBoss2->posCurr.y <= 0)
+					SetObjSpeed(pBoss2, Boss2MoveUpward);
+				else
+					SetObjSpeed(pBoss2, Boss2MoveDownward);
 				Boss2Status = B2STATUS_ANGRY;
 			}
 			break;
@@ -136,19 +140,19 @@ Status Boss2Collision(insNode* pinsNode)
 Status Boss2Skill_CreateMonster(float curTime)
 {
 	float iniFloat = 1.0f;
-	float iniMinX = winMaxX - 40.0f, iniMaxX = winMaxX, iniMinY = winMinY, iniMaxY = winMaxY, iniMinVx = -4.0f, iniMaxVx = -2.0f;
+	float iniMinX = winMaxX - 300.0f, iniMaxX = winMaxX, iniMinY = winMinY + 140.0f, iniMaxY = winMaxY - 140.0f, iniMinVx = -400.0f, iniMaxVx = -300.0f;
 	float iniMinVy = 0.0f, iniMaxVy = 0.0f, iniMinDir = -3.0f, iniMaxDir = 3.0f;
 
-	return CreateSomeObjAtSameTimeWithRange(curTime, 3, OTYPE_BLOCK, SIZE_BLOCK, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
+	return CreateSomeObjAtSameTimeWithRange(curTime, 7, OTYPE_MONSTER, SIZE_MONSTER, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
 }
 
 Status Boss2Skill_CreateBlock(float curTime)
 {
 	float iniFloat = 1.0f;
-	float iniMinX = winMaxX - 40.0f, iniMaxX = winMaxX, iniMinY = winMinY, iniMaxY = winMaxY, iniMinVx = -4.0f, iniMaxVx = -2.0f;
+	float iniMinX = winMaxX - 300.0f, iniMaxX = winMaxX, iniMinY = winMinY + 140.0f, iniMaxY = winMaxY - 140.0f, iniMinVx = -240.0f, iniMaxVx = -120.0f;
 	float iniMinVy = 0.0f, iniMaxVy = 0.0f, iniMinDir = 0.0f, iniMaxDir = 0.0f;
 
-	return CreateSomeObjAtSameTimeWithRange(curTime, 5, OTYPE_MONSTER, SIZE_MONSTER, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
+	return CreateSomeObjAtSameTimeWithRange(curTime, 4, OTYPE_BLOCK, SIZE_BLOCK, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
 
 }
 
@@ -161,8 +165,8 @@ Status Boss2Skill_Impact(float curTime)
 
 Status Boss2Skill_GetAngey()
 {
-	Vector2DSet(&Boss2MoveUpward, 0.0f, 1.7f);
-	Vector2DSet(&Boss2MoveDownward, 0.0f, -1.7f);
+	Vector2DSet(&Boss2MoveUpward, 0.0f, 102.0f);
+	Vector2DSet(&Boss2MoveDownward, 0.0f, -102.0f);
 	Boss2SkillCount = 3;
 	boss2skills[2] = Boss2Skill_Impact;
 	return OK;
@@ -170,7 +174,10 @@ Status Boss2Skill_GetAngey()
 
 Status Boss2UseSkillRandomly(float curTime)
 {
-	int CurSkill = rand() % Boss2SkillCount;
+	int CurSkill;
+// 确保boss使用的技能每次都不同
+	while ((CurSkill = rand() % Boss2SkillCount) == Boss2LastSkill);
+	Boss2LastSkill = CurSkill;
 	boss2skills[CurSkill](curTime + OFFSETTIME);
 	return OK;
 }

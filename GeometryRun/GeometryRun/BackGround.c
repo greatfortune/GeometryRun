@@ -73,7 +73,7 @@ Status BackGroundLoad()
 Status BackGroundStart()
 {
 	iniPosition_Background = zero;
-	Vector2DSet(&iniVelocity_Background, -3.0f, 0.0f);
+	Vector2DSet(&iniVelocity_Background, -180.0f, 0.0f);
 	return OK;
 }
 
@@ -103,8 +103,8 @@ Status BackGroundUpdate(GameObj* pInst)
 		return OK;
 	}
 
-	pInst->posCurr.x += pInst->velCurr.x;
-	pInst->posCurr.y += pInst->velCurr.y;
+	pInst->posCurr.x += pInst->velCurr.x * frameTime;
+	pInst->posCurr.y += pInst->velCurr.y * frameTime;
 	if (pInst->posCurr.x <= winMinX - winMaxX)
 		pInst->posCurr.x = 0.0f;
 	return OK;

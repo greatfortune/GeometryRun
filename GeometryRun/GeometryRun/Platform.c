@@ -22,14 +22,14 @@ Status PlatformLoad()
 Status PlatformStart()
 {
 	iniPosition_Platform = zero;
-	Vector2DSet(&iniVelocity_Platform, -3.0f, 0.0f);
+	Vector2DSet(&iniVelocity_Platform, -180.0f, 0.0f);
 	return OK;
 }
 
 Status PlatformUpdate(GameObj* pInst)
 {
-	pInst->posCurr.x += pInst->velCurr.x;
-	pInst->posCurr.y += pInst->velCurr.y;
+	pInst->posCurr.x += pInst->velCurr.x * frameTime;
+	pInst->posCurr.y += pInst->velCurr.y * frameTime;
 	if (pInst->posCurr.x <= winMinX)
 		pInst->posCurr.x = 0.0f;
 	return OK;

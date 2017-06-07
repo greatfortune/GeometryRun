@@ -21,14 +21,14 @@ Status BulletLoad()
 
 Status BulletStart()
 {
-	Vector2DSet(&Velocity_Bullet, 4.0f, 0.0f);
+	Vector2DSet(&Velocity_Bullet, 360.0f, 0.0f);
 	return OK;
 }
 
 Status BulletUpdate(GameObj* pInst)
 {
-	pInst->posCurr.x += pInst->velCurr.x;
-	pInst->posCurr.y += pInst->velCurr.y;
+	pInst->posCurr.x += pInst->velCurr.x * frameTime;
+	pInst->posCurr.y += pInst->velCurr.y * frameTime;
 	if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
 		GameObjDelete(pInst);
 	return OK;

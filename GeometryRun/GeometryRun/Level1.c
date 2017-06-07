@@ -56,14 +56,14 @@ void Ini1(void)
 	iniPosition_Block[3].x = 80.0f;
 	iniPosition_Block[3].y = 180.0f;
 
-	iniVelocity_Block[0].x = -2.0f;
-	iniVelocity_Block[0].y = 1.0f;
-	iniVelocity_Block[1].x = -1.5f;
-	iniVelocity_Block[1].y = -0.5f;
-	iniVelocity_Block[2].x = 1.5f;
-	iniVelocity_Block[2].y = -1.0f;
-	iniVelocity_Block[3].x = 0.5f;
-	iniVelocity_Block[3].y = 1.5f;
+	iniVelocity_Block[0].x = -120.0f;
+	iniVelocity_Block[0].y = 60.0f;
+	iniVelocity_Block[1].x = -90.0f;
+	iniVelocity_Block[1].y = -30.0f;
+	iniVelocity_Block[2].x = 90.0f;
+	iniVelocity_Block[2].y = -60.0f;
+	iniVelocity_Block[3].x = 30.0f;
+	iniVelocity_Block[3].y = 90.0f;
 
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);

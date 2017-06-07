@@ -38,7 +38,6 @@ void Ini0(void)
 
 void Update0(void)
 {
-	double frameTime;
 
 	GetWinMaxMinXY();
 
@@ -47,10 +46,6 @@ void Update0(void)
 	// =========================
 	KeyUpdate();
 
-	// ======================
-	// 帧时间：Unity中的dt
-	// ======================
-	frameTime = AEFrameRateControllerGetFrameTime();
 	elpasedTime += frameTime;
 
 	if (elpasedTime > MAX_TIME)

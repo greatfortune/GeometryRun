@@ -25,7 +25,6 @@ void Ini_Menu(void)
 
 void Update_Menu(void)
 {
-	double frameTime;
 	Vector2D iniPosition_Block;
 	Vector2D iniVelocity_Block;
 

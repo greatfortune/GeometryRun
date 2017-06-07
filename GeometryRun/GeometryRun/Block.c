@@ -20,14 +20,14 @@ Status BlockLoad()
 
 Status BlockStart()
 {
-	Vector2DSet(&defaultBlockVel, -5.0f, 0.0f);
+	Vector2DSet(&defaultBlockVel, -300.0f, 0.0f);
 	return OK;
 }
 
 Status BlockUpdate(GameObj* pInst)
 {
-	pInst->posCurr.x += pInst->velCurr.x;
-	pInst->posCurr.y += pInst->velCurr.y;
+	pInst->posCurr.x += pInst->velCurr.x * frameTime;
+	pInst->posCurr.y += pInst->velCurr.y * frameTime;
 	return OK;
 }
 

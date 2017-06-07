@@ -5,7 +5,7 @@
 #include "KeyAndObjUpdate.h"
 
 #define SIZE_BLOCK 30.0f		// 障碍物尺寸
-#define MOVE_MAXVELOCITY_BLOCK 5.0f	// 障碍物最大移动速度
+#define MOVE_MAXVELOCITY_BLOCK 300.0f	// 障碍物最大移动速度
 
 // 障碍物默认速度
 Vector2D defaultBlockVel;
