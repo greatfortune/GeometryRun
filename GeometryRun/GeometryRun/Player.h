@@ -38,6 +38,8 @@ Status PlayerUpdate(GameObj* pInst);
 
 Status PlayerCollision(insNode* pinsNode);
 
+Status PlayerGetHurt(int hurt);
+
 Status PlayerDead();
 
 #endif

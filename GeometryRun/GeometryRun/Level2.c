@@ -45,6 +45,10 @@ void Ini2(void)
 	BulletStart();
 	Boss2Start();
 
+	// 更新暂停变量
+	isPaused = FALSE;
+	endPause = FALSE;
+
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
 	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
@@ -65,26 +69,35 @@ void Update2(void)
 	Vector2D iniVelocity_Block;
 
 	GetWinMaxMinXY();
-
-	TimerUpdate(timeStart_level2);
 	
 	// =========================
 	// 游戏逻辑响应输入
 	// =========================
 	KeyUpdate();
 
-	// 更新对象
-	ObjUpdate();
+	if (endPause)
+	{
+		// 重新计算因暂停延迟的时间
+		timeStart_level2 += pauseEndTime - pauseStartTime;
+		endPause = FALSE;
+	}
 
-	// ====================
-	// 碰撞检测
-	// ====================
-	BaseListTraverse(Visit_CollisionDetect);
+	if (!isPaused)
+	{
+		TimerUpdate(timeStart_level2);
+		// 更新对象
+		ObjUpdate();
 
-	// =====================================
-	// 计算所有对象的2D变换矩阵
-	// =====================================
-	BaseListTraverse(Visit_Matrix2DCount);
+		// ====================
+		// 碰撞检测
+		// ====================
+		BaseListTraverse(Visit_CollisionDetect);
+
+		// =====================================
+		// 计算所有对象的2D变换矩阵
+		// =====================================
+		BaseListTraverse(Visit_Matrix2DCount);
+	}
 }
 
 void Draw2(void)

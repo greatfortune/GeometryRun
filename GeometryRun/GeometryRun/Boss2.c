@@ -187,8 +187,10 @@ Status Boss2GetHurt(int hurt)
 	Boss2HP -= hurt;
 	if (PlayerHP <= 0)
 		PlayerDead();
+	return OK;
 }
 
 Status Boss2Dead(){
 	GameObjDelete(pBoss2);
+	return OK;
 }

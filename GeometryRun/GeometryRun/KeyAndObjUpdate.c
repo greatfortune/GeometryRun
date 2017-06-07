@@ -50,14 +50,20 @@ Status KeyUpdate()
 		Next = GS_L3;
 		return FLAG_IMPORTANTKEY;
 	}
-	//if (KeyPressed[KeyP] == TRUE)
-	//{
-	//	if (isPaused)
-	//	{
-	//		AEGfx
-	//	}
-	//	return FLAG_IMPORTANTKEY;
-	//}
+	if (KeyPressed[KeyP] == TRUE)
+	{
+		isPaused = !isPaused;
+		if (isPaused == TRUE)
+			// 记录暂停开始时间
+			pauseStartTime = clock();
+		else
+		{
+			// 记录暂停结束时间
+			pauseEndTime = clock();
+			endPause = TRUE;
+		}
+		return FLAG_IMPORTANTKEY;
+	}
 
 	// 画面播放完毕/点击鼠标左键 进入Level1
 	if (Current == GS_L0)
@@ -107,6 +113,7 @@ Status ObjUpdate(insNode* pinsNode)
 			break;
 		}
 	}
+	return OK;
 }
 
 //对象碰撞检测

@@ -105,7 +105,7 @@ Status PlayerUpdate(GameObj* pInst)
 			return OK;
 		}
 		SetProperty(&properties_Bullet[damage], "damage", 3);
-		CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 1, &properties_Bullet);
+		CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 1, properties_Bullet);
 	}
 	pHero->posCurr.x += pHero->velCurr.x * frameTime;
 	pHero->posCurr.y += pHero->velCurr.y * frameTime;

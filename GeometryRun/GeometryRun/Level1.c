@@ -45,6 +45,10 @@ void Ini1(void)
 	MonsterStart();
 	BulletStart();
 
+	// 更新暂停变量
+	isPaused = FALSE;
+	endPause = FALSE;
+
 	Vector2D iniPosition_Block[BLOCK_NUM];
 	Vector2D iniVelocity_Block[BLOCK_NUM];
 	iniPosition_Block[0].x = -70.0f;
