@@ -7,6 +7,7 @@
 */
 #pragma once
 
+#include "CreateObjectInMap.h"
 #include "BackGround.h"
 #include "Block.h"
 #include "Bullet.h"

@@ -155,6 +155,25 @@ Status CreateObjInMap5(float startTime)
 	return OK;
 }
 
+/*
+* By WYZ
+* 用于二段跳之后马上倒挂教学
+* 占用时间：1.2s
+*/
+Status CreateObjInMap6(float startTime)
+{
+	float maxX = AEGfxGetWinMaxX();
+	Vector2D pos1 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
+	Vector2D pos2 = { maxX, SIZE_BLOCK + 70.0f };
+	Vector2D pos3 = { maxX, -SIZE_BLOCK - PLATFORM_HEIGHT };
+	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime+1.0, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	CreateOneObjAtTime(startTime+1.0, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
+	return OK;
+}
+
 Status CreateBossInMap_Level2(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();

@@ -24,4 +24,6 @@ Status CreateObjInMap4(float startTime);
 
 Status CreateObjInMap5(float startTime);
 
+Status CreateObjInMap6(float startTime);
+
 Status CreateBossInMap_Level2(float startTime);

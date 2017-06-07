@@ -1,42 +1,40 @@
-/* Project:		
-   File Name:	Level1.c
-   Author:		闷声发大财
-   Date:		
-   Purpose:		关卡1  */
-
+/**
+* Project:		GameStateManager
+* File Name:	Level1.c
+* Author:		wyz
+* Date:		2017-6-7
+* Purpose:		关卡1
+*/
 #include "Level1.h"
-
-#define BLOCK_NUM 4	// 初始障碍物数量
 
 clock_t timeStart_level1;
 
 
 void Load1(void)
 {
+	// 初始化时间系统
+	TimerIni(&timeStart_level1);
+
 	printf("Level1: Load\n");
 	theBaseList = NULL;
-
-	// 获取当前关卡时间
-	timeStart_level1 = clock();
-
 	// 设置常量
 	SetConstants();
 	// 初始化游戏对象基类的实例列表
 	InitialGameObjBaseList(&theBaseList);
-	
+
 	PlayerLoad();
 	BlockLoad();
 	BulletLoad();
 	MonsterLoad();
 	PlatformLoad();
 	BackGroundLoad();
-
 }
 
 void Ini1(void)
 {
 	printf("Level1: Ini\n");
-	int i;
+	// 获取当前关卡时间
+	timeStart_level1 = clock();
 
 	PlayerStart();
 	BlockStart();
@@ -49,37 +47,25 @@ void Ini1(void)
 	isPaused = FALSE;
 	endPause = FALSE;
 
-	Vector2D iniPosition_Block[BLOCK_NUM];
-	Vector2D iniVelocity_Block[BLOCK_NUM];
-	iniPosition_Block[0].x = -70.0f;
-	iniPosition_Block[0].y = 170.0f;
-	iniPosition_Block[1].x = 120.0f;
-	iniPosition_Block[1].y = 100.0f;
-	iniPosition_Block[2].x = 40.0f;
-	iniPosition_Block[2].y = 240.0f;
-	iniPosition_Block[3].x = 80.0f;
-	iniPosition_Block[3].y = 180.0f;
-
-	iniVelocity_Block[0].x = -120.0f;
-	iniVelocity_Block[0].y = 60.0f;
-	iniVelocity_Block[1].x = -90.0f;
-	iniVelocity_Block[1].y = -30.0f;
-	iniVelocity_Block[2].x = 90.0f;
-	iniVelocity_Block[2].y = -60.0f;
-	iniVelocity_Block[3].x = 30.0f;
-	iniVelocity_Block[3].y = 90.0f;
-
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
-	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, zero, iniVelocity_Background, 0, theBaseList, 0, NULL);
-	CreateGameObj(OTYPE_PLATFORM, SIZE_PLATFORM, zero, iniVelocity_Platform, 0, theBaseList, 0, NULL);
-	for (i = 0; i < BLOCK_NUM; i++)
-		CreateGameObj(OTYPE_MONSTER, SIZE_BLOCK, iniPosition_Block[i], iniVelocity_Block[i], 0, theBaseList, 0, NULL);
+	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
+	CreateGameObj(OTYPE_PLATFORM, SIZE_PLATFORM, iniPosition_Platform, iniVelocity_Platform, 0, theBaseList, 0, NULL);
+
+	CreateObjInMap4(1.0f);
+	CreateObjInMap3(2.5f);
+	CreateObjInMap5(4.0f);
+	CreateObjInMap0(6.0f);
+	CreateObjInMap6(16.0f);
+	
 
 }
 
 void Update1(void)
 {
+	Vector2D iniPosition_Block;
+	Vector2D iniVelocity_Block;
+
 	GetWinMaxMinXY();
 
 	// =========================
@@ -87,18 +73,29 @@ void Update1(void)
 	// =========================
 	KeyUpdate();
 
-	// 更新对象位置及属性
-	ObjUpdate();
+	if (endPause)
+	{
+		// 重新计算因暂停延迟的时间
+		timeStart_level1 += pauseEndTime - pauseStartTime;
+		endPause = FALSE;
+	}
 
-	// ====================
-	// 碰撞检测
-	// ====================
-	BaseListTraverse(Visit_CollisionDetect);
+	if (!isPaused)
+	{
+		TimerUpdate(timeStart_level1);
+		// 更新对象
+		ObjUpdate();
 
-	// =====================================
-	// 计算所有对象的2D变换矩阵
-	// =====================================
-	BaseListTraverse(Visit_Matrix2DCount);
+		// ====================
+		// 碰撞检测
+		// ====================
+		BaseListTraverse(Visit_CollisionDetect);
+
+		// =====================================
+		// 计算所有对象的2D变换矩阵
+		// =====================================
+		BaseListTraverse(Visit_Matrix2DCount);
+	}
 }
 
 void Draw1(void)
@@ -115,9 +112,11 @@ void Draw1(void)
 
 void Free1(void)
 {
+
 	printf("Level1: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
+	TimerFree();
 }
 
 void Unload1(void)
