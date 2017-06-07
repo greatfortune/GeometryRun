@@ -9,6 +9,7 @@
 
 #include "CreateObjectInMap.h"
 #include "BackGround.h"
+#include "Pause.h"
 #include "Block.h"
 #include "Bullet.h"
 #include "Monster.h"

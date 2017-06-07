@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -162,6 +162,7 @@
     <ClInclude Include="Matrix2D.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Pause.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="Matrix2D.c" />
     <ClCompile Include="Menu.c" />
     <ClCompile Include="Monster.c" />
+    <ClCompile Include="Pause.c" />
     <ClCompile Include="Platform.c" />
     <ClCompile Include="Player.c" />
     <ClCompile Include="System.c" />

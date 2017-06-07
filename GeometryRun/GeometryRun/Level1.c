@@ -28,6 +28,7 @@ void Load1(void)
 	MonsterLoad();
 	PlatformLoad();
 	BackGroundLoad();
+	PauseLoad();
 }
 
 void Ini1(void)
@@ -42,10 +43,7 @@ void Ini1(void)
 	BackGroundStart();
 	MonsterStart();
 	BulletStart();
-
-	// 更新暂停变量
-	isPaused = FALSE;
-	endPause = FALSE;
+	PauseStart();
 
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);

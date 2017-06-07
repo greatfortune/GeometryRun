@@ -29,6 +29,7 @@ void Load2(void)
 	PlatformLoad();
 	Boss2Load();
 	BackGroundLoad();
+	PauseLoad();
 }
 
 void Ini2(void)
@@ -44,6 +45,7 @@ void Ini2(void)
 	MonsterStart();
 	BulletStart();
 	Boss2Start();
+	PauseStart();
 
 	// 更新暂停变量
 	isPaused = FALSE;

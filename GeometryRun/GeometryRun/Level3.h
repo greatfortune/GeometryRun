@@ -1,6 +1,7 @@
 #pragma once
 #include "CreateObjectInMap.h"
 #include "BackGround.h"
+#include "Pause.h"
 #include "Block.h"
 #include "Boss2.h"
 #include "Bullet.h"
