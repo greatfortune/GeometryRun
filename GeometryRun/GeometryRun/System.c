@@ -9,8 +9,11 @@
 #include "System.h"
 #include "AEEngine.h"
 #include "Input.h"
+#include "SoundSystem.h"
 
 #pragma comment (lib, "Alpha_Engine.lib")
+#pragma comment (lib, "fmodex_vc.lib")
+#pragma comment (lib, "fmodexL_vc.lib")
 
  //------------------------------------------------------------------------------
  // Private Consts:
@@ -70,6 +73,9 @@ int System_Initialize(HINSTANCE hInstance, int nCmdShow)
 	fprintf(fp, "System:Initialize\n");
 	printf("System:Initialize\n");
 
+	// 音乐初始化
+	SoundSystemLoad();
+
 	return 0;
 }
 
@@ -78,6 +84,9 @@ void System_Exit(void)
 {
 	// Alpha系统退出
 	AESysExit();
+
+	// 音乐系统退出
+	SoundSystemExit();
 
 	// 签到
 	fprintf(fp, "System:Exit\n");

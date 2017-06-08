@@ -129,6 +129,9 @@
     <ClInclude Include="Pass.h">
       <Filter>Scenes\头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Engine\头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyAndObjUpdate.c">
@@ -211,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="Win.c">
       <Filter>Scenes\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSystem.c">
+      <Filter>Engine\源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

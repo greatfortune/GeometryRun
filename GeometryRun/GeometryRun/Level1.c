@@ -29,6 +29,9 @@ void Load1(void)
 	PlatformLoad();
 	BackGroundLoad();
 	PauseLoad();
+
+	// 载入音乐
+	SoundAdd("source/music/background.mp3", FMOD_LOOP_NORMAL, SOUND_1);
 }
 
 void Ini1(void)
@@ -44,6 +47,9 @@ void Ini1(void)
 	MonsterStart();
 	BulletStart();
 	PauseStart();
+
+	// 播放音乐
+	SoundPlay(SOUND_1);
 
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
@@ -84,6 +90,9 @@ void Update1(void)
 		// 更新对象
 		ObjUpdate();
 
+		
+
+
 		// ====================
 		// 碰撞检测
 		// ====================
@@ -114,7 +123,10 @@ void Free1(void)
 	printf("Level1: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
+
+	SoundStop(SOUND_1);
 	TimerFree();
+
 }
 
 void Unload1(void)
