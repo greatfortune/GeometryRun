@@ -7,12 +7,6 @@
 
 #define SIZE_BULLET 9.0f		// 子弹尺寸
 
-enum bulletProperties
-{
-	damage = 0,
-	BULLETPCount
-};
-
 // 子弹速度
 Vector2D Velocity_Bullet;
 

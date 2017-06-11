@@ -93,7 +93,7 @@ Status KeyUpdate()
 }
 
 //更新对象
-Status ObjUpdate(insNode* pinsNode)
+Status ObjUpdate()
 {
 	baseNode *pBaseNode;
 	GameObjList *pL;
@@ -114,6 +114,9 @@ Status ObjUpdate(insNode* pinsNode)
 				break;
 			case OTYPE_MONSTER:
 				ListTraverse(pL, MonsterUpdate);
+				break;
+			case OTYPE_AIMONSTER:
+				ListTraverse(pL, AIMonsterUpdate);
 				break;
 			case OTYPE_BLOCK:
 				ListTraverse(pL, BlockUpdate);

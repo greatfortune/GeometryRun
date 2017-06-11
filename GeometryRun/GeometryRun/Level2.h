@@ -13,6 +13,7 @@
 #include "Boss2.h"
 #include "Bullet.h"
 #include "Monster.h"
+#include "AIMonster.h"
 #include "Platform.h"
 #include "Player.h"
 

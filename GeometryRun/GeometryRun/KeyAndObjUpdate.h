@@ -4,6 +4,7 @@
 #include "BackGround.h"
 #include "Input.h"
 #include "Player.h"
+#include "Boss2.h"
 #include "Pause.h"
 
 #define FLAG_IMPORTANTKEY 2
@@ -22,12 +23,13 @@ Status GetWinMaxMinXY();
 
 Status KeyUpdate();
 
-Status Visit_Update(insNode* pinsNode);
+Status ObjUpdate();
 
 Status Visit_CollisionDetect(insNode* pinsNode);
 
 Status Visit_Matrix2DCount(insNode* pinsNode);
 
+// never used
 Status BossUpdate(int level, clock_t LevelTime, float bossOccurTime);
 
 Status Visit_DestroyObj(insNode* pinsNode);

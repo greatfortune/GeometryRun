@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AIMonster.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Boss2.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Win.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIMonster.c" />
     <ClCompile Include="BackGround.c" />
     <ClCompile Include="Block.c" />
     <ClCompile Include="Boss2.c" />

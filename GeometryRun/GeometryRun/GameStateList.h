@@ -1,7 +1,5 @@
 #pragma once
 
-#include <time.h>
-
 /**
  * Project:		GameStateManager
  * File Name:	GameStateList.h

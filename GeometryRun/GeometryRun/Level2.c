@@ -26,6 +26,7 @@ void Load2(void)
 	BlockLoad();
 	BulletLoad();
 	MonsterLoad();
+	AIMonsterLoad();
 	PlatformLoad();
 	Boss2Load();
 	BackGroundLoad();
@@ -34,17 +35,22 @@ void Load2(void)
 
 void Ini2(void)
 {
+	// 设置当前关卡的一些属性值
+	float BlockVel = -350.0f;
+	float MonsterVel = -350.0f;
+	int bossHP = 20;
+
 	printf("Level2: Ini\n");
 	// 获取当前关卡时间
 	timeStart_level2 = clock();
-	
 	PlayerStart();
-	BlockStart();
+	BlockStart(BlockVel);
 	PlatformStart();
 	BackGroundStart();
-	MonsterStart();
+	MonsterStart(MonsterVel);
+	AIMonsterStart(MonsterVel);
 	BulletStart();
-	Boss2Start();
+	Boss2Start(bossHP);
 	PauseStart();
 
 	// 更新暂停变量

@@ -1,14 +1,14 @@
 /**
-* Project:		GameStateManager
-* File Name:	Level3.c
-* Author:		闷声发大财
-* Date:		2017-4-22
-* Purpose:		关卡3
-*/
+ * Project:		GameStateManager
+ * File Name:	Level3.c
+ * Author:		闷声发大财
+ * Date:		2017-4-22
+ * Purpose:		关卡3
+ */
 #include "Level3.h"
 
 clock_t timeStart_level3;
-const float bossOccurTime_level3 = 2.0f;
+const float bossOccurTime_level3 = 15.0f;
 
 void Load3(void)
 {
@@ -26,6 +26,7 @@ void Load3(void)
 	BlockLoad();
 	BulletLoad();
 	MonsterLoad();
+	AIMonsterLoad();
 	PlatformLoad();
 	Boss2Load();
 	BackGroundLoad();
@@ -34,17 +35,23 @@ void Load3(void)
 
 void Ini3(void)
 {
+	// 设置当前关卡的一些属性值
+	float BlockVel = -400.0f;
+	float MonsterVel = -400.0f;
+	int bossHP = 30;
+
 	printf("Level3: Ini\n");
 	// 获取当前关卡时间
 	timeStart_level3 = clock();
 
 	PlayerStart();
-	BlockStart();
+	BlockStart(BlockVel);
 	PlatformStart();
 	BackGroundStart();
-	MonsterStart();
+	MonsterStart(MonsterVel);
+	AIMonsterStart(MonsterVel);
 	BulletStart();
-	Boss2Start();
+	Boss2Start(bossHP);
 	PauseStart();
 
 	// 对象实例化：
@@ -52,12 +59,8 @@ void Ini3(void)
 	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
 	CreateGameObj(OTYPE_PLATFORM, SIZE_PLATFORM, iniPosition_Platform, iniVelocity_Platform, 0, theBaseList, 0, NULL);
 
-	//CreateObjInMap4(1.0f);
-	//CreateObjInMap3(2.0f);
-	//CreateObjInMap2(3.0f);
-	//CreateObjInMap5(6.0f);
-	//CreateObjInMap0(9.0f);
-	//CreateObjInMap1(19.0f);
+	CreateObjInMap0(1.0f);
+	CreateObjInMap7(9.0f);
 	CreateBossInMap_Level2(bossOccurTime_level3);
 }
 

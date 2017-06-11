@@ -18,8 +18,9 @@ Status MonsterLoad()
 	return OK;
 }
 
-Status MonsterStart()
+Status MonsterStart(float velx)
 {
+	Vector2DSet(&defaultMonsterVel, velx, 0.0f);
 	return OK;
 }
 
@@ -27,6 +28,8 @@ Status MonsterUpdate(GameObj* pInst)
 {
 	pInst->posCurr.x += pInst->velCurr.x * frameTime;
 	pInst->posCurr.y += pInst->velCurr.y * frameTime;
+	if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
+		GameObjDelete(pInst);
 	return OK;
 }
 

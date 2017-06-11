@@ -18,9 +18,9 @@ Status BlockLoad()
 	return OK;
 }
 
-Status BlockStart()
+Status BlockStart(float velx)
 {
-	Vector2DSet(&defaultBlockVel, -300.0f, 0.0f);
+	Vector2DSet(&defaultBlockVel, velx, 0.0f);
 	return OK;
 }
 
@@ -28,6 +28,8 @@ Status BlockUpdate(GameObj* pInst)
 {
 	pInst->posCurr.x += pInst->velCurr.x * frameTime;
 	pInst->posCurr.y += pInst->velCurr.y * frameTime;
+	if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
+		GameObjDelete(pInst);
 	return OK;
 }
 

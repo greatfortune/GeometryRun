@@ -18,14 +18,14 @@ Status Boss2Load()
 	return OK;
 }
 
-Status Boss2Start()
+Status Boss2Start(int bossHP)
 {
 	pBoss2 = NULL;
 	Boss2LastSkill = B2SKILL_CREATEBLOCKS;
 	Boss2ImpactSpeed = 60.0f;
 	Boss2Status = B2STATUS_ENTER;
 	Boss2SkillCycle = 100.0f;
-	Boss2HP = 10;
+	Boss2HP = bossHP;
 	Boss2AngerHP = 5;
 	// ÉÏÏÂÑ²Âß·¶Î§
 	Boss2PatrolMaxY = 100.0f;
@@ -182,9 +182,9 @@ Status Boss2UseSkillRandomly(float curTime)
 	return OK;
 }
 
-Status Boss2GetHurt(int hurt)
+Status Boss2GetHurt()
 {
-	Boss2HP -= hurt;
+	Boss2HP--;
 	if (PlayerHP <= 0)
 		PlayerDead();
 	return OK;

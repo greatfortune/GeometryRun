@@ -132,6 +132,9 @@
     <ClInclude Include="SoundSystem.h">
       <Filter>Engine\头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AIMonster.h">
+      <Filter>Sprites\头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyAndObjUpdate.c">
@@ -217,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="SoundSystem.c">
       <Filter>Engine\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AIMonster.c">
+      <Filter>Sprites\源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

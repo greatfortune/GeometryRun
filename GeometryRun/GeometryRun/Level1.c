@@ -36,15 +36,19 @@ void Load1(void)
 
 void Ini1(void)
 {
+	// 设置当前关卡的一些属性值
+	float BlockVel = -300.0f;
+	float MonsterVel = -300.0f;
+
 	printf("Level1: Ini\n");
 	// 获取当前关卡时间
 	timeStart_level1 = clock();
 
 	PlayerStart();
-	BlockStart();
+	BlockStart(BlockVel);
 	PlatformStart();
 	BackGroundStart();
-	MonsterStart();
+	MonsterStart(MonsterVel);
 	BulletStart();
 	PauseStart();
 

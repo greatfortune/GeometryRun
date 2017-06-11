@@ -6,6 +6,7 @@
 #include "TimeManager.h"
 #include "Block.h"
 #include "Monster.h"
+#include "AIMonster.h"
 
 #define SIZE_BOSS2 40.0f		// boss³ß´ç
 
@@ -54,7 +55,7 @@ enum boss2Status
 
 Status Boss2Load();
 
-Status Boss2Start();
+Status Boss2Start(int bossHP);
 
 Status Boss2Update(GameObj* pInst);
 
@@ -68,12 +69,12 @@ Status Boss2Skill_CreateBlock(float curTime);
 
 Status Boss2Skill_GetAngey();
 
-Status Boss2Skill_Impact(float curTime, float impactSpeed);
+Status Boss2Skill_Impact(float curTime);
 
-Status Boss2UseSkillRandomly();
+Status Boss2UseSkillRandomly(float curTime);
 
 Status Boss2Dead();
 
-Status Boss2GetHurt(int hurt);
+Status Boss2GetHurt();
 
 #endif

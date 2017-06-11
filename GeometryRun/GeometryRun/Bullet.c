@@ -21,7 +21,7 @@ Status BulletLoad()
 
 Status BulletStart()
 {
-	Vector2DSet(&Velocity_Bullet, 360.0f, 0.0f);
+	Vector2DSet(&Velocity_Bullet, 390.0f, 0.0f);
 	return OK;
 }
 
@@ -40,8 +40,9 @@ Status BulletCollision(insNode* pinsNode)
 
 	switch (pInstOther->pObject->type)
 	{
-			//BULLET VS MONSTER
+		//BULLET VS MONSTER/AIMONSTER
 		case OTYPE_MONSTER:
+		case OTYPE_AIMONSTER:
 		{
 			// Åö×²¼ì²â
 			if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
@@ -50,7 +51,7 @@ Status BulletCollision(insNode* pinsNode)
 				GameObjDelete(pInstOther);
 				GameObjDelete(pInstForCollisionDetect);
 			}
-			break;//BULLET VS MONSTER½áÊø
+			break;//BULLET VS MONSTER/AIMONSTER½áÊø
 		}
 
 		//BULLET VS BLOCK
@@ -70,7 +71,7 @@ Status BulletCollision(insNode* pinsNode)
 			if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
 			{
 				// ×²ÉÏBOSS2, ¼õÑª,ÏûÃðBULLET
-				Boss2GetHurt(pInstForCollisionDetect->properties[damage].value);
+				Boss2GetHurt();
 				GameObjDelete(pInstForCollisionDetect);
 			}
 		}

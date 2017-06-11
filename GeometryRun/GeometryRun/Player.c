@@ -28,9 +28,9 @@ Status PlayerStart()
 	ProtectCur = 0;
 	MaxProtectCur = 70;
 
-	MaxBulletCount = 5;
+	MaxBulletCount = 8;
 	CurSupplyTime = 0;
-	SupplyTime = 70;
+	SupplyTime = 30;
 	BulletCount = 4;
 
 	return OK;
@@ -89,13 +89,13 @@ Status PlayerUpdate(GameObj* pInst)
 	}
 	else
 	{
-		BulletCount = MaxBulletCount;
+		if (BulletCount < MaxBulletCount)
+			BulletCount++;
 		CurSupplyTime = 0;
 	}
 	if (KeyPressed[KeyJ] == TRUE || KeyPressed[KeySpace] == TRUE)
 	{
 		Vector2D iniBulletPos = { pHero->posCurr.x + 1.5 * SIZE_HERO, pHero->posCurr.y };
-		Property properties_Bullet[BULLETPCount];
 		if (BulletCount > 0)
 		{
 			BulletCount--;
@@ -104,8 +104,7 @@ Status PlayerUpdate(GameObj* pInst)
 		{
 			return OK;
 		}
-		SetProperty(&properties_Bullet[damage], "damage", 3);
-		CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 1, properties_Bullet);
+		CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 0, NULL);
 	}
 	pHero->posCurr.x += pHero->velCurr.x * frameTime;
 	pHero->posCurr.y += pHero->velCurr.y * frameTime;
@@ -164,8 +163,10 @@ Status PlayerCollision(insNode* pinsNode)
 		}
 		break;//Player VS Platform½áÊø
 
-		// Player vs. Block
+		// Player vs. Block/Monster/AIMonster
 		case OTYPE_BLOCK:
+		case OTYPE_MONSTER:
+		case OTYPE_AIMONSTER:
 		{
 			// Åö×²¼ì²â
 			if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
@@ -174,24 +175,11 @@ Status PlayerCollision(insNode* pinsNode)
 				// ÖØÐÂ¿ªÊ¼¹Ø¿¨
 				if (!isProtected)
 					PlayerGetHurt(1);
-				printf("\n Collision with the Block: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
+				printf("\n Collision with the %s: Pos(%.1f, %.1f)\n Restart\n", ObjTypeName[pInstOther->pObject->type], pInstOther->posCurr.x, pInstOther->posCurr.y);
 			}
 		}
-		break;// Player vs. Block½áÊø
+		break;// Player vs. Block/Monster/AIMonster½áÊø
 
-		//Player VS Monster
-		case OTYPE_MONSTER:
-		{
-			// Åö×²¼ì²â
-			if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
-			{
-				// hero HP-1
-				if (!isProtected)
-					PlayerGetHurt(1);
-				printf("\n Collision with the Monster: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
-			}
-		}
-		break;//Player VS Monster½áÊø
 		case OTYPE_BOSS2:
 		// Åö×²¼ì²â
 		if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))

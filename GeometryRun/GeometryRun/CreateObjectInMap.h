@@ -1,10 +1,10 @@
 /**
-* Project:		GeometryRun
-* File Name:	CreateObjectInMap.h
-* Author:		闷声发大财
-* Date:			2017-5-28
-* Purpose:		障碍物创建模型素材库
-*/
+ * Project:		GeometryRun
+ * File Name:	CreateObjectInMap.h
+ * Author:		闷声发大财
+ * Date:			2017-5-28
+ * Purpose:		障碍物创建模型素材库
+ */
 #pragma once
 
 #include "GameObjectManager.h"
@@ -25,5 +25,7 @@ Status CreateObjInMap4(float startTime);
 Status CreateObjInMap5(float startTime);
 
 Status CreateObjInMap6(float startTime);
+
+Status CreateObjInMap7(float startTime);
 
 Status CreateBossInMap_Level2(float startTime);
