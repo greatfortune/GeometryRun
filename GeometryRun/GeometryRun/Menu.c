@@ -25,9 +25,6 @@ void Ini_Menu(void)
 
 void Update_Menu(void)
 {
-	Vector2D iniPosition_Block;
-	Vector2D iniVelocity_Block;
-
 	GetWinMaxMinXY();
 
 	// =========================

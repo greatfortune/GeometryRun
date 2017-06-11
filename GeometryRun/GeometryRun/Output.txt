@@ -2,50 +2,14 @@ System:Initialize
 GSM: Initialize
 GSM: Update
 GSM: Update
-Input:1
+Input:Space
 GSM: Update
-Input:1
 Input:Space
 Input:Space
 Input:Space
 Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Forcing Shut Down
+GSM: Update
+GSM: Update
+GSM: Update
+GSM: Update
 System:Exit

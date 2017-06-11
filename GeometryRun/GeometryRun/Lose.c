@@ -33,9 +33,6 @@ void Ini_Lose(void)
 
 void Update_Lose(void)
 {
-	Vector2D iniPosition_Block;
-	Vector2D iniVelocity_Block;
-
 	GetWinMaxMinXY();
 
 	// =========================
@@ -43,22 +40,13 @@ void Update_Lose(void)
 	// =========================
 	KeyUpdate();
 
-	//if (endPause)
-	//{
-	//	// 重新计算因暂停延迟的时间
-	//	timeStart_level_Lose += pauseEndTime - pauseStartTime;
-	//	endPause = FALSE;
-	//}
+	// 更新对象
+	ObjUpdate();
 
-	/*if (!isPaused)
-	{*/
-		//TimerUpdate(timeStart_level_Lose);
-		
-		// =====================================
-		// 计算所有对象的2D变换矩阵
-		// =====================================
-		BaseListTraverse(Visit_Matrix2DCount);
-	//}
+	// =====================================
+	// 计算所有对象的2D变换矩阵
+	// =====================================
+	BaseListTraverse(Visit_Matrix2DCount);
 }
 
 void Draw_Lose(void)

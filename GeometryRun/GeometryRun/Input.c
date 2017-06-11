@@ -113,6 +113,12 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			fprintf(fp, "Input:3\n");
 			printf("Input:3\n");
 		}
+		if (wParam == '6')
+			KeyPressed[Key6] = TRUE;
+		if (wParam == '7')
+			KeyPressed[Key7] = TRUE;
+		if (wParam == '8')
+			KeyPressed[Key8] = TRUE;
 		if (wParam == VK_UP)
 			KeyPressed[KeyUp] = TRUE;
 		if (wParam == VK_DOWN)

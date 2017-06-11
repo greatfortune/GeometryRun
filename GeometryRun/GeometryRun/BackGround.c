@@ -25,13 +25,13 @@ Status BackGroundLoad()
 	{
 		AEGfxMeshStart();
 		AEGfxTriAdd(
-			-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-			1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-			-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+			-1.0f, -0.75f, COLOR_DEFAULT, 0.0f, 1.0f,
+			1.0f, -0.75f, COLOR_DEFAULT, 1.0f, 1.0f,
+			-1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
 		AEGfxTriAdd(
-			1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-			1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-			-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+			1.0f, -0.75f, COLOR_DEFAULT, 1.0f, 1.0f,
+			1.0f, 0.75f, COLOR_DEFAULT, 1.0f, 0.0f,
+			-1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
 
 		switch (Current)
 		{
@@ -39,13 +39,13 @@ Status BackGroundLoad()
 				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Menu.png"), theBaseList);
 				break;
 			case GS_Win:
-				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Win.jpg"), theBaseList);
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/win_over_2.png"), theBaseList);
 				break;
 			case GS_Lose:
-				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Lose.jpg"), theBaseList);
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/lose1.png"), theBaseList);
 				break;
 			case GS_Pass:
-				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/Pass.jpg"), theBaseList);
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/win_pass_1.png"), theBaseList);
 				break;
 			default:
 				return -1;
@@ -97,11 +97,11 @@ Status BackGroundStart()
 Status BackGroundUpdate(GameObj* pInst)
 {
 	int click;
-	if (Current == GS_Menu)
+	if (KeyPressed[KeyLButton] == FALSE)
+		return OK;
+	click = JudgeMousPos();
+	switch (click)
 	{
-		click = JudgeMousPos();
-		switch (click)
-		{
 		case BTYPE_MENU_START:
 		Next = GS_L0;
 		break;
@@ -114,12 +114,27 @@ Status BackGroundUpdate(GameObj* pInst)
 		case BTYPE_MENU_EXIT:
 		Next = GS_Quit;
 		break;
+		case BTYPE_PASS_NEXT:
+		Next = Previous + 1;
+		break;
+		case BTYPE_PASS_MENU:
+		Next = GS_Menu;
+		break;
+		case BTYPE_WIN_RESTART:
+		Next = GS_Restart;
+		break;
+		case BTYPE_WIN_MENU:
+		Next = GS_Menu;
+		break;
+		case BTYPE_LOSE_RESTART:
+		Next = Previous;
+		break;
+		case BTYPE_LOSE_MENU:
+		Next = GS_Menu;
+		break;
 		default:
 		break;
-		}
-		return OK;
 	}
-	else if (Current == GS_Win || Current == GS_Lose || Current == GS_Pass)
 		return OK;
 
 	pInst->posCurr.x += pInst->velCurr.x * frameTime;
@@ -129,36 +144,73 @@ Status BackGroundUpdate(GameObj* pInst)
 	return OK;
 }
 
-// 开始：(120, 260)->(280, 450)
-// 选择关卡：(550, 260)->(700, 450)
-// help|staff：(140, 510)->(260, 660)
-// Exit：(570, 510)->(690, 660)
+static bool mousIsInRect(int minX, int minY, int maxX, int maxY)
+{
+	if (mousPos.x <= maxX && mousPos.x >= minX && mousPos.y <= maxY && mousPos.y >= minY)
+		return true;
+	else
+		return false;
+}
+
 int JudgeMousPos()
 {
 	switch (Current)
 	{
 	case GS_Menu:
-		if (mousPos.y <= 450 && mousPos.y >= 260)
-		{
-			if (mousPos.x <= 280 && mousPos.x >= 120)
-				return BTYPE_MENU_START;
-			else if (mousPos.x <= 700 && mousPos.x >= 550)
-				return BTYPE_MENU_CHOOSE;
-			else
-				return -1;
-		}
-		else if (mousPos.y <= 660 && mousPos.y >= 510)
-		{
-			if (mousPos.x <= 260 && mousPos.x >= 140)
-				return BTYPE_MENU_HELPSTAFF;
-			if (mousPos.x <= 690 && mousPos.x >= 570)
-				return BTYPE_MENU_EXIT;
-			else
-				return -1;
-		}
+	{
+		// Menu:
+		// 开始：(120, 185)->(280, 335)
+		// 选择关卡：(550, 185)->(700, 335)
+		// help|staff：(140, 375)->(260, 500)
+		// Exit：(570, 375)->(690, 500)
+		if (mousIsInRect(120, 185, 280, 335))
+			return BTYPE_MENU_START;
+		else if (mousIsInRect(550, 185, 700, 335))
+			return BTYPE_MENU_CHOOSE;
+		else if (mousIsInRect(140, 375, 260, 500))
+			return BTYPE_MENU_HELPSTAFF;
+		else if (mousIsInRect(570, 375, 690, 500))
+			return BTYPE_MENU_EXIT;
+		else 
+			return BTYPE_FALSE;
+	}
+	case GS_Pass:
+	{
+		// Pass:
+		// Next: (540, 160)->(630, 255)
+		// Menu: (535, 450)->(635, 550)
+		if (mousIsInRect(540, 160, 630, 255))
+			return BTYPE_PASS_NEXT;
+		else if (mousIsInRect(535, 450, 635, 550))
+			return BTYPE_PASS_MENU;
 		else
-			return -1;
-		break;
+			return BTYPE_FALSE;
+	}
+
+	case GS_Win:
+	{
+		// Win:
+		// Re: (60, 150)->(155, 250)
+		// Menu: (210, 150)->(300, 550)
+		if (mousIsInRect(60, 150, 155, 250))
+			return BTYPE_WIN_RESTART;
+		else if (mousIsInRect(210, 150, 300, 550))
+			return BTYPE_WIN_MENU;
+		else
+			return BTYPE_FALSE;
+	}
+	case GS_Lose:
+	{
+		// Lose:
+		// Re: (570, 485)->(650, 560)
+		// Menu: (680, 485)->(750, 560)
+		if (mousIsInRect(570, 485, 650, 560))
+			return BTYPE_LOSE_RESTART;
+		else if (mousIsInRect(680, 485, 750, 560))
+			return BTYPE_LOSE_MENU;
+		else
+			return BTYPE_FALSE;
+	}
 	default:
 		return -1;
 	}

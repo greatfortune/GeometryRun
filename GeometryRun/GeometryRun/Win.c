@@ -31,9 +31,6 @@ void Ini_Win(void)
 
 void Update_Win(void)
 {
-	Vector2D iniPosition_Block;
-	Vector2D iniVelocity_Block;
-
 	GetWinMaxMinXY();
 
 	// =========================
@@ -41,22 +38,13 @@ void Update_Win(void)
 	// =========================
 	KeyUpdate();
 
-	//if (endPause)
-	//{
-	//	// 重新计算因暂停延迟的时间
-	//	timeStart_level_Win += pauseEndTime - pauseStartTime;
-	//	endPause = FALSE;
-	//}
-
-	/*if (!isPaused)
-	{*/
-	//TimerUpdate(timeStart_level_Win);
+	// 更新对象
+	ObjUpdate();
 
 	// =====================================
 	// 计算所有对象的2D变换矩阵
 	// =====================================
 	BaseListTraverse(Visit_Matrix2DCount);
-	//}
 }
 
 void Draw_Win(void)

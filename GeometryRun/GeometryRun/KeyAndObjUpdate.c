@@ -20,6 +20,21 @@ Status KeyUpdate()
 		Next = GS_Restart;
 		return FLAG_IMPORTANTKEY;
 	}
+	if (KeyPressed[Key6] == TRUE)
+	{
+		Next = GS_Pass;
+		return FLAG_IMPORTANTKEY;
+	}
+	if (KeyPressed[Key7] == TRUE)
+	{
+		Next = GS_Win;
+		return FLAG_IMPORTANTKEY;
+	}
+	if (KeyPressed[Key8] == TRUE)
+	{
+		Next = GS_Lose;
+		return FLAG_IMPORTANTKEY;
+	}
 	if (KeyPressed[KeyESC] == TRUE)
 	{
 		Next = GS_Quit;
@@ -73,26 +88,6 @@ Status KeyUpdate()
 			Next = GS_L1;
 			return FLAG_IMPORTANTKEY;
 		}
-	}
-
-	if (Current == GS_Pass && KeyPressed[KeyLButton] == TRUE)
-	{
-		switch (Previous)
-		{
-			case GS_L1:
-				Next = GS_L2;
-				break;
-			case GS_L2:
-				Next = GS_L3;
-				break;
-			default:
-				break;
-		}
-	}
-
-	if (Current == GS_Win && KeyPressed[KeyLButton] == TRUE)
-	{
-		Next = GS_Menu;
 	}
 	return OK;
 }
