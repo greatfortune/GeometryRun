@@ -15,6 +15,13 @@ Status GetWinMaxMinXY()
 Status KeyUpdate()
 {
 	// ×´Ì¬ÇÐ»»
+	if (KeyPressed[KeyESC] == TRUE)
+	{
+		Next = GS_Quit;
+		return FLAG_IMPORTANTKEY;
+	}
+	if (Current == GS_Lose || Current == GS_Pass || Current == GS_Win || Current == GS_Menu)
+		return OK;
 	if (KeyPressed[KeyR] == TRUE)
 	{
 		Next = GS_Restart;
@@ -35,11 +42,7 @@ Status KeyUpdate()
 		Next = GS_Lose;
 		return FLAG_IMPORTANTKEY;
 	}
-	if (KeyPressed[KeyESC] == TRUE)
-	{
-		Next = GS_Quit;
-		return FLAG_IMPORTANTKEY;
-	}
+
 	if (KeyPressed[KeyM] == TRUE)
 	{
 		Next = GS_Menu;
