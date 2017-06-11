@@ -4,6 +4,7 @@
 #include "BackGround.h"
 #include "Input.h"
 #include "Player.h"
+#include "Pause.h"
 
 #define FLAG_IMPORTANTKEY 2
 

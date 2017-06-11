@@ -29,10 +29,6 @@
 int Previous;
 int Current;
 int Next;
-int isPaused;
-int endPause;
-clock_t pauseStartTime;
-clock_t pauseEndTime;
 
 enum
 {

@@ -82,9 +82,18 @@ void Update2(void)
 		// 重新计算因暂停延迟的时间
 		timeStart_level2 += pauseEndTime - pauseStartTime;
 		endPause = FALSE;
+		GameObjDelete(pPause);
+		pauseCreated = FALSE;
 	}
-
-	if (!isPaused)
+	if (isPaused)
+	{
+		if (!pauseCreated)
+		{
+			pPause = CreateGameObj(OTYPE_PAUSE, SIZE_PAUSE, iniPosition_Pause, zero, 0, theBaseList, 0, NULL);
+			pauseCreated = TRUE;
+		}
+	}
+	else
 	{
 		TimerUpdate(timeStart_level2);
 		// 更新对象
@@ -95,11 +104,11 @@ void Update2(void)
 		// ====================
 		BaseListTraverse(Visit_CollisionDetect);
 
-		// =====================================
-		// 计算所有对象的2D变换矩阵
-		// =====================================
-		BaseListTraverse(Visit_Matrix2DCount);
 	}
+	// =====================================
+	// 计算所有对象的2D变换矩阵
+	// =====================================
+	BaseListTraverse(Visit_Matrix2DCount);
 }
 
 void Draw2(void)

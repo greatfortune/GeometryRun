@@ -31,7 +31,6 @@ void SetConstants()
 	strcpy(ObjTypeName[OTYPE_BOSS1], "TYPE_BOSS1");
 	strcpy(ObjTypeName[OTYPE_BOSS2], "TYPE_BOSS2");
 	zero.x = 0, zero.y = 0;
-	isPaused = false;
 }
 
 
