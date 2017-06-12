@@ -138,20 +138,20 @@ Status ClearGameObjBaseList(GameObjBaseList L)
 	return OK;
 }
 
-bool ListIsEmpty(GameObjList L)
+Status ListIsEmpty(GameObjList L)
 {
 	if (L->head->next == L->tail)
-		return true;
+		return TRUE;
 	else
-		return false;
+		return FALSE;
 }
 
-bool BaseListIsEmpty(GameObjBaseList L)
+Status BaseListIsEmpty(GameObjBaseList L)
 {
 	if (L->head->next == L->tail)
-		return true;
+		return TRUE;
 	else
-		return false;
+		return FALSE;
 }
 
 Status GameObjDelete(GameObj* theGameObj)

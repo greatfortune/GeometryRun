@@ -15,23 +15,23 @@ Status AIMonsterLoad()
 		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
 		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/star.png"), theBaseList);
-	// 待更新新的AImonster贴图
+	CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/OrangeStar.png"), theBaseList);
 	return OK;
 }
 
 Status AIMonsterStart(float velx)
 {
 	Vector2DSet(&defaultAIMonsterVel, velx, 0.0f);
+	defaultAIMonsterVelyABS = 100.0f;
 	return OK;
 }
 
 Status AIMonsterUpdate(GameObj* pInst)
 {
 	if (pInst->posCurr.y > pHero->posCurr.y)
-		pInst->velCurr.y = -100.0f;
+		pInst->velCurr.y = -1 * defaultAIMonsterVelyABS;
 	else
-		pInst->velCurr.y = 100.0f;
+		pInst->velCurr.y = defaultAIMonsterVelyABS;
 
 	pInst->posCurr.x += pInst->velCurr.x * frameTime;
 	pInst->posCurr.y += pInst->velCurr.y * frameTime;

@@ -38,6 +38,8 @@ Status BackGroundStart();
 
 Status BackGroundUpdate(GameObj* pInst);
 
+Status mousIsInRect(int minX, int minY, int maxX, int maxY);
+
 int JudgeMousPos();
 
 #endif

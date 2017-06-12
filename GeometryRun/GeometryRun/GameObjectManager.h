@@ -14,7 +14,6 @@ Purpose:		游戏对象管理 */
 #define COLOR_DEFAULT 0xFFFFFFFF
 
 #include <stdio.h>
-#include <stdbool.h>
 #include "GameStateList.h"
 #include "System.h"
 #include "AEEngine.h"
@@ -129,9 +128,9 @@ Status ClearGameObjList(GameObjList L);
 
 Status ClearGameObjBaseList(GameObjBaseList L);
 
-bool ListIsEmpty(GameObjList L);
+Status ListIsEmpty(GameObjList L);
 
-bool BaseListIsEmpty(GameObjBaseList L);
+Status BaseListIsEmpty(GameObjBaseList L);
 
 GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties);
 

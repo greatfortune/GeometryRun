@@ -78,6 +78,7 @@ Status BackGroundLoad()
 			break;
 		case GS_L2:
 		case GS_L3:
+		case GS_L4:
 			CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/level2.png"), theBaseList);
 			break;
 		
@@ -96,60 +97,66 @@ Status BackGroundStart()
 
 Status BackGroundUpdate(GameObj* pInst)
 {
-	int click;
-	if (KeyPressed[KeyLButton] == FALSE)
-		return OK;
-	click = JudgeMousPos();
-	switch (click)
+	if (Current <= GS_Pass)
 	{
-		case BTYPE_MENU_START:
-		Next = GS_L0;
-		break;
-		case BTYPE_MENU_CHOOSE:
-		Next = GS_L0;
-		break;
-		case BTYPE_MENU_HELPSTAFF:
-		Next = GS_L0;
-		break;
-		case BTYPE_MENU_EXIT:
-		Next = GS_Quit;
-		break;
-		case BTYPE_PASS_NEXT:
-		Next = Previous + 1;
-		break;
-		case BTYPE_PASS_MENU:
-		Next = GS_Menu;
-		break;
-		case BTYPE_WIN_RESTART:
-		Next = GS_Restart;
-		break;
-		case BTYPE_WIN_MENU:
-		Next = GS_Menu;
-		break;
-		case BTYPE_LOSE_RESTART:
-		Next = Previous;
-		break;
-		case BTYPE_LOSE_MENU:
-		Next = GS_Menu;
-		break;
-		default:
-		break;
-	}
-		return OK;
+		int click;
+		if (KeyPressed[KeyLButton] == FALSE)
+			return OK;
 
-	pInst->posCurr.x += pInst->velCurr.x * frameTime;
-	pInst->posCurr.y += pInst->velCurr.y * frameTime;
-	if (pInst->posCurr.x <= winMinX - winMaxX)
-		pInst->posCurr.x = 0.0f;
+		click = JudgeMousPos();
+		switch (click)
+		{
+			case BTYPE_MENU_START:
+			Next = GS_L0;
+			break;
+			case BTYPE_MENU_CHOOSE:
+			Next = GS_L0;
+			break;
+			case BTYPE_MENU_HELPSTAFF:
+			Next = GS_L0;
+			break;
+			case BTYPE_MENU_EXIT:
+			Next = GS_Quit;
+			break;
+			case BTYPE_PASS_NEXT:
+			Next = Previous + 1;
+			break;
+			case BTYPE_PASS_MENU:
+			Next = GS_Menu;
+			break;
+			case BTYPE_WIN_RESTART:
+			Next = GS_Restart;
+			break;
+			case BTYPE_WIN_MENU:
+			Next = GS_Menu;
+			break;
+			case BTYPE_LOSE_RESTART:
+			Next = Previous;
+			break;
+			case BTYPE_LOSE_MENU:
+			Next = GS_Menu;
+			break;
+			default:
+			break;
+		}
+	}
+	else
+	{
+		pInst->posCurr.x += pInst->velCurr.x * frameTime;
+		pInst->posCurr.y += pInst->velCurr.y * frameTime;
+		if (pInst->posCurr.x <= winMinX - winMaxX)
+			pInst->posCurr.x = 0.0f;
+	}
+
 	return OK;
 }
 
-static bool mousIsInRect(int minX, int minY, int maxX, int maxY)
+Status mousIsInRect(int minX, int minY, int maxX, int maxY)
 {
 	if (mousPos.x <= maxX && mousPos.x >= minX && mousPos.y <= maxY && mousPos.y >= minY)
-		return true;
+		return TRUE;
 	else
-		return false;
+		return FALSE;
 }
 
 int JudgeMousPos()

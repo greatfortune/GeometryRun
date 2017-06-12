@@ -1,10 +1,10 @@
 /**
-* Project:		GameStateManager
-* File Name:	Input.h
-* Author:		王晶
-* Date:		2017-4-22
-* Purpose:		关卡1
-*/
+ * Project:		GeometryRun
+ * File Name:	Level1.h
+ * Author:		王晶
+ * Date:		2017-4-22
+ * Purpose:		关卡1
+ */
 #pragma once
 
 #include "CreateObjectInMap.h"

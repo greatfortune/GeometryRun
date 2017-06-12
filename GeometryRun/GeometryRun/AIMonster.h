@@ -7,6 +7,7 @@
 
 // 怪物默认速度（与关卡相关）
 Vector2D defaultAIMonsterVel;
+float defaultAIMonsterVelyABS;		// 纵轴移动速度绝对值，可更改
 
 Status AIMonsterLoad();
 

@@ -38,7 +38,7 @@ void Ini3(void)
 	// 设置当前关卡的一些属性值
 	float BlockVel = -400.0f;
 	float MonsterVel = -400.0f;
-	int bossHP = 30;
+	int bossMaxHP = 20;
 
 	printf("Level3: Ini\n");
 	// 获取当前关卡时间
@@ -51,7 +51,7 @@ void Ini3(void)
 	MonsterStart(MonsterVel);
 	AIMonsterStart(MonsterVel);
 	BulletStart();
-	Boss2Start(bossHP);
+	Boss2Start(bossMaxHP);
 	PauseStart();
 
 	// 对象实例化：

@@ -31,14 +31,15 @@ int Next;
 enum
 {
 	GS_Menu,			// Menu
+	GS_Win,				
+	GS_Lose,
+	GS_Pass,
 	GS_L0,              // Level0
 	GS_L1,              // Level1
 	GS_L2,              // Level2
 	GS_L3,				// Level3
+	GS_L4,				// Level4(endless)
 	GS_Restart,			// Restart
-	GS_Win,				
-	GS_Lose,
-	GS_Pass,
 	GS_Quit,				// Quit
 	GS_NUM             // Total Number
 };

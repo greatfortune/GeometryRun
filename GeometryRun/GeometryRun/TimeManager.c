@@ -3,7 +3,6 @@
 Status TimerIni(clock_t* LevelTime)
 {
 	int i;
-	*LevelTime = clock();
 	for (i = 0; i < MaxTimers; i++)
 		Timers[i].flag = FLAG_INACTIVE;
 	timerCount = 0;
@@ -163,14 +162,14 @@ Status SwithSceneAtTime(float theTime, int theScene)
 
 Status TimerUpdate(clock_t LevelTime)
 {
-	int i, dealTimers = 0, j;
-	clock_t poiTime = clock();
+	int i, j, dealTimers = 0;
 	Vector2D iniPos, iniVel;
 	float iniDir;
 	TDataObj theTD_obj;
 	TDataStatic theTD_static;
 	TDataRandom theTD_random;
 	GameObj *theObj;
+	clock_t poiTime = clock();
 	passTime = (poiTime - LevelTime) / 1000.0f;
 
 	for (i = 0; i < MaxTimers && dealTimers < timerCount; i++)

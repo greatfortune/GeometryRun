@@ -10,13 +10,14 @@
 
 #define SIZE_BOSS2 40.0f		// boss尺寸
 
-// Boss对象：在一定时间后产生且独特，故单独声明
+// Boss对象：在一定时间后产生且独特，故单独声明，生成Boss对象时需为pBoss赋值
 GameObj* pBoss2;
 
 // Boss2的状态
+int Boss2Alive;		// Boss生存状态，Level4中用到
 int Boss2Status;
 float Boss2SkillCycle;
-int Boss2HP, Boss2AngerHP;
+int Boss2HP, Boss2AngerHP, Boss2MaxHP;
 // 上下巡逻范围
 float Boss2PatrolMaxY, Boss2PatrolMinY;
 // 进入的距离
@@ -55,7 +56,9 @@ enum boss2Status
 
 Status Boss2Load();
 
-Status Boss2Start(int bossHP);
+Status Boss2Ini();
+
+Status Boss2Start(int bossMaxHP);
 
 Status Boss2Update(GameObj* pInst);
 

@@ -2,7 +2,7 @@
  * Project:		GeometryRun
  * File Name:	CreateObjectInMap.h
  * Author:		闷声发大财
- * Date:			2017-5-28
+ * Date:		2017-5-28
  * Purpose:		障碍物创建模型素材库
  */
 #pragma once
@@ -12,20 +12,25 @@
 #include "Platform.h"
 #include "Boss2.h"
 
-Status CreateObjInMap0(float startTime);
+#define CreateMethods 8
+float(*CreateObjInMapRamdom[CreateMethods])(float);
 
-Status CreateObjInMap1(float startTime);
+Status IniCreateRandomArrays();
 
-Status CreateObjInMap2(float startTime);
+float CreateObjInMap0(float startTime);
 
-Status CreateObjInMap3(float startTime);
+float CreateObjInMap1(float startTime);
 
-Status CreateObjInMap4(float startTime);
+float CreateObjInMap2(float startTime);
 
-Status CreateObjInMap5(float startTime);
+float CreateObjInMap3(float startTime);
 
-Status CreateObjInMap6(float startTime);
+float CreateObjInMap4(float startTime);
 
-Status CreateObjInMap7(float startTime);
+float CreateObjInMap5(float startTime);
 
-Status CreateBossInMap_Level2(float startTime);
+float CreateObjInMap6(float startTime);
+
+float CreateObjInMap7(float startTime);
+
+float CreateBossInMap_Level2(float startTime);

@@ -2,7 +2,7 @@
  * Project:		GeometryRun
  * File Name:	CreateObjectInMap.c
  * Author:		闷声发大财
- * Date:			2017-5-28
+ * Date:		2017-5-28
  * Purpose:		障碍物创建模型素材库
  */
 
@@ -11,9 +11,24 @@
  * By WJ
  * 从上至下再至上依次出现小怪物
  * startTime：开始时间
- * 占用时间：7s
+ * 返回占用时间：7s
  */
-Status CreateObjInMap0(float startTime)
+
+
+Status IniCreateRandomArrays()
+{
+	CreateObjInMapRamdom[0] = CreateObjInMap0;
+	CreateObjInMapRamdom[1] = CreateObjInMap1;
+	CreateObjInMapRamdom[2] = CreateObjInMap2;
+	CreateObjInMapRamdom[3] = CreateObjInMap3;
+	CreateObjInMapRamdom[4] = CreateObjInMap4;
+	CreateObjInMapRamdom[5] = CreateObjInMap5;
+	CreateObjInMapRamdom[6] = CreateObjInMap6;
+	CreateObjInMapRamdom[7] = CreateObjInMap7;
+	return OK;
+}
+
+float CreateObjInMap0(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, 245 };
@@ -39,7 +54,7 @@ Status CreateObjInMap0(float startTime)
 	CreateOneObjAtTime(startTime + 6.0f, OTYPE_MONSTER, SIZE_MONSTER, pos3, defaultMonsterVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 6.5f, OTYPE_MONSTER, SIZE_MONSTER, pos2, defaultMonsterVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 7.0f, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	return OK;
+	return 7.0f;
 }
 
 /*
@@ -47,7 +62,7 @@ Status CreateObjInMap0(float startTime)
  * 从上至下再至上依次出现障碍物
  * 占用时间：7s
  */
-Status CreateObjInMap1(float startTime)
+float CreateObjInMap1(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, 245 };
@@ -73,14 +88,15 @@ Status CreateObjInMap1(float startTime)
 	CreateOneObjAtTime(startTime + 6.0f, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 6.5f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 7.0f, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
-	return OK;
+	return 7.0f;
 }
 
 /*
  * By WYZ
  * 障碍物+小怪（混搭较复杂）
+ * 占用时间2.3s
  */
-Status CreateObjInMap2(float startTime)
+float CreateObjInMap2(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, SIZE_BLOCK + 70.0f };
@@ -93,7 +109,7 @@ Status CreateObjInMap2(float startTime)
 	CreateOneObjAtTime(startTime + 1.1f, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 1.8f, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultMonsterVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 2.3f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	return OK;
+	return 2.3f;
 }
 
 /*
@@ -101,14 +117,14 @@ Status CreateObjInMap2(float startTime)
  * 障碍物+小怪（上、下）
  * 占用时间：0s
  */
-Status CreateObjInMap3(float startTime)
+float CreateObjInMap3(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, SIZE_BLOCK + 20.0f };
 	Vector2D pos2 = { maxX, -SIZE_BLOCK - PLATFORM_HEIGHT };
 	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultMonsterVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	return OK;
+	return 0.0f;
 }
 
 
@@ -117,14 +133,14 @@ Status CreateObjInMap3(float startTime)
  * 障碍物（2个叠在一起）
  * 占用时间：0s
  */
-Status CreateObjInMap4(float startTime)
+float CreateObjInMap4(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
 	Vector2D pos2 = { maxX, SIZE_BLOCK + 70.0f };
 	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	return OK;
+	return 0.0f;
 }
 
 /*
@@ -132,7 +148,7 @@ Status CreateObjInMap4(float startTime)
  * 连续三个障碍物（上、下、上）
  * 占用时间：1.2s
  */
-Status CreateObjInMap5(float startTime)
+float CreateObjInMap5(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
@@ -140,7 +156,7 @@ Status CreateObjInMap5(float startTime)
 	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 0.6f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 1.2f, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
-	return OK;
+	return 1.2f;
 }
 
 /*
@@ -148,7 +164,7 @@ Status CreateObjInMap5(float startTime)
  * 用于二段跳之后马上倒挂教学
  * 占用时间：1.0s
  */
-Status CreateObjInMap6(float startTime)
+float CreateObjInMap6(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
@@ -159,15 +175,15 @@ Status CreateObjInMap6(float startTime)
 	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime+1.0, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime+1.0, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	return OK;
+	return 1.0f;
 }
 
 /*
  * By WJ
- * 连续三个追踪Monster
+ * 连续四个追踪Monster
  * 占用时间：1.2s
  */
-Status CreateObjInMap7(float startTime)
+float CreateObjInMap7(float startTime)
 {
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, 200.0f };
@@ -175,12 +191,16 @@ Status CreateObjInMap7(float startTime)
 	CreateOneObjAtTime(startTime, OTYPE_AIMONSTER, SIZE_AIMONSTER, pos1, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 0.6f, OTYPE_AIMONSTER, SIZE_AIMONSTER, pos2, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
 	CreateOneObjAtTime(startTime + 1.2f, OTYPE_AIMONSTER, SIZE_AIMONSTER, pos1, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
-	return OK;
+	CreateOneObjAtTime(startTime + 1.8f, OTYPE_AIMONSTER, SIZE_AIMONSTER, pos2, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
+	return 1.8f;
 }
 
-
-Status CreateBossInMap_Level2(float startTime)
+/*
+ * By HJW
+ * 生成BOSS
+ */
+float CreateBossInMap_Level2(float startTime)
 {
 	CreateOneObjAtTime(startTime, OTYPE_BOSS2, SIZE_BOSS2, Boss2IniPos, Boss2EnterVel, 0, theBaseList, 0, NULL);
-	return OK;
+	return 0.0f;
 }

@@ -18,15 +18,25 @@ Status Boss2Load()
 	return OK;
 }
 
-Status Boss2Start(int bossHP)
+Status Boss2Ini()
+{
+	Boss2Alive = FALSE;
+	Boss2Status = B2STATUS_ENTER;
+	Boss2HP = Boss2MaxHP;
+	Boss2AngerHP = Boss2MaxHP / 2;
+	Boss2SkillLoad();
+	printf("\nBossHP : %d   BosAngHP: %d\n", Boss2HP, Boss2AngerHP);
+	return OK;
+}
+
+Status Boss2Start(int bossMaxHP)
 {
 	pBoss2 = NULL;
+	Boss2MaxHP = bossMaxHP;
+	Boss2Ini();
 	Boss2LastSkill = B2SKILL_CREATEBLOCKS;
 	Boss2ImpactSpeed = 60.0f;
-	Boss2Status = B2STATUS_ENTER;
 	Boss2SkillCycle = 100.0f;
-	Boss2HP = bossHP;
-	Boss2AngerHP = bossHP / 2;
 	// 上下巡逻范围
 	Boss2PatrolMaxY = 100.0f;
 	Boss2PatrolMinY = -100.0f;
@@ -40,7 +50,6 @@ Status Boss2Start(int bossHP)
 	Vector2DSet(&Boss2IniPos, 500.0f, 0.0f);
 	Vector2DSet(&Boss2ImpactVelLeft, -600.0f, 0.0f);
 	Vector2DSet(&Boss2ImpactVelRight, 600.0f, 0.0f);
-	Boss2SkillLoad();
 	return OK;
 }
 
@@ -127,6 +136,7 @@ Status Boss2Update(GameObj* pInst)
 		default:
 			break;
 	}
+	// Boss2Dead中恢复Boss生命值，绘制血条时在Boss2Dead前进行
 	if (Boss2HP <= 0)
 		Boss2Dead();
 	return OK;
@@ -143,7 +153,7 @@ Status Boss2Skill_CreateMonster(float curTime)
 	float iniMinX = winMaxX - 300.0f, iniMaxX = winMaxX, iniMinY = winMinY + 140.0f, iniMaxY = winMaxY - 140.0f, iniMinVx = -400.0f, iniMaxVx = -300.0f;
 	float iniMinVy = 0.0f, iniMaxVy = 0.0f, iniMinDir = -3.0f, iniMaxDir = 3.0f;
 
-	return CreateSomeObjAtSameTimeWithRange(curTime, 5, OTYPE_MONSTER, SIZE_MONSTER, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
+	return CreateSomeObjAtSameTimeWithRange(curTime, 4, OTYPE_MONSTER, SIZE_MONSTER, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
 }
 
 Status Boss2Skill_CreateBlock(float curTime)
@@ -152,7 +162,7 @@ Status Boss2Skill_CreateBlock(float curTime)
 	float iniMinX = winMaxX - 300.0f, iniMaxX = winMaxX, iniMinY = winMinY + 140.0f, iniMaxY = winMaxY - 140.0f, iniMinVx = -240.0f, iniMaxVx = -120.0f;
 	float iniMinVy = 0.0f, iniMaxVy = 0.0f, iniMinDir = 0.0f, iniMaxDir = 0.0f;
 
-	return CreateSomeObjAtSameTimeWithRange(curTime, 3, OTYPE_BLOCK, SIZE_BLOCK, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
+	return CreateSomeObjAtSameTimeWithRange(curTime, 2, OTYPE_BLOCK, SIZE_BLOCK, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
 
 }
 
@@ -192,9 +202,10 @@ Status Boss2GetHurt()
 
 Status Boss2Dead(){
 	GameObjDelete(pBoss2);
+	Boss2Ini();
 	if (Current == GS_L2)
 		Next = GS_Pass;
-	else if (Current = GS_L3)
+	else if (Current == GS_L3)
 		Next = GS_Win;
 	return OK;
 }

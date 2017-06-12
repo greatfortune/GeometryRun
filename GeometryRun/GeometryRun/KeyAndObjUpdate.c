@@ -68,6 +68,11 @@ Status KeyUpdate()
 		Next = GS_L3;
 		return FLAG_IMPORTANTKEY;
 	}
+	if (KeyPressed[Key4] == TRUE)
+	{
+		Next = GS_L4;
+		return FLAG_IMPORTANTKEY;
+	}
 	if (KeyPressed[KeyP] == TRUE)
 	{
 		isPaused = !isPaused;

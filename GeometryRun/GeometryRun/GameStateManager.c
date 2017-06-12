@@ -13,6 +13,7 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
+#include "Level4.h"
 #include "Win.h"
 #include "Lose.h"
 #include "Pass.h"
@@ -108,6 +109,15 @@ void GSM_Update(void)
 			pDraw = Draw3;
 			pFree = Free3;
 			pUnload = Unload3;
+			break;
+		}
+		case GS_L4: {
+			pLoad = Load4;
+			pIni = Ini4;
+			pUpdate = Update4;
+			pDraw = Draw4;
+			pFree = Free4;
+			pUnload = Unload4;
 			break;
 		}
 		case GS_Win: {

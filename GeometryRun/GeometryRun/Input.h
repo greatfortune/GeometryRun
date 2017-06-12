@@ -32,6 +32,7 @@ enum {
 	Key1,
 	Key2,
 	Key3,
+	Key4,
 	Key6,
 	Key7,
 	Key8,

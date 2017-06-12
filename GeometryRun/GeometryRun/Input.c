@@ -1,5 +1,5 @@
 /**
- * Project:		GameStateManager
+ * Project:		GeometryRun
  * File Name:	Input.c
  * Author:		Íõ¾§
  * Date:		2017-4-22
@@ -112,6 +112,12 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			KeyPressed[Key3] = TRUE;
 			fprintf(fp, "Input:3\n");
 			printf("Input:3\n");
+		}
+		if (wParam == '4')
+		{
+			KeyPressed[Key4] = TRUE;
+			fprintf(fp, "Input:4\n");
+			printf("Input:4\n");
 		}
 		if (wParam == '6')
 			KeyPressed[Key6] = TRUE;
