@@ -73,6 +73,18 @@ Status KeyUpdate()
 		Next = GS_L4;
 		return FLAG_IMPORTANTKEY;
 	}
+	if (KeyPressed[KeyVolumeUp] == TRUE)
+	{
+		int sound = Current - GS_L0;
+		SetVolume(sound, GetVolume(sound) + 0.1f);
+		return FLAG_IMPORTANTKEY;
+	}
+	if (KeyPressed[KeyVolumeDown] == TRUE)
+	{
+		int sound = Current - GS_L0;
+		SetVolume(sound, GetVolume(sound) - 0.1f);
+		return FLAG_IMPORTANTKEY;
+	}
 	if (KeyPressed[KeyP] == TRUE)
 	{
 		isPaused = !isPaused;

@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "Boss2.h"
 #include "Pause.h"
+#include "SoundSystem.h"
+#include "fmod.h"
 
 #define FLAG_IMPORTANTKEY 2
 

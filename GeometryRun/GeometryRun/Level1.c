@@ -31,7 +31,7 @@ void Load1(void)
 	PauseLoad();
 
 	// 载入音乐
-	SoundAdd("source/music/background.mp3", FMOD_LOOP_NORMAL, SOUND_1);
+	SoundAdd("source/sound/background.mp3", FMOD_LOOP_NORMAL, SOUND_1);
 }
 
 void Ini1(void)
