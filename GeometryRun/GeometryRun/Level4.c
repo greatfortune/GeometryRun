@@ -41,6 +41,7 @@ void Ini4(void)
 	float BlockVel = -400.0f;
 	float MonsterVel = -400.0f;
 	int bossMaxHP = 5;
+	float BossBulletVelAbs = 400.0f;
 
 	stage = 1;
 	stageWaves = 5 + rand() % 2;	// 第一关波数随机5~6
@@ -58,7 +59,7 @@ void Ini4(void)
 	MonsterStart(MonsterVel);
 	AIMonsterStart(MonsterVel);
 	BulletStart();
-	BossBulletStart();
+	BossBulletStart(BossBulletVelAbs);
 	Boss2Start(bossMaxHP);
 	PauseStart();
 
@@ -134,6 +135,7 @@ void Update4(void)
 				defaultMonsterVel.x -= 20.0f;
 				defaultAIMonsterVel.x -= 20.0f;
 				defaultAIMonsterVelyABS += 10.0f;
+				Velocity_BossBulletABS += 20.0f;
 				Boss2MaxHP += 4;
 				stageWaves = 5 + rand() % 3;	// 波数随机为5~7
 			}

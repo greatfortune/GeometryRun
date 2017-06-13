@@ -9,7 +9,7 @@
 #include "AIMonster.h"
 #include "BossBullet.h"
 
-#define SIZE_BOSS2 40.0f		// boss尺寸
+#define SIZE_BOSS2 45.0f		// boss尺寸
 
 // Boss对象：在一定时间后产生且独特，故单独声明，生成Boss对象时需为pBoss赋值
 GameObj* pBoss2;

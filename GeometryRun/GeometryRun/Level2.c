@@ -40,6 +40,7 @@ void Ini2(void)
 	float BlockVel = -350.0f;
 	float MonsterVel = -350.0f;
 	int bossMaxHP = 20;
+	float BossBulletVelAbs = 400.0f;
 
 	printf("Level2: Ini\n");
 	// 获取当前关卡时间
@@ -51,7 +52,7 @@ void Ini2(void)
 	MonsterStart(MonsterVel);
 	AIMonsterStart(MonsterVel);
 	BulletStart();
-	BossBulletStart();
+	BossBulletStart(BossBulletVelAbs);
 	Boss2Start(bossMaxHP);
 	PauseStart();
 
