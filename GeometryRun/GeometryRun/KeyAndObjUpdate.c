@@ -132,6 +132,9 @@ Status ObjUpdate()
 			case OTYPE_BULLET:
 				ListTraverse(pL, BulletUpdate);
 				break;
+			case OTYPE_BOSSBULLET:
+				ListTraverse(pL, BossBulletUpdate);
+				break;
 			case OTYPE_BOSS2:
 				ListTraverse(pL, Boss2Update);
 				break;
@@ -157,6 +160,9 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode)
 		case OTYPE_BULLET:
 			BulletCollision(pinsNode);
 			break;
+		case OTYPE_BOSSBULLET:
+			BossBulletCollision(pinsNode);
+			break;
 		
 		default:
 			break;
@@ -168,7 +174,6 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode)
 Status Visit_CollisionDetect(insNode* pinsNode)
 {
 	pInstForCollisionDetect = &(pinsNode->gameobj);
-
 	// 不处理非活动对象
 	if (pInstForCollisionDetect->flag == FLAG_INACTIVE)
 		return OK;

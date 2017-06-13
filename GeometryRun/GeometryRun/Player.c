@@ -106,6 +106,14 @@ Status PlayerUpdate(GameObj* pInst)
 		}
 		CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 0, NULL);
 	}
+
+	// K/B清屏技能
+	if (KeyPressed[KeyK] == TRUE || KeyPressed[KeyB] == TRUE)
+	{
+		BaseListTraverse(PlayerClear);
+		return OK;
+	}
+
 	pHero->posCurr.x += pHero->velCurr.x * frameTime;
 	pHero->posCurr.y += pHero->velCurr.y * frameTime;
 	return OK;
@@ -192,6 +200,26 @@ Status PlayerCollision(insNode* pinsNode)
 		break;
 		default:
 			break;
+	}
+
+	return OK;
+}
+
+//清屏技能
+Status PlayerClear(insNode* pinsNode)
+{
+	GameObj* pInstOther = &(pinsNode->gameobj);
+	switch (pInstOther->pObject->type)
+	{
+	case OTYPE_BLOCK:
+	case OTYPE_MONSTER:
+	case OTYPE_AIMONSTER:
+	case OTYPE_BOSSBULLET:
+		// Monster、Block、BossBullet消除
+		GameObjDelete(pInstOther);
+		break;
+	default:
+		break;
 	}
 
 	return OK;

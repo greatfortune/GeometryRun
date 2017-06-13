@@ -26,6 +26,7 @@ void Load4(void)
 	PlayerLoad();
 	BlockLoad();
 	BulletLoad();
+	BossBulletLoad();
 	MonsterLoad();
 	AIMonsterLoad();
 	PlatformLoad();
@@ -57,6 +58,7 @@ void Ini4(void)
 	MonsterStart(MonsterVel);
 	AIMonsterStart(MonsterVel);
 	BulletStart();
+	BossBulletStart();
 	Boss2Start(bossMaxHP);
 	PauseStart();
 

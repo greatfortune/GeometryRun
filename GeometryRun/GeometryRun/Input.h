@@ -46,6 +46,8 @@ enum {
 	KeyS,
 	KeyJ,
 	KeyP,
+	KeyB,
+	KeyK,
 	KeyLButton,
 	KeyNUM    // 总放在最后一个
 };

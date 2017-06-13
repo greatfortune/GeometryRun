@@ -12,7 +12,7 @@ Status TimerIni(clock_t* LevelTime)
 
 static Status SetTDRandom(TDataRandom *theTD_random, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir)
 {
-	(*theTD_random).iniMaxX = theIniMinX;
+	(*theTD_random).iniMinX = theIniMinX;
 	(*theTD_random).iniMaxX = theIniMaxX;
 	(*theTD_random).iniMinY = theIniMinY;
 	(*theTD_random).iniMaxY = theIniMaxY;
@@ -61,6 +61,10 @@ static Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *t
 	theVel->x = GetRanFloatFromTo(theIniMinVx, theIniMaxVx);
 	theVel->y = GetRanFloatFromTo(theIniMinVy, theIniMaxVy);
 	*theDir = GetRanFloatFromTo(theIniMinDir, theIniMaxDir);
+	printf("test 1 iniMaxX: %.2f\n", theIniMaxX);
+	printf("test 1 iniMinx: %.2f\n", theIniMinX);
+	printf("x: %.2f\n", thePos->x);
+	
 	return OK;
 }
 
@@ -220,6 +224,8 @@ Status TimerUpdate(clock_t LevelTime)
 					for (j = 0; j < Timers[i].data.TDCreateSomeObjRandomly.amountToCreate; j++)
 					{
 						GetRandomPosVelAndDir(&iniPos, &iniVel, &iniDir, theTD_random.iniMinX, theTD_random.iniMaxX, theTD_random.iniMinY, theTD_random.iniMaxY, theTD_random.iniMinVx, theTD_random.iniMaxVx, theTD_random.iniMinVy, theTD_random.iniMaxVy, theTD_random.iniMinDir, theTD_random.iniMaxDir);
+						printf("test 0 iniMaxX: %.2f\n", theTD_random.iniMaxX);
+						printf("max x: %.2f\n", iniPos.x);
 						CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, iniPos, iniVel, iniDir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
 					}
 					Timers[i].flag = FLAG_INACTIVE;

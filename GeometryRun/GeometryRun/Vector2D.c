@@ -171,3 +171,26 @@ void Vector2DFromAngleRad(Vector2D *pResult, float angle)
 }
 
 // ---------------------------------------------------------------------------
+/*
+计算两个点之间的角度，第一个点作为原点，单位为角度数
+*/
+float Vector2DAngle(Vector2D *pVec0, Vector2D *pVec1)
+{
+	float dx = pVec1->x - pVec0->x;
+	float dy = pVec1->y - pVec0->y;
+	if (dx == 0)
+	{
+		if (dy > 0)
+			return 90;
+		else if (dy == 0)
+			return 0;
+		else
+			return -90;
+	}
+	else if (dx > 0)
+		return atanf(dy / dx) * 180 / PI;
+	else
+		return atanf(dy / dx) * 180 / PI + 180;
+}
+
+// ---------------------------------------------------------------------------

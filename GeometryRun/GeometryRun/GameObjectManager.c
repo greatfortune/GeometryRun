@@ -30,6 +30,7 @@ void SetConstants()
 	strcpy(ObjTypeName[OTYPE_AIMONSTER], "TYPE_AIMONSTER");
 	strcpy(ObjTypeName[OTYPE_BLOCK], "TYPE_BLOCK");
 	strcpy(ObjTypeName[OTYPE_BULLET], "TYPE_BULLET");
+	strcpy(ObjTypeName[OTYPE_BOSSBULLET], "TYPE_BOSSBULLET");
 	strcpy(ObjTypeName[OTYPE_BOSS1], "TYPE_BOSS1");
 	strcpy(ObjTypeName[OTYPE_BOSS2], "TYPE_BOSS2");
 	zero.x = 0, zero.y = 0;

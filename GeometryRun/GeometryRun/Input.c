@@ -163,6 +163,18 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			fprintf(fp, "Input:P\n");
 			printf("Input:P\n");
 		}
+		if (wParam == 'K')
+		{
+			KeyPressed[KeyK] = TRUE;
+			fprintf(fp, "Input:K\n");
+			printf("Input:K\n");
+		}
+		if (wParam == 'B')
+		{
+			KeyPressed[KeyB] = TRUE;
+			fprintf(fp, "Input:B\n");
+			printf("Input:B\n");
+		}
 		break;
 
 		// 窗口发生移动

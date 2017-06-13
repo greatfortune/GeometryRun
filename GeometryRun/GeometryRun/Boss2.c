@@ -55,9 +55,10 @@ Status Boss2Start(int bossMaxHP)
 
 Status Boss2SkillLoad()
 {
-	Boss2SkillCount = 2;
+	Boss2SkillCount = 3;
 	boss2skills[0] = Boss2Skill_CreateMonster;
 	boss2skills[1] = Boss2Skill_CreateBlock;
+	boss2skills[2] = Boss2Skill_Bullet;
 	
 	return OK;
 }
@@ -173,12 +174,19 @@ Status Boss2Skill_Impact(float curTime)
 	return OK;
 }
 
+Status Boss2Skill_Bullet(float curTime)
+{
+	BossBulletIni();
+	CreateGameObj(OTYPE_BOSSBULLET, SIZE_BOSSBULLET, iniBossBulletPos, Velocity_BossBullet, BossBulletDir, theBaseList, 0, NULL);
+	return OK;
+}
+
 Status Boss2Skill_GetAngey()
 {
 	Vector2DSet(&Boss2MoveUpward, 0.0f, 140.0f);
 	Vector2DSet(&Boss2MoveDownward, 0.0f, -140.0f);
-	Boss2SkillCount = 3;
-	boss2skills[2] = Boss2Skill_Impact;
+	Boss2SkillCount = 4;
+	boss2skills[3] = Boss2Skill_Impact;
 	return OK;
 }
 

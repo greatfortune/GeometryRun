@@ -21,7 +21,7 @@ Status BulletLoad()
 
 Status BulletStart()
 {
-	Vector2DSet(&Velocity_Bullet, 390.0f, 0.0f);
+	Vector2DSet(&Velocity_Bullet, 400.0f, 0.0f);
 	return OK;
 }
 

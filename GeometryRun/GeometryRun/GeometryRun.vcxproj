@@ -149,6 +149,7 @@
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Boss2.h" />
+    <ClInclude Include="BossBullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameStateList.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="BackGround.c" />
     <ClCompile Include="Block.c" />
     <ClCompile Include="Boss2.c" />
+    <ClCompile Include="BossBullet.c" />
     <ClCompile Include="Bullet.c" />
     <ClCompile Include="CreateObjectInMap.c" />
     <ClCompile Include="GameObjectManager.c" />

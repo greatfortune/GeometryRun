@@ -25,6 +25,7 @@ void Load3(void)
 	PlayerLoad();
 	BlockLoad();
 	BulletLoad();
+	BossBulletLoad();
 	MonsterLoad();
 	AIMonsterLoad();
 	PlatformLoad();
@@ -39,6 +40,7 @@ void Ini3(void)
 	float BlockVel = -400.0f;
 	float MonsterVel = -400.0f;
 	int bossMaxHP = 20;
+	float BossBulletVelAbs = 400.0f;
 
 	printf("Level3: Ini\n");
 	// 获取当前关卡时间
@@ -51,6 +53,7 @@ void Ini3(void)
 	MonsterStart(MonsterVel);
 	AIMonsterStart(MonsterVel);
 	BulletStart();
+	BossBulletStart(BossBulletVelAbs);
 	Boss2Start(bossMaxHP);
 	PauseStart();
 

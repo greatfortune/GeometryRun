@@ -42,4 +42,6 @@ Status PlayerGetHurt(int hurt);
 
 Status PlayerDead();
 
+Status PlayerClear(insNode* pinsNode);//ÇåÆÁ¼¼ÄÜ
+
 #endif

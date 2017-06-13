@@ -89,4 +89,8 @@ void Vector2DFromAngleDeg(Vector2D *pResult, float angle);
 */
 void Vector2DFromAngleRad(Vector2D *pResult, float angle);
 
+/*
+计算两个点之间的角度，第一个点作为原点，单位为角度数
+*/
+float Vector2DAngle(Vector2D *pVec0, Vector2D *pVec1);
 #endif

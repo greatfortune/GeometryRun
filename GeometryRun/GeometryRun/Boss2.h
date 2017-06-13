@@ -7,6 +7,7 @@
 #include "Block.h"
 #include "Monster.h"
 #include "AIMonster.h"
+#include "BossBullet.h"
 
 #define SIZE_BOSS2 40.0f		// boss³ß´ç
 
@@ -34,6 +35,7 @@ int Boss2LastSkill;
 enum boss2Skills{
 	B2SKILL_CREATEMONSTERS,
 	B2SKILL_CREATEBLOCKS,
+	B2SKILL_BULLET,
 	B2SKILL_IMPACT,
 	B2SKILL_Count
 };
@@ -73,6 +75,8 @@ Status Boss2Skill_CreateBlock(float curTime);
 Status Boss2Skill_GetAngey();
 
 Status Boss2Skill_Impact(float curTime);
+
+Status Boss2Skill_Bullet(float curTime);
 
 Status Boss2UseSkillRandomly(float curTime);
 
