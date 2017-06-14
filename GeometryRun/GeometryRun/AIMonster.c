@@ -21,7 +21,7 @@ Status AIMonsterLoad()
 		CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/StarAIMonster.png"), theBaseList);
 		break;
 	case GS_L3:
-		CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/DiamondMonster.png"), theBaseList);
+		CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/DiamondAIMonster.png"), theBaseList);
 		break;
 	case GS_L4:
 		CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/StarAIMonster.png"), theBaseList);
