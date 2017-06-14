@@ -14,7 +14,22 @@ Status MonsterLoad()
 		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
 		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_MONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/StarMonster.png"), theBaseList);
+	switch (Current)
+	{
+	case GS_L1:
+		CreateGameObjBase(OTYPE_MONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/TriangleMonster.png"), theBaseList);
+		break;
+	case GS_L2:
+		CreateGameObjBase(OTYPE_MONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/StarMonster.png"), theBaseList);
+		break;
+	case GS_L3:
+		CreateGameObjBase(OTYPE_MONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/DiamondMonster.png"), theBaseList);
+		break;
+	case GS_L4:
+		CreateGameObjBase(OTYPE_MONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/StarMonster.png"), theBaseList);
+		break;
+	}
+	
 	return OK;
 }
 

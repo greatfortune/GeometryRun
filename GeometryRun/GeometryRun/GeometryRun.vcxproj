@@ -175,6 +175,7 @@
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="Staff.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="Help.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="CreateObjectInMap.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="SoundSystem.c" />
     <ClCompile Include="Staff.c" />
     <ClCompile Include="System.c" />
+    <ClCompile Include="Help.c" />
     <ClCompile Include="TimeManager.c" />
     <ClCompile Include="Vector2D.c" />
     <ClCompile Include="Win.c" />

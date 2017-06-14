@@ -14,7 +14,20 @@ Status Boss2Load()
 		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
 		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_BOSS2, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/boss.png"), theBaseList);
+	switch (Current)
+	{
+	//case GS_L1:
+	case GS_L2:
+		CreateGameObjBase(OTYPE_BOSS2, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/boss2.png"), theBaseList);
+		break;
+	case GS_L3:
+		CreateGameObjBase(OTYPE_BOSS2, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/boss3.png"), theBaseList);
+		break;
+	default:
+		CreateGameObjBase(OTYPE_BOSS2, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/boss3.png"), theBaseList);
+		break;
+	}
+	
 	return OK;
 }
 

@@ -10,6 +10,7 @@
 #include "GameStateList.h"
 #include "Menu.h"
 #include "Staff.h"
+#include "Help.h"
 #include "Choose.h"
 #include "Level0.h"
 #include "Level1.h"
@@ -84,6 +85,15 @@ void GSM_Update(void)
 			pDraw = Draw_Staff;
 			pFree = Free_Staff;
 			pUnload = Unload_Staff;
+			break;
+		}
+		case GS_Help: {
+			pLoad = Load_Help;
+			pIni = Ini_Help;
+			pUpdate = Update_Help;
+			pDraw = Draw_Help;
+			pFree = Free_Help;
+			pUnload = Unload_Help;
 			break;
 		}
 		case GS_Choose: {

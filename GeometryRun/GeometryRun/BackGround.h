@@ -11,6 +11,7 @@
 enum {
 	BTYPE_MENU_START = 0,
 	BTYPE_MENU_CHOOSE,
+	BTYPE_MENU_HELP,
 	BTYPE_MENU_STAFF,
 	BTYPE_MENU_EXIT,
 	BTYPE_PASS_NEXT,
@@ -27,7 +28,7 @@ enum {
 	BTYPE_CHOOSE_4
 };
 
-// 仅在Level0中控制动画播放
+// 仅在Level0与Help中控制动画播放
 GameObj* pImage;
 int xcurrentFrame;
 float elpasedTime;

@@ -15,7 +15,22 @@ Status AIMonsterLoad()
 		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
 		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/OrangeStar.png"), theBaseList);
+	switch(Current)
+	{
+	case GS_L2:
+		CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/StarAIMonster.png"), theBaseList);
+		break;
+	case GS_L3:
+		CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/DiamondMonster.png"), theBaseList);
+		break;
+	case GS_L4:
+		CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/StarAIMonster.png"), theBaseList);
+		break;
+	default:
+		CreateGameObjBase(OTYPE_AIMONSTER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/StarAIMonster.png"), theBaseList);
+		break;
+	}
+	
 	return OK;
 }
 

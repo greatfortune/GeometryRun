@@ -109,9 +109,18 @@ Status KeyUpdate()
 	// 画面播放完毕/空格键 进入Level1
 	if (Current == GS_L0)
 	{
-		if (KeyPressed[KeySpace] == TRUE || xcurrentFrame>11)
+		if (KeyPressed[KeySpace] == TRUE || xcurrentFrame>10)
 		{
 			Next = GS_L1;
+			return FLAG_IMPORTANTKEY;
+		}
+	}
+
+	if (Current == GS_Help)
+	{
+		if (KeyPressed[KeySpace] == TRUE || xcurrentFrame>4)
+		{
+			Next = GS_Staff;
 			return FLAG_IMPORTANTKEY;
 		}
 	}
