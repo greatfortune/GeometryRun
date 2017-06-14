@@ -14,7 +14,7 @@ Status BlockLoad()
 		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
 		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/theBlock2.png"), theBaseList);
+	CreateGameObjBase(OTYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/theBlock2.png"), theBaseList);
 	return OK;
 }
 

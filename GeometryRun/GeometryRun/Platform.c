@@ -15,7 +15,7 @@ Status PlatformLoad()
 		1.0f, 0.05f, COLOR_DEFAULT, 1.0f, 0.0f,
 		-1.0f, 0.05f, COLOR_DEFAULT, 0.0f, 0.0f);
 
-	CreateGameObjBase(OTYPE_PLATFORM, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/thePlatForm.png"), theBaseList);
+	CreateGameObjBase(OTYPE_PLATFORM, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/thePlatForm.png"), theBaseList);
 	return OK;
 }
 

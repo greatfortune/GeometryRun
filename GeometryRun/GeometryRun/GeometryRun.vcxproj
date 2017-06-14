@@ -172,6 +172,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SoundSystem.h" />
+    <ClInclude Include="Staff.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Vector2D.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="Platform.c" />
     <ClCompile Include="Player.c" />
     <ClCompile Include="SoundSystem.c" />
+    <ClCompile Include="Staff.c" />
     <ClCompile Include="System.c" />
     <ClCompile Include="TimeManager.c" />
     <ClCompile Include="Vector2D.c" />

@@ -141,6 +141,9 @@
     <ClInclude Include="BossBullet.h">
       <Filter>Sprites\头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Staff.h">
+      <Filter>Scenes\头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyAndObjUpdate.c">
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="BossBullet.c">
       <Filter>Sprites\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Staff.c">
+      <Filter>Scenes\源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

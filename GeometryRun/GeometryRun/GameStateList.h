@@ -31,6 +31,7 @@ int Next;
 enum
 {
 	GS_Menu,			// Menu
+	GS_Staff,
 	GS_Win,				
 	GS_Lose,
 	GS_Pass,

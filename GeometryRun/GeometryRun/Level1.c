@@ -29,6 +29,8 @@ void Load1(void)
 	PlatformLoad();
 	BackGroundLoad();
 	PauseLoad();
+	
+	
 
 	// 载入音乐
 	SoundAdd("source/sound/level1_backgd.mp3", FMOD_LOOP_NORMAL, SOUND_1);
@@ -46,11 +48,13 @@ void Ini1(void)
 
 	PlayerStart();
 	BlockStart(BlockVel);
-	PlatformStart();
+    PlatformStart();
 	BackGroundStart();
 	MonsterStart(MonsterVel);
 	BulletStart();
 	PauseStart();
+
+	
 
 	// 播放音乐
 	SoundPlay(SOUND_1);

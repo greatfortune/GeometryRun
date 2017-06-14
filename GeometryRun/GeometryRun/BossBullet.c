@@ -15,7 +15,7 @@ Status BossBulletLoad()
 		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
 		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
 		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
-	CreateGameObjBase(OTYPE_BOSSBULLET, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/bossbullet.png"), theBaseList);
+	CreateGameObjBase(OTYPE_BOSSBULLET, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/enemy/bossbullet.png"), theBaseList);
 	return OK;
 }
 
