@@ -5,7 +5,7 @@
 * Date:
 * Purpose:	
 */
-
+#pragma once
 #include "BackGround.h"
 
 void Load_Help(void);

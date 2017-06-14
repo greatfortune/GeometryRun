@@ -1,5 +1,21 @@
 #include "Player.h"
 
+// Player对象：因为是Player，所以单独声明，方便程序设计
+static GameObj* pHero;
+
+// 初始坐标
+static Vector2D iniPosition_Player;
+
+static int MaxBulletCount, CurSupplyTime, SupplyTime, BulletCount;
+
+static AEGfxTexture* pTex_Hero;
+//jumpCheck:跳跃次数，用于二级跳
+static int jumpCheck, dropCheck;
+int isProtected, ClearUsed;
+// 用于设置保护时间的长短
+int ProtectCur, MaxProtectCur;
+static int PlayerHP, PlayerScore;
+
 Status PlayerLoad()
 {
 	// =========================
@@ -34,7 +50,7 @@ Status PlayerStart()
 	CurSupplyTime = 0;
 	SupplyTime = 30;
 	BulletCount = 4;
-
+	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
 	return OK;
 }
 
@@ -99,19 +115,18 @@ Status PlayerUpdate(GameObj* pInst)
 	{
 		Vector2D iniBulletPos = { pHero->posCurr.x + 1.5 * SIZE_HERO, pHero->posCurr.y };
 		if (BulletCount > 0)
-		{
 			BulletCount--;
-		}
 		else
-		{
 			return OK;
-		}
-		CreateGameObj(OTYPE_BULLET, SIZE_BULLET, iniBulletPos, Velocity_Bullet, 0, theBaseList, 0, NULL);
+		BulletCreateAtPos(iniBulletPos);
 	}
 
 	// K/B清屏技能
 	if (KeyPressed[KeyK] == TRUE || KeyPressed[KeyB] == TRUE)
 	{
+		if (ClearUsed)
+			return OK;
+		ClearUsed = 1;
 		BaseListTraverse(PlayerClear);
 		return OK;
 	}
@@ -125,6 +140,7 @@ Status PlayerUpdate(GameObj* pInst)
 Status PlayerCollision(insNode* pinsNode)
 {
 	GameObj* pInstOther = &(pinsNode->gameobj);
+	float CurPlatformHeight = PlatformHeightGet();
 	switch (pInstOther->pObject->type)
 	{
 			// Player vs. Platform
@@ -140,27 +156,27 @@ Status PlayerCollision(insNode* pinsNode)
 				pInstForCollisionDetect->properties[0].value = -1;
 			}
 			//是否在平台上
-			if ((pInstForCollisionDetect->posCurr.y) <= pInstForCollisionDetect->scale + PLATFORM_HEIGHT)
+			if ((pInstForCollisionDetect->posCurr.y) <= pInstForCollisionDetect->scale + CurPlatformHeight)
 			{
 				dropCheck = 0;
 				if (jumpCheck > 0)	// 自由落体过程
 				{
 					jumpCheck = 0;
 					pInstForCollisionDetect->velCurr.y = 0.0f;
-					pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
+					pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + CurPlatformHeight;
 				}
 				else if (jumpCheck == 0)
 				{
 					if (pInstForCollisionDetect->posCurr.y >= pInstForCollisionDetect->scale)			// 翻转回地上过程
 					{
 						pInstForCollisionDetect->velCurr.y = 0.0f;
-						pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
+						pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + CurPlatformHeight;
 					}
 				}
-				else if (pInstForCollisionDetect->posCurr.y <= -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT)		// 迅速下落过程
+				else if (pInstForCollisionDetect->posCurr.y <= -1 * pInstForCollisionDetect->scale - CurPlatformHeight)		// 迅速下落过程
 				{
 					pInstForCollisionDetect->velCurr.y = 0.0f;
-					pInstForCollisionDetect->posCurr.y = -1 * pInstForCollisionDetect->scale - PLATFORM_HEIGHT;
+					pInstForCollisionDetect->posCurr.y = -1 * pInstForCollisionDetect->scale - CurPlatformHeight;
 				}
 			}
 			else
@@ -168,7 +184,7 @@ Status PlayerCollision(insNode* pinsNode)
 				if (jumpCheck == 0)
 				{
 					pInstForCollisionDetect->velCurr.y = 0.0f;
-					pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + PLATFORM_HEIGHT;
+					pInstForCollisionDetect->posCurr.y = pInstForCollisionDetect->scale + CurPlatformHeight;
 				}
 			}
 		}
@@ -212,9 +228,7 @@ Status PlayerCollision(insNode* pinsNode)
 Status PlayerClear(insNode* pinsNode)
 {
 	GameObj* pInstOther = &(pinsNode->gameobj);
-	if (ClearUsed)
-		return OK;
-	ClearUsed = 1;
+
 	switch (pInstOther->pObject->type)
 	{
 	case OTYPE_BLOCK:
@@ -254,4 +268,24 @@ Status PlayerGetScore(int score)
 {
 	PlayerScore += score;
 	return OK;
+}
+
+int PlayerHPGet()
+{
+	return PlayerHP;
+}
+
+int PlayerScoreGet()
+{
+	return PlayerScore;
+}
+
+int PlayerBulletCountGet()
+{
+	return BulletCount;
+}
+
+Vector2D PlayerPosGet()
+{
+	return pHero->posCurr;
 }

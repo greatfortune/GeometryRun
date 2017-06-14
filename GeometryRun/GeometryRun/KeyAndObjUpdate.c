@@ -1,5 +1,15 @@
 #include "KeyAndObjUpdate.h"
 
+// 碰撞检测主对象，方便遍历时使用
+GameObj *pInstForCollisionDetect;
+
+float winMaxX, winMaxY, winMinX, winMinY;
+
+// ======================
+// 帧时间：Unity中的dt
+// ======================
+double frameTime;
+
 Status GetWinMaxMinXY()
 {
 	// ==========================================================================================
@@ -250,10 +260,10 @@ Status Visit_DrawObj(insNode* pinsNode)
 	GameObj* pInst = &(pinsNode->gameobj);
 
 	// 跳过非活动对象
-	if ((pInst->flag & FLAG_ACTIVE) == 0)
+	if (pInst->flag == FLAG_INACTIVE)
 		return OK;
 	// 制造一闪一闪的效果
-	if (pInst == pHero && isProtected)
+	if (pInst->pObject->type == OTYPE_PLAYER && isProtected)
 	{
 		ProtectCur += 1;
 		if (ProtectCur >= MaxProtectCur)

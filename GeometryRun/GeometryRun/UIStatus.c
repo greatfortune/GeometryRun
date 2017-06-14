@@ -1,5 +1,17 @@
 #include "UIStatus.h"
 
+float defaultUIStatusScale, defaultUINumber;	// ³ß´ç
+
+static GameObj *pUINumber_HP, *pUINumber_Bullet, *pUINumber_Score[3];
+
+static Vector2D UIStatusPos;
+static Vector2D UINumberPos_Level_HP, UINumberPos_Level_Bullet;
+static Vector2D UINumberPos_Unlimited_HP, UINumberPos_Unlimited_Bullet, UINumberPos_Unlimited_Score[3];
+
+static float iniY, HP_Level_iniX, Bullet_Level_iniX, offX;
+static float HP_Unlimited_iniX, Bullet_Unlimited_iniX, Score_Unlimited_iniX;
+static int UIScore[SIZE_SCORE];
+
 Status UIStatusLoad()
 {
 	// ========================
@@ -125,6 +137,7 @@ Status UIStatusLoad()
 Status UIStatusStart()
 {
 	int i = 0;
+	defaultUIStatusScale = 400.0f, defaultUINumber = 30.0f;
 	iniY = -250.0f, HP_Level_iniX = -300.0f, Bullet_Level_iniX = 120.0f, offX = 40.0f;
 	HP_Unlimited_iniX = -300.0f, Bullet_Unlimited_iniX = -40.0f, Score_Unlimited_iniX = 180.0f;
 	memset(UIScore, 0, sizeof(int)* 4);
@@ -135,18 +148,18 @@ Status UIStatusStart()
 	Vector2DSet(&UINumberPos_Unlimited_Bullet, Bullet_Unlimited_iniX, iniY);
 	for (i = 0; i < SIZE_SCORE; i++)
 		Vector2DSet(&UINumberPos_Unlimited_Score[i], Score_Unlimited_iniX + offX * i, iniY);
-	CreateGameObj(OTYPE_UI_STATUS, SIZE_UISTATUS, UIStatusPos, zero, 0, theBaseList, 0, NULL);
+	CreateGameObj(OTYPE_UI_STATUS, defaultUIStatusScale, UIStatusPos, zero, 0, theBaseList, 0, NULL);
 	if (Current == GS_L4)
 	{
-		pUINumber_HP = CreateGameObj(OTYPE_UI_NUMBER_0, SIZE_NUMBER, UINumberPos_Unlimited_HP, zero, 0, theBaseList, 0, NULL);
-		pUINumber_Bullet = CreateGameObj(OTYPE_UI_NUMBER_0, SIZE_NUMBER, UINumberPos_Unlimited_Bullet, zero, 0, theBaseList, 0, NULL);
+		pUINumber_HP = CreateGameObj(OTYPE_UI_NUMBER_0, defaultUINumber, UINumberPos_Unlimited_HP, zero, 0, theBaseList, 0, NULL);
+		pUINumber_Bullet = CreateGameObj(OTYPE_UI_NUMBER_0, defaultUINumber, UINumberPos_Unlimited_Bullet, zero, 0, theBaseList, 0, NULL);
 		for (i = 0; i < SIZE_SCORE; i++)
-			pUINumber_Score[i] = CreateGameObj(OTYPE_UI_NUMBER_0, SIZE_NUMBER, UINumberPos_Unlimited_Score[i], zero, 0, theBaseList, 0, NULL);
+			pUINumber_Score[i] = CreateGameObj(OTYPE_UI_NUMBER_0, defaultUINumber, UINumberPos_Unlimited_Score[i], zero, 0, theBaseList, 0, NULL);
 	}
 	else
 	{
-		pUINumber_HP = CreateGameObj(OTYPE_UI_NUMBER_0, SIZE_NUMBER, UINumberPos_Level_HP, zero, 0, theBaseList, 0, NULL);
-		pUINumber_Bullet = CreateGameObj(OTYPE_UI_NUMBER_0, SIZE_NUMBER, UINumberPos_Level_Bullet, zero, 0, theBaseList, 0, NULL);
+		pUINumber_HP = CreateGameObj(OTYPE_UI_NUMBER_0, defaultUINumber, UINumberPos_Level_HP, zero, 0, theBaseList, 0, NULL);
+		pUINumber_Bullet = CreateGameObj(OTYPE_UI_NUMBER_0, defaultUINumber, UINumberPos_Level_Bullet, zero, 0, theBaseList, 0, NULL);
 	}
 
 	return OK;
@@ -155,42 +168,50 @@ Status UIStatusStart()
 Status UIStatusUpdate()
 {
 	int i;
+	int CurPlayerHP = PlayerHPGet();
+	int CurPlayerCountBullet = PlayerBulletCountGet();
+	int CurPlayerScore = PlayerScoreGet();
 	if (Current != GS_L4)
 	{
-		if (PlayerHP != pUINumber_HP->pObject->type - OTYPE_UI_NUMBER_0)
+		if (CurPlayerHP != pUINumber_HP->pObject->type - OTYPE_UI_NUMBER_0)
 		{
 			GameObjDelete(pUINumber_HP);
-			pUINumber_HP = CreateGameObj(OTYPE_UI_NUMBER_0 + PlayerHP, SIZE_NUMBER, UINumberPos_Level_HP, zero, 0, theBaseList, 0, NULL);
+			pUINumber_HP = CreateGameObj(OTYPE_UI_NUMBER_0 + CurPlayerHP, defaultUINumber, UINumberPos_Level_HP, zero, 0, theBaseList, 0, NULL);
 		}
-		if (BulletCount != pUINumber_Bullet->pObject->type - OTYPE_UI_NUMBER_0)
+		if (CurPlayerCountBullet != pUINumber_Bullet->pObject->type - OTYPE_UI_NUMBER_0)
 		{
 			GameObjDelete(pUINumber_Bullet);
-			pUINumber_Bullet = CreateGameObj(OTYPE_UI_NUMBER_0 + BulletCount, SIZE_NUMBER, UINumberPos_Level_Bullet, zero, 0, theBaseList, 0, NULL);
+			pUINumber_Bullet = CreateGameObj(OTYPE_UI_NUMBER_0 + CurPlayerCountBullet, defaultUINumber, UINumberPos_Level_Bullet, zero, 0, theBaseList, 0, NULL);
 		}
 	}
 	else
 	{
-		if (PlayerHP != pUINumber_HP->pObject->type - OTYPE_UI_NUMBER_0)
+		if (CurPlayerHP != pUINumber_HP->pObject->type - OTYPE_UI_NUMBER_0)
 		{
 			GameObjDelete(pUINumber_HP);
-			pUINumber_HP = CreateGameObj(OTYPE_UI_NUMBER_0 + PlayerHP, SIZE_NUMBER, UINumberPos_Unlimited_HP, zero, 0, theBaseList, 0, NULL);
+			pUINumber_HP = CreateGameObj(OTYPE_UI_NUMBER_0 + CurPlayerHP, defaultUINumber, UINumberPos_Unlimited_HP, zero, 0, theBaseList, 0, NULL);
 		}
-		if (BulletCount != pUINumber_Bullet->pObject->type - OTYPE_UI_NUMBER_0)
+		if (CurPlayerCountBullet != pUINumber_Bullet->pObject->type - OTYPE_UI_NUMBER_0)
 		{
 			GameObjDelete(pUINumber_Bullet);
-			pUINumber_Bullet = CreateGameObj(OTYPE_UI_NUMBER_0 + BulletCount, SIZE_NUMBER, UINumberPos_Unlimited_Bullet, zero, 0, theBaseList, 0, NULL);
+			pUINumber_Bullet = CreateGameObj(OTYPE_UI_NUMBER_0 + CurPlayerCountBullet, defaultUINumber, UINumberPos_Unlimited_Bullet, zero, 0, theBaseList, 0, NULL);
 		}
-		UIScore[0] = PlayerScore / 1000 % 10;
-		UIScore[1] = PlayerScore / 100 % 10;
-		UIScore[2] = PlayerScore / 10 % 10;
-		UIScore[3] = PlayerScore % 10;
+		UIScore[0] = CurPlayerScore / 1000 % 10;
+		UIScore[1] = CurPlayerScore / 100 % 10;
+		UIScore[2] = CurPlayerScore / 10 % 10;
+		UIScore[3] = CurPlayerScore % 10;
 
 		for (i = 0; i < SIZE_SCORE; i++)
 			if (UIScore[i] != pUINumber_Score[i]->pObject->type - OTYPE_UI_NUMBER_0)
 				{
 					GameObjDelete(pUINumber_Score[i]);
-					pUINumber_Score[i] = CreateGameObj(OTYPE_UI_NUMBER_0 + UIScore[i], SIZE_NUMBER, UINumberPos_Unlimited_Score[i], zero, 0, theBaseList, 0, NULL);
+					pUINumber_Score[i] = CreateGameObj(OTYPE_UI_NUMBER_0 + UIScore[i], defaultUINumber, UINumberPos_Unlimited_Score[i], zero, 0, theBaseList, 0, NULL);
 				}
 	}
 	return OK;
+}
+
+float UIStatusScaleGet()
+{
+	return defaultUIStatusScale;
 }

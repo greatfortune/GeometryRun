@@ -1,21 +1,22 @@
-#ifndef BLOCK_H
-#define BLOCK_H
+#pragma once
 
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
 
-#define SIZE_BLOCK 30.0f		// 障碍物尺寸
-#define MOVE_MAXVELOCITY_BLOCK 300.0f	// 障碍物最大移动速度
-
-// 障碍物默认速度（与关卡相关）
-Vector2D defaultBlockVel;
-
 Status BlockLoad();
 
-Status BlockStart(float velx);
+Status BlockStart();
 
 Status BlockUpdate(GameObj* pInst);
 
 Status BlockCollision(insNode* pinsNode);
 
-#endif
+GameObj* BlockCreateAtPosWithVel(Vector2D blockPos, Vector2D blockVel);
+
+GameObj* BlockCreateAtPos(Vector2D blockPos);
+
+float BlockScaleGet();
+
+Status BlockDefaultVelSet(float vx, float vy);
+
+Status BlockDefaultVxChange(float change);

@@ -7,19 +7,17 @@
 #include "Boss2.h"
 #include "Pause.h"
 #include "SoundSystem.h"
-#include "fmod.h"
 
 #define FLAG_IMPORTANTKEY 2
 
-float winMaxX, winMaxY, winMinX, winMinY;
-
+extern float winMaxX, winMaxY, winMinX, winMinY;
 // 碰撞检测主对象，方便遍历时使用
-GameObj *pInstForCollisionDetect;
+extern GameObj *pInstForCollisionDetect;
 
 // ======================
 // 帧时间：Unity中的dt
 // ======================
-double frameTime;
+extern double frameTime;
 
 Status GetWinMaxMinXY();
 

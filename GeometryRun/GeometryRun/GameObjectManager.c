@@ -6,6 +6,13 @@ Purpose:		游戏对象管理 */
 
 #include "GameObjectManager.h"
 
+// 游戏对象链表
+GameObjBaseList theBaseList;
+Vector2D zero;
+// 用于调试输出对象类型名称
+static char ObjTypeName[OTYPE_COUNT][20];
+
+
 static Status GetpBaseNodeWithType(unsigned long theType, GameObjBaseList L, baseNode** ppBaseNode);
 
 static Status GetpBaseNodeWithType(unsigned long theType, GameObjBaseList L, baseNode** ppBaseNode)

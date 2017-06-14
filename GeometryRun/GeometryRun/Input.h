@@ -54,10 +54,10 @@ enum {
 	KeyVolumeStop,
 	KeyNUM    // 总放在最后一个
 };
-int KeyPressed[KeyNUM];
+extern int KeyPressed[KeyNUM];
 
-POINT mousPos;
-int posType;
+extern POINT mousPos;
+extern int posType;
 
  //------------------------------------------------------------------------------
  // Public Functions:

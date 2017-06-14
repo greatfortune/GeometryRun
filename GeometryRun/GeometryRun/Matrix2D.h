@@ -1,5 +1,4 @@
-#ifndef MATRIX2D_H
-#define MATRIX2D_H
+#pragma once
 
 #define PI 3.1415926535897932384626433832795
 
@@ -51,6 +50,3 @@ void Matrix2DRotRad(Matrix2D *pResult, float Angle);
 pResult = pMtx * pVec
 */
 void Matrix2DMultVec(Vector2D *pResult, Matrix2D *pMtx, Vector2D *pVec);
-
-
-#endif

@@ -18,9 +18,6 @@ void Ini_Menu(void)
 
 	BackGroundStart();
 
-	// 对象实例化：
-	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
-
 }
 
 void Update_Menu(void)

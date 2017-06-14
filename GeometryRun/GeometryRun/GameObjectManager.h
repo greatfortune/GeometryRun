@@ -3,9 +3,7 @@ File Name:	GameObjectManager.h
 Author:		黄嘉维
 Date:
 Purpose:		游戏对象管理 */
-
-#ifndef _GameObjectManager
-#define _GameObjectManager
+#pragma once
 
 #define OK 1
 #define FLAG_ACTIVE 1
@@ -118,11 +116,8 @@ typedef struct
 }GameObjBaseNode, *GameObjBaseList;
 
 // 游戏对象链表
-GameObjBaseList theBaseList;
-Vector2D zero;
-
-
-
+extern GameObjBaseList theBaseList;
+extern Vector2D zero;
 // 用于调试输出对象类型名称
 static char ObjTypeName[OTYPE_COUNT][20];
 
@@ -159,5 +154,3 @@ Status SetProperty(Property* theProperty, char* name, int value);
 Status SetObjSpeed(GameObj* theObj, Vector2D theVel);
 
 Status AddObjSpeed(GameObj* theObj, Vector2D theVel);
-
-#endif 

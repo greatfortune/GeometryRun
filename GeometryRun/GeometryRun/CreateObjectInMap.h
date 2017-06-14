@@ -8,12 +8,14 @@
 #pragma once
 
 #include "GameObjectManager.h"
+#include "KeyAndObjUpdate.h"
 #include "Block.h"
 #include "Platform.h"
 #include "Boss2.h"
 
 #define CreateMethods 8
-float(*CreateObjInMapRamdom[CreateMethods])(float);
+
+extern float(*CreateObjInMapRamdom[CreateMethods])(float);
 
 Status IniCreateRandomArrays();
 

@@ -13,18 +13,17 @@
 #include "GameStateList.h"
 #include "input.h"
 
-#define SIZE_PAUSE 40.0f	// ÔÝÍ£°´Å¥³ß´ç
+extern int isPaused;
+extern int endPause;
+extern int pauseCreated;
+extern clock_t pauseStartTime;
+extern clock_t pauseEndTime;
+extern Vector2D iniPosition_Pause;
 
-int isPaused;
-int endPause;
-int pauseCreated;
-clock_t pauseStartTime;
-clock_t pauseEndTime;
-
-Vector2D iniPosition_Pause;
-
-GameObj *pPause;
+extern GameObj *pPause;
 
 Status PauseLoad();
 
 Status PauseStart();
+
+GameObj* PauseCreate();

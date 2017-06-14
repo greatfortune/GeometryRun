@@ -1,14 +1,7 @@
-#ifndef BULLET_H
-#define BULLET_H
-
+#pragma once
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
 #include "Boss2.h"
-
-#define SIZE_BULLET 9.0f		// 子弹尺寸
-
-// 子弹速度
-Vector2D Velocity_Bullet;
 
 Status BulletLoad();
 
@@ -18,4 +11,6 @@ Status BulletUpdate(GameObj* pInst);
 
 Status BulletCollision(insNode* pinsNode);
 
-#endif
+GameObj* BulletCreateAtPos(Vector2D bulletPos);
+
+GameObj* BulletCreateAtPosWithVel(Vector2D bulletPos, Vector2D bulletVel);

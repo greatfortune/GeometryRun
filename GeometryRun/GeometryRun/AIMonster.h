@@ -2,17 +2,24 @@
 
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
-
-#define SIZE_AIMONSTER 30.0f		// 怪物尺寸
+#include "Player.h"
 
 // 怪物默认速度（与关卡相关）
-Vector2D defaultAIMonsterVel;
-float defaultAIMonsterVelyABS;		// 纵轴移动速度绝对值，可更改
+extern Vector2D defaultAIMonsterVel;
+extern float defaultAIMonsterVelyABS;		// 纵轴移动速度绝对值，可更改
 
 Status AIMonsterLoad();
 
-Status AIMonsterStart(float velx);
+Status AIMonsterStart();
 
 Status AIMonsterUpdate(GameObj* pInst);
 
 Status AIMonsterCollision(insNode* pinsNode);
+
+GameObj* AIMonsterCreateAtPos(Vector2D aimonsterPos);
+
+Status AIMonsterDefaultVelSet(float vx, float vy);
+
+Status AIMonsterDefaultVxChange(float change);
+
+Status AIMonsterDefaultVelyABSChange(float change);

@@ -7,7 +7,6 @@
 */
 
 #include "SoundSystem.h"
-#include <Windows.h>
 
 void SoundSystemLoad(void)
 {

@@ -1,5 +1,4 @@
-#ifndef BOSS2_H
-#define BOSS2_H
+#pragma once
 
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
@@ -9,27 +8,11 @@
 #include "AIMonster.h"
 #include "BossBullet.h"
 
-#define SIZE_BOSS2 45.0f		// boss尺寸
-
 // Boss对象：在一定时间后产生且独特，故单独声明，生成Boss对象时需为pBoss赋值
-GameObj* pBoss2;
+extern GameObj* pBoss2;
 
 // Boss2的状态
-int Boss2Alive;		// Boss生存状态，Level4中用到
-int Boss2Status;
-float Boss2SkillCycle;
-int Boss2HP, Boss2AngerHP, Boss2MaxHP;
-// 上下巡逻范围
-float Boss2PatrolMaxY, Boss2PatrolMinY;
-// 进入的距离
-float Boss2EnterX, Boss2ImpactX;
-Vector2D Boss2IniPos;
-Vector2D Boss2EnterVel, Boss2MoveUpward, Boss2MoveDownward;
-Vector2D Boss2ImpactVelLeft, Boss2ImpactVelRight;
-float Boss2ImpactSpeed;
-
-// Boss2上一次使用的技能
-int Boss2LastSkill;
+extern int Boss2Alive;		// Boss生存状态，Level4中用到
 
 // Boss2的技能
 enum boss2Skills{
@@ -41,8 +24,6 @@ enum boss2Skills{
 };
 
 typedef Status (*BossSkills)(float curTime);
-BossSkills boss2skills[B2SKILL_Count];
-int Boss2SkillCount;
 
 // Boss2的状态
 enum boss2Status
@@ -60,7 +41,7 @@ Status Boss2Load();
 
 Status Boss2Ini();
 
-Status Boss2Start(int bossMaxHP);
+Status Boss2Start();
 
 Status Boss2Update(GameObj* pInst);
 
@@ -84,4 +65,10 @@ Status Boss2Dead();
 
 Status Boss2GetHurt();
 
-#endif
+GameObj* Boss2Create();
+
+float Boss2ScaleGet();
+
+Status Boss2MaxHPSet(int boss2HP);
+
+Status Boss2MaxHPChange(int change);

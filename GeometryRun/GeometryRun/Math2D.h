@@ -1,5 +1,4 @@
-#ifndef MATH2D_H
-#define MATH2D_H
+#pragma once
 
 #include "Vector2D.h"
 
@@ -27,5 +26,3 @@ Rectangle1: 中心pRect1，宽度Width1，高度Height1
 */
 int StaticRectToStaticRect(Vector2D *pRect0, float Width0, float Height0, Vector2D *pRect1, float Width1, float Height1);
 
-
-#endif

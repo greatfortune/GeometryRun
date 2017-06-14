@@ -1,5 +1,9 @@
 #include "AIMonster.h"
-#include "Player.h"
+
+// 怪物默认速度（与关卡相关）
+Vector2D defaultAIMonsterVel;
+float defaultAIMonsterVelyABS;		// 纵轴移动速度绝对值，可更改
+static float defaultAIMonsterScale;
 
 Status AIMonsterLoad()
 {
@@ -34,16 +38,18 @@ Status AIMonsterLoad()
 	return OK;
 }
 
-Status AIMonsterStart(float velx)
+Status AIMonsterStart()
 {
-	Vector2DSet(&defaultAIMonsterVel, velx, 0.0f);
+	Vector2DSet(&defaultAIMonsterVel, -10.0f, 0.0f);
 	defaultAIMonsterVelyABS = 100.0f;
+	defaultAIMonsterScale = 30.0f;
 	return OK;
 }
 
 Status AIMonsterUpdate(GameObj* pInst)
 {
-	if (pInst->posCurr.y > pHero->posCurr.y)
+	Vector2D CurPlayerPos = PlayerPosGet();
+	if (pInst->posCurr.y > CurPlayerPos.y)
 		pInst->velCurr.y = -1 * defaultAIMonsterVelyABS;
 	else
 		pInst->velCurr.y = defaultAIMonsterVelyABS;
@@ -59,3 +65,28 @@ Status AIMonsterCollision(insNode* pinsNode)
 {
 	return OK;
 }
+
+GameObj* AIMonsterCreateAtPos(Vector2D aimonsterPos)
+{
+	return CreateGameObj(OTYPE_AIMONSTER, defaultAIMonsterScale, aimonsterPos, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
+}
+
+Status AIMonsterDefaultVelSet(float vx, float vy)
+{
+	Vector2DSet(&defaultAIMonsterVel, vx, vy);
+	return OK;
+}
+
+Status AIMonsterDefaultVelyABSChange(float change)
+{
+	defaultAIMonsterVelyABS += change;
+	return OK;
+}
+
+Status AIMonsterDefaultVxChange(float change)
+{
+	defaultAIMonsterVel.x += change;
+	return OK;
+}
+
+

@@ -1,5 +1,12 @@
 #include "TimeManager.h"
 
+static Timer Timers[MaxTimers];
+static int timerCount;
+
+// 关卡过去的时间
+float passTime;
+
+
 Status TimerIni(clock_t* LevelTime)
 {
 	int i;
@@ -85,6 +92,77 @@ Status CreateOneObjAtTime(float theTime, unsigned long theType, float scale, Vec
 		}
 	}
 	return ERROR;
+}
+
+Status CreateBlockAtTimeWithPos(float theTime, Vector2D Pos)
+{
+	int i;
+	for (i = 0; i < MaxTimers; i++)
+	{
+		if (Timers[i].flag == FLAG_INACTIVE)
+		{
+			timerCount++;
+			Timers[i].flag = FLAG_ACTIVE;
+			Timers[i].type = TTYPE_BLOCK_WITHPOS;
+			Timers[i].time = theTime;
+			Timers[i].data.iniPos = Pos;
+			return OK;
+		}
+	}
+	return OK;
+}
+
+Status CreateMonsterAtTimeWithPos(float theTime, Vector2D Pos)
+{
+	int i;
+	for (i = 0; i < MaxTimers; i++)
+	{
+		if (Timers[i].flag == FLAG_INACTIVE)
+		{
+			timerCount++;
+			Timers[i].flag = FLAG_ACTIVE;
+			Timers[i].type = TTYPE_MONSTER_WITHPOS;
+			Timers[i].time = theTime;
+			Timers[i].data.iniPos = Pos;
+			return OK;
+		}
+	}
+	return OK;
+}
+
+Status CreateAIMonsterAtTimeWithPos(float theTime, Vector2D Pos)
+{
+	int i;
+	for (i = 0; i < MaxTimers; i++)
+	{
+		if (Timers[i].flag == FLAG_INACTIVE)
+		{
+			timerCount++;
+			Timers[i].flag = FLAG_ACTIVE;
+			Timers[i].type = TTYPE_AIMONSTER_WITHPOS;
+			Timers[i].time = theTime;
+			Timers[i].data.iniPos = Pos;
+			return OK;
+		}
+	}
+	return OK;
+}
+
+Status CreateBoss2AtTime(float theTime)
+{
+	int i;
+	for (i = 0; i < MaxTimers; i++)
+	{
+		if (Timers[i].flag == FLAG_INACTIVE)
+		{
+			timerCount++;
+			Timers[i].flag = FLAG_ACTIVE;
+			Timers[i].type = TTYPE_BOSS2;
+			Timers[i].time = theTime;
+			return OK;
+		}
+	}
+	return OK;
 }
 
 Status CreateOneObjAtTimeWithRange(float theTime, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir)
@@ -187,71 +265,83 @@ Status TimerUpdate(clock_t LevelTime)
 			{
 				switch (Timers[i].type)
 				{
-				//case TTYPE_BASEOBJ:
-				//{
-				//	CreateGameObjBase(Timers[i].properties.t_Type, Timers[i].properties.t_Mesh, Timers[i].properties.t_Texture, Timers[i].properties.t_L);
-				//	Timers[i].flag = FLAG_INACTIVE;
-				//	break;
-				//}
-				// 赘余
-				case TTYPE_OBJ:
-				{
-					theTD_obj = Timers[i].data.TDCreateOneObj.TD_obj;
-					theTD_static = Timers[i].data.TDCreateOneObj.TD_static;
-					if (theTD_obj.t_Type != OTYPE_BOSS2)
-						CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
-					else
-						pBoss2 = CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
-					Timers[i].flag = FLAG_INACTIVE;
-					break;
-				}
-				case TTYPE_OBJ_RANDOM:
-				{
-					theTD_obj = Timers[i].data.TDCreateOneObjRandomly.TD_obj;
-					theTD_random = Timers[i].data.TDCreateOneObjRandomly.TD_random;
-					GetRandomPosVelAndDir(&iniPos, &iniVel, &iniDir, theTD_random.iniMinX, theTD_random.iniMaxX, theTD_random.iniMinY, theTD_random.iniMaxY, theTD_random.iniMinVx, theTD_random.iniMaxVx, theTD_random.iniMinVy, theTD_random.iniMaxVy, theTD_random.iniMinDir, theTD_random.iniMaxDir);
-					if (theTD_obj.t_Type != OTYPE_BOSS2)
-						CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
-					else
-						pBoss2 = CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
-					Timers[i].flag = FLAG_INACTIVE;
-					break;
-				}
-				case TTYPE_SOMEOBJ:
-				{
-					theTD_obj = Timers[i].data.TDCreateSomeObjRandomly.TD_obj;
-					theTD_random = Timers[i].data.TDCreateSomeObjRandomly.TD_random;
-					for (j = 0; j < Timers[i].data.TDCreateSomeObjRandomly.amountToCreate; j++)
+					case TTYPE_OBJ:
 					{
+						theTD_obj = Timers[i].data.TDCreateOneObj.TD_obj;
+						theTD_static = Timers[i].data.TDCreateOneObj.TD_static;
+						if (theTD_obj.t_Type != OTYPE_BOSS2)
+							CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
+						else
+							pBoss2 = CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
+						break;
+					}
+					case TTYPE_OBJ_RANDOM:
+					{
+						theTD_obj = Timers[i].data.TDCreateOneObjRandomly.TD_obj;
+						theTD_random = Timers[i].data.TDCreateOneObjRandomly.TD_random;
 						GetRandomPosVelAndDir(&iniPos, &iniVel, &iniDir, theTD_random.iniMinX, theTD_random.iniMaxX, theTD_random.iniMinY, theTD_random.iniMaxY, theTD_random.iniMinVx, theTD_random.iniMaxVx, theTD_random.iniMinVy, theTD_random.iniMaxVy, theTD_random.iniMinDir, theTD_random.iniMaxDir);
-						printf("test 0 iniMaxX: %.2f\n", theTD_random.iniMaxX);
-						printf("max x: %.2f\n", iniPos.x);
-						CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, iniPos, iniVel, iniDir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
+					
+						if (theTD_obj.t_Type != OTYPE_BOSS2)
+							CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
+						else
+							pBoss2 = CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
+						break;
 					}
-					Timers[i].flag = FLAG_INACTIVE;
-					break;
-				}
-				case TTYPE_ADDSPEED:
-				{
-					theObj = Timers[i].data.TDChangeSpeed.t_obj;
-					if (theObj->flag == FLAG_ACTIVE)
+					case TTYPE_SOMEOBJ:
 					{
-						printf("ofvx = %.1f, ofvy = %.1f\n", Timers[i].data.TDChangeSpeed.Offset_Vx, Timers[i].data.TDChangeSpeed.Offset_Vy);
-						Timers[i].data.TDChangeSpeed.t_obj->velCurr.x += Timers[i].data.TDChangeSpeed.Offset_Vx;
-						Timers[i].data.TDChangeSpeed.t_obj->velCurr.y += Timers[i].data.TDChangeSpeed.Offset_Vy;
+						theTD_obj = Timers[i].data.TDCreateSomeObjRandomly.TD_obj;
+						theTD_random = Timers[i].data.TDCreateSomeObjRandomly.TD_random;
+						for (j = 0; j < Timers[i].data.TDCreateSomeObjRandomly.amountToCreate; j++)
+						{
+							GetRandomPosVelAndDir(&iniPos, &iniVel, &iniDir, theTD_random.iniMinX, theTD_random.iniMaxX, theTD_random.iniMinY, theTD_random.iniMaxY, theTD_random.iniMinVx, theTD_random.iniMaxVx, theTD_random.iniMinVy, theTD_random.iniMaxVy, theTD_random.iniMinDir, theTD_random.iniMaxDir);
+							printf("test 0 iniMaxX: %.2f\n", theTD_random.iniMaxX);
+							printf("max x: %.2f\n", iniPos.x);
+							CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, iniPos, iniVel, iniDir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
+						}
+						break;
 					}
-					break;
-				}
-				case TTYPE_SWITCHSCENE:
-				{
-					Next = Timers[i].data.nextScene;
-					break;
-				}
-
-				default:
+					case TTYPE_ADDSPEED:
+					{
+						theObj = Timers[i].data.TDChangeSpeed.t_obj;
+						if (theObj->flag == FLAG_ACTIVE)
+						{
+							printf("ofvx = %.1f, ofvy = %.1f\n", Timers[i].data.TDChangeSpeed.Offset_Vx, Timers[i].data.TDChangeSpeed.Offset_Vy);
+							Timers[i].data.TDChangeSpeed.t_obj->velCurr.x += Timers[i].data.TDChangeSpeed.Offset_Vx;
+							Timers[i].data.TDChangeSpeed.t_obj->velCurr.y += Timers[i].data.TDChangeSpeed.Offset_Vy;
+						}
+						break;
+					}
+					case TTYPE_SWITCHSCENE:
+					{
+						Next = Timers[i].data.nextScene;
+						break;
+					}
+					case TTYPE_BLOCK_WITHPOS:
+					{
+						BlockCreateAtPos(Timers[i].data.iniPos);
+						break;
+					}
+					case TTYPE_MONSTER_WITHPOS:
+					{
+						MonsterCreateAtPos(Timers[i].data.iniPos);
+						break;
+					}
+					case TTYPE_AIMONSTER_WITHPOS:
+					{
+						AIMonsterCreateAtPos(Timers[i].data.iniPos);
+						break;
+					}
+					case TTYPE_BOSS2:
+					{
+						pBoss2 = Boss2Create();
+						break;
+					}
+					default:
 						break;
 				}
+				Timers[i].flag = FLAG_INACTIVE;
 			}
+
 		}
 	}
 	return OK;
@@ -265,42 +355,3 @@ Status TimerFree()
 		Timers[i].flag = FLAG_INACTIVE;
 	return OK;
 }
-
-
-//static Status SetCreateRange(Timer *pTimer, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
-//
-//static Status SetBaseObjToCreate(Timer *pTimer, unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L);
-//
-//static Status SetObjToCreate(Timer *pTimer, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties);
-//
-//static float GetRanFloatFromTo(float min, float max);
-//
-//static Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *theDir, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
-
-//static Status SetBaseObjToCreate(Timer *pTimer, unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L)
-//{
-//	pTimer->properties.t_BaseType = theType;
-//	pTimer->properties.t_Mesh = theMesh;
-//	pTimer->properties.t_Texture = theTexture;
-//	pTimer->properties.t_L = L;
-//	return OK;
-//}
-// 赘余
-
-//Status CreateBaseObjAtTime(unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L, float theTime)
-//{
-//	int i;
-//	for (i = 0; i < MaxTimers; i++)
-//	{
-//		if (Timers[i].flag == FLAG_INACTIVE)
-//		{
-//			timerCount++;
-//			Timers[i].flag = FLAG_ACTIVE;
-//			Timers[i].type = TTYPE_BASEOBJ;
-//			Timers[i].time = theTime;
-//			SetBaseObjToCreate(&Timers[i], theType, theMesh, theTexture, L);
-//		}
-//	}
-//	return ERROR;
-//}
-// 赘余

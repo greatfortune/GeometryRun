@@ -10,6 +10,12 @@
 #include "Input.h"
 #include "GameStateList.h"
 
+int KeyPressed[KeyNUM];
+
+POINT mousPos;
+int posType;
+
+
  //------------------------------------------------------------------------------
  // Private Consts:
  //------------------------------------------------------------------------------

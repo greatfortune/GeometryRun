@@ -1,5 +1,10 @@
 #include "Monster.h"
 
+// 怪物默认速度（与关卡相关）
+static Vector2D defaultMonsterVel;
+
+static float defaultMonsterScale;
+
 Status MonsterLoad()
 {
 	// ========================
@@ -33,9 +38,10 @@ Status MonsterLoad()
 	return OK;
 }
 
-Status MonsterStart(float velx)
+Status MonsterStart()
 {
-	Vector2DSet(&defaultMonsterVel, velx, 0.0f);
+	defaultMonsterScale = 30.0f;
+	Vector2DSet(&defaultMonsterVel, -300.0f, 0.0f);
 	return OK;
 }
 
@@ -50,5 +56,32 @@ Status MonsterUpdate(GameObj* pInst)
 
 Status MonsterCollision(insNode* pinsNode)
 {
+	return OK;
+}
+
+GameObj* MonsterCreateAtPosWithVel(Vector2D monsterPos, Vector2D monsterVel)
+{
+	return CreateGameObj(OTYPE_MONSTER, defaultMonsterScale, monsterPos, monsterVel, 0, theBaseList, 0, NULL);
+}
+
+GameObj* MonsterCreateAtPos(Vector2D monsterPos)
+{
+	return CreateGameObj(OTYPE_MONSTER, defaultMonsterScale, monsterPos, defaultMonsterVel, 0, theBaseList, 0, NULL);
+}
+
+float MonsterScaleGet()
+{
+	return defaultMonsterScale;
+}
+
+Status MonsterDefaultVelSet(float vx, float vy)
+{
+	Vector2DSet(&defaultMonsterVel, vx, vy);
+	return OK;
+}
+
+Status MonsterDefaultVxChange(float change)
+{
+	defaultMonsterVel.x += change;
 	return OK;
 }

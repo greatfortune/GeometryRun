@@ -1,5 +1,4 @@
-#ifndef VECTOR2_H
-#define VECTOR2_H
+#pragma once
 
 #include <math.h>
 
@@ -93,4 +92,4 @@ void Vector2DFromAngleRad(Vector2D *pResult, float angle);
 计算两个点之间的角度，第一个点作为原点，单位为角度数
 */
 float Vector2DAngle(Vector2D *pVec0, Vector2D *pVec1);
-#endif
+

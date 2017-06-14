@@ -14,6 +14,7 @@
  * 返回占用时间：7s
  */
 
+float(*CreateObjInMapRamdom[CreateMethods])(float);
 
 Status IniCreateRandomArrays()
 {
@@ -30,30 +31,15 @@ Status IniCreateRandomArrays()
 
 float CreateObjInMap0(float startTime)
 {
-	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, 245 };
-	Vector2D pos2 = { maxX, 175 };
-	Vector2D pos3 = { maxX, 105 };
-	Vector2D pos4 = { maxX, 35 };
-	Vector2D pos5 = { maxX, -35 };
-	Vector2D pos6 = { maxX, -105 };
-	Vector2D pos7 = { maxX, -175 };
-	Vector2D pos8 = { maxX, -245 };
-	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.5f, OTYPE_MONSTER, SIZE_MONSTER, pos2, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.0f, OTYPE_MONSTER, SIZE_MONSTER, pos3, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.5f, OTYPE_MONSTER, SIZE_MONSTER, pos4, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 2.0f, OTYPE_MONSTER, SIZE_MONSTER, pos5, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 2.5f, OTYPE_MONSTER, SIZE_MONSTER, pos6, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 3.0f, OTYPE_MONSTER, SIZE_MONSTER, pos7, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 3.5f, OTYPE_MONSTER, SIZE_MONSTER, pos8, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 4.0f, OTYPE_MONSTER, SIZE_MONSTER, pos7, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 4.5f, OTYPE_MONSTER, SIZE_MONSTER, pos6, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 5.0f, OTYPE_MONSTER, SIZE_MONSTER, pos5, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 5.5f, OTYPE_MONSTER, SIZE_MONSTER, pos4, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 6.0f, OTYPE_MONSTER, SIZE_MONSTER, pos3, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 6.5f, OTYPE_MONSTER, SIZE_MONSTER, pos2, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 7.0f, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultMonsterVel, 0, theBaseList, 0, NULL);
+	int i;
+	Vector2D pos[8];
+	for (i = 0; i < 8; i++)
+	{
+		Vector2DSet(&(pos[i]), winMaxX, 245 - 70 * i);
+		CreateMonsterAtTimeWithPos(startTime + 0.5f * i, pos[i]);
+	}
+	for (i = 6; i >= 0; i--)
+		CreateMonsterAtTimeWithPos(startTime + 0.5f * i + 4.0f, pos[i]);
 	return 7.0f;
 }
 
@@ -64,30 +50,16 @@ float CreateObjInMap0(float startTime)
  */
 float CreateObjInMap1(float startTime)
 {
-	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, 245 };
-	Vector2D pos2 = { maxX, 175 };
-	Vector2D pos3 = { maxX, 105 };
-	Vector2D pos4 = { maxX, 35 };
-	Vector2D pos5 = { maxX, -35 };
-	Vector2D pos6 = { maxX, -105 };
-	Vector2D pos7 = { maxX, -175 };
-	Vector2D pos8 = { maxX, -245 };
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.5f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.0f, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.5f, OTYPE_BLOCK, SIZE_BLOCK, pos4, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 2.0f, OTYPE_BLOCK, SIZE_BLOCK, pos5, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 2.5f, OTYPE_BLOCK, SIZE_BLOCK, pos6, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 3.0f, OTYPE_BLOCK, SIZE_BLOCK, pos7, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 3.5f, OTYPE_BLOCK, SIZE_BLOCK, pos8, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 4.0f, OTYPE_BLOCK, SIZE_BLOCK, pos7, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 4.5f, OTYPE_BLOCK, SIZE_BLOCK, pos6, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 5.0f, OTYPE_BLOCK, SIZE_BLOCK, pos5, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 5.5f, OTYPE_BLOCK, SIZE_BLOCK, pos4, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 6.0f, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 6.5f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 7.0f, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	int i;
+	Vector2D pos[8];
+	for (i = 0; i < 8; i++)
+	{
+		Vector2DSet(&(pos[i]), winMaxX, 245 - 70 * i);
+		CreateBlockAtTimeWithPos(startTime + 0.5f * i, pos[i]);
+	}
+	for (i = 6; i >= 0; i--)
+		CreateBlockAtTimeWithPos(startTime + 0.5f * i + 4.0f, pos[i]);
+	return 7.0f;
 	return 7.0f;
 }
 
@@ -98,17 +70,19 @@ float CreateObjInMap1(float startTime)
  */
 float CreateObjInMap2(float startTime)
 {
-	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, SIZE_BLOCK + 70.0f };
-	Vector2D pos2 = { maxX, -SIZE_BLOCK - PLATFORM_HEIGHT };
-	Vector2D pos3 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
-	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.5f, OTYPE_MONSTER, SIZE_MONSTER, pos3, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.5f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.1f, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.8f, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 2.3f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
+	float CurPlatformHeight = PlatformHeightGet();
+	float CurBlockScale = BlockScaleGet();
+	Vector2D pos1 = { winMaxX, CurBlockScale + 70.0f };
+	Vector2D pos2 = { winMaxX, -CurBlockScale - CurPlatformHeight };
+	Vector2D pos3 = { winMaxX, CurBlockScale + CurPlatformHeight };
+
+	CreateMonsterAtTimeWithPos(startTime, pos1);
+	CreateBlockAtTimeWithPos(startTime, pos2);
+	CreateMonsterAtTimeWithPos(startTime + 0.5f, pos3);
+	CreateBlockAtTimeWithPos(startTime + 0.5f, pos2);
+	CreateBlockAtTimeWithPos(startTime + 1.1f, pos3);
+	CreateMonsterAtTimeWithPos(startTime + 1.8f, pos1);
+	CreateBlockAtTimeWithPos(startTime + 2.3f, pos2);
 	return 2.3f;
 }
 
@@ -119,11 +93,13 @@ float CreateObjInMap2(float startTime)
  */
 float CreateObjInMap3(float startTime)
 {
-	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, SIZE_BLOCK + 20.0f };
-	Vector2D pos2 = { maxX, -SIZE_BLOCK - PLATFORM_HEIGHT };
-	CreateOneObjAtTime(startTime, OTYPE_MONSTER, SIZE_MONSTER, pos1, defaultMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
+	float CurBlockScale = BlockScaleGet();
+	float CurPlatformHeight = PlatformHeightGet();
+	Vector2D pos1 = { winMaxX, CurBlockScale + 20.0f };
+	Vector2D pos2 = { winMaxX, - CurBlockScale - CurPlatformHeight };
+
+	CreateMonsterAtTimeWithPos(startTime, pos1);
+	CreateBlockAtTimeWithPos(startTime, pos2);
 	return 0.0f;
 }
 
@@ -135,11 +111,12 @@ float CreateObjInMap3(float startTime)
  */
 float CreateObjInMap4(float startTime)
 {
-	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
-	Vector2D pos2 = { maxX, SIZE_BLOCK + 70.0f };
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
+	float CurBlockScale = BlockScaleGet();
+	float CurPlatformHeight = PlatformHeightGet();
+	Vector2D pos1 = { winMaxX, CurBlockScale + CurPlatformHeight };
+	Vector2D pos2 = { winMaxX, CurBlockScale + 70.0f };
+	CreateBlockAtTimeWithPos(startTime, pos1);
+	CreateBlockAtTimeWithPos(startTime, pos2);
 	return 0.0f;
 }
 
@@ -150,12 +127,13 @@ float CreateObjInMap4(float startTime)
  */
 float CreateObjInMap5(float startTime)
 {
-	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
-	Vector2D pos2 = { maxX, -SIZE_BLOCK - PLATFORM_HEIGHT };
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.6f, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.2f, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
+	float CurBlockScale = BlockScaleGet();
+	float CurPlatformHeight = PlatformHeightGet();
+	Vector2D pos1 = { winMaxX, CurBlockScale + CurPlatformHeight };
+	Vector2D pos2 = { winMaxX, -CurBlockScale - CurPlatformHeight };
+	CreateBlockAtTimeWithPos(startTime, pos1);
+	CreateBlockAtTimeWithPos(startTime + 0.6f, pos2);
+	CreateBlockAtTimeWithPos(startTime + 1.2f, pos1);
 	return 1.2f;
 }
 
@@ -166,15 +144,16 @@ float CreateObjInMap5(float startTime)
  */
 float CreateObjInMap6(float startTime)
 {
-	float maxX = AEGfxGetWinMaxX();
-	Vector2D pos1 = { maxX, SIZE_BLOCK + PLATFORM_HEIGHT };
-	Vector2D pos2 = { maxX, SIZE_BLOCK + 70.0f };
-	Vector2D pos3 = { maxX, -SIZE_BLOCK - PLATFORM_HEIGHT };
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime, OTYPE_BLOCK, SIZE_BLOCK, pos3, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime+1.0, OTYPE_BLOCK, SIZE_BLOCK, pos1, defaultBlockVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime+1.0, OTYPE_BLOCK, SIZE_BLOCK, pos2, defaultBlockVel, 0, theBaseList, 0, NULL);
+	float CurBlockScale = BlockScaleGet();
+	float CurPlatformHeight = PlatformHeightGet();
+	Vector2D pos1 = { winMaxX, CurBlockScale + CurPlatformHeight };
+	Vector2D pos2 = { winMaxX, CurBlockScale + 70.0f };
+	Vector2D pos3 = { winMaxX, -CurBlockScale - CurPlatformHeight };
+	CreateBlockAtTimeWithPos(startTime, pos1);
+	CreateBlockAtTimeWithPos(startTime, pos2);
+	CreateBlockAtTimeWithPos(startTime, pos3);
+	CreateBlockAtTimeWithPos(startTime + 1.0f, pos1);
+	CreateBlockAtTimeWithPos(startTime + 1.0f, pos2);
 	return 1.0f;
 }
 
@@ -188,10 +167,11 @@ float CreateObjInMap7(float startTime)
 	float maxX = AEGfxGetWinMaxX();
 	Vector2D pos1 = { maxX, 200.0f };
 	Vector2D pos2 = { maxX, -200.0f };
-	CreateOneObjAtTime(startTime, OTYPE_AIMONSTER, SIZE_AIMONSTER, pos1, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 0.6f, OTYPE_AIMONSTER, SIZE_AIMONSTER, pos2, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.2f, OTYPE_AIMONSTER, SIZE_AIMONSTER, pos1, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
-	CreateOneObjAtTime(startTime + 1.8f, OTYPE_AIMONSTER, SIZE_AIMONSTER, pos2, defaultAIMonsterVel, 0, theBaseList, 0, NULL);
+
+	CreateAIMonsterAtTimeWithPos(startTime, pos1);
+	CreateAIMonsterAtTimeWithPos(startTime + 0.6f, pos2);
+	CreateAIMonsterAtTimeWithPos(startTime + 1.2f, pos1);
+	CreateAIMonsterAtTimeWithPos(startTime + 1.8f, pos2);
 	return 1.8f;
 }
 
@@ -201,6 +181,6 @@ float CreateObjInMap7(float startTime)
  */
 float CreateBossInMap_Level2(float startTime)
 {
-	CreateOneObjAtTime(startTime, OTYPE_BOSS2, SIZE_BOSS2, Boss2IniPos, Boss2EnterVel, 0, theBaseList, 0, NULL);
+	CreateBoss2AtTime(startTime);
 	return 0.0f;
 }

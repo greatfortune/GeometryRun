@@ -32,7 +32,7 @@ void Ini0(void)
 	elpasedTime = 0;
 
 	// 对象实例化：
-	pImage = CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Images, iniVelocity_Images, 0, theBaseList, 0, NULL);
+	pImage = BackGroundCreateWithPosAndVel(iniPosition_Images, iniVelocity_Images);
 
 }
 

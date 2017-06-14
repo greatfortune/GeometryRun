@@ -1,12 +1,10 @@
-#ifndef BACKGROUND_H
-#define BACKGROUND_H
+#pragma once
 
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
 #include "GameStateList.h"
 #include "input.h"
-
-#define SIZE_BACKGROUND 400.0f	// 背景尺寸
+#include "UIStatus.h"
 
 enum {
 	BTYPE_MENU_START = 0,
@@ -29,13 +27,13 @@ enum {
 };
 
 // 仅在Level0与Help中控制动画播放
-GameObj* pImage;
-int xcurrentFrame;
-float elpasedTime;
+extern GameObj* pImage;
+extern int xcurrentFrame;
+extern float elpasedTime;
 
 // 初始坐标及速度
-Vector2D iniPosition_Background;
-Vector2D iniVelocity_Background;
+extern Vector2D iniPosition_Background;
+extern Vector2D iniVelocity_Background;
 
 Status BackGroundLoad();
 
@@ -47,4 +45,4 @@ Status mousIsInRect(int minX, int minY, int maxX, int maxY);
 
 int JudgeMousPos();
 
-#endif
+GameObj* BackGroundCreateWithPosAndVel(Vector2D thePos, Vector2D theVel);

@@ -24,11 +24,6 @@ void Ini_Lose(void)
 	// 获取当前关卡时间
 	//timeStart_level_Lose = clock();
 	BackGroundStart();
-	
-	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
-	
-
-
 }
 
 void Update_Lose(void)

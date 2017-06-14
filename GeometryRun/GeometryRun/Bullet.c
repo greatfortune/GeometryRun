@@ -1,5 +1,7 @@
 #include "Bullet.h"
 
+static Vector2D defaultBulletVel;
+static float defaultBulletScale;
 
 Status BulletLoad()
 {
@@ -21,7 +23,8 @@ Status BulletLoad()
 
 Status BulletStart()
 {
-	Vector2DSet(&Velocity_Bullet, 400.0f, 0.0f);
+	defaultBulletScale = 9.0f;
+	Vector2DSet(&defaultBulletVel, 400.0f, 0.0f);
 	return OK;
 }
 
@@ -75,6 +78,18 @@ Status BulletCollision(insNode* pinsNode)
 				GameObjDelete(pInstForCollisionDetect);
 			}
 		}
+		default:
+			break;
 	}
 	return OK;
+}
+
+GameObj* BulletCreateAtPos(Vector2D bulletPos)
+{
+	return CreateGameObj(OTYPE_BULLET, defaultBulletScale, bulletPos, defaultBulletVel, 0, theBaseList, 0, NULL);
+}
+
+GameObj* BulletCreateAtPosWithVel(Vector2D bulletPos, Vector2D bulletVel)
+{
+	return CreateGameObj(OTYPE_BULLET, defaultBulletScale, bulletPos, bulletVel, 0, theBaseList, 0, NULL);
 }

@@ -46,22 +46,19 @@ void Ini1(void)
 	timeStart_level1 = clock();
 
 	PlayerStart();
-	BlockStart(BlockVel);
+	BlockStart();
     PlatformStart();
 	BackGroundStart();
-	MonsterStart(MonsterVel);
+	MonsterStart();
 	BulletStart();
 	PauseStart();
 	UIStatusStart();
 	
+	BlockDefaultVelSet(BlockVel, 0);
+	MonsterDefaultVelSet(MonsterVel, 0);
 
 	// 播放音乐
 	SoundPlay(SOUND_1);
-
-	// 对象实例化：
-	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
-	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
-	CreateGameObj(OTYPE_PLATFORM, SIZE_PLATFORM, iniPosition_Platform, iniVelocity_Platform, 0, theBaseList, 0, NULL);
 
 	CreateObjInMap4(1.0f);
 	CreateObjInMap3(2.5f);
@@ -97,7 +94,7 @@ void Update1(void)
 	{
 		if (!pauseCreated)
 		{
-			pPause = CreateGameObj(OTYPE_PAUSE, SIZE_PAUSE, iniPosition_Pause, zero, 0, theBaseList, 0, NULL);
+			pPause = PauseCreate();
 			pauseCreated = TRUE;
 		}
 	}

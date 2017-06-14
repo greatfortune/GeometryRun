@@ -22,10 +22,6 @@ void Ini_Choose(void)
 	//timeStart_level_Lose = clock();
 	BackGroundStart();
 
-	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
-
-
-
 }
 
 void Update_Choose(void)

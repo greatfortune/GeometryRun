@@ -8,6 +8,17 @@
 * Purpose:		realize pause function
 */
 
+static float defaultPauseScale;
+
+int isPaused;
+int endPause;
+int pauseCreated;
+clock_t pauseStartTime;
+clock_t pauseEndTime;
+
+Vector2D iniPosition_Pause;
+
+GameObj *pPause;
 
 Status PauseLoad()
 {
@@ -26,10 +37,16 @@ Status PauseLoad()
 
 Status PauseStart()
 {
+	defaultPauseScale = 40.0f;
 	pPause = NULL;
 	isPaused = FALSE;
 	endPause = FALSE;
 	pauseCreated = FALSE;
 	Vector2DSet(&iniPosition_Pause, 0.0f, 150.0f);
 	return OK;
+}
+
+GameObj* PauseCreate()
+{
+	return CreateGameObj(OTYPE_PAUSE, defaultPauseScale, iniPosition_Pause, zero, 0, theBaseList, 0, NULL);
 }

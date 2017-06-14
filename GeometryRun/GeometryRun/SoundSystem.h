@@ -7,10 +7,9 @@
 */
 
 
-#ifndef SOUNDSYSTEM_H
-#define SOUNDSYSTEM_H
-
+#pragma once
 #include "fmod.h"
+#include <Windows.h>
 
 enum SOUND_LIST
 {
@@ -50,5 +49,3 @@ void SetVolume(const unsigned int soundList, float volume);
 float GetVolume(const unsigned int soundList);
 void SoundSystemExit(void);
 void SoundUpdate(void);
-
-#endif

@@ -25,8 +25,6 @@ void Ini_Pass(void)
 	//timeStart_level_Pass = clock();
 	BackGroundStart();
 
-	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
-
 }
 
 void Update_Pass(void)

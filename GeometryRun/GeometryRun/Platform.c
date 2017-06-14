@@ -1,5 +1,9 @@
 #include "Platform.h"
 
+static float defaultPlatformScale = 1000.0f;
+static Vector2D iniPosition_Platform;
+static Vector2D iniVelocity_Platform;
+
 Status PlatformLoad()
 {
 	// =======================
@@ -21,8 +25,10 @@ Status PlatformLoad()
 
 Status PlatformStart()
 {
+	defaultPlatformScale = 1000.0f;
 	iniPosition_Platform = zero;
 	Vector2DSet(&iniVelocity_Platform, -180.0f, 0.0f);
+	CreateGameObj(OTYPE_PLATFORM, defaultPlatformScale, iniPosition_Platform, iniVelocity_Platform, 0, theBaseList, 0, NULL);
 	return OK;
 }
 
@@ -33,4 +39,9 @@ Status PlatformUpdate(GameObj* pInst)
 	if (pInst->posCurr.x <= winMinX)
 		pInst->posCurr.x = 0.0f;
 	return OK;
+}
+
+float PlatformHeightGet()
+{
+	return defaultPlatformScale / 100.0f;
 }

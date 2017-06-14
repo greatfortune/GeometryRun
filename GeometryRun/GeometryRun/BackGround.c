@@ -1,5 +1,15 @@
 #include "BackGround.h"
 
+// 仅在Level0与Help中控制动画播放
+GameObj* pImage;
+int xcurrentFrame;
+float elpasedTime;
+
+// 初始坐标及速度
+Vector2D iniPosition_Background;
+Vector2D iniVelocity_Background;
+static float defaultBackgroundScale;
+
 Status BackGroundLoad()
 {
 	if (Current == GS_L0)
@@ -119,8 +129,15 @@ Status BackGroundLoad()
 
 Status BackGroundStart()
 {
-	iniPosition_Background = zero;
+	float CurUIStatusScale = UIStatusScaleGet();
+	defaultBackgroundScale = 400.0f;
+
+	if (Current >= GS_L1 && Current <= GS_L4)
+		Vector2DSet(&iniPosition_Background, 0.0f, CurUIStatusScale / 2.0f);
+	else
+		iniPosition_Background = zero;
 	Vector2DSet(&iniVelocity_Background, -180.0f, 0.0f);
+	CreateGameObj(OTYPE_BACKGROUND, defaultBackgroundScale, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
 	return OK;
 }
 
@@ -292,5 +309,10 @@ int JudgeMousPos()
 	default:
 		return -1;
 	}
+}
+
+GameObj* BackGroundCreateWithPosAndVel(Vector2D thePos, Vector2D theVel)
+{
+	return CreateGameObj(OTYPE_BACKGROUND, defaultBackgroundScale, thePos, theVel, 0, theBaseList, 0, NULL);
 }
 

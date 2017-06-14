@@ -1,5 +1,29 @@
 #include "Boss2.h"
 
+// Boss对象：在一定时间后产生且独特，故单独声明，生成Boss对象时需为pBoss赋值
+GameObj* pBoss2;
+
+// Boss2的状态
+int Boss2Alive;		// Boss生存状态，Level4中用到
+static float defaultBoss2Scale;
+static int Boss2Status;
+static float Boss2SkillCycle;
+static int Boss2HP, Boss2AngerHP, Boss2MaxHP;
+// 上下巡逻范围
+static float Boss2PatrolMaxY, Boss2PatrolMinY;
+// 进入的距离
+static float Boss2EnterX, Boss2ImpactX;
+static Vector2D Boss2IniPos;
+static Vector2D Boss2EnterVel, Boss2MoveUpward, Boss2MoveDownward;
+static Vector2D Boss2ImpactVelLeft, Boss2ImpactVelRight;
+static float Boss2ImpactSpeed;
+
+// Boss2上一次使用的技能
+static int Boss2LastSkill;
+
+static BossSkills boss2skills[B2SKILL_Count];
+static int Boss2SkillCount;
+
 Status Boss2Load()
 {
 	// ========================
@@ -42,10 +66,11 @@ Status Boss2Ini()
 	return OK;
 }
 
-Status Boss2Start(int bossMaxHP)
+Status Boss2Start()
 {
+	defaultBoss2Scale = 45.0f;
 	pBoss2 = NULL;
-	Boss2MaxHP = bossMaxHP;
+	Boss2MaxHP = 30;
 	Boss2Ini();
 	Boss2LastSkill = B2SKILL_CREATEBLOCKS;
 	Boss2ImpactSpeed = 60.0f;
@@ -166,17 +191,18 @@ Status Boss2Skill_CreateMonster(float curTime)
 	float iniFloat = 1.0f;
 	float iniMinX = winMaxX - 300.0f, iniMaxX = winMaxX, iniMinY = winMinY + 140.0f, iniMaxY = winMaxY - 140.0f, iniMinVx = -400.0f, iniMaxVx = -300.0f;
 	float iniMinVy = 0.0f, iniMaxVy = 0.0f, iniMinDir = -3.0f, iniMaxDir = 3.0f;
-
-	return CreateSomeObjAtSameTimeWithRange(curTime, 4, OTYPE_MONSTER, SIZE_MONSTER, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
+	float CurMonsterScale = MonsterScaleGet();
+	return CreateSomeObjAtSameTimeWithRange(curTime, 4, OTYPE_MONSTER, CurMonsterScale, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
 }
 
 Status Boss2Skill_CreateBlock(float curTime)
 {
+	float CurBlockScale = BlockScaleGet();
 	float iniFloat = 1.0f;
 	float iniMinX = winMaxX - 300.0f, iniMaxX = winMaxX, iniMinY = winMinY + 140.0f, iniMaxY = winMaxY - 140.0f, iniMinVx = -240.0f, iniMaxVx = -120.0f;
 	float iniMinVy = 0.0f, iniMaxVy = 0.0f, iniMinDir = 0.0f, iniMaxDir = 0.0f;
 
-	return CreateSomeObjAtSameTimeWithRange(curTime, 2, OTYPE_BLOCK, SIZE_BLOCK, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
+	return CreateSomeObjAtSameTimeWithRange(curTime, 2, OTYPE_BLOCK, CurBlockScale, theBaseList, 0, NULL, iniMinX, iniMaxX, iniMinY, iniMaxY, iniMinVx, iniMaxVx, iniMinVy, iniMaxVy, iniMinDir, iniMaxDir);
 
 }
 
@@ -189,8 +215,7 @@ Status Boss2Skill_Impact(float curTime)
 
 Status Boss2Skill_Bullet(float curTime)
 {
-	BossBulletIni();
-	CreateGameObj(OTYPE_BOSSBULLET, SIZE_BOSSBULLET, iniBossBulletPos, Velocity_BossBullet, BossBulletDir, theBaseList, 0, NULL);
+	BossBulletCreateAtDefaultPosWithDefaultVel();
 	return OK;
 }
 
@@ -216,8 +241,8 @@ Status Boss2UseSkillRandomly(float curTime)
 Status Boss2GetHurt()
 {
 	Boss2HP--;
-	if (PlayerHP <= 0)
-		PlayerDead();
+	if (Boss2HP <= 0)
+		Boss2Dead();
 	return OK;
 }
 
@@ -228,5 +253,27 @@ Status Boss2Dead(){
 		Next = GS_Pass;
 	else if (Current == GS_L3)
 		Next = GS_Win;
+	return OK;
+}
+
+GameObj* Boss2Create()
+{
+	return CreateGameObj(OTYPE_BOSS2, defaultBoss2Scale, Boss2IniPos, Boss2EnterVel, 0, theBaseList, 0, NULL);
+}
+
+float Boss2ScaleGet()
+{
+	return defaultBoss2Scale;
+}
+
+Status Boss2MaxHPSet(int boss2HP)
+{
+	Boss2HP = boss2HP;
+	return OK;
+}
+
+Status Boss2MaxHPChange(int change)
+{
+	Boss2HP += change;
 	return OK;
 }

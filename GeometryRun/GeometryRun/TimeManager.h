@@ -12,7 +12,11 @@ enum TimerType{
 	TTYPE_OBJ,
 	TTYPE_SOMEOBJ,
 	TTYPE_ADDSPEED,
-	TTYPE_SWITCHSCENE
+	TTYPE_SWITCHSCENE,
+	TTYPE_BLOCK_WITHPOS,
+	TTYPE_MONSTER_WITHPOS,
+	TTYPE_AIMONSTER_WITHPOS,
+	TTYPE_BOSS2
 };
 
 typedef struct{
@@ -58,6 +62,7 @@ typedef union{
 	TDataCreateOneObjRandomly TDCreateOneObjRandomly;
 	TDataCreateOneObj TDCreateOneObj;
 	TDataChangeSpeed TDChangeSpeed;
+	Vector2D iniPos;
 	int nextScene;
 }TimerData;
 // 此处改为联合体,按类型存储所需数据
@@ -69,11 +74,7 @@ typedef struct{
 	TimerData data;
 }Timer;
 
-Timer Timers[MaxTimers];
-int timerCount;
-
-// 关卡过去的时间
-float passTime;
+extern float passTime;
 
 Status SetCreateRange(Timer *pTimer, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
 
@@ -92,6 +93,14 @@ Status TimerIni(clock_t* LevelTime);
 // 赘余
 
 Status CreateOneObjAtTime(float theTime, unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties);
+
+Status CreateBlockAtTimeWithPos(float theTime, Vector2D Pos);
+
+Status CreateMonsterAtTimeWithPos(float theTime, Vector2D Pos);
+
+Status CreateAIMonsterAtTimeWithPos(float theTime, Vector2D Pos);
+
+Status CreateBoss2AtTime(float theTime);
 
 Status CreateOneObjAtTimeWithRange(float theTime, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
 

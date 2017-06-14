@@ -1,5 +1,8 @@
 #include "BossBullet.h"
 
+// 子弹速度
+static float defaultBossBulletVelyABS;
+static float BossBulletDir, defaultBossBulletScale;
 
 Status BossBulletLoad()
 {
@@ -19,18 +22,10 @@ Status BossBulletLoad()
 	return OK;
 }
 
-Status BossBulletStart(float BossBulletVelABS)
+Status BossBulletStart()
 {
-	Velocity_BossBulletABS = BossBulletVelABS;
-	return OK;
-}
-
-Status BossBulletIni()
-{
-	Vector2DSet(&iniBossBulletPos, pBoss2->posCurr.x - 1.5 * SIZE_BOSS2, pBoss2->posCurr.y);
-	BossBulletDir = Vector2DAngle(&iniBossBulletPos, &pHero->posCurr);
-	Vector2DSet(&Velocity_BossBullet, Velocity_BossBulletABS * cosf(BossBulletDir / 180 * PI), Velocity_BossBulletABS * sinf(BossBulletDir / 180 * PI));
-	printf("  vel : %.1f   %.1f\n", Velocity_BossBullet.x, Velocity_BossBullet.y);
+	defaultBossBulletScale = 12.0f;
+	defaultBossBulletVelyABS = 10.0f;
 	return OK;
 }
 
@@ -61,3 +56,31 @@ Status BossBulletCollision(insNode* pinsNode)
 		return OK;
 	}
 }
+
+
+// 实例化方法
+GameObj* BossBulletCreateAtDefaultPosWithDefaultVel()
+{
+	float CurBoss2Scale = Boss2ScaleGet();
+	Vector2D CurPlayerPos = PlayerPosGet();
+	Vector2D iniBossBulletPos, Velocity_BossBullet;
+	Vector2DSet(&iniBossBulletPos, pBoss2->posCurr.x - 1.5 * CurBoss2Scale, pBoss2->posCurr.y);
+	BossBulletDir = Vector2DAngle(&iniBossBulletPos, &CurPlayerPos);
+	Vector2DSet(&Velocity_BossBullet, defaultBossBulletVelyABS * cosf(BossBulletDir / 180 * PI), defaultBossBulletVelyABS * sinf(BossBulletDir / 180 * PI));
+	printf("  vel : %.1f   %.1f\n", Velocity_BossBullet.x, Velocity_BossBullet.y);
+	return CreateGameObj(OTYPE_BOSSBULLET, defaultBossBulletScale, iniBossBulletPos, Velocity_BossBullet, BossBulletDir, theBaseList, 0, NULL);
+}
+
+
+Status BossBulletDefaultBossBulletVelyABSSet(float vel)
+{
+	defaultBossBulletVelyABS = vel;
+	return OK;
+}
+
+Status BossBulletDefaultVelyABSChange(float change)
+{
+	defaultBossBulletVelyABS += change;
+	return OK;
+}
+

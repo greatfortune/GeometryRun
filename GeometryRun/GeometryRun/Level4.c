@@ -57,24 +57,26 @@ void Ini4(void)
 	timeStart_level4 = clock();
 
 	PlayerStart();
-	BlockStart(BlockVel);
+	BlockStart();
 	PlatformStart();
 	BackGroundStart();
-	MonsterStart(MonsterVel);
-	AIMonsterStart(MonsterVel);
+	MonsterStart();
+	AIMonsterStart();
 	BulletStart();
-	BossBulletStart(BossBulletVelAbs);
-	Boss2Start(bossMaxHP);
+	BossBulletStart();
+	Boss2Start();
 	PauseStart();
 	UIStatusStart();
 
+	BlockDefaultVelSet(BlockVel, 0);
+	MonsterDefaultVelSet(MonsterVel, 0);
+	AIMonsterDefaultVelSet(MonsterVel, 0);
+	BossBulletDefaultBossBulletVelyABSSet(BossBulletVelAbs);
+	Boss2MaxHPSet(bossMaxHP);
+
+
 	// 播放音乐
 	SoundPlay(SOUND_4);
-
-	// 对象实例化：
-	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
-	CreateGameObj(OTYPE_BACKGROUND, SIZE_BACKGROUND, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
-	CreateGameObj(OTYPE_PLATFORM, SIZE_PLATFORM, iniPosition_Platform, iniVelocity_Platform, 0, theBaseList, 0, NULL);
 }
 
 void Update4(void)
@@ -102,7 +104,7 @@ void Update4(void)
 	{
 		if (!pauseCreated)
 		{
-			pPause = CreateGameObj(OTYPE_PAUSE, SIZE_PAUSE, iniPosition_Pause, zero, 0, theBaseList, 0, NULL);
+			pPause = PauseCreate();
 			pauseCreated = TRUE;
 		}
 	}
@@ -131,20 +133,20 @@ void Update4(void)
 			else
 			{
 				Boss2Alive = TRUE;
-				pBoss2 = CreateGameObj(OTYPE_BOSS2, SIZE_BOSS2, Boss2IniPos, Boss2EnterVel, 0, theBaseList, 0, NULL);
-				printf("\nBossHP : %d\n", Boss2HP);
-				printf("Boss vx : %f, vy: %f\n", Boss2EnterVel.x, Boss2EnterVel.y);
+				pBoss2 = Boss2Create();
+				//printf("\nBossHP : %d\n", Boss2HP);
+				//printf("Boss vx : %f, vy: %f\n", Boss2EnterVel.x, Boss2EnterVel.y);
 
 				// 更新下个阶段变量
 				stage++;
 				currentWave = 0;
 				// 增加难度
-				defaultBlockVel.x -= 20.0f;
-				defaultMonsterVel.x -= 20.0f;
-				defaultAIMonsterVel.x -= 20.0f;
-				defaultAIMonsterVelyABS += 10.0f;
-				Velocity_BossBulletABS += 20.0f;
-				Boss2MaxHP += 4;
+				BlockDefaultVxChange(-20.0f);
+				MonsterDefaultVxChange(-20.0f);
+				AIMonsterDefaultVxChange(-20.0f);
+				AIMonsterDefaultVelyABSChange(10.0f);
+				BossBulletDefaultVelyABSChange(20.0f);
+				Boss2MaxHPChange(4);
 				stageWaves = 5 + rand() % 3;	// 波数随机为5~7
 			}
 		}
