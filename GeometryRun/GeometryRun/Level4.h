@@ -18,6 +18,7 @@
 #include "AIMonster.h"
 #include "Platform.h"
 #include "Player.h"
+#include "SoundSystem.h"
 
 int stage;				// 阶段
 int stageWaves;			// 当前阶段障碍物波数

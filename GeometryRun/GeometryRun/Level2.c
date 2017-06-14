@@ -32,6 +32,9 @@ void Load2(void)
 	Boss2Load();
 	BackGroundLoad();
 	PauseLoad();
+
+	// 载入音乐
+	SoundAdd("source/sound/level2_backgd.mp3", FMOD_LOOP_NORMAL, SOUND_2);
 }
 
 void Ini2(void)
@@ -55,6 +58,9 @@ void Ini2(void)
 	BossBulletStart(BossBulletVelAbs);
 	Boss2Start(bossMaxHP);
 	PauseStart();
+
+	// 播放音乐
+	SoundPlay(SOUND_2);
 
 	// 更新暂停变量
 	isPaused = FALSE;
@@ -138,6 +144,10 @@ void Free2(void)
 	printf("Level2: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
+
+	//音乐停止播放
+	SoundStop(SOUND_2);
+
 	TimerFree();
 }
 

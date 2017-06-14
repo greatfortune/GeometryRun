@@ -32,6 +32,9 @@ void Load3(void)
 	Boss2Load();
 	BackGroundLoad();
 	PauseLoad();
+
+	// 载入音乐
+	SoundAdd("source/sound/level3_backgd.mp3", FMOD_LOOP_NORMAL, SOUND_3);
 }
 
 void Ini3(void)
@@ -56,6 +59,9 @@ void Ini3(void)
 	BossBulletStart(BossBulletVelAbs);
 	Boss2Start(bossMaxHP);
 	PauseStart();
+
+	// 播放音乐
+	SoundPlay(SOUND_3);
 
 	// 对象实例化：
 	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
@@ -132,6 +138,10 @@ void Free3(void)
 	printf("Level3: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
+
+	//音乐停止播放
+	SoundStop(SOUND_3);
+
 	TimerFree();
 }
 

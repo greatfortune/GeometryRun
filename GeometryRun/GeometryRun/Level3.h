@@ -8,6 +8,7 @@
 #include "Monster.h"
 #include "Platform.h"
 #include "Player.h"
+#include "SoundSystem.h"
 
 
 void Load3(void);

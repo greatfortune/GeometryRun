@@ -31,7 +31,7 @@ void Load1(void)
 	PauseLoad();
 
 	// 载入音乐
-	SoundAdd("source/sound/background.mp3", FMOD_LOOP_NORMAL, SOUND_1);
+	SoundAdd("source/sound/level1_backgd.mp3", FMOD_LOOP_NORMAL, SOUND_1);
 }
 
 void Ini1(void)
@@ -135,7 +135,9 @@ void Free1(void)
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 
+	//音乐停止播放
 	SoundStop(SOUND_1);
+
 	TimerFree();
 
 }

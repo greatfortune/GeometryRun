@@ -175,6 +175,12 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			fprintf(fp, "Input:B\n");
 			printf("Input:B\n");
 		}
+		if (wParam == VK_F1)
+		{
+			KeyPressed[KeyVolumeStop] = TRUE;
+			fprintf(fp, "Input:=\n");
+			printf("Input:=\n");
+		}
 		if (wParam == VK_F2)
 		{
 			KeyPressed[KeyVolumeDown] = TRUE;
