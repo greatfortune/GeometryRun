@@ -32,6 +32,7 @@ enum
 {
 	GS_Menu,			// Menu
 	GS_Staff,
+	GS_Choose,
 	GS_Win,				
 	GS_Lose,
 	GS_Pass,

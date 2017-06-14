@@ -21,7 +21,7 @@ Status BackGroundLoad()
 		CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/level0.png"), theBaseList);
 		return OK;
 	}
-	else if (Current == GS_Menu || Current == GS_Win || Current == GS_Lose || Current == GS_Pass|| Current==GS_Staff)
+	else if (Current == GS_Menu || Current == GS_Win || Current == GS_Lose || Current == GS_Pass|| Current==GS_Staff||Current==GS_Choose)
 	{
 		AEGfxMeshStart();
 		AEGfxTriAdd(
@@ -40,6 +40,9 @@ Status BackGroundLoad()
 				break;
 			case GS_Staff:
 				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/staff.png"), theBaseList);
+				break;
+			case GS_Choose:
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/chooselevel.png"), theBaseList);
 				break;
 			case GS_Win:
 				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/win_over.png"), theBaseList);
@@ -117,7 +120,7 @@ Status BackGroundUpdate(GameObj* pInst)
 			Next = GS_L0;
 			break;
 			case BTYPE_MENU_CHOOSE:
-			Next = GS_L0;
+			Next = GS_Choose;
 			break;
 			case BTYPE_MENU_STAFF:
 			Next = GS_Staff;
@@ -142,6 +145,18 @@ Status BackGroundUpdate(GameObj* pInst)
 			break;
 			case BTYPE_LOSE_MENU:
 			Next = GS_Menu;
+			break;
+			case BTYPE_CHOOSE_1:
+			Next = GS_L0;
+			break;
+			case BTYPE_CHOOSE_2:
+			Next = GS_L2;
+			break;
+			case BTYPE_CHOOSE_3:
+			Next = GS_L3;
+			break;
+			case BTYPE_CHOOSE_4:
+			Next = GS_L4;
 			break;
 			default:
 			break;
@@ -193,6 +208,27 @@ int JudgeMousPos()
 		// Staff:
 		// Menu:(678,476)->(741,533)
 		if (mousIsInRect(678, 476, 741, 533))
+			return BTYPE_PASS_MENU;
+		else
+			return BTYPE_FALSE;
+	}
+	case GS_Choose:
+	{
+		// Choose:
+		// Level1:(0,0)->(288,208)
+		// Level2:(0,352)->(306,565)
+		// Level3:(515,0)->(789,199)
+		// Level4:(478,341)->(787,564)
+		// Menu:(361,252)->(430,312)
+		if (mousIsInRect(0, 0, 288, 208))
+			return BTYPE_CHOOSE_1;
+		else if (mousIsInRect(0, 352, 306, 565))
+			return BTYPE_CHOOSE_2;
+		else if (mousIsInRect(515, 0, 789, 199))
+			return BTYPE_CHOOSE_3;
+		else if (mousIsInRect(478, 341, 787, 564))
+			return BTYPE_CHOOSE_4;
+		else if (mousIsInRect(361, 252, 430, 312))
 			return BTYPE_PASS_MENU;
 		else
 			return BTYPE_FALSE;

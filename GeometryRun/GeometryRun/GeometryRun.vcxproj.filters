@@ -144,6 +144,9 @@
     <ClInclude Include="Staff.h">
       <Filter>Scenes\头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Choose.h">
+      <Filter>Scenes\头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyAndObjUpdate.c">
@@ -240,6 +243,9 @@
       <Filter>Sprites\源文件</Filter>
     </ClCompile>
     <ClCompile Include="Staff.c">
+      <Filter>Scenes\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Choose.c">
       <Filter>Scenes\源文件</Filter>
     </ClCompile>
   </ItemGroup>
