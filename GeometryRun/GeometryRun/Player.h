@@ -25,10 +25,10 @@ int MaxBulletCount, CurSupplyTime, SupplyTime, BulletCount;
 AEGfxTexture* pTex_Hero;
 //jumpCheck:跳跃次数，用于二级跳
 int jumpCheck, dropCheck;
-int isProtected;
+int isProtected, ClearUsed;
 // 用于设置保护时间的长短
 int ProtectCur, MaxProtectCur;
-int PlayerHP;
+int PlayerHP, PlayerScore;
 
 Status PlayerLoad();
 
@@ -43,5 +43,7 @@ Status PlayerGetHurt(int hurt);
 Status PlayerDead();
 
 Status PlayerClear(insNode* pinsNode);//清屏技能
+
+Status PlayerGetScore(int score);
 
 #endif

@@ -177,6 +177,7 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="UIStatus.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="CreateObjectInMap.h" />
     <ClInclude Include="Win.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="System.c" />
     <ClCompile Include="Help.c" />
     <ClCompile Include="TimeManager.c" />
+    <ClCompile Include="UIStatus.c" />
     <ClCompile Include="Vector2D.c" />
     <ClCompile Include="Win.c" />
   </ItemGroup>

@@ -32,6 +32,7 @@ void Load3(void)
 	Boss2Load();
 	BackGroundLoad();
 	PauseLoad();
+	UIStatusLoad();
 
 	// ‘ÿ»Î“Ù¿÷
 	SoundAdd("source/sound/level3_backgd.mp3", FMOD_LOOP_NORMAL, SOUND_3);
@@ -59,6 +60,7 @@ void Ini3(void)
 	BossBulletStart(BossBulletVelAbs);
 	Boss2Start(bossMaxHP);
 	PauseStart();
+	UIStatusStart();
 
 	// ≤•∑≈“Ù¿÷
 	SoundPlay(SOUND_3);

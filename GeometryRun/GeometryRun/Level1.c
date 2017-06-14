@@ -29,9 +29,8 @@ void Load1(void)
 	PlatformLoad();
 	BackGroundLoad();
 	PauseLoad();
+	UIStatusLoad();
 	
-	
-
 	// 载入音乐
 	SoundAdd("source/sound/level1_backgd.mp3", FMOD_LOOP_NORMAL, SOUND_1);
 }
@@ -53,7 +52,7 @@ void Ini1(void)
 	MonsterStart(MonsterVel);
 	BulletStart();
 	PauseStart();
-
+	UIStatusStart();
 	
 
 	// 播放音乐

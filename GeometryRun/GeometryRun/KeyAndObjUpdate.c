@@ -169,6 +169,8 @@ Status ObjUpdate()
 			break;
 		}
 	}
+	if (Current <= GS_L4 && Current >= GS_L1)
+		UIStatusUpdate();
 	return OK;
 }
 

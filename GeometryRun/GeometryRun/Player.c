@@ -25,8 +25,10 @@ Status PlayerStart()
 	jumpCheck = 1;
 	dropCheck = 0;
 	PlayerHP = 3;
+	PlayerScore = 0;
 	ProtectCur = 0;
 	MaxProtectCur = 70;
+	ClearUsed = 0;
 
 	MaxBulletCount = 8;
 	CurSupplyTime = 0;
@@ -116,6 +118,7 @@ Status PlayerUpdate(GameObj* pInst)
 
 	pHero->posCurr.x += pHero->velCurr.x * frameTime;
 	pHero->posCurr.y += pHero->velCurr.y * frameTime;
+	PlayerGetScore(1);
 	return OK;
 }
 
@@ -209,6 +212,9 @@ Status PlayerCollision(insNode* pinsNode)
 Status PlayerClear(insNode* pinsNode)
 {
 	GameObj* pInstOther = &(pinsNode->gameobj);
+	if (ClearUsed)
+		return OK;
+	ClearUsed = 1;
 	switch (pInstOther->pObject->type)
 	{
 	case OTYPE_BLOCK:
@@ -241,5 +247,11 @@ Status PlayerDead()
 {
 	GameObjDelete(pHero);
 	Next = GS_Lose;
+	return OK;
+}
+
+Status PlayerGetScore(int score)
+{
+	PlayerScore += score;
 	return OK;
 }
