@@ -10,7 +10,7 @@ Purpose:		游戏对象管理 */
 GameObjBaseList theBaseList;
 Vector2D zero;
 // 用于调试输出对象类型名称
-static char ObjTypeName[OTYPE_COUNT][20];
+char ObjTypeName[OTYPE_COUNT][20];
 
 
 static Status GetpBaseNodeWithType(unsigned long theType, GameObjBaseList L, baseNode** ppBaseNode);
@@ -40,6 +40,17 @@ void SetConstants()
 	strcpy(ObjTypeName[OTYPE_BOSSBULLET], "TYPE_BOSSBULLET");
 	strcpy(ObjTypeName[OTYPE_BOSS1], "TYPE_BOSS1");
 	strcpy(ObjTypeName[OTYPE_BOSS2], "TYPE_BOSS2");
+	strcpy(ObjTypeName[OTYPE_UI_STATUS], "OTYPE_UI_STATUS");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_0], "OTYPE_UI_NUMBER_0");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_1], "OTYPE_UI_NUMBER_1");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_2], "OTYPE_UI_NUMBER_2");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_3], "OTYPE_UI_NUMBER_3");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_4], "OTYPE_UI_NUMBER_4");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_5], "OTYPE_UI_NUMBER_5");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_6], "OTYPE_UI_NUMBER_6");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_7], "OTYPE_UI_NUMBER_7");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_8], "OTYPE_UI_NUMBER_8");
+	strcpy(ObjTypeName[OTYPE_UI_NUMBER_9], "OTYPE_UI_NUMBER_9");
 	zero.x = 0, zero.y = 0;
 }
 

@@ -119,8 +119,7 @@ typedef struct
 extern GameObjBaseList theBaseList;
 extern Vector2D zero;
 // 用于调试输出对象类型名称
-static char ObjTypeName[OTYPE_COUNT][20];
-
+extern char ObjTypeName[OTYPE_COUNT][20];
 void SetConstants();
 
 Status InitialGameObjList(GameObjList *L);
