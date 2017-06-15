@@ -285,6 +285,11 @@ int PlayerBulletCountGet()
 	return BulletCount;
 }
 
+int PlayerClearUsedGet()
+{
+	return ClearUsed;
+}
+
 Vector2D PlayerPosGet()
 {
 	return pHero->posCurr;

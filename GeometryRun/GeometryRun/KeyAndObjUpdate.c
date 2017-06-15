@@ -128,7 +128,7 @@ Status KeyUpdate()
 
 	if (Current == GS_Help)
 	{
-		if (KeyPressed[KeySpace] == TRUE || xcurrentFrame>4)
+		if (KeyPressed[KeySpace] == TRUE || xcurrentFrame>5)
 		{
 			Next = GS_Staff;
 			return FLAG_IMPORTANTKEY;

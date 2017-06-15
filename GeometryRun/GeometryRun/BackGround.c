@@ -39,11 +39,11 @@ Status BackGroundLoad()
 		AEGfxMeshStart();
 		AEGfxTriAdd(
 			-1.0f, -0.75f, COLOR_DEFAULT, 0.0f, 1.0f,
-			1.0f, -0.75f, COLOR_DEFAULT, 1.0f / 5.0f, 1.0f,
+			1.0f, -0.75f, COLOR_DEFAULT, 1.0f / 6.0f, 1.0f,
 			-1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
 		AEGfxTriAdd(
-			1.0f, -0.75f, COLOR_DEFAULT, 1.0f / 5.0f, 1.0f,
-			1.0f, 0.75f, COLOR_DEFAULT, 1.0f / 5.0f, 0.0f,
+			1.0f, -0.75f, COLOR_DEFAULT, 1.0f / 6.0f, 1.0f,
+			1.0f, 0.75f, COLOR_DEFAULT, 1.0f / 6.0f, 0.0f,
 			-1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
 
 

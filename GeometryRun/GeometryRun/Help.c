@@ -69,7 +69,7 @@ void Draw_Help(void)
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 
 	// 设置纹理
-	AEGfxTextureSet(pImage->pObject->pTex, xcurrentFrame / 5.0f, 0);
+	AEGfxTextureSet(pImage->pObject->pTex, xcurrentFrame / 6.0f, 0);
 	// 设置对象的2D变换矩阵，使用函数：AEGfxSetTransform
 	AEGfxSetTransform(pImage->transform.m);
 	// 绘制当前对象，使用函数：AEGfxMeshDraw

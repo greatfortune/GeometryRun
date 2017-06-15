@@ -36,4 +36,6 @@ extern int PlayerScoreGet();
 
 extern int PlayerBulletCountGet();
 
+extern int PlayerClearUsedGet();
+
 extern Vector2D PlayerPosGet();
