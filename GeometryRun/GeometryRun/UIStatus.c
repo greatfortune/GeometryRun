@@ -221,7 +221,7 @@ Status UIStatusUpdate()
 				}
 		if (CurPlayerClearUsed)
 		{
-			GameObjDelete(pUINumber_HP);
+			GameObjDelete(pUINumber_Clear);
 			pUINumber_Clear = CreateGameObj(OTYPE_UI_NUMBER_0, defaultUINumber, UINumberPos_Unlimited_Clear, zero, 0, theBaseList, 0, NULL);
 		}
 	}
