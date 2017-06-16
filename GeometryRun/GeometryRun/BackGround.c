@@ -91,21 +91,21 @@ Status BackGroundLoad()
 	
 	AEGfxMeshStart();
 	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+		-1.0f, -0.75f, COLOR_DEFAULT, 0.0f, 1.0f,
+		1.0f, -0.75f, COLOR_DEFAULT, 1.0f, 1.0f,
+		-1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
 	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+		1.0f, -0.75f, COLOR_DEFAULT, 1.0f, 1.0f,
+		1.0f, 0.75f, COLOR_DEFAULT, 1.0f, 0.0f,
+		-1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
 	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_DEFAULT, 0.0f, 1.0f,
-		3.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+		1.0f, -0.75f, COLOR_DEFAULT, 0.0f, 1.0f,
+		3.0f, -0.75f, COLOR_DEFAULT, 1.0f, 1.0f,
+		1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
 	AEGfxTriAdd(
-		3.0f, -1.0f, COLOR_DEFAULT, 1.0f, 1.0f,
-		3.0f, 1.0f, COLOR_DEFAULT, 1.0f, 0.0f,
-		1.0f, 1.0f, COLOR_DEFAULT, 0.0f, 0.0f);
+		3.0f, -0.75f, COLOR_DEFAULT, 1.0f, 1.0f,
+		3.0f, 0.75f, COLOR_DEFAULT, 1.0f, 0.0f,
+		1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
 	switch (Current)
 	{
 		case GS_L1:
@@ -129,13 +129,8 @@ Status BackGroundLoad()
 
 Status BackGroundStart()
 {
-	float CurUIStatusScale = UIStatusScaleGet();
 	defaultBackgroundScale = 400.0f;
-
-	if (Current >= GS_L1 && Current <= GS_L4)
-		Vector2DSet(&iniPosition_Background, 0.0f, CurUIStatusScale / 2.0f);
-	else
-		iniPosition_Background = zero;
+	iniPosition_Background = zero;
 	Vector2DSet(&iniVelocity_Background, -180.0f, 0.0f);
 	CreateGameObj(OTYPE_BACKGROUND, defaultBackgroundScale, iniPosition_Background, iniVelocity_Background, 0, theBaseList, 0, NULL);
 	return OK;

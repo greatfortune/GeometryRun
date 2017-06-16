@@ -4,18 +4,11 @@ GSM: Update
 GSM: Update
 Input:Space
 GSM: Update
-Input:Space
-Input:K
 Input:2
 GSM: Update
 Input:3
 GSM: Update
 Input:4
 GSM: Update
-Input:Space
-Input:Space
-Input:Space
-Input:Space
-Input:Space
 Input:Forcing Shut Down
 System:Exit
