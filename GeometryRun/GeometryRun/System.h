@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Project:		GameStateManager
+ * Project:		GeometryRun
  * File Name:	System.h
  * Author:		Íõ¾§
  * Date:		2017-4-22

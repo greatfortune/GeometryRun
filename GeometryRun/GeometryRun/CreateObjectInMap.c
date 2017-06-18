@@ -11,7 +11,7 @@
  * By WJ
  * 从上至下再至上依次出现小怪物
  * startTime：开始时间
- * 返回占用时间：7s
+ * 返回占用时间：6s
  */
 
 float(*CreateObjInMapRamdom[CreateMethods])(float);
@@ -32,35 +32,34 @@ Status IniCreateRandomArrays()
 float CreateObjInMap0(float startTime)
 {
 	int i;
-	Vector2D pos[8];
-	for (i = 0; i < 8; i++)
+	Vector2D pos[7];
+	for (i = 0; i < 7; i++)
 	{
 		Vector2DSet(&(pos[i]), winMaxX, 245 - 70 * i);
 		CreateMonsterAtTimeWithPos(startTime + 0.5f * i, pos[i]);
 	}
-	for (i = 6; i >= 0; i--)
-		CreateMonsterAtTimeWithPos(startTime + 0.5f * i + 4.0f, pos[i]);
-	return 7.0f;
+	for (i = 0; i < 6; i++)
+		CreateMonsterAtTimeWithPos(startTime + 0.5f * i + 3.5f, pos[5 - i]);
+	return 6.0f;
 }
 
 /*
  * By WJ
  * 从上至下再至上依次出现障碍物
- * 占用时间：7s
+ * 占用时间：6s
  */
 float CreateObjInMap1(float startTime)
 {
 	int i;
-	Vector2D pos[8];
-	for (i = 0; i < 8; i++)
+	Vector2D pos[7];
+	for (i = 0; i < 7; i++)
 	{
 		Vector2DSet(&(pos[i]), winMaxX, 245 - 70 * i);
 		CreateBlockAtTimeWithPos(startTime + 0.5f * i, pos[i]);
 	}
-	for (i = 6; i >= 0; i--)
-		CreateBlockAtTimeWithPos(startTime + 0.5f * i + 4.0f, pos[i]);
-	return 7.0f;
-	return 7.0f;
+	for (i = 0; i < 6; i++)
+		CreateBlockAtTimeWithPos(startTime + 0.5f * i + 3.5f, pos[5 - i]);
+	return 6.0f;
 }
 
 /*

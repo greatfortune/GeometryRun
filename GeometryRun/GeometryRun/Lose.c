@@ -21,8 +21,6 @@ void Load_Lose(void)
 void Ini_Lose(void)
 {
 	printf("Level_Lose: Ini\n");
-	// 获取当前关卡时间
-	//timeStart_level_Lose = clock();
 	BackGroundStart();
 }
 

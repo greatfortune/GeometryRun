@@ -1,5 +1,5 @@
 /**
- * Project:		GSMWinStep
+ * Project:		GeometryRun
  * File Name:	main.c
  * Author:		Íõ¾§
  * Date:		2017-4-22

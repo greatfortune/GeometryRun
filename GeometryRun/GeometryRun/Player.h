@@ -10,7 +10,7 @@
 #define JUMP_VELOCITY 300.0f		// 主角纵向移动速度
 #define DROP_VELOCITY 480.0f		// 主角降落速度
 
-extern int isProtected, ClearUsed;
+extern int isProtected;
 // 用于设置保护时间的长短
 extern int ProtectCur, MaxProtectCur;
 
@@ -28,14 +28,12 @@ Status PlayerDead();
 
 Status PlayerClear(insNode* pinsNode);//清屏技能
 
-Status PlayerGetScore(int score);
-
 extern int PlayerHPGet();
-
-extern int PlayerScoreGet();
 
 extern int PlayerBulletCountGet();
 
-extern int PlayerClearUsedGet();
+extern int PlayerClearCountGet();
+
+extern Status PlayerClearReload();
 
 extern Vector2D PlayerPosGet();

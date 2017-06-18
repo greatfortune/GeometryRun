@@ -2,13 +2,16 @@ System:Initialize
 GSM: Initialize
 GSM: Update
 GSM: Update
-Input:Space
-GSM: Update
-Input:2
-GSM: Update
 Input:3
 GSM: Update
 Input:4
 GSM: Update
-Input:Forcing Shut Down
+Input:W
+Input:W
+Input:J
+Input:W
+Input:W
+GSM: Update
+GSM: Update
+Input:ESC
 System:Exit

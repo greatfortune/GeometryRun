@@ -5,8 +5,9 @@
 #include "GameStateList.h"
 #include "Player.h"
 #include "BackGround.h"
+#include "Level4.h"
 
-#define SIZE_SCORE 3// 显示的分数的位数
+#define SIZE_STAGE 2// 显示的阶段的位数
 
 enum {
 	STYPE_LEVEL,

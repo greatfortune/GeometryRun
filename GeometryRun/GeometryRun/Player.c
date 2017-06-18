@@ -6,7 +6,7 @@ static GameObj* pHero;
 // 初始坐标
 static Vector2D iniPosition_Player;
 
-static int MaxBulletCount, CurSupplyTime, SupplyTime, BulletCount;
+static int MaxBulletCount, CurSupplyTime, SupplyTime, BulletCount, ClearCount;
 
 static AEGfxTexture* pTex_Hero;
 //jumpCheck:跳跃次数，用于二级跳
@@ -14,7 +14,7 @@ static int jumpCheck, dropCheck;
 int isProtected, ClearUsed;
 // 用于设置保护时间的长短
 int ProtectCur, MaxProtectCur;
-static int PlayerHP, PlayerScore;
+static int PlayerHP;
 
 Status PlayerLoad()
 {
@@ -38,13 +38,12 @@ Status PlayerLoad()
 Status PlayerStart()
 {
 	Vector2DSet(&iniPosition_Player, -250.0f, 40.0f);
-	jumpCheck = 1;
+	jumpCheck = 0;
 	dropCheck = 0;
 	PlayerHP = 3;
-	PlayerScore = 0;
 	ProtectCur = 0;
 	MaxProtectCur = 70;
-	ClearUsed = 0;
+	ClearCount = 1;
 
 	MaxBulletCount = 8;
 	CurSupplyTime = 0;
@@ -124,16 +123,15 @@ Status PlayerUpdate(GameObj* pInst)
 	// K/B清屏技能
 	if (KeyPressed[KeyK] == TRUE || KeyPressed[KeyB] == TRUE)
 	{
-		if (ClearUsed)
+		if (!ClearCount)
 			return OK;
-		ClearUsed = 1;
+		ClearCount = 0;
 		BaseListTraverse(PlayerClear);
 		return OK;
 	}
 
 	pHero->posCurr.x += pHero->velCurr.x * frameTime;
 	pHero->posCurr.y += pHero->velCurr.y * frameTime;
-	PlayerGetScore(1);
 	return OK;
 }
 
@@ -264,20 +262,9 @@ Status PlayerDead()
 	return OK;
 }
 
-Status PlayerGetScore(int score)
-{
-	PlayerScore += score;
-	return OK;
-}
-
 int PlayerHPGet()
 {
 	return PlayerHP;
-}
-
-int PlayerScoreGet()
-{
-	return PlayerScore;
 }
 
 int PlayerBulletCountGet()
@@ -285,9 +272,15 @@ int PlayerBulletCountGet()
 	return BulletCount;
 }
 
-int PlayerClearUsedGet()
+int PlayerClearCountGet()
 {
-	return ClearUsed;
+	return ClearCount;
+}
+
+Status PlayerClearReload()
+{
+	ClearCount = 1;
+	return OK;
 }
 
 Vector2D PlayerPosGet()

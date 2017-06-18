@@ -1,5 +1,5 @@
 /**
-* Project:		GameStateManager
+* Project:		GeometryRun
 * File Name:	Level1.c
 * Author:		wyz
 * Date:		2017-6-7
@@ -12,9 +12,6 @@ clock_t timeStart_level1;
 
 void Load1(void)
 {
-	// 初始化时间系统
-	TimerIni(&timeStart_level1);
-
 	printf("Level1: Load\n");
 	theBaseList = NULL;
 	// 设置常量
@@ -37,6 +34,9 @@ void Load1(void)
 
 void Ini1(void)
 {
+	// 初始化时间系统
+	TimerIni(&timeStart_level1);
+
 	// 设置当前关卡的一些属性值
 	float BlockVel = -300.0f;
 	float MonsterVel = -300.0f;
@@ -88,6 +88,7 @@ void Update1(void)
 		endPause = FALSE;
 		GameObjDelete(pPause);
 		pauseCreated = FALSE;
+		SoundPausePlay(Current - GS_L0);
 	}
 
 	if (isPaused)
@@ -96,6 +97,7 @@ void Update1(void)
 		{
 			pPause = PauseCreate();
 			pauseCreated = TRUE;
+			SoundPausePlay(Current - GS_L0);
 		}
 	}
 	else

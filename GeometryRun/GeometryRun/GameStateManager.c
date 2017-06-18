@@ -1,5 +1,5 @@
 /**
- * Project:		GameStateManager
+ * Project:		GeometryRun
  * File Name:	GameStateManager.c
  * Author:		Íõ¾§
  * Date:		2017-4-4

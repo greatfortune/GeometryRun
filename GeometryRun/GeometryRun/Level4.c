@@ -9,11 +9,13 @@
 
 clock_t timeStart_level4;
 
+int stage;				// 阶段
+int stageWaves;			// 当前阶段障碍物波数
+int currentWave;		// 当前障碍物波数
+float toCreateTime;		// 下一波障碍物生成时间
+
 void Load4(void)
 {
-	// 初始化时间系统
-	TimerIni(&timeStart_level4);
-
 	printf("Level4: Load\n");
 	theBaseList = NULL;
 	// 设置常量
@@ -41,13 +43,16 @@ void Load4(void)
 
 void Ini4(void)
 {
+	// 初始化时间系统
+	TimerIni(&timeStart_level4);
+
 	// 设置当前关卡的一些属性值
 	float BlockVel = -400.0f;
 	float MonsterVel = -400.0f;
 	int bossMaxHP = 5;
 	float BossBulletVelAbs = 400.0f;
 
-	stage = 1;
+	stage = 0;
 	stageWaves = 5 + rand() % 2;	// 第一关波数随机5~6
 	currentWave = 0;
 	toCreateTime = 0.0f;
@@ -98,6 +103,7 @@ void Update4(void)
 		endPause = FALSE;
 		GameObjDelete(pPause);
 		pauseCreated = FALSE;
+		SoundPausePlay(Current - GS_L0);
 	}
 
 	if (isPaused)
@@ -106,6 +112,7 @@ void Update4(void)
 		{
 			pPause = PauseCreate();
 			pauseCreated = TRUE;
+			SoundPausePlay(Current - GS_L0);
 		}
 	}
 	else
@@ -118,6 +125,20 @@ void Update4(void)
 			{
 				if (currentWave == 0)
 				{
+					// 更新阶段变量
+					stage++;
+					// 增加难度
+					BlockDefaultVxChange(-20.0f);
+					MonsterDefaultVxChange(-20.0f);
+					AIMonsterDefaultVxChange(-20.0f);
+					AIMonsterDefaultVelyABSChange(10.0f);
+					BossBulletDefaultVelyABSChange(20.0f);
+					Boss2MaxHPChange(4);
+					stageWaves = 5 + rand() % 3;	// 波数随机为5~7
+					
+					if (!PlayerClearCountGet())
+						PlayerClearReload();
+
 					// 每个阶段间隔3.0s
 					toCreateTime = passTime + 3.0f;
 					currentWave++;
@@ -137,17 +158,9 @@ void Update4(void)
 				//printf("\nBossHP : %d\n", Boss2HP);
 				//printf("Boss vx : %f, vy: %f\n", Boss2EnterVel.x, Boss2EnterVel.y);
 
-				// 更新下个阶段变量
-				stage++;
+				// 准备进入下个阶段
 				currentWave = 0;
-				// 增加难度
-				BlockDefaultVxChange(-20.0f);
-				MonsterDefaultVxChange(-20.0f);
-				AIMonsterDefaultVxChange(-20.0f);
-				AIMonsterDefaultVelyABSChange(10.0f);
-				BossBulletDefaultVelyABSChange(20.0f);
-				Boss2MaxHPChange(4);
-				stageWaves = 5 + rand() % 3;	// 波数随机为5~7
+
 			}
 		}
 

@@ -1,5 +1,5 @@
 /**
- * Project:		GameStateManager
+ * Project:		GeometryRun
  * File Name:	Level2.c
  * Author:		闷声发大财
  * Date:		2017-4-22
@@ -12,9 +12,6 @@ const float bossOccurTime_level2 = 27.0f;
 
 void Load2(void)
 {
-	// 初始化时间系统
-	TimerIni(&timeStart_level2);
-
 	printf("Level2: Load\n");
 	theBaseList = NULL;
 	// 设置常量
@@ -40,6 +37,9 @@ void Load2(void)
 
 void Ini2(void)
 {
+	// 初始化时间系统
+	TimerIni(&timeStart_level2);
+
 	// 设置当前关卡的一些属性值
 	float BlockVel = -350.0f;
 	float MonsterVel = -350.0f;
@@ -102,6 +102,7 @@ void Update2(void)
 		endPause = FALSE;
 		GameObjDelete(pPause);
 		pauseCreated = FALSE;
+		SoundPausePlay(Current - GS_L0);
 	}
 	if (isPaused)
 	{
@@ -109,6 +110,7 @@ void Update2(void)
 		{
 			pPause = PauseCreate();
 			pauseCreated = TRUE;
+			SoundPausePlay(Current - GS_L0);
 		}
 	}
 	else

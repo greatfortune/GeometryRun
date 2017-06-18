@@ -26,8 +26,6 @@ Status BackGroundLoad()
 			1.0f, -0.75f, COLOR_DEFAULT, 1.0f / 12.0f, 1.0f,
 			1.0f, 0.75f, COLOR_DEFAULT, 1.0f / 12.0f, 0.0f,
 			-1.0f, 0.75f, COLOR_DEFAULT, 0.0f, 0.0f);
-
-
 		CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/level0.png"), theBaseList);
 		return OK;
 	}

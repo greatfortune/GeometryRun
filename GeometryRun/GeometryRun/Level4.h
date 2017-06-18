@@ -20,10 +20,7 @@
 #include "Player.h"
 #include "SoundSystem.h"
 
-int stage;				// 阶段
-int stageWaves;			// 当前阶段障碍物波数
-int currentWave;		// 当前障碍物波数
-float toCreateTime;		// 下一波障碍物生成时间
+extern int stage;
 
 void Load4(void);
 
