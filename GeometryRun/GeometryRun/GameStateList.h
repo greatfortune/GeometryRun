@@ -34,6 +34,7 @@ enum
 	GS_Help,
 	GS_Staff,
 	GS_Choose,
+	GS_Calculate,
 	GS_Win,				
 	GS_Lose,
 	GS_Pass,

@@ -1,4 +1,4 @@
-#pragma once
+
 #include "BackGround.h"
 
 void Load_Choose(void);

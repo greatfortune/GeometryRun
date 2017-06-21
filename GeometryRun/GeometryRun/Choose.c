@@ -1,9 +1,9 @@
+
 #include "Choose.h"
+
 
 void Load_Choose(void)
 {
-	// 初始化时间系统
-	//TimerIni(&timeStart_level_Lose);
 
 	printf("Level_Choose: Load\n");
 	theBaseList = NULL;
@@ -18,8 +18,7 @@ void Load_Choose(void)
 void Ini_Choose(void)
 {
 	printf("Level_Choose: Ini\n");
-	// 获取当前关卡时间
-	//timeStart_level_Lose = clock();
+
 	BackGroundStart();
 
 }
@@ -64,6 +63,6 @@ void Free_Choose(void)
 
 void Unload_Choose(void)
 {
-	printf("Level_Choose: Unload\n");
+	printf("Level_Calculate: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

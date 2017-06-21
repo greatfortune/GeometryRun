@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -151,6 +151,7 @@
     <ClInclude Include="Boss2.h" />
     <ClInclude Include="BossBullet.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Calculate.h" />
     <ClInclude Include="Choose.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameStateList.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="UICalculate.h" />
     <ClInclude Include="SoundSystem.h" />
     <ClInclude Include="Staff.h" />
     <ClInclude Include="System.h" />
@@ -189,6 +191,7 @@
     <ClCompile Include="Boss2.c" />
     <ClCompile Include="BossBullet.c" />
     <ClCompile Include="Bullet.c" />
+    <ClCompile Include="Calculate.c" />
     <ClCompile Include="Choose.c" />
     <ClCompile Include="CreateObjectInMap.c" />
     <ClCompile Include="GameObjectManager.c" />
@@ -218,6 +221,7 @@
     <ClCompile Include="UIStatus.c" />
     <ClCompile Include="Vector2D.c" />
     <ClCompile Include="Win.c" />
+    <ClCompile Include="UICalculate.c" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GeometryRun.rc" />

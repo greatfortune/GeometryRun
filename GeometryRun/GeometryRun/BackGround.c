@@ -48,7 +48,7 @@ Status BackGroundLoad()
 		CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/help.png"), theBaseList);
 		return OK;
 	}
-	else if (Current == GS_Menu || Current == GS_Win || Current == GS_Lose || Current == GS_Pass|| Current==GS_Staff||Current==GS_Choose)
+	else if (Current == GS_Menu || Current == GS_Win || Current == GS_Lose || Current == GS_Pass|| Current==GS_Staff||Current==GS_Choose || Current==GS_Calculate)
 	{
 		AEGfxMeshStart();
 		AEGfxTriAdd(
@@ -79,6 +79,9 @@ Status BackGroundLoad()
 				break;
 			case GS_Pass:
 				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/win_pass.png"), theBaseList);
+				break;
+			case GS_Calculate:
+				CreateGameObjBase(OTYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background/calculate.png"), theBaseList);
 				break;
 			default:
 				return -1;
@@ -185,6 +188,12 @@ Status BackGroundUpdate(GameObj* pInst)
 			Next = GS_L3;
 			break;
 			case BTYPE_CHOOSE_4:
+			Next = GS_L4;
+			break;
+			case BTYPE_CALCULATE_MENU:
+			Next = GS_Menu;
+			break;
+			case BTYPE_CALCULATE_RESTART:
 			Next = GS_L4;
 			break;
 			default:
@@ -296,6 +305,18 @@ int JudgeMousPos()
 			return BTYPE_LOSE_RESTART;
 		else if (mousIsInRect(680, 485, 750, 560))
 			return BTYPE_LOSE_MENU;
+		else
+			return BTYPE_FALSE;
+	}
+	case GS_Calculate:
+	{
+		// Calculate:
+		// Re: (102,414)->(170,478)
+		// Menu: (617,414)->(689,478)
+		if (mousIsInRect(102,414,170,478))
+			return BTYPE_CALCULATE_RESTART;
+		else if (mousIsInRect(617,414,689,478))
+			return BTYPE_CALCULATE_MENU;
 		else
 			return BTYPE_FALSE;
 	}

@@ -258,7 +258,10 @@ Status PlayerGetHurt(int hurt)
 Status PlayerDead()
 {
 	GameObjDelete(pHero);
-	Next = GS_Lose;
+	if (Current == GS_L4)
+		Next = GS_Calculate;
+	else
+    	Next = GS_Lose;
 	return OK;
 }
 

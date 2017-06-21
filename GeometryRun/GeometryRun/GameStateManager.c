@@ -20,6 +20,7 @@
 #include "Win.h"
 #include "Lose.h"
 #include "Pass.h"
+#include "Calculate.h"
 
 //------------------------------------------------------------------------------
 // Private Consts:
@@ -175,6 +176,15 @@ void GSM_Update(void)
 			pDraw = Draw_Pass;
 			pFree = Free_Pass;
 			pUnload = Unload_Pass;
+			break;
+		}
+		case GS_Calculate: {
+			pLoad = Load_Calculate;
+			pIni = Ini_Calculate;
+			pUpdate = Update_Calculate;
+			pDraw = Draw_Calculate;
+			pFree = Free_Calculate;
+			pUnload = Unload_Calculate;
 			break;
 		}
 	}

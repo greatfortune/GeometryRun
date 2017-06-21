@@ -181,6 +181,8 @@ Status ObjUpdate()
 	}
 	if (Current <= GS_L4 && Current >= GS_L1)
 		UIStatusUpdate();
+	if (Current == GS_Calculate)
+		UICalculateUpdate();
 	return OK;
 }
 
