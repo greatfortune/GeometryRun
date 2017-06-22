@@ -16,6 +16,9 @@ void Load_Pass(void)
 	InitialGameObjBaseList(&theBaseList);
 
 	BackGroundLoad();
+
+	// ‘ÿ»Î“Ù¿÷
+	SoundAdd("source/sound/Pass.mp3", FMOD_LOOP_OFF, SOUND_Pass);
 }
 
 void Ini_Pass(void)
@@ -25,6 +28,8 @@ void Ini_Pass(void)
 	//timeStart_level_Pass = clock();
 	BackGroundStart();
 
+	// ≤•∑≈“Ù¿÷
+	SoundPlay(SOUND_Pass);
 }
 
 void Update_Pass(void)

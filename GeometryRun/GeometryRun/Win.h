@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BackGround.h"
+#include "SoundSystem.h"
 
 void Load_Win(void);
 

@@ -1,0 +1,11 @@
+﻿生成启动时间为 2017/6/22 14:03:29。
+     1>项目“C:\Users\dell\Desktop\GeometryRun\GeometryRun\GeometryRun\GeometryRun.vcxproj”在节点 2 上(Build 个目标)。
+     1>Link:
+         GeometryRun.vcxproj -> C:\Users\dell\Desktop\GeometryRun\GeometryRun\Debug\GeometryRun.exe
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\dell\Desktop\GeometryRun\GeometryRun\Debug\GeometryRun.bsc" Debug\AIMonster.sbr Debug\BackGround.sbr Debug\Block.sbr Debug\Boss2.sbr Debug\BossBullet.sbr Debug\Bullet.sbr Debug\Calculate.sbr Debug\Choose.sbr Debug\CreateObjectInMap.sbr Debug\GameObjectManager.sbr Debug\GameStateManager.sbr Debug\Input.sbr Debug\KeyAndObjUpdate.sbr Debug\Level0.sbr Debug\Level1.sbr Debug\Level2.sbr Debug\Level3.sbr Debug\Level4.sbr Debug\Lose.sbr Debug\main.sbr Debug\Math2D.sbr Debug\Matrix2D.sbr Debug\Menu.sbr Debug\Monster.sbr Debug\Pass.sbr Debug\Pause.sbr Debug\Platform.sbr Debug\Player.sbr Debug\SoundSystem.sbr Debug\Staff.sbr Debug\System.sbr Debug\Help.sbr Debug\TimeManager.sbr Debug\UIStatus.sbr Debug\Vector2D.sbr Debug\Win.sbr Debug\UICalculate.sbr
+     1>已完成生成项目“C:\Users\dell\Desktop\GeometryRun\GeometryRun\GeometryRun\GeometryRun.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:02.58

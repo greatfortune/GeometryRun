@@ -16,12 +16,18 @@ void Load_Lose(void)
 	InitialGameObjBaseList(&theBaseList);
 
 	BackGroundLoad();
+
+	// ‘ÿ»Î“Ù¿÷
+	SoundAdd("source/sound/Lose.mp3", FMOD_LOOP_OFF, SOUND_Lose);
 }
 
 void Ini_Lose(void)
 {
 	printf("Level_Lose: Ini\n");
 	BackGroundStart();
+
+	// ≤•∑≈“Ù¿÷
+	SoundPlay(SOUND_Lose);
 }
 
 void Update_Lose(void)

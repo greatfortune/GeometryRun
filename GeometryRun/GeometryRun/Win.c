@@ -16,6 +16,9 @@ void Load_Win(void)
 	InitialGameObjBaseList(&theBaseList);
 
 	BackGroundLoad();
+
+	// 载入音乐
+	SoundAdd("source/sound/Win.mp3", FMOD_LOOP_OFF, SOUND_Win);
 }
 
 void Ini_Win(void)
@@ -24,6 +27,9 @@ void Ini_Win(void)
 	// 获取当前关卡时间
 	//timeStart_level_Win = clock();
 	BackGroundStart();
+
+	// 播放音乐
+	SoundPlay(SOUND_Win);
 
 }
 
