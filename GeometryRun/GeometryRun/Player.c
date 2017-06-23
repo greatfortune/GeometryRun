@@ -1,3 +1,9 @@
+/**
+* Project:		GeometryRun
+* File Name:	Player.c
+* Author:		黄涧水(PlayerClear、PlayerCollision)
+* Date:		2017-6-17
+*/
 #include "Player.h"
 
 // Player对象：因为是Player，所以单独声明，方便程序设计

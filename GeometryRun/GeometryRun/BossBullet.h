@@ -1,3 +1,9 @@
+/*
+* Project:		GeometryRun
+* File Name:	BossBullet.h
+* Author:		»Æ½§Ë®
+* Date:		2017-6-17
+*/
 #pragma once
 
 #include "GameObjectManager.h"

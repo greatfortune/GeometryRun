@@ -1,3 +1,9 @@
+/**
+* Project:		GeometryRun
+* File Name:	BossBullet.c
+* Author:		黄涧水
+* Date:		2017-6-17
+*/
 #include "BossBullet.h"
 
 // 子弹速度
