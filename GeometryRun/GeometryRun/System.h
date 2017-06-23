@@ -1,12 +1,12 @@
-#pragma once
-
 /**
- * Project:		GameStateManager
+ * Project:		GeometryRun
  * File Name:	System.h
  * Author:		王晶
  * Date:		2017-4-22
  * Purpose:		系统处理模块
  */
+
+#pragma once
 
 #include <stdio.h>
 #include <Windows.h>
@@ -26,7 +26,6 @@
  //------------------------------------------------------------------------------
  // Public Variables:
  //------------------------------------------------------------------------------
-FILE *fp;   // Output.txt
 
 //------------------------------------------------------------------------------
 // Public Functions:

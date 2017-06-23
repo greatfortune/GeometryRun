@@ -1,22 +1,20 @@
 /* Project:		GeometryRun
 File Name:	GameObjectManager.h
-Author:		é»„å˜‰ç»´
+Author:		»Æ¼ÎÎ¬
 Date:
-Purpose:		æ¸¸æˆå¯¹è±¡ç®¡ç† */
-
-#ifndef _GameObjectManager
-#define _GameObjectManager
+Purpose:		ÓÎÏ·¶ÔÏó¹ÜÀí */
+#pragma once
 
 #define OK 1
 #define FLAG_ACTIVE 1
 #define FLAG_INACTIVE 0
+#define MAXPROPERTIES 5
+#define COLOR_DEFAULT 0xFFFFFFFF
 
 #include <stdio.h>
-#include <stdbool.h>
 #include "GameStateList.h"
 #include "System.h"
 #include "AEEngine.h"
-#include "GameObjectManager.h"
 #include "Vector2D.h"
 #include "Matrix2D.h"
 #include "Math2D.h"
@@ -24,56 +22,68 @@ Purpose:		æ¸¸æˆå¯¹è±¡ç®¡ç† */
 
 typedef int Status;
 
-#define MAXPROPERTIES 5
-#define SIZE_HERO					30.0f	// è§’è‰²å°ºå¯¸
-#define SIZE_BLOCK					38.0f	// éšœç¢ç‰©å°ºå¯¸
-#define SIZE_BACKGROUND				400.0f	// èƒŒæ™¯å°ºå¯¸
-#define SIZE_PLATFORM				1000.0f	// å¹³å°å°ºå¯¸
-#define BLOCK_NUM 4
-#define COLOR_PLAYER 0xFFFFFFFF
-#define COLOR_BACKGROUND 0x000000FF
-#define MOVE_VELOCITY_HERO 300.0f
-#define JUMP_VELOCITY 200.0f
-#define GRAVITY 200.0f
-#define MOVE_MAXVELOCITY_BLOCK 5.0f
+enum objType
+{
+	OTYPE_PLAYER = 0,
+	OTYPE_PLATFORM,
+	OTYPE_BACKGROUND,
+	OTYPE_PAUSE,
+	OTYPE_MONSTER,
+	OTYPE_AIMONSTER,
+	OTYPE_BLOCK,
+	OTYPE_BULLET,
+	OTYPE_BOSSBULLET,
+	OTYPE_BOSS1,
+	OTYPE_BOSS2,
+	OTYPE_UI_STATUS,
+	OTYPE_UI_NUMBER_0,
+	OTYPE_UI_NUMBER_1,
+	OTYPE_UI_NUMBER_2,
+	OTYPE_UI_NUMBER_3,
+	OTYPE_UI_NUMBER_4,
+	OTYPE_UI_NUMBER_5,
+	OTYPE_UI_NUMBER_6,
+	OTYPE_UI_NUMBER_7,
+	OTYPE_UI_NUMBER_8,
+	OTYPE_UI_NUMBER_9,
+	OTYPE_COUNT
+};
 
+enum visitType
+{
+	VTYPE_WITH_INSNODE = 0,
+	VTYPE_WITH_INSNODE_OBJLIST,
+	VTYPE_WITH_INSNODE_INSNODE,
+	VTYPE_COUNT
+};
+
+// ¿É¿¼ÂÇÈ¥µôÃû×Ö
 typedef struct
 {
 	char name[10];
 	int value;
 }Property;
 
-enum objType
-{
-	TYPE_PLAYER = 0,
-	TYPE_PLATFORM,
-	TYPE_BACKGROUND,
-	TYPE_MONSTER,
-	TYPE_BLOCK,
-	TYPE_BOSS,
-	TYPE_COUNT
-};
-
-// æ¸¸æˆå¯¹è±¡åŸºç±»/ç»“æ„
+// ÓÎÏ·¶ÔÏó»ùÀà/½á¹¹
 typedef struct
 {
-	unsigned long		type;		// æ¸¸æˆå¯¹è±¡ç±»å‹
-	AEGfxVertexList*	pMesh;		// å½¢çŠ¶
-	AEGfxTexture*		pTex;		// çº¹ç†
+	unsigned long		type;		// ÓÎÏ·¶ÔÏóÀàĞÍ
+	AEGfxVertexList*	pMesh;		// ĞÎ×´
+	AEGfxTexture*		pTex;		// ÎÆÀí
 }GameObjBase;
 
-// æ¸¸æˆå¯¹è±¡ç±»/ç»“æ„
+// ÓÎÏ·¶ÔÏóÀà/½á¹¹
 typedef struct
 {
-	GameObjBase*		pObject;	// æŒ‡å‘åŸºç±»ï¼ˆåŸå§‹å½¢çŠ¶å’Œç±»å‹ï¼‰
-	unsigned long		flag;		// æ´»åŠ¨æ ‡å¿—
-	float				scale;		// å°ºå¯¸
-	Vector2D			posCurr;	// å½“å‰ä½ç½®
-	Vector2D			velCurr;	// å½“å‰é€Ÿåº¦
-	float				dirCurr;	// å½“å‰æ–¹å‘
-	Matrix2D			transform;	// å˜æ¢çŸ©é˜µï¼šæ¯ä¸€å¸§éƒ½éœ€è¦ä¸ºæ¯ä¸€ä¸ªå¯¹è±¡è®¡ç®—
-	Property			properties[MAXPROPERTIES]; // è¯¥å¯¹è±¡çš„å±æ€§
-	int					propertyCount;			   // è¯¥å¯¹è±¡å±æ€§çš„ä¸ªæ•°
+	GameObjBase*		pObject;	// Ö¸Ïò»ùÀà£¨Ô­Ê¼ĞÎ×´ºÍÀàĞÍ£©
+	unsigned long		flag;		// »î¶¯±êÖ¾
+	float				scale;		// ³ß´ç
+	Vector2D			posCurr;	// µ±Ç°Î»ÖÃ
+	Vector2D			velCurr;	// µ±Ç°ËÙ¶È
+	float				dirCurr;	// µ±Ç°·½Ïò
+	Matrix2D			transform;	// ±ä»»¾ØÕó£ºÃ¿Ò»Ö¡¶¼ĞèÒªÎªÃ¿Ò»¸ö¶ÔÏó¼ÆËã
+	Property			properties[MAXPROPERTIES]; // ¸Ã¶ÔÏóµÄÊôĞÔ
+	int					propertyCount;			   // ¸Ã¶ÔÏóÊôĞÔµÄ¸öÊı
 }GameObj;
 
 typedef struct INSNODE
@@ -105,22 +115,11 @@ typedef struct
 	baseNode *tail;
 }GameObjBaseNode, *GameObjBaseList;
 
-
-// æ¸¸æˆå¯¹è±¡é“¾è¡¨
-static GameObjBaseList theBaseList;
-Vector2D zero;
-
-
-// Playerå¯¹è±¡ï¼šå› ä¸ºæ˜¯Playerï¼Œæ‰€ä»¥å•ç‹¬å£°æ˜ï¼Œæ–¹ä¾¿ç¨‹åºè®¾è®¡
-static GameObj* pHero;
-
-static AEGfxTexture* pTex_Hero;
-//jumpCheck:è·³è·ƒæ¬¡æ•°ï¼Œç”¨äºäºŒçº§è·³
-int jumpCheck;
-
-// ç”¨äºè°ƒè¯•è¾“å‡ºå¯¹è±¡ç±»å‹åç§°
-static char ObjTypeName[TYPE_COUNT][20];
-
+// ÓÎÏ·¶ÔÏóÁ´±í
+extern GameObjBaseList theBaseList;
+extern Vector2D zero;
+// ÓÃÓÚµ÷ÊÔÊä³ö¶ÔÏóÀàĞÍÃû³Æ
+extern char ObjTypeName[OTYPE_COUNT][20];
 void SetConstants();
 
 Status InitialGameObjList(GameObjList *L);
@@ -135,13 +134,9 @@ Status ClearGameObjList(GameObjList L);
 
 Status ClearGameObjBaseList(GameObjBaseList L);
 
-bool ListIsEmpty(GameObjList L);
+Status ListIsEmpty(GameObjList L);
 
-bool BaseListIsEmpty(GameObjBaseList L);
-
-int ListLength(GameObjList L);
-
-int BaseListLength(GameObjBaseList L);
+Status BaseListIsEmpty(GameObjBaseList L);
 
 GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties);
 
@@ -149,8 +144,12 @@ Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxT
 
 Status GameObjDelete(GameObj* theGameObj);
 
-Status ListTraverse(GameObjList L, void(*visit)());
+Status ListTraverse(GameObjList * L, Status(*Visit)(insNode* pinsNode));
 
-Status BaseListTraverse(GameObjBaseList L, void(*visit)());
+Status BaseListTraverse(Status(*Visit)(insNode* pinsNode));
 
-#endif 
+Status SetProperty(Property* theProperty, char* name, int value);
+
+Status SetObjSpeed(GameObj* theObj, Vector2D theVel);
+
+Status AddObjSpeed(GameObj* theObj, Vector2D theVel);

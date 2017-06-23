@@ -1,13 +1,12 @@
-#pragma once
-
 /**
- * Project:		GameStateManager
+ * Project:		GeometryRun
  * File Name:	GameStateManager.h
  * Author:		王晶
  * Date:		2017-4-4
  * Purpose:		游戏状态管理模块
  */
 
+#pragma once
 
 //------------------------------------------------------------------------------
 // Typedef:
@@ -37,3 +36,5 @@ extern void(*pUnload)(void);
 void GSM_Initialize(int cur);
 
 void GSM_Update(void);
+
+

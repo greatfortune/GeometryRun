@@ -1,11 +1,18 @@
-#ifndef MATRIX2D_H
-#define MATRIX2D_H
+/**
+ * Project:		GeometryRun
+ * File Name:	Matrix2D.h
+ * Author:		Ë§ÏşÓê
+ * Date:		2017-4-22
+ * Purpose:		Matrix2D.h
+ */
 
-#define PI      3.1415926535897932384626433832795
+#pragma once
+
+#define PI 3.1415926535897932384626433832795
 
 #include "Vector2D.h"
 
-// 3by3çš„çŸ©é˜µ
+// 3by3µÄ¾ØÕó
 typedef struct Matrix2D
 {
 	float m[3][3];
@@ -13,12 +20,12 @@ typedef struct Matrix2D
 
 
 /*
-å°†pResultè®¾ç½®ä¸ºå•ä½çŸ©é˜µ
+½«pResultÉèÖÃÎªµ¥Î»¾ØÕó
 */
 void Matrix2DIdentity(Matrix2D *pResult);
 
 /*
-è®¡ç®—pMtxçš„è½¬ç½®ï¼Œå¹¶å°†ç»“æœæ”¾åˆ°pResult
+¼ÆËãpMtxµÄ×ªÖÃ£¬²¢½«½á¹û·Åµ½pResult
 */
 void Matrix2DTranspose(Matrix2D *pResult, Matrix2D *pMtx);
 
@@ -28,22 +35,22 @@ pResult = pMtx0 * pMtx1
 void Matrix2DConcat(Matrix2D *pResult, Matrix2D *pMtx0, Matrix2D *pMtx1);
 
 /*
-å°†pResultè®¾ç½®ä¸ºå¹³ç§»çŸ©é˜µï¼Œå¹³ç§»ä½ç§»ä¸ºxå’Œy 
+½«pResultÉèÖÃÎªÆ½ÒÆ¾ØÕó£¬Æ½ÒÆÎ»ÒÆÎªxºÍy 
 */
 void Matrix2DTranslate(Matrix2D *pResult, float x, float y);
 
 /*
-å°†pResultè®¾ç½®ä¸ºç¼©æ”¾çŸ©é˜µï¼Œxå’Œyåˆ†åˆ«ä¸ºæ°´å¹³å’Œå‚ç›´æ–¹å‘çš„ç¼©æ”¾æ¯”ä¾‹
+½«pResultÉèÖÃÎªËõ·Å¾ØÕó£¬xºÍy·Ö±ğÎªË®Æ½ºÍ´¹Ö±·½ÏòµÄËõ·Å±ÈÀı
 */
 void Matrix2DScale(Matrix2D *pResult, float x, float y);
 
 /*
-å°†pResultè®¾ç½®ä¸ºæ—‹è½¬çŸ©é˜µï¼Œæ—‹è½¬é‡ä¸ºAngleï¼Œä¸ºåº¦æ•°
+½«pResultÉèÖÃÎªĞı×ª¾ØÕó£¬Ğı×ªÁ¿ÎªAngle£¬Îª¶ÈÊı
 */
 void Matrix2DRotDeg(Matrix2D *pResult, float Angle);
 
 /*
-å°†pResultè®¾ç½®ä¸ºæ—‹è½¬çŸ©é˜µï¼Œæ—‹è½¬é‡ä¸ºAngleï¼Œä¸ºå¼§åº¦
+½«pResultÉèÖÃÎªĞı×ª¾ØÕó£¬Ğı×ªÁ¿ÎªAngle£¬Îª»¡¶È
 */
 void Matrix2DRotRad(Matrix2D *pResult, float Angle);
 
@@ -51,6 +58,3 @@ void Matrix2DRotRad(Matrix2D *pResult, float Angle);
 pResult = pMtx * pVec
 */
 void Matrix2DMultVec(Vector2D *pResult, Matrix2D *pMtx, Vector2D *pVec);
-
-
-#endif

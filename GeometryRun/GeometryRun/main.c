@@ -1,5 +1,5 @@
 /**
- * Project:		GSMWinStep
+ * Project:		GeometryRun
  * File Name:	main.c
  * Author:		Íõ¾§
  * Date:		2017-4-22
@@ -42,7 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	System_Initialize(hInstance, nCmdShow);
 
 	// GSM Initialize
-	GSM_Initialize(GS_L1);
+	GSM_Initialize(GS_Menu);
 
 	// Game Flow
 	while (Current != GS_Quit)
@@ -55,7 +55,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		else
 		{
 			// GSM Update
-			GSM_Update(Current);
+			GSM_Update();
 			pLoad();
 		}
 
@@ -85,7 +85,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// System Exit
 	System_Exit();
-	system("pause");
 	return 0;
 }
 

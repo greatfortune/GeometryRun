@@ -1,427 +1,143 @@
-/* Project:		
-   File Name:	Level1.c
-   Author:		Èó∑Â£∞ÂèëÂ§ßË¥¢
-   Date:		
-   Purpose:		ÂÖ≥Âç°1  */
-
-#include <stdio.h>
-#include "GameStateList.h"
-#include "System.h"
+/**
+ * Project:		GeometryRun
+ * File Name:	Level1.c
+ * Author:		Õı—ÂÓ»£®Ini°¢Draw£©£¨ª∆ºŒŒ¨£®Load£©£¨Õıæß£®Update£©£¨Àßœ˛”Í£®Free°¢Unload£©
+ * Date:		2017-6-7
+ * Purpose:		πÿø®1
+ */
 #include "Level1.h"
-#include "AEEngine.h"
-#include "Input.h"
-#include "GameObjectManager.h"
 
-//------------------------------------------------------------------------------
-// Private Consts:
-//------------------------------------------------------------------------------
+clock_t timeStart_level1;
 
-//------------------------------------------------------------------------------
-// Public Functions:
-//------------------------------------------------------------------------------
 
 void Load1(void)
 {
 	printf("Level1: Load\n");
-	GameObjBase* pObjBase;
 	theBaseList = NULL;
-
-	// ËÆæÁΩÆÂ∏∏Èáè
+	// …Ë÷√≥£¡ø
 	SetConstants();
-	// ÂàùÂßãÂåñÊ∏∏ÊàèÂØπË±°Âü∫Á±ªÁöÑÂÆû‰æãÂàóË°®
+	// ≥ı ºªØ”Œœ∑∂‘œÛª˘¿‡µƒ µ¿˝¡–±Ì
 	InitialGameObjBaseList(&theBaseList);
 
-	// ÂàùÂßãÂåñÊ∏∏ÊàèÂØπË±°Á±ªÁöÑÂÆû‰æãÂàóË°®
-
-	// ÂàõÂª∫Âü∫Á±ªÁöÑÂÆû‰æã	
-
-	// =======================
-	// Âπ≥Âè∞
-	// =======================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -0.05f, COLOR_PLAYER, 0.0f, 1.0f,
-		1.0f, -0.05f, COLOR_PLAYER, 1.0f, 1.0f,
-		-1.0f, 0.05f, COLOR_PLAYER, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -0.05f, COLOR_PLAYER, 1.0f, 1.0f,
-		1.0f, 0.05f, COLOR_PLAYER, 1.0f, 0.0f,
-		-1.0f, 0.05f, COLOR_PLAYER, 0.0f, 0.0f);
-
-
-	CreateGameObjBase(TYPE_PLATFORM, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/thePlatForm.png"), theBaseList);
-
-	// =======================
-	// ËÉåÊôØ
-	// =======================
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_PLAYER, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_PLAYER, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_PLAYER, 0.0f, 1.0f,
-		3.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		3.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		3.0f, 1.0f, COLOR_PLAYER, 1.0f, 0.0f,
-		1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-
-
-	CreateGameObjBase(TYPE_BACKGROUND, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/background.png"), theBaseList);
-
-	// =========================
-	// ‰∏ªËßí
-	// =========================
-
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_PLAYER, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_PLAYER, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-
-	CreateGameObjBase(TYPE_PLAYER, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/thePlayer.png"), theBaseList);
-
-	// ========================
-	// ÈöúÁ¢çÁâ©
-	// ========================
-
-	AEGfxMeshStart();
-	AEGfxTriAdd(
-		-1.0f, -1.0f, COLOR_PLAYER, 0.0f, 1.0f,
-		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-	AEGfxTriAdd(
-		1.0f, -1.0f, COLOR_PLAYER, 1.0f, 1.0f,
-		1.0f, 1.0f, COLOR_PLAYER, 1.0f, 0.0f,
-		-1.0f, 1.0f, COLOR_PLAYER, 0.0f, 0.0f);
-	CreateGameObjBase(TYPE_BLOCK, AEGfxMeshEnd(), AEGfxTextureLoad("source/image/theBlock.png"), theBaseList);
-
+	PlayerLoad();
+	BlockLoad();
+	BulletLoad();
+	MonsterLoad();
+	PlatformLoad();
+	BackGroundLoad();
+	PauseLoad();
+	UIStatusLoad();
+	
+	// ‘ÿ»Î“Ù¿÷
+	SoundAdd("source/sound/level1_backgd.mp3", FMOD_LOOP_NORMAL, SOUND_1);
 }
 
 void Ini1(void)
 {
+	// ≥ı ºªØ ±º‰œµÕ≥
+	TimerIni(&timeStart_level1);
+
+	// …Ë÷√µ±«∞πÿø®µƒ“ª–© Ù–‘÷µ
+	float BlockVel = -320.0f;
+	float MonsterVel = -320.0f;
+
 	printf("Level1: Ini\n");
-	GameObj* pObj;
-	int i;
-	Vector2D iniPosition_Player = {-200.0f, 34.0f};
-	Vector2D iniPosition_Block[BLOCK_NUM];
-	Vector2D iniVelocity_Background = {-3.0f, 0.0f};
-	Vector2D iniVelocity_Platform = {-3.0f, 0.0f };
-	Vector2D iniVelocity_Block[BLOCK_NUM];
-	iniPosition_Block[0].x = -70.0f;
-	iniPosition_Block[0].y = 170.0f;
-	iniPosition_Block[1].x = 120.0f;
-	iniPosition_Block[1].y = 100.0f;
-	iniPosition_Block[2].x = 40.0f;
-	iniPosition_Block[2].y = 240.0f;
-	iniPosition_Block[3].x = 80.0f;
-	iniPosition_Block[3].y = 180.0f;
+	// ªÒ»°µ±«∞πÿø® ±º‰
+	timeStart_level1 = clock();
 
-	iniVelocity_Block[0].x = -2.0f;
-	iniVelocity_Block[0].y = 1.0f;
-	iniVelocity_Block[1].x = -1.5f;
-	iniVelocity_Block[1].y = -0.5f;
-	iniVelocity_Block[2].x = 1.5f;
-	iniVelocity_Block[2].y = -1.0f;
-	iniVelocity_Block[3].x = 0.5f;
-	iniVelocity_Block[3].y = 1.5f;
+	PlayerStart();
+	BlockStart();
+    PlatformStart();
+	BackGroundStart();
+	MonsterStart();
+	BulletStart();
+	PauseStart();
+	UIStatusStart();
 	
+	BlockDefaultVelSet(BlockVel, 0);
+	MonsterDefaultVelSet(MonsterVel, 0);
 
-	// ÂØπË±°ÂÆû‰æãÂåñÔºö
-	// Áé©ÂÆ∂ÂØπË±°ÂÆû‰æãÂåñ
-	pHero = CreateGameObj(TYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
-	AE_ASSERT(pHero);
-	// ËÉåÊôØÂØπË±°ÂÆû‰æãÂåñ
-	pObj = CreateGameObj(TYPE_BACKGROUND, SIZE_BACKGROUND, zero, iniVelocity_Background, 0, theBaseList, 0, NULL);
-	// Âπ≥Âè∞ÂØπË±°ÂÆû‰æãÂåñ
-	pObj = CreateGameObj(TYPE_PLATFORM, SIZE_PLATFORM, zero, iniVelocity_Platform, 0, theBaseList, 0, NULL);
-	AE_ASSERT(pHero);
-	// ÂØπË±°ÂÆû‰æãÂåñ Âπ∂ ÂàùÂßãÂåñ
-	for (i = 0; i < BLOCK_NUM; i++)
-	{
-		// ÂÆû‰æãÂåñ
-		pObj = CreateGameObj(TYPE_BLOCK, SIZE_BLOCK, iniPosition_Block[i], iniVelocity_Block[i], 0, theBaseList, 0, NULL);
-		AE_ASSERT(pObj);
-	}
+	// ≤•∑≈“Ù¿÷
+	SoundPlay(SOUND_1);
+
+	CreateObjInMap4(1.0f);
+	CreateObjInMap3(2.5f);
+	CreateObjInMap5(4.0f);
+	CreateObjInMap0(6.0f);
+	CreateObjInMap6(16.0f);
+	SwithSceneAtTime(20.5f, GS_Pass);
 
 }
 
 void Update1(void)
 {
-	unsigned long i;
-	baseNode *pbasenode, *pbasenode2;
-	insNode *pinsnode, *pinsnode2;
-	GameObjList tlist, tlist2;
-	float winMaxX, winMaxY, winMinX, winMinY;
-	double frameTime;
-	int deathFlag = 0;
-
-	// ==========================================================================================
-	// Ëé∑ÂèñÁ™óÂè£ÂõõÊù°ËæπÁöÑÂùêÊ†áÔºåÂΩìÁ™óÂè£ÂèëÁîüÁßªÂä®ÊàñÁº©ÊîæÔºå‰ª•‰∏ãÂÄº‰ºöÂèëÁîüÂèòÂåñ
-	// ==========================================================================================
-	winMaxX = AEGfxGetWinMaxX();
-	winMaxY = AEGfxGetWinMaxY();
-	winMinX = AEGfxGetWinMinX();
-	winMinY = AEGfxGetWinMinY();
-
-	// ======================
-	// Â∏ßÊó∂Èó¥ÔºöUnity‰∏≠ÁöÑdt
-	// ======================
-	frameTime = AEFrameRateControllerGetFrameTime();
+	GetWinMaxMinXY();
 
 	// =========================
-	// Ê∏∏ÊàèÈÄªËæëÂìçÂ∫îËæìÂÖ•
+	// ”Œœ∑¬ﬂº≠œÏ”¶ ‰»Î
 	// =========================
+	KeyUpdate();
 
-	// Áä∂ÊÄÅÂàáÊç¢
-	if (KeyPressed[KeyR] == TRUE)
+	if (endPause)
 	{
-		Next = GS_Restart;
-		return;
-	}
-	if (KeyPressed[KeyESC] == TRUE)
-	{
-		Next = GS_Quit;
-		return;
-	}
-	if (KeyPressed[Key2] == TRUE)
-	{
-		Next = GS_L2;
-		return;
+		// ÷ÿ–¬º∆À„“Ú‘›Õ£—”≥Ÿµƒ ±º‰
+		timeStart_level1 += pauseEndTime - pauseStartTime;
+		endPause = FALSE;
+		GameObjDelete(pPause);
+		pauseCreated = FALSE;
+		SoundPausePlay(Current - GS_L0);
 	}
 
-	// Êõ¥Êñ∞HeroÂ§ñÁöÑÂØπË±°‰ΩçÁΩÆ
-	for (pbasenode = theBaseList->head->next; pbasenode != theBaseList->tail; pbasenode = pbasenode->next)
+	if (isPaused)
 	{
-		tlist = pbasenode->gameobj_list;
-		for (pinsnode = tlist->head->next; pinsnode != tlist->tail; pinsnode = pinsnode->next)
+		if (!pauseCreated)
 		{
-			GameObj* pInst = &(pinsnode->gameobj);
-			if (pinsnode->gameobj.flag == FLAG_INACTIVE)
-				continue;
-			switch (pbasenode->gameobj_base.type)
-			{
-				case TYPE_BACKGROUND:
-				{
-					pInst->posCurr.x += pInst->velCurr.x;
-					pInst->posCurr.y += pInst->velCurr.y;
-					if (pInst->posCurr.x <= winMinX - winMaxX)
-						pInst->posCurr.x = 0.0f;
-					break;
-				}
-				case TYPE_PLATFORM:
-				{
-					pInst->posCurr.x += pInst->velCurr.x;
-					pInst->posCurr.y += pInst->velCurr.y;
-					if (pInst->posCurr.x <= winMinX)
-						pInst->posCurr.x = 0.0f;
-					break;
-				}
-				case TYPE_BLOCK:
-				{
-					pInst->posCurr.x += pInst->velCurr.x;
-					pInst->posCurr.y += pInst->velCurr.y;
-					if ((pInst->posCurr.x < winMinX) || (pInst->posCurr.x > winMaxX) || (pInst->posCurr.y < winMinY) || (pInst->posCurr.y > winMaxY))
-						GameObjDelete(pInst);
-					break;
-				}
-			}
-				
-			
+			pPause = PauseCreate();
+			pauseCreated = TRUE;
+			SoundPausePlay(Current - GS_L0);
 		}
-		
-		if (pbasenode->gameobj_base.type == TYPE_BACKGROUND)
-		{
-			tlist = pbasenode->gameobj_list;
-			for (pinsnode = tlist->head->next; pinsnode != tlist->tail; pinsnode = pinsnode->next)
-			{
-
-			}
-		}
-
-	}
-
-
-
-	// ÊéßÂà∂Áé©ÂÆ∂playerÂ∑¶Âè≥ÁßªÂä® Âèä Ë∑≥Ë∑É(ÂåÄÈÄü)
-	if (KeyPressed[KeyRight] == TRUE)
-	{
-		pHero->velCurr.x = MOVE_VELOCITY_HERO;
 	}
 	else
-		if (KeyPressed[KeyLeft] == TRUE)
-		{
-			pHero->velCurr.x = -MOVE_VELOCITY_HERO;
-		}
-		else
-			pHero->velCurr.x = 0.f;
-	if (KeyPressed[KeySpace] == TRUE)
 	{
+		TimerUpdate(timeStart_level1);
+		// ∏¸–¬∂‘œÛ
+		ObjUpdate();
 
-		if (jumpCheck<2)
-			pHero->velCurr.y = JUMP_VELOCITY;
-		jumpCheck++;
+		// ====================
+		// ≈ˆ◊≤ºÏ≤‚
+		// ====================
+		BaseListTraverse(Visit_CollisionDetect);
+
 	}
-	pHero->posCurr.x += frameTime * pHero->velCurr.x;
-	pHero->posCurr.y += frameTime * pHero->velCurr.y;
-	// PlayerË∑≥Ëµ∑ÂêéÁöÑÈáçÂäõÊïàÂ∫î
-	if (jumpCheck > 0)
-		pHero->velCurr.y -= GRAVITY * frameTime;
-
-	// ====================
-	// Á¢∞ÊíûÊ£ÄÊµã
-	// ====================
-	for (pbasenode = theBaseList->head->next; (pbasenode != theBaseList->tail) && (deathFlag == 0); pbasenode = pbasenode->next)
-	{
-		tlist = pbasenode->gameobj_list;
-		for (pinsnode = tlist->head->next; (pinsnode != tlist->tail) && (deathFlag == 0); pinsnode = pinsnode->next)
-		{
-			GameObj* pInst = pHero;
-			GameObj* pInstOther = &(pinsnode->gameobj);
-
-			// ‰∏çÂ§ÑÁêÜÈùûÊ¥ªÂä®ÂØπË±°
-			if (pInst->flag == FLAG_INACTIVE)
-				continue;
-
-			// Player ‰∏é background / block ÁöÑÁ¢∞ÊíûÊ£ÄÊµã
-			if (pInst->pObject->type == TYPE_PLAYER)
-			{
-				for (pbasenode2 = theBaseList->head->next; (pbasenode2 != theBaseList->tail) && (deathFlag == 0); pbasenode2 = pbasenode2->next)
-				{
-					tlist2 = pbasenode2->gameobj_list;
-					for (pinsnode2 = tlist2->head->next; (pinsnode2 != tlist2->tail) && (deathFlag == 0); pinsnode2 = pinsnode2->next)
-					{
-						pInstOther = &(pinsnode2->gameobj);
-
-						// Ë∑≥ËøáÈùûÊ¥ªÂä®ÂØπË±°ÂíåËá™Ë∫´
-						if ((pInstOther->flag & FLAG_ACTIVE) == 0 || (pInstOther->pObject->type == TYPE_PLAYER))
-							continue;
-
-						// Player vs. Block
-						if (pInstOther->pObject->type == TYPE_BLOCK)
-						{
-							// Á¢∞ÊíûÊ£ÄÊµã
-							if (StaticCircleToStaticCircle(&(pInst->posCurr), pInst->scale, &(pInstOther->posCurr), pInstOther->scale))
-							{
-								// Ë£Ö‰∏äBLOCKÊ≠ª‰∫°
-								// ÈáçÊñ∞ÂºÄÂßãÂÖ≥Âç°
-								Next = GS_Restart;
-								deathFlag = 1;
-								printf("\n Collision with the Block: Pos(%.1f, %.1f)\n Restart\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
-								break;
-							}
-							continue;
-						}
-
-						// Player vs. Platform
-						if (pInstOther->pObject->type == TYPE_PLATFORM)
-						{
-							//ÊòØÂê¶Âú®Âπ≥Âè∞‰∏ä
-							if ((pInst->posCurr.y) <= pInst->scale + 10.0f)
-							{
-								jumpCheck = 0;
-								pInst->velCurr.y = 0.0f;
-								pInst->posCurr.y = pInst->scale + 10.0f;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
 	// =====================================
-	// ËÆ°ÁÆóÊâÄÊúâÂØπË±°ÁöÑ2DÂèòÊç¢Áü©Èòµ
+	// º∆À„À˘”–∂‘œÛµƒ2D±‰ªªæÿ’Û
 	// =====================================
-	for (pbasenode = theBaseList->head->next; pbasenode != theBaseList->tail; pbasenode = pbasenode->next)
-	{
-		tlist = pbasenode->gameobj_list;
-		for (pinsnode = tlist->head->next; pinsnode != tlist->tail; pinsnode = pinsnode->next)
-		{
-			GameObj* pInst = &(pinsnode->gameobj);
-			Matrix2D		 trans, rot, scale;
-
-			// ‰∏çÂ§ÑÁêÜÈùûÊ¥ªÂä®ÂØπË±°
-			if ((pInst->flag & FLAG_ACTIVE) == 0)
-				continue;
-
-			// Áº©ÊîæÁü©Èòµ
-			Matrix2DScale(&scale, pInst->scale, pInst->scale);
-			// ÊóãËΩ¨Áü©Èòµ
-			Matrix2DRotDeg(&rot, pInst->dirCurr);
-			// Âπ≥ÁßªÁü©Èòµ
-			Matrix2DTranslate(&trans, pInst->posCurr.x, pInst->posCurr.y);
-			// ‰ª•Ê≠£Á°ÆÁöÑÈ°∫Â∫èËøû‰πò‰ª•‰∏ä3‰∏™Áü©ÈòµÂΩ¢Êàê2Áª¥ÂèòÊç¢Áü©Èòµ
-			Matrix2DConcat(&(pInst->transform), &trans, &rot);
-			Matrix2DConcat(&(pInst->transform), &(pInst->transform), &scale);
-		}
-	}
+	BaseListTraverse(Visit_Matrix2DCount);
 }
 
 void Draw1(void)
 {
-	baseNode *pbasenode;
-	insNode *pinsnode;
-	GameObjList tlist;
-	char strBuffer[1024];
-	unsigned long i;
-	double frameTime;
-
-	// ‰∏∫ÂºÄÂßãÁîªÂØπË±°ÂÅöÂáÜÂ§á
+	// Œ™ø™ ºª≠∂‘œÛ◊ˆ◊º±∏
 	AEGfxSetBackgroundColor(0.0f, 0.0f, 0.0f);
 	AEGfxSetBlendMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 
-	// ÈÄê‰∏™ÁªòÂà∂ÂØπË±°ÂàóË°®‰∏≠ÁöÑÊâÄÊúâÂØπË±°
-	for (pbasenode = theBaseList->head->next; pbasenode != theBaseList->tail; pbasenode = pbasenode->next)
-	{
-		tlist = pbasenode->gameobj_list;
-		for (pinsnode = tlist->head->next; pinsnode != tlist->tail; pinsnode = pinsnode->next)
-		{
-			GameObj* pInst = &(pinsnode->gameobj);
+	// ÷∏ˆªÊ÷∆∂‘œÛ¡–±Ì÷–µƒÀ˘”–∂‘œÛ
+	BaseListTraverse(Visit_DrawObj);
 
-			// Ë∑≥ËøáÈùûÊ¥ªÂä®ÂØπË±°
-			if ((pInst->flag & FLAG_ACTIVE) == 0)
-				continue;
-			// ËÆæÁΩÆÁ∫πÁêÜ
-			AEGfxTextureSet(pInst->pObject->pTex, 0, 0);
-			// ËÆæÁΩÆÂØπË±°ÁöÑ2DÂèòÊç¢Áü©ÈòµÔºå‰ΩøÁî®ÂáΩÊï∞ÔºöAEGfxSetTransform
-			AEGfxSetTransform(pInst->transform.m);
-			// ÁªòÂà∂ÂΩìÂâçÂØπË±°Ôºå‰ΩøÁî®ÂáΩÊï∞ÔºöAEGfxMeshDraw
-			AEGfxMeshDraw(pInst->pObject->pMesh, AE_GFX_MDM_TRIANGLES);
-		}
-	}
 }
 
 void Free1(void)
 {
-	printf("Level1: free\n");
-	int i = 0;
-	baseNode *pbasenode;
-	insNode *pinsnode;
-	GameObjList tlist;
 
-	// ‰ΩøÁî®ÂáΩÊï∞gameObjDestroyÂà†Èô§ÂàóË°®‰∏≠ÁöÑÂØπË±°
-	for (pbasenode = theBaseList->head->next; pbasenode != theBaseList->tail; pbasenode = pbasenode->next)
-	{
-		tlist = pbasenode->gameobj_list;
-		for (pinsnode = tlist->head->next; pinsnode != tlist->tail; pinsnode = pinsnode->next)
-		{
-			GameObj* pInst = &(pinsnode->gameobj);
-			if (pInst->flag == FLAG_ACTIVE)
-				GameObjDelete(pInst);
-		}
-	}
+	printf("Level1: free\n");
+	//  π”√∫Ø ˝gameObjDestroy…æ≥˝¡–±Ì÷–µƒ∂‘œÛ
+	BaseListTraverse(Visit_DestroyObj);
+
+	//“Ù¿÷Õ£÷π≤•∑≈
+	SoundStop(SOUND_1);
+
+	TimerFree();
 }
 
 void Unload1(void)

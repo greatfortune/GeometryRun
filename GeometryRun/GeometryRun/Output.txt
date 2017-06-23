@@ -1,5 +1,0 @@
-System:Initialize
-GSM: Initialize
-GSM: Update
-Input:ESC
-System:Exit

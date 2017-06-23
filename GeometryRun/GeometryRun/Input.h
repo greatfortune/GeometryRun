@@ -1,13 +1,12 @@
-#pragma once
-
 /**
- * Project:		GameStateManager
+ * Project:		GeometryRun
  * File Name:	Input.h
  * Author:		王晶
  * Date:		2017-4-22
  * Purpose:		输入模块
  */
 
+#pragma once
 
  //------------------------------------------------------------------------------
  // Typedef:
@@ -24,19 +23,38 @@
  //------------------------------------------------------------------------------
  // Public Variables:
  //------------------------------------------------------------------------------
+
 enum {
 	KeyR,
 	KeyESC,
+	Key0,
 	Key1,
 	Key2,
+	Key3,
+	Key4,
+	Key6,
+	Key7,
+	Key8,
 	KeyUp,
 	KeyDown,
-	KeyLeft,
-	KeyRight,
 	KeySpace,
+	KeyM,
+	KeyW,
+	KeyS,
+	KeyJ,
+	KeyP,
+	KeyB,
+	KeyK,
+	KeyLButton,
+	KeyVolumeUp,
+	KeyVolumeDown,
+	KeyVolumeStop,
 	KeyNUM    // 总放在最后一个
 };
-boolean KeyPressed[KeyNUM];
+extern int KeyPressed[KeyNUM];
+
+extern POINT mousPos;
+extern int posType;
 
  //------------------------------------------------------------------------------
  // Public Functions:

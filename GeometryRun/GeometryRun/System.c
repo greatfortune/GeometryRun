@@ -1,5 +1,5 @@
 /**
- * Project:		GameStateManager
+ * Project:		GeometryRun
  * File Name:	System.c
  * Author:		王晶
  * Date:		2017-4-22
@@ -9,8 +9,11 @@
 #include "System.h"
 #include "AEEngine.h"
 #include "Input.h"
+#include "SoundSystem.h"
 
 #pragma comment (lib, "Alpha_Engine.lib")
+#pragma comment (lib, "fmodex_vc.lib")
+#pragma comment (lib, "fmodexL_vc.lib")
 
  //------------------------------------------------------------------------------
  // Private Consts:
@@ -49,26 +52,18 @@ int System_Initialize(HINSTANCE hInstance, int nCmdShow)
 	sysInitInfo.mMaxFrameRate = 60;			// 设置帧率（如果使用Alpha的帧率控制功能的话）
 	sysInitInfo.mpWinCallBack = Input_Handle;
 	sysInitInfo.mClassStyle = CS_HREDRAW | CS_VREDRAW;		// 窗口类定义的重绘方式									
-	sysInitInfo.mWindowStyle = WS_OVERLAPPEDWINDOW;			// 窗口风格，取值：WS_POPUP | WS_VISIBLE | WS_SYSMENU | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
+	sysInitInfo.mWindowStyle = WS_DLGFRAME | WS_SYSMENU;			// 窗口风格，取值：WS_POPUP | WS_VISIBLE | WS_SYSMENU | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
 															// Alpha系统初始化 及 模块重置
 	if (0 == AESysInit(&sysInitInfo))
 		return -1;
 	AESysReset();
-
-	// 打开签到表
-	if ((fp = fopen("Output.txt", "w")) == NULL)
-	{
-		printf("Cannot find file Output.txt\n");
-		return -1;
-	}
-	// 签到
-	
-
 	AllocConsole();
 	freopen("conout$", "w", stdout);
 	printf("hello!\n");
-	fprintf(fp, "System:Initialize\n");
 	printf("System:Initialize\n");
+
+	// 音乐初始化
+	SoundSystemLoad();
 
 	return 0;
 }
@@ -79,8 +74,7 @@ void System_Exit(void)
 	// Alpha系统退出
 	AESysExit();
 
-	// 签到
-	fprintf(fp, "System:Exit\n");
+	// 音乐系统退出
+	SoundSystemExit();
 	printf("System:Exit\n");
-	fclose(fp);
 }

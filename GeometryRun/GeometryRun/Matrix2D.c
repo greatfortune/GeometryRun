@@ -1,8 +1,16 @@
+/**
+ * Project:		GeometryRun
+ * File Name:	Matrix2D.c
+ * Author:		Ë§ÏþÓê
+ * Date:		2017-4-22
+ * Purpose:		Matrix2D.c
+ */
+
 #include "Matrix2D.h"
 
 
 /*
-å°†pResultè®¾ç½®ä¸ºå•ä½çŸ©é˜µ
+½«pResultÉèÖÃÎªµ¥Î»¾ØÕó
 */
 void Matrix2DIdentity(Matrix2D *pResult)
 {
@@ -15,7 +23,7 @@ void Matrix2DIdentity(Matrix2D *pResult)
 // ---------------------------------------------------------------------------
 
 /*
-è®¡ç®—pMtxçš„è½¬ç½®ï¼Œå¹¶å°†ç»“æžœæ”¾åˆ°pResult
+¼ÆËãpMtxµÄ×ªÖÃ£¬²¢½«½á¹û·Åµ½pResult
 */
 void Matrix2DTranspose(Matrix2D *pResult, Matrix2D *pMtx)
 {
@@ -46,7 +54,7 @@ void Matrix2DConcat(Matrix2D *pResult, Matrix2D *pMtx0, Matrix2D *pMtx1)
 // ---------------------------------------------------------------------------
 
 /*
-å°†pResultè®¾ç½®ä¸ºå¹³ç§»çŸ©é˜µï¼Œå¹³ç§»ä½ç§»ä¸ºxå’Œy
+½«pResultÉèÖÃÎªÆ½ÒÆ¾ØÕó£¬Æ½ÒÆÎ»ÒÆÎªxºÍy
 */
 void Matrix2DTranslate(Matrix2D *pResult, float x, float y)
 {
@@ -58,7 +66,7 @@ void Matrix2DTranslate(Matrix2D *pResult, float x, float y)
 // ---------------------------------------------------------------------------
 
 /*
-å°†pResultè®¾ç½®ä¸ºç¼©æ”¾çŸ©é˜µï¼Œxå’Œyåˆ†åˆ«ä¸ºæ°´å¹³å’Œåž‚ç›´æ–¹å‘çš„ç¼©æ”¾æ¯”ä¾‹
+½«pResultÉèÖÃÎªËõ·Å¾ØÕó£¬xºÍy·Ö±ðÎªË®Æ½ºÍ´¹Ö±·½ÏòµÄËõ·Å±ÈÀý
 */
 void Matrix2DScale(Matrix2D *pResult, float x, float y)
 {
@@ -70,31 +78,31 @@ void Matrix2DScale(Matrix2D *pResult, float x, float y)
 // ---------------------------------------------------------------------------
 
 /*
-å°†pResultè®¾ç½®ä¸ºæ—‹è½¬çŸ©é˜µï¼Œæ—‹è½¬é‡ä¸ºAngleï¼Œä¸ºåº¦æ•°
+½«pResultÉèÖÃÎªÐý×ª¾ØÕó£¬Ðý×ªÁ¿ÎªAngle£¬Îª¶ÈÊý
 */
 void Matrix2DRotDeg(Matrix2D *pResult, float Angle)
 {
 	Matrix2DIdentity(pResult);
 	float a;
-	a = Angle * PI / 180;
-	pResult->m[0][0] = cos(a);
-	pResult->m[1][1] = cos(a);
-	pResult->m[0][1] = -sin(a);
-	pResult->m[1][0] = sin(a);
+	a = (float)(Angle * PI / 180);
+	pResult->m[0][0] = cosf(a);
+	pResult->m[1][1] = cosf(a);
+	pResult->m[0][1] = -sinf(a);
+	pResult->m[1][0] = sinf(a);
 }
 
 // ---------------------------------------------------------------------------
 
 /*
-å°†pResultè®¾ç½®ä¸ºæ—‹è½¬çŸ©é˜µï¼Œæ—‹è½¬é‡ä¸ºAngleï¼Œä¸ºå¼§åº¦
+½«pResultÉèÖÃÎªÐý×ª¾ØÕó£¬Ðý×ªÁ¿ÎªAngle£¬Îª»¡¶È
 */
 void Matrix2DRotRad(Matrix2D *pResult, float Angle)
 {
 	Matrix2DIdentity(pResult);
-	pResult->m[0][0] = cos(Angle);
-	pResult->m[1][1] = cos(Angle);
-	pResult->m[0][1] = -sin(Angle);
-	pResult->m[1][0] = sin(Angle);
+	pResult->m[0][0] = cosf(Angle);
+	pResult->m[1][1] = cosf(Angle);
+	pResult->m[0][1] = -sinf(Angle);
+	pResult->m[1][0] = sinf(Angle);
 }
 
 // ---------------------------------------------------------------------------
@@ -104,7 +112,6 @@ Result = Mtx * Vec
 */
 void Matrix2DMultVec(Vector2D *pResult, Matrix2D *pMtx, Vector2D *pVec)
 {
-	float x, y;
 	int i, j;
 	float m[3][1] = { 0 };
 	float v[3][1] = { pVec->x,pVec->y,1 };

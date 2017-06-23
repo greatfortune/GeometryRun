@@ -1,5 +1,12 @@
-#ifndef VECTOR2_H
-#define VECTOR2_H
+/**
+ * Project:		GeometryRun
+ * File Name:	Vector2D.h
+ * Author:		王晶
+ * Date:		2017-4-22
+ * Purpose:		Vector2D.h
+ */
+
+#pragma once
 
 #include <math.h>
 
@@ -89,4 +96,8 @@ void Vector2DFromAngleDeg(Vector2D *pResult, float angle);
 */
 void Vector2DFromAngleRad(Vector2D *pResult, float angle);
 
-#endif
+/*
+计算两个点之间的角度，第一个点作为原点，单位为角度数
+*/
+float Vector2DAngle(Vector2D *pVec0, Vector2D *pVec1);
+
