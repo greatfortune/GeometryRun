@@ -1,3 +1,10 @@
+/**
+ * Project:		GeometryRun
+ * File Name:	Calculate.h
+ * Author:		帅晓雨
+ * Date:		2017-6-21
+ * Purpose:		无尽模式关卡结算
+ */
 
 #include "BackGround.h"
 

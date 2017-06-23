@@ -1,42 +1,50 @@
+/**
+ * Project:		GeometryRun
+ * File Name:	Math2D.c
+ * Author:		Ë§ÏşÓê
+ * Date:		2017-4-22
+ * Purpose:		Math2D.c
+ */
+
 #include "Math2D.h"
 #include "stdio.h"
 
 /*
-æ£€æµ‹ç‚¹pPæ˜¯å¦ä¸åœ†ï¼ˆåœ†å¿ƒpCenterï¼ŒåŠå¾„pRadiusï¼‰å‘ç”Ÿç¢°æ’
+¼ì²âµãpPÊÇ·ñÓëÔ²£¨Ô²ĞÄpCenter£¬°ë¾¶pRadius£©·¢ÉúÅö×²
 */
 int StaticPointToStaticCircle(Vector2D *pP, Vector2D *pCenter, float Radius)
 {
-	if (Vector2DDistance(pP, pCenter)< Radius)  return 1;          //ç¢°æ’å‘ç”Ÿ
-	else return 0;                      //ç¢°æ’æœªå‘ç”Ÿ
+	if (Vector2DDistance(pP, pCenter)< Radius)  return 1;          //Åö×²·¢Éú
+	else return 0;                      //Åö×²Î´·¢Éú
 }
 
 
 /*
-æ£€æµ‹ç‚¹pPosæ˜¯å¦ä¸çŸ©å½¢ï¼ˆä¸­å¿ƒpRectï¼Œå®½åº¦Widthï¼Œé«˜åº¦Heightï¼‰å‘ç”Ÿç¢°æ’
+¼ì²âµãpPosÊÇ·ñÓë¾ØĞÎ£¨ÖĞĞÄpRect£¬¿í¶ÈWidth£¬¸ß¶ÈHeight£©·¢ÉúÅö×²
 */
 int StaticPointToStaticRect(Vector2D *pPos, Vector2D *pRect, float Width, float Height)
 {
 	if (pPos->x < pRect->x - Width / 2) return 0;
 	if (pPos->x > pRect->x + Width / 2) return 0;
 	if (pPos->y < pRect->y - Height / 2) return 0;
-	if (pPos->y > pRect->y + Height / 2) return 0;  //æœªå‘ç”Ÿç¢°æ’
-	return 1;                                       //å‘ç”Ÿç¢°æ’
+	if (pPos->y > pRect->y + Height / 2) return 0;  //Î´·¢ÉúÅö×²
+	return 1;                                       //·¢ÉúÅö×²
 }
 
 /*
-Circle0: åœ†å¿ƒpCenter0ï¼ŒåŠå¾„pRadius0
-Circle1: åœ†å¿ƒpCenter1ï¼ŒåŠå¾„pRadius1
+Circle0: Ô²ĞÄpCenter0£¬°ë¾¶pRadius0
+Circle1: Ô²ĞÄpCenter1£¬°ë¾¶pRadius1
 */
 int StaticCircleToStaticCircle(Vector2D *pCenter0, float Radius0, Vector2D *pCenter1, float Radius1)
 {
-	if (Vector2DDistance(pCenter0, pCenter1) < Radius0 + Radius1) return 1; //ç¢°æ’å‘ç”Ÿ
+	if (Vector2DDistance(pCenter0, pCenter1) < Radius0 + Radius1) return 1; //Åö×²·¢Éú
 	return 0;
 }
 
 /*
-æ£€æµ‹ä¸¤ä¸ªçŸ©å½¢æ˜¯å¦å‘ç”Ÿç¢°æ’
-Rectangle0: ä¸­å¿ƒpRect0ï¼Œå®½åº¦Width0ï¼Œé«˜åº¦Height0
-Rectangle1: ä¸­å¿ƒpRect1ï¼Œå®½åº¦Width1ï¼Œé«˜åº¦Height1
+¼ì²âÁ½¸ö¾ØĞÎÊÇ·ñ·¢ÉúÅö×²
+Rectangle0: ÖĞĞÄpRect0£¬¿í¶ÈWidth0£¬¸ß¶ÈHeight0
+Rectangle1: ÖĞĞÄpRect1£¬¿í¶ÈWidth1£¬¸ß¶ÈHeight1
 */
 int StaticRectToStaticRect(Vector2D *pRect0, float Width0, float Height0, Vector2D *pRect1, float Width1, float Height1)
 {
@@ -44,5 +52,5 @@ int StaticRectToStaticRect(Vector2D *pRect0, float Width0, float Height0, Vector
 	if (pRect0->x + Width0 / 2 < pRect1->x - Width1 / 2) return 0;
 	if (pRect0->y - Height0 / 2 > pRect1->y + Height1 / 2) return 0;
 	if (pRect0->y + Height0 / 2 < pRect1->y - Height1 / 2) return 0;
-    return 1;              //ç¢°æ’å‘ç”Ÿ
+    return 1;              //Åö×²·¢Éú
 }

@@ -63,7 +63,6 @@ void GSM_Initialize(int cur)
 	Previous = cur;
 	Current = cur;
 	Next = cur;
-	fprintf(fp, "GSM: Initialize\n");
 }
 
 void GSM_Update(void)
@@ -188,7 +187,6 @@ void GSM_Update(void)
 			break;
 		}
 	}
-	fprintf(fp, "GSM: Update\n");
 	printf("GSM: Update\n");
 }
 

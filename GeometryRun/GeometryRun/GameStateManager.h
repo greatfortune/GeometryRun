@@ -1,5 +1,3 @@
-#pragma once
-
 /**
  * Project:		GeometryRun
  * File Name:	GameStateManager.h
@@ -8,6 +6,7 @@
  * Purpose:		游戏状态管理模块
  */
 
+#pragma once
 
 //------------------------------------------------------------------------------
 // Typedef:

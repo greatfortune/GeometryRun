@@ -1,10 +1,10 @@
 /**
-* Project:		GeometryRun
-* File Name:	SoundSystem.h
-* Author:		wyz
-* Date:         2017-06-08
-* Purpose:		add background music
-*/
+ * Project:		GeometryRun
+ * File Name:	SoundSystem.h
+ * Author:		wyz
+ * Date:        2017-06-08
+ * Purpose:		add background music
+ */
 
 
 #pragma once

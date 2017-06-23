@@ -86,9 +86,6 @@ void Ini4(void)
 
 void Update4(void)
 {
-	Vector2D iniPosition_Block;
-	Vector2D iniVelocity_Block;
-
 	GetWinMaxMinXY();
 
 	// =========================

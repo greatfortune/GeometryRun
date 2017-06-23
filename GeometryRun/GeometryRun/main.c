@@ -55,7 +55,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		else
 		{
 			// GSM Update
-			GSM_Update(Current);
+			GSM_Update();
 			pLoad();
 		}
 

@@ -8,7 +8,7 @@ float winMaxX, winMaxY, winMinX, winMinY;
 // ======================
 // 帧时间：Unity中的dt
 // ======================
-double frameTime;
+float frameTime;
 
 Status GetWinMaxMinXY()
 {
@@ -142,10 +142,10 @@ Status ObjUpdate()
 {
 	baseNode *pBaseNode;
 	GameObjList *pL;
-	frameTime = AEFrameRateControllerGetFrameTime();
+	frameTime = (float)AEFrameRateControllerGetFrameTime();
 	for (pBaseNode = theBaseList->head->next; pBaseNode != theBaseList->tail; pBaseNode = pBaseNode->next)
 	{
-		pL = pBaseNode->gameobj_list;
+		pL = &(pBaseNode->gameobj_list);
 		switch (pBaseNode->gameobj_base.type)
 		{
 			case OTYPE_PLAYER:

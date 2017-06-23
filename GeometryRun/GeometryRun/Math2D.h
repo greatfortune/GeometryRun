@@ -1,28 +1,36 @@
+/**
+ * Project:		GeometryRun
+ * File Name:	Math2D.h
+ * Author:		Ë§ÏşÓê
+ * Date:		2017-4-22
+ * Purpose:		Math2D.h
+ */
+
 #pragma once
 
 #include "Vector2D.h"
 
 /*
-æ£€æµ‹ç‚¹pPæ˜¯å¦ä¸åœ†ï¼ˆåœ†å¿ƒpCenterï¼ŒåŠå¾„pRadiusï¼‰å‘ç”Ÿç¢°æ’
+¼ì²âµãpPÊÇ·ñÓëÔ²£¨Ô²ĞÄpCenter£¬°ë¾¶pRadius£©·¢ÉúÅö×²
 */
 int StaticPointToStaticCircle(Vector2D *pP, Vector2D *pCenter, float Radius);
 
 /*
-æ£€æµ‹ç‚¹pPosæ˜¯å¦ä¸çŸ©å½¢ï¼ˆä¸­å¿ƒpRectï¼Œå®½åº¦Widthï¼Œé«˜åº¦Heightï¼‰å‘ç”Ÿç¢°æ’
+¼ì²âµãpPosÊÇ·ñÓë¾ØĞÎ£¨ÖĞĞÄpRect£¬¿í¶ÈWidth£¬¸ß¶ÈHeight£©·¢ÉúÅö×²
 */
 int StaticPointToStaticRect(Vector2D *pPos, Vector2D *pRect, float Width, float Height);
 
 /*
-æ£€æµ‹ä¸¤ä¸ªåœ†æ˜¯å¦å‘ç”Ÿç¢°æ’
-Circle0: åœ†å¿ƒpCenter0ï¼ŒåŠå¾„pRadius0
-Circle1: åœ†å¿ƒpCenter1ï¼ŒåŠå¾„pRadius1
+¼ì²âÁ½¸öÔ²ÊÇ·ñ·¢ÉúÅö×²
+Circle0: Ô²ĞÄpCenter0£¬°ë¾¶pRadius0
+Circle1: Ô²ĞÄpCenter1£¬°ë¾¶pRadius1
 */
 int StaticCircleToStaticCircle(Vector2D *pCenter0, float Radius0, Vector2D *pCenter1, float Radius1);
 
 /*
-æ£€æµ‹ä¸¤ä¸ªçŸ©å½¢æ˜¯å¦å‘ç”Ÿç¢°æ’
-Rectangle0: ä¸­å¿ƒpRect0ï¼Œå®½åº¦Width0ï¼Œé«˜åº¦Height0
-Rectangle1: ä¸­å¿ƒpRect1ï¼Œå®½åº¦Width1ï¼Œé«˜åº¦Height1
+¼ì²âÁ½¸ö¾ØĞÎÊÇ·ñ·¢ÉúÅö×²
+Rectangle0: ÖĞĞÄpRect0£¬¿í¶ÈWidth0£¬¸ß¶ÈHeight0
+Rectangle1: ÖĞĞÄpRect1£¬¿í¶ÈWidth1£¬¸ß¶ÈHeight1
 */
 int StaticRectToStaticRect(Vector2D *pRect0, float Width0, float Height0, Vector2D *pRect1, float Width1, float Height1);
 

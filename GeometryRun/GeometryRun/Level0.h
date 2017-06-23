@@ -1,10 +1,10 @@
 /**
-* Project:		GeometryRun
-* File Name:	Level0.h
-* Author:		Ë§ÏþÓê
-* Date:
-* Purpose:		¹Ø¿¨0
-*/
+ * Project:		GeometryRun
+ * File Name:	Level0.h
+ * Author:		Ë§ÏþÓê
+ * Date:
+ * Purpose:		¹Ø¿¨0
+ */
 #pragma once
 
 #include "BackGround.h"

@@ -1,3 +1,11 @@
+/**
+ * Project:		GeometryRun
+ * File Name:	Vector2D.h
+ * Author:		Íõ¾§
+ * Date:		2017-4-22
+ * Purpose:		Vector2D.h
+ */
+
 #pragma once
 
 #include <math.h>

@@ -1,15 +1,15 @@
 /* Project:		GeometryRun
 File Name:	GameObjectManager.c
-Author:		é»„å˜‰ç»´
+Author:		»Æ¼ÎÎ¬
 Date:
-Purpose:		æ¸¸æˆå¯¹è±¡ç®¡ç† */
+Purpose:		ÓÎÏ·¶ÔÏó¹ÜÀí */
 
 #include "GameObjectManager.h"
 
-// æ¸¸æˆå¯¹è±¡é“¾è¡¨
+// ÓÎÏ·¶ÔÏóÁ´±í
 GameObjBaseList theBaseList;
 Vector2D zero;
-// ç”¨äºŽè°ƒè¯•è¾“å‡ºå¯¹è±¡ç±»åž‹åç§°
+// ÓÃÓÚµ÷ÊÔÊä³ö¶ÔÏóÀàÐÍÃû³Æ
 char ObjTypeName[OTYPE_COUNT][20];
 
 
@@ -115,7 +115,7 @@ Status DestroyGameObjBaseList(GameObjBaseList *L)
 		{
 			DestroyGameObjList(&(pt1->gameobj_list));
 			printf("DestroyGameObjList:type: %-16s\n", ObjTypeName[pt1->gameobj_base.type]);
-			// å¸è½½å¯¹è±¡å½¢çŠ¶å®šä¹‰èµ„æºï¼Œä½¿ç”¨å‡½æ•°ï¼šAEGfxMeshFree
+			// Ð¶ÔØ¶ÔÏóÐÎ×´¶¨Òå×ÊÔ´£¬Ê¹ÓÃº¯Êý£ºAEGfxMeshFree
 			AEGfxMeshFree(pt1->gameobj_base.pMesh);
 		}
 		free(pt1);
@@ -186,29 +186,29 @@ Status GameObjDelete(GameObj* theGameObj)
 	return OK;
 }
 
-//éåŽ†å‡½æ•°ï¼Œå¯èƒ½æ— ç”¨
-Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode))
+//±éÀúº¯Êý£¬¿ÉÄÜÎÞÓÃ
+Status ListTraverse(GameObjList * L, Status(*Visit)(insNode* pinsNode))
 {
 	insNode *pt;
-	for (pt = L->head->next; pt != L->tail; pt = pt->next)
+	for (pt = (*L)->head->next; pt != (*L)->tail; pt = pt->next)
 		if (pt->gameobj.flag == FLAG_ACTIVE)
 			Visit(pt);
 
 	return OK;
 }
 
-//éåŽ†å‡½æ•°ï¼Œå¯èƒ½æ— ç”¨
+//±éÀúº¯Êý£¬¿ÉÄÜÎÞÓÃ
 Status BaseListTraverse(Status(*Visit)(insNode* pinsNode))
 {
 	baseNode *pt;
 	for (pt = theBaseList->head->next; pt != theBaseList->tail; pt = pt->next)
-		ListTraverse(pt->gameobj_list, Visit);
+		ListTraverse(&pt->gameobj_list, Visit);
 	return OK;
 }
 
 //static Status Visit_SearchInactiveObj(insNode** ppInsNode, int *pflag);
 
-//åˆ›å»ºæ–°å®žä¾‹å¯¹è±¡
+//´´½¨ÐÂÊµÀý¶ÔÏó
 GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties)
 {
 	baseNode *pBaseNode;
@@ -217,7 +217,7 @@ GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2
 	insNode *pt1, *pt2, *pInstNode = NULL;
 	int flag = 0, i;
 
-	// æ‰¾éžæ´»åŠ¨å¯¹è±¡çš„ä½ç½®
+	// ÕÒ·Ç»î¶¯¶ÔÏóµÄÎ»ÖÃ
 	for (pt1 = pBaseNode->gameobj_list->head->next; pt1 != pBaseNode->gameobj_list->tail; pt1 = pt1->next)
 	{
 		if (pt1->gameobj.flag == FLAG_INACTIVE)
@@ -253,11 +253,11 @@ GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2
 	if (thePropertyCount != 0)
 	for (i = 0; i < thePropertyCount; i++)
 		printf("Property %s: %d", theProperties[i].name, theProperties[i].value);
-	// è¿”å›žæ–°åˆ›å»ºçš„å¯¹è±¡å®žä¾‹
+	// ·µ»ØÐÂ´´½¨µÄ¶ÔÏóÊµÀý
 	return &(pInstNode->gameobj);
 }
 
-//åˆ›å»ºæ–°åŸºç±»
+//´´½¨ÐÂ»ùÀà
 Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L)
 {
 	baseNode *pBaseNode = (baseNode *)malloc(sizeof(baseNode));

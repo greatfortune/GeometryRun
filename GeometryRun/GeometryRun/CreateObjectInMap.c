@@ -7,12 +7,6 @@
  */
 
 #include "CreateObjectInMap.h"
-/*
- * By WJ
- * 从上至下再至上依次出现小怪物
- * startTime：开始时间
- * 返回占用时间：6s
- */
 
 float(*CreateObjInMapRamdom[CreateMethods])(float);
 
@@ -26,8 +20,17 @@ Status IniCreateRandomArrays()
 	CreateObjInMapRamdom[5] = CreateObjInMap5;
 	CreateObjInMapRamdom[6] = CreateObjInMap6;
 	CreateObjInMapRamdom[7] = CreateObjInMap7;
+	CreateObjInMapRamdom[8] = CreateObjInMap8;
+	CreateObjInMapRamdom[9] = CreateObjInMap9;
 	return OK;
 }
+
+/*
+ * By WJ
+ * 从上至下再至上依次出现小怪物
+ * startTime：开始时间
+ * 返回占用时间：6s
+ */
 
 float CreateObjInMap0(float startTime)
 {
@@ -173,6 +176,54 @@ float CreateObjInMap7(float startTime)
 	CreateAIMonsterAtTimeWithPos(startTime + 1.8f, pos2);
 	return 1.8f;
 }
+
+/*
+ * By WJ
+ * 需要二段跳跃
+ * 占用时间：1.2s
+ */
+float CreateObjInMap8(float startTime)
+{
+	float CurBlockScale = BlockScaleGet();
+	float CurPlatformHeight = PlatformHeightGet();
+	Vector2D pos1 = { winMaxX, CurBlockScale + CurPlatformHeight };
+	Vector2D pos2 = { winMaxX, -CurBlockScale - CurPlatformHeight };
+	Vector2D pos3 = { winMaxX, 3 * CurBlockScale + CurPlatformHeight };
+
+	CreateBlockAtTimeWithPos(startTime, pos1);
+	CreateBlockAtTimeWithPos(startTime, pos2);
+	CreateBlockAtTimeWithPos(startTime + 0.5f, pos1);
+	CreateBlockAtTimeWithPos(startTime + 0.5f, pos2);
+	CreateBlockAtTimeWithPos(startTime + 0.5f, pos3);
+	return 0.5f;
+}
+
+/*
+ * By WJ
+ * 有操作难度
+ * 占用时间：1.8s
+ */
+float CreateObjInMap9(float startTime)
+{
+	float CurBlockScale = BlockScaleGet();
+	float CurPlatformHeight = PlatformHeightGet();
+	Vector2D pos1 = { winMaxX, CurBlockScale + CurPlatformHeight };
+	Vector2D pos2 = { winMaxX, -CurBlockScale - CurPlatformHeight };
+	Vector2D pos3 = { winMaxX, 7 * CurBlockScale + CurPlatformHeight };
+
+	CreateBlockAtTimeWithPos(startTime, pos1);
+	CreateBlockAtTimeWithPos(startTime, pos2);
+	CreateBlockAtTimeWithPos(startTime, pos3);
+	CreateMonsterAtTimeWithPos(startTime + 0.6f, pos3);
+	CreateBlockAtTimeWithPos(startTime + 0.6f, pos1);
+	CreateBlockAtTimeWithPos(startTime + 1.2f, pos1);
+	CreateBlockAtTimeWithPos(startTime + 1.2f, pos2);
+	CreateBlockAtTimeWithPos(startTime + 1.2f, pos3);
+	CreateMonsterAtTimeWithPos(startTime + 1.8f, pos3);
+	CreateBlockAtTimeWithPos(startTime + 1.8f, pos2);
+	return 1.8f;
+}
+
 
 /*
  * By HJW

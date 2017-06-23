@@ -1,8 +1,8 @@
 /* Project:		GeometryRun
 File Name:	GameObjectManager.h
-Author:		é»„å˜‰ç»´
+Author:		»Æ¼ÎÎ¬
 Date:
-Purpose:		æ¸¸æˆå¯¹è±¡ç®¡ç† */
+Purpose:		ÓÎÏ·¶ÔÏó¹ÜÀí */
 #pragma once
 
 #define OK 1
@@ -57,33 +57,33 @@ enum visitType
 	VTYPE_COUNT
 };
 
-// å¯è€ƒè™‘å»æ‰åå­—
+// ¿É¿¼ÂÇÈ¥µôÃû×Ö
 typedef struct
 {
 	char name[10];
 	int value;
 }Property;
 
-// æ¸¸æˆå¯¹è±¡åŸºç±»/ç»“æ„
+// ÓÎÏ·¶ÔÏó»ùÀà/½á¹¹
 typedef struct
 {
-	unsigned long		type;		// æ¸¸æˆå¯¹è±¡ç±»å‹
-	AEGfxVertexList*	pMesh;		// å½¢çŠ¶
-	AEGfxTexture*		pTex;		// çº¹ç†
+	unsigned long		type;		// ÓÎÏ·¶ÔÏóÀàĞÍ
+	AEGfxVertexList*	pMesh;		// ĞÎ×´
+	AEGfxTexture*		pTex;		// ÎÆÀí
 }GameObjBase;
 
-// æ¸¸æˆå¯¹è±¡ç±»/ç»“æ„
+// ÓÎÏ·¶ÔÏóÀà/½á¹¹
 typedef struct
 {
-	GameObjBase*		pObject;	// æŒ‡å‘åŸºç±»ï¼ˆåŸå§‹å½¢çŠ¶å’Œç±»å‹ï¼‰
-	unsigned long		flag;		// æ´»åŠ¨æ ‡å¿—
-	float				scale;		// å°ºå¯¸
-	Vector2D			posCurr;	// å½“å‰ä½ç½®
-	Vector2D			velCurr;	// å½“å‰é€Ÿåº¦
-	float				dirCurr;	// å½“å‰æ–¹å‘
-	Matrix2D			transform;	// å˜æ¢çŸ©é˜µï¼šæ¯ä¸€å¸§éƒ½éœ€è¦ä¸ºæ¯ä¸€ä¸ªå¯¹è±¡è®¡ç®—
-	Property			properties[MAXPROPERTIES]; // è¯¥å¯¹è±¡çš„å±æ€§
-	int					propertyCount;			   // è¯¥å¯¹è±¡å±æ€§çš„ä¸ªæ•°
+	GameObjBase*		pObject;	// Ö¸Ïò»ùÀà£¨Ô­Ê¼ĞÎ×´ºÍÀàĞÍ£©
+	unsigned long		flag;		// »î¶¯±êÖ¾
+	float				scale;		// ³ß´ç
+	Vector2D			posCurr;	// µ±Ç°Î»ÖÃ
+	Vector2D			velCurr;	// µ±Ç°ËÙ¶È
+	float				dirCurr;	// µ±Ç°·½Ïò
+	Matrix2D			transform;	// ±ä»»¾ØÕó£ºÃ¿Ò»Ö¡¶¼ĞèÒªÎªÃ¿Ò»¸ö¶ÔÏó¼ÆËã
+	Property			properties[MAXPROPERTIES]; // ¸Ã¶ÔÏóµÄÊôĞÔ
+	int					propertyCount;			   // ¸Ã¶ÔÏóÊôĞÔµÄ¸öÊı
 }GameObj;
 
 typedef struct INSNODE
@@ -115,10 +115,10 @@ typedef struct
 	baseNode *tail;
 }GameObjBaseNode, *GameObjBaseList;
 
-// æ¸¸æˆå¯¹è±¡é“¾è¡¨
+// ÓÎÏ·¶ÔÏóÁ´±í
 extern GameObjBaseList theBaseList;
 extern Vector2D zero;
-// ç”¨äºè°ƒè¯•è¾“å‡ºå¯¹è±¡ç±»å‹åç§°
+// ÓÃÓÚµ÷ÊÔÊä³ö¶ÔÏóÀàĞÍÃû³Æ
 extern char ObjTypeName[OTYPE_COUNT][20];
 void SetConstants();
 
@@ -144,7 +144,7 @@ Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxT
 
 Status GameObjDelete(GameObj* theGameObj);
 
-Status ListTraverse(GameObjList L, Status(*Visit)(insNode* pinsNode));
+Status ListTraverse(GameObjList * L, Status(*Visit)(insNode* pinsNode));
 
 Status BaseListTraverse(Status(*Visit)(insNode* pinsNode));
 

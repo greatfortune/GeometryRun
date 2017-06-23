@@ -60,17 +60,7 @@ Status PlayerUpdate(GameObj* pInst)
 	if (jumpCheck > 0)
 		pHero->velCurr.y -= GRAVITY * frameTime;
 
-	// ¿ØÖÆÍæ¼Òplayer×óÓÒÒÆ¶¯ ¼° ÌøÔ¾(ÔÈËÙ)
-	if (KeyPressed[KeyRight] == TRUE)
-	{
-		pHero->velCurr.x = MOVE_VELOCITY_HERO;
-	} else
-	if (KeyPressed[KeyLeft] == TRUE)
-	{
-		pHero->velCurr.x = -MOVE_VELOCITY_HERO;
-	}
-	else
-		pHero->velCurr.x = 0.f;
+	// ¿ØÖÆÍæ¼ÒplayerÌøÔ¾¡¢µ¹¹Ò
 	if (KeyPressed[KeyDown] == TRUE || KeyPressed[KeyS] == TRUE)
 	{
 		if (jumpCheck > 0)

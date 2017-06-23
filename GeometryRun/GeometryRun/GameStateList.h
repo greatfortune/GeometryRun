@@ -1,5 +1,3 @@
-#pragma once
-
 /**
  * Project:		GeometryRun
  * File Name:	GameStateList.h
@@ -7,6 +5,8 @@
  * Date:		2017-4-4
  * Purpose:		游戏状态声明，主要为Game Flow的状态切换所用
  */
+
+#pragma once
 
 
  //------------------------------------------------------------------------------

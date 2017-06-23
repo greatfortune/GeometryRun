@@ -53,8 +53,8 @@ Status BossBulletCollision(insNode* pinsNode)
 			printf("\n Collision with the %s: Pos(%.1f, %.1f)\n Restart\n", ObjTypeName[pInstOther->pObject->type], pInstOther->posCurr.x, pInstOther->posCurr.y);
 			GameObjDelete(pInstForCollisionDetect);
 		}
-		return OK;
 	}
+	return OK;
 }
 
 

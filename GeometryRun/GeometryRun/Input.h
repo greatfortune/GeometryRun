@@ -1,5 +1,3 @@
-#pragma once
-
 /**
  * Project:		GeometryRun
  * File Name:	Input.h
@@ -8,6 +6,7 @@
  * Purpose:		 ‰»Îƒ£øÈ
  */
 
+#pragma once
 
  //------------------------------------------------------------------------------
  // Typedef:
@@ -38,8 +37,6 @@ enum {
 	Key8,
 	KeyUp,
 	KeyDown,
-	KeyLeft,
-	KeyRight,
 	KeySpace,
 	KeyM,
 	KeyW,

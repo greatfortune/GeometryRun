@@ -5,10 +5,9 @@
 #include "Platform.h"
 
 #define SIZE_HERO 30.0f			// 角色尺寸
-#define GRAVITY 600.0f	// 重力
-#define MOVE_VELOCITY_HERO 180.0f// 主角横向移动速度
-#define JUMP_VELOCITY 300.0f		// 主角纵向移动速度
-#define DROP_VELOCITY 480.0f		// 主角降落速度
+#define GRAVITY 620.0f	// 重力
+#define JUMP_VELOCITY 350.0f		// 主角纵向跳跃速度
+#define DROP_VELOCITY 500.0f		// 主角降落速度
 
 extern int isProtected;
 // 用于设置保护时间的长短

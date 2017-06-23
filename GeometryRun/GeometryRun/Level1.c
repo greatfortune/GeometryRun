@@ -1,10 +1,10 @@
 /**
-* Project:		GeometryRun
-* File Name:	Level1.c
-* Author:		wyz
-* Date:		2017-6-7
-* Purpose:		å…³å¡1
-*/
+ * Project:		GeometryRun
+ * File Name:	Level1.c
+ * Author:		ÍõÑåîÈ£¨Ini¡¢Draw£©£¬»Æ¼ÎÎ¬£¨Load£©£¬Íõ¾§£¨Update£©£¬Ë§ÏşÓê£¨Free¡¢Unload£©
+ * Date:		2017-6-7
+ * Purpose:		¹Ø¿¨1
+ */
 #include "Level1.h"
 
 clock_t timeStart_level1;
@@ -14,9 +14,9 @@ void Load1(void)
 {
 	printf("Level1: Load\n");
 	theBaseList = NULL;
-	// è®¾ç½®å¸¸é‡
+	// ÉèÖÃ³£Á¿
 	SetConstants();
-	// åˆå§‹åŒ–æ¸¸æˆå¯¹è±¡åŸºç±»çš„å®ä¾‹åˆ—è¡¨
+	// ³õÊ¼»¯ÓÎÏ·¶ÔÏó»ùÀàµÄÊµÀıÁĞ±í
 	InitialGameObjBaseList(&theBaseList);
 
 	PlayerLoad();
@@ -28,21 +28,21 @@ void Load1(void)
 	PauseLoad();
 	UIStatusLoad();
 	
-	// è½½å…¥éŸ³ä¹
+	// ÔØÈëÒôÀÖ
 	SoundAdd("source/sound/level1_backgd.mp3", FMOD_LOOP_NORMAL, SOUND_1);
 }
 
 void Ini1(void)
 {
-	// åˆå§‹åŒ–æ—¶é—´ç³»ç»Ÿ
+	// ³õÊ¼»¯Ê±¼äÏµÍ³
 	TimerIni(&timeStart_level1);
 
-	// è®¾ç½®å½“å‰å…³å¡çš„ä¸€äº›å±æ€§å€¼
-	float BlockVel = -300.0f;
-	float MonsterVel = -300.0f;
+	// ÉèÖÃµ±Ç°¹Ø¿¨µÄÒ»Ğ©ÊôĞÔÖµ
+	float BlockVel = -320.0f;
+	float MonsterVel = -320.0f;
 
 	printf("Level1: Ini\n");
-	// è·å–å½“å‰å…³å¡æ—¶é—´
+	// »ñÈ¡µ±Ç°¹Ø¿¨Ê±¼ä
 	timeStart_level1 = clock();
 
 	PlayerStart();
@@ -57,7 +57,7 @@ void Ini1(void)
 	BlockDefaultVelSet(BlockVel, 0);
 	MonsterDefaultVelSet(MonsterVel, 0);
 
-	// æ’­æ”¾éŸ³ä¹
+	// ²¥·ÅÒôÀÖ
 	SoundPlay(SOUND_1);
 
 	CreateObjInMap4(1.0f);
@@ -65,25 +65,22 @@ void Ini1(void)
 	CreateObjInMap5(4.0f);
 	CreateObjInMap0(6.0f);
 	CreateObjInMap6(16.0f);
-	SwithSceneAtTime(20.0f, GS_Pass);
+	SwithSceneAtTime(20.5f, GS_Pass);
 
 }
 
 void Update1(void)
 {
-	Vector2D iniPosition_Block;
-	Vector2D iniVelocity_Block;
-
 	GetWinMaxMinXY();
 
 	// =========================
-	// æ¸¸æˆé€»è¾‘å“åº”è¾“å…¥
+	// ÓÎÏ·Âß¼­ÏìÓ¦ÊäÈë
 	// =========================
 	KeyUpdate();
 
 	if (endPause)
 	{
-		// é‡æ–°è®¡ç®—å› æš‚åœå»¶è¿Ÿçš„æ—¶é—´
+		// ÖØĞÂ¼ÆËãÒòÔİÍ£ÑÓ³ÙµÄÊ±¼ä
 		timeStart_level1 += pauseEndTime - pauseStartTime;
 		endPause = FALSE;
 		GameObjDelete(pPause);
@@ -103,29 +100,29 @@ void Update1(void)
 	else
 	{
 		TimerUpdate(timeStart_level1);
-		// æ›´æ–°å¯¹è±¡
+		// ¸üĞÂ¶ÔÏó
 		ObjUpdate();
 
 		// ====================
-		// ç¢°æ’æ£€æµ‹
+		// Åö×²¼ì²â
 		// ====================
 		BaseListTraverse(Visit_CollisionDetect);
 
 	}
 	// =====================================
-	// è®¡ç®—æ‰€æœ‰å¯¹è±¡çš„2Då˜æ¢çŸ©é˜µ
+	// ¼ÆËãËùÓĞ¶ÔÏóµÄ2D±ä»»¾ØÕó
 	// =====================================
 	BaseListTraverse(Visit_Matrix2DCount);
 }
 
 void Draw1(void)
 {
-	// ä¸ºå¼€å§‹ç”»å¯¹è±¡åšå‡†å¤‡
+	// Îª¿ªÊ¼»­¶ÔÏó×ö×¼±¸
 	AEGfxSetBackgroundColor(0.0f, 0.0f, 0.0f);
 	AEGfxSetBlendMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 
-	// é€ä¸ªç»˜åˆ¶å¯¹è±¡åˆ—è¡¨ä¸­çš„æ‰€æœ‰å¯¹è±¡
+	// Öğ¸ö»æÖÆ¶ÔÏóÁĞ±íÖĞµÄËùÓĞ¶ÔÏó
 	BaseListTraverse(Visit_DrawObj);
 
 }
@@ -134,14 +131,13 @@ void Free1(void)
 {
 
 	printf("Level1: free\n");
-	// ä½¿ç”¨å‡½æ•°gameObjDestroyåˆ é™¤åˆ—è¡¨ä¸­çš„å¯¹è±¡
+	// Ê¹ÓÃº¯ÊıgameObjDestroyÉ¾³ıÁĞ±íÖĞµÄ¶ÔÏó
 	BaseListTraverse(Visit_DestroyObj);
 
-	//éŸ³ä¹åœæ­¢æ’­æ”¾
+	//ÒôÀÖÍ£Ö¹²¥·Å
 	SoundStop(SOUND_1);
 
 	TimerFree();
-
 }
 
 void Unload1(void)

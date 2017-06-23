@@ -1,3 +1,12 @@
+/**
+ * Project:		GeometryRun
+ * File Name:	Vector2D.c
+ * Author:		Íõ¾§£¬»Æ½§Ë®£¨²¹³äVector2DAngle£©
+ * Date:		2017-4-22
+ * Purpose:		Vector2D.c
+ */
+
+
 #include "Vector2D.h"
 
 #define EPSILON 0.0001

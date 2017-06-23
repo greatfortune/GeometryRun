@@ -18,7 +18,7 @@ extern GameObj *pInstForCollisionDetect;
 // ======================
 // 帧时间：Unity中的dt
 // ======================
-extern double frameTime;
+extern float frameTime;
 
 Status GetWinMaxMinXY();
 

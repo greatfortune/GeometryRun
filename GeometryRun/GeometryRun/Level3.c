@@ -1,14 +1,14 @@
 /**
  * Project:		GeometryRun
  * File Name:	Level3.c
- * Author:		闷声发大财
+ * Author:		黄嘉维
  * Date:		2017-4-22
  * Purpose:		关卡3
  */
 #include "Level3.h"
 
 clock_t timeStart_level3;
-const float bossOccurTime_level3 = 15.0f;
+const float bossOccurTime_level3 = 23.0f;
 
 void Load3(void)
 {
@@ -43,7 +43,7 @@ void Ini3(void)
 	// 设置当前关卡的一些属性值
 	float BlockVel = -400.0f;
 	float MonsterVel = -400.0f;
-	int bossMaxHP = 20;
+	int bossMaxHP = 25;
 	float BossBulletVelAbs = 400.0f;
 
 	printf("Level3: Ini\n");
@@ -71,16 +71,18 @@ void Ini3(void)
 	// 播放音乐
 	SoundPlay(SOUND_3);
 
-	CreateObjInMap0(1.0f);
-	CreateObjInMap7(9.0f);
+	CreateObjInMap8(1.0f);
+	CreateObjInMap4(3.0f);
+	CreateObjInMap2(4.0f);
+	CreateObjInMap7(7.5f);
+	CreateObjInMap5(9.4f);
+	CreateObjInMap9(12.0f);
+	CreateObjInMap0(15.0f);
 	CreateBossInMap_Level2(bossOccurTime_level3);
 }
 
 void Update3(void)
 {
-	Vector2D iniPosition_Block;
-	Vector2D iniVelocity_Block;
-
 	GetWinMaxMinXY();
 
 	// =========================

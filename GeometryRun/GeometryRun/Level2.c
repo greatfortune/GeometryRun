@@ -1,14 +1,14 @@
 /**
  * Project:		GeometryRun
  * File Name:	Level2.c
- * Author:		闷声发大财
+ * Author:		黄嘉维（Load、Ini），王晶（Update），王彦钊（Draw），帅晓雨（Free、Unload）
  * Date:		2017-4-22
  * Purpose:		关卡2
  */
 #include "Level2.h"
 
 clock_t timeStart_level2;
-const float bossOccurTime_level2 = 27.0f;
+const float bossOccurTime_level2 = 28.0f;
 
 void Load2(void)
 {
@@ -79,15 +79,13 @@ void Ini2(void)
 	CreateObjInMap2(3.0f);
 	CreateObjInMap5(6.0f);
 	CreateObjInMap0(9.0f);
-	CreateObjInMap1(19.0f);
+	CreateObjInMap8(17.0f);
+	CreateObjInMap1(20.0f);
 	CreateBossInMap_Level2(bossOccurTime_level2);
 }
 
 void Update2(void)
 {
-	Vector2D iniPosition_Block;
-	Vector2D iniVelocity_Block;
-
 	GetWinMaxMinXY();
 	
 	// =========================

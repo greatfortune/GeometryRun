@@ -13,7 +13,7 @@
 #include "Platform.h"
 #include "Boss2.h"
 
-#define CreateMethods 8
+#define CreateMethods 10
 
 extern float(*CreateObjInMapRamdom[CreateMethods])(float);
 
@@ -34,5 +34,9 @@ float CreateObjInMap5(float startTime);
 float CreateObjInMap6(float startTime);
 
 float CreateObjInMap7(float startTime);
+
+float CreateObjInMap8(float startTime);
+
+float CreateObjInMap9(float startTime);
 
 float CreateBossInMap_Level2(float startTime);

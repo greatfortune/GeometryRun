@@ -57,20 +57,9 @@ int System_Initialize(HINSTANCE hInstance, int nCmdShow)
 	if (0 == AESysInit(&sysInitInfo))
 		return -1;
 	AESysReset();
-
-	// 打开签到表
-	if ((fp = fopen("Output.txt", "w")) == NULL)
-	{
-		printf("Cannot find file Output.txt\n");
-		return -1;
-	}
-	// 签到
-	
-
 	AllocConsole();
 	freopen("conout$", "w", stdout);
 	printf("hello!\n");
-	fprintf(fp, "System:Initialize\n");
 	printf("System:Initialize\n");
 
 	// 音乐初始化
@@ -87,9 +76,5 @@ void System_Exit(void)
 
 	// 音乐系统退出
 	SoundSystemExit();
-
-	// 签到
-	fprintf(fp, "System:Exit\n");
 	printf("System:Exit\n");
-	fclose(fp);
 }
