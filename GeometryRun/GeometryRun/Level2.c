@@ -38,7 +38,7 @@ void Load2(void)
 void Ini2(void)
 {
 	// 初始化时间系统
-	TimerIni(&timeStart_level2);
+	TimerIni(timeStart_level2);
 
 	// 设置当前关卡的一些属性值
 	float BlockVel = -350.0f;

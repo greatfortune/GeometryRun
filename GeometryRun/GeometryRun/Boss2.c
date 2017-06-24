@@ -1,3 +1,9 @@
+/**
+* Project:		GeometryRun
+* File Name:	Boss2.c
+* Author:		黄嘉维
+* Date:		2017-6-17
+*/
 #include "Boss2.h"
 
 // Boss对象：在一定时间后产生且独特，故单独声明，生成Boss对象时需为pBoss赋值

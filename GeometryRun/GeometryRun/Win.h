@@ -1,3 +1,10 @@
+/**
+* Project:		GeometryRun
+* File Name:	Win.h
+* Author:		»Æ¼ÎÎ¬
+* Date:		2017-6-5
+* Purpose:		Ê¤Àû½çÃæ
+*/
 #pragma once
 
 #include "BackGround.h"

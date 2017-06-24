@@ -1,3 +1,10 @@
+/**
+* Project:		GeometryRun
+* File Name:	TimeManager.h
+* Author:		»Æ¼ÎÎ¬
+* Date:
+* Purpose:		ÓÎÏ·¶¨Ê±´¥·¢Æ÷¹ÜÀí
+*/
 #pragma once
 
 #include "GameObjectManager.h"
@@ -7,7 +14,6 @@
 #define OFFSETTIME 0.1f
 
 enum TimerType{
-//	TTYPE_BASEOBJ,	×¸Óà
 	TTYPE_OBJ_RANDOM,
 	TTYPE_OBJ,
 	TTYPE_SOMEOBJ,
@@ -50,6 +56,7 @@ typedef struct{
 typedef struct{
 	TDataObj TD_obj;
 	TDataStatic TD_static;
+	GameObj* pInst;
 }TDataCreateOneObj;
 
 typedef struct{
@@ -74,12 +81,9 @@ typedef struct{
 	TimerData data;
 }Timer;
 
-extern float passTime;
+extern float passTime, levelTime;
 
 Status SetCreateRange(Timer *pTimer, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
-
-// Status SetBaseObjToCreate(Timer *pTimer, unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L);
-// ×¸Óà
 
 Status SetObjToCreate(Timer *pTimer, unsigned long theType, float scale, GameObjBaseList L, int thePropertyCount, Property* theProperties);
 
@@ -87,12 +91,9 @@ float GetRanFloatFromTo(float min, float max);
 
 Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *theDir, float theIniMinX, float theIniMaxX, float theIniMinY, float theIniMaxY, float theIniMinVx, float theIniMaxVx, float theIniMinVy, float theIniMaxVy, float theIniMinDir, float theIniMaxDir);
 
-Status TimerIni(clock_t* LevelTime);
+Status TimerIni(clock_t LevelTime);
 
-// Status CreateBaseObjAtTime(unsigned long theType, AEGfxVertexList* theMesh, AEGfxTexture* theTexture, GameObjBaseList L, float theTime);
-// ×¸Óà
-
-Status CreateOneObjAtTime(float theTime, unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties);
+Status CreateOneObjAtTime(float theTime, unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties, GameObj** theInst);
 
 Status CreateBlockAtTimeWithPos(float theTime, Vector2D Pos);
 

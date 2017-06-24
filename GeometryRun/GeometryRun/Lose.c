@@ -1,3 +1,10 @@
+/**
+* Project:		GeometryRun
+* File Name:	Lose.c
+* Author:		黄嘉维
+* Date:		2017-6-5
+* Purpose:		失败界面
+*/
 #include "Lose.h"
 
 clock_t timeStart_level_Lose;
@@ -5,9 +12,6 @@ clock_t timeStart_level_Lose;
 
 void Load_Lose(void)
 {
-	// 初始化时间系统
-	//TimerIni(&timeStart_level_Lose);
-
 	printf("Level_Lose: Load\n");
 	theBaseList = NULL;
 	// 设置常量

@@ -1,3 +1,10 @@
+/**
+Project:    GeometryRun
+File Name:	UIStatus.h
+Author:		╩ф╪нн╛
+Date:
+Purpose:	╫ги╚в╢л╛отй╬
+*/
 #pragma once
 
 #include "GameObjectManager.h"

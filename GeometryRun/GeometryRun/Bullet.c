@@ -1,3 +1,9 @@
+/**
+* Project:		GeometryRun
+* File Name:	Bullet.c
+* Author:		黄涧水(BulletCollision) 黄嘉维(others)
+* Date:		
+*/
 #include "Bullet.h"
 
 static Vector2D defaultBulletVel;
@@ -51,7 +57,10 @@ Status BulletCollision(insNode* pinsNode)
 			if (StaticCircleToStaticCircle(&(pInstForCollisionDetect->posCurr), pInstForCollisionDetect->scale, &(pInstOther->posCurr), pInstOther->scale))
 			{
 				// 撞上Monster，消灭子弹和MONSTER
-				GameObjDelete(pInstOther);
+				if (pInstOther->pObject->type == OTYPE_MONSTER)
+					MonsterDead(pInstOther);
+				else
+					AIMonsterDead(pInstOther);
 				GameObjDelete(pInstForCollisionDetect);
 			}
 			break;//BULLET VS MONSTER/AIMONSTER结束

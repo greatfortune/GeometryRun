@@ -1,9 +1,13 @@
 #include "AIMonster.h"
 
+#define MAXBOOMCOUNT 10
+
 // 怪物默认速度（与关卡相关）
 Vector2D defaultAIMonsterVel;
 float defaultAIMonsterVelyABS;		// 纵轴移动速度绝对值，可更改
 static float defaultAIMonsterScale;
+static int boomTime;
+static Property MonsterBoomPro[1];
 
 Status AIMonsterLoad()
 {
@@ -40,6 +44,9 @@ Status AIMonsterLoad()
 
 Status AIMonsterStart()
 {
+	MonsterBoomPro[0].value = 0;
+	strcpy(MonsterBoomPro[0].name, "boomtime");
+	boomTime = 0;
 	Vector2DSet(&defaultAIMonsterVel, -10.0f, 0.0f);
 	defaultAIMonsterVelyABS = 100.0f;
 	defaultAIMonsterScale = 30.0f;
@@ -89,4 +96,11 @@ Status AIMonsterDefaultVxChange(float change)
 	return OK;
 }
 
-
+Status AIMonsterDead(GameObj* theInst)
+{
+	GameObj *boom1, *boom2;
+	CreateOneObjAtTime(levelTime + passTime + 0.1f, OTYPE_BOOM1, defaultAIMonsterScale * 2, theInst->posCurr, theInst->velCurr, 0.0f, theBaseList, 1, MonsterBoomPro, &boom1);
+	CreateOneObjAtTime(levelTime + passTime + 0.5f, OTYPE_BOOM2, defaultAIMonsterScale * 2, theInst->posCurr, theInst->velCurr, 0.0f, theBaseList, 1, MonsterBoomPro, &boom2);
+	GameObjDelete(theInst);
+	return OK;
+}

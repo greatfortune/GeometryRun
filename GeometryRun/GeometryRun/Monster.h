@@ -1,13 +1,22 @@
+/**
+* Project:		GeometryRun
+* File Name:	Monster.h
+* Author:		»Æ¼ÎÎ¬
+* Date:		2017-6-17
+*/
 #pragma once
 
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
+#include "TimeManager.h"
 
 Status MonsterLoad();
 
 Status MonsterStart();
 
 Status MonsterUpdate(GameObj* pInst);
+
+Status BoomUpdate(GameObj* pInst);
 
 Status MonsterCollision(insNode* pinsNode);
 
@@ -20,3 +29,5 @@ float MonsterScaleGet();
 Status MonsterDefaultVelSet(float vx, float vy);
 
 Status MonsterDefaultVxChange(float change);
+
+Status MonsterDead(GameObj* theInst);

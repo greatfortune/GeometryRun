@@ -1,3 +1,10 @@
+/**
+* Project:		GeometryRun
+* File Name:	Pass.h
+* Author:		黄嘉维
+* Date:		2017-6-5
+* Purpose:		过关界面
+*/
 #pragma once
 
 #include "BackGround.h"

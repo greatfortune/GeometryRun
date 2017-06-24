@@ -1,3 +1,10 @@
+/**
+Project:    GeometryRun
+File Name:	UIStatus.c
+Author:		»Æ¼ÎÎ¬
+Date:
+Purpose:	½ÇÉ«×´Ì¬ÏÔÊ¾
+*/
 #include "UIStatus.h"
 
 float defaultUIStatusScale, defaultUINumber;	// ³ß´ç

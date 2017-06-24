@@ -1,7 +1,7 @@
 /**
 * Project:		GeometryRun
 * File Name:	Player.c
-* Author:		黄涧水(PlayerClear、PlayerCollision)
+* Author:		黄嘉维(Playerload、PlayerStart……) 黄涧水(PlayerClear、PlayerCollision)
 * Date:		2017-6-17
 */
 #include "Player.h"
@@ -13,6 +13,8 @@ static GameObj* pHero;
 static Vector2D iniPosition_Player;
 
 static int MaxBulletCount, CurSupplyTime, SupplyTime, BulletCount, ClearCount;
+
+static float defaultHeroScale;			// 角色尺寸
 
 static AEGfxTexture* pTex_Hero;
 //jumpCheck:跳跃次数，用于二级跳
@@ -51,11 +53,12 @@ Status PlayerStart()
 	MaxProtectCur = 70;
 	ClearCount = 1;
 
+	defaultHeroScale = 30.0f;
 	MaxBulletCount = 8;
 	CurSupplyTime = 0;
 	SupplyTime = 30;
 	BulletCount = 4;
-	pHero = CreateGameObj(OTYPE_PLAYER, SIZE_HERO, iniPosition_Player, zero, 0, theBaseList, 0, NULL);
+	pHero = CreateGameObj(OTYPE_PLAYER, PlayerScaleGet(), iniPosition_Player, zero, 0, theBaseList, 0, NULL);
 	return OK;
 }
 
@@ -108,7 +111,7 @@ Status PlayerUpdate(GameObj* pInst)
 	}
 	if (KeyPressed[KeyJ] == TRUE || KeyPressed[KeySpace] == TRUE)
 	{
-		Vector2D iniBulletPos = { pHero->posCurr.x + 1.5 * SIZE_HERO, pHero->posCurr.y };
+		Vector2D iniBulletPos = { pHero->posCurr.x + 1.5 * pHero->scale, pHero->posCurr.y };
 		if (BulletCount > 0)
 			BulletCount--;
 		else
@@ -226,11 +229,15 @@ Status PlayerClear(insNode* pinsNode)
 	switch (pInstOther->pObject->type)
 	{
 	case OTYPE_BLOCK:
-	case OTYPE_MONSTER:
-	case OTYPE_AIMONSTER:
 	case OTYPE_BOSSBULLET:
 		// Monster、Block、BossBullet消除
 		GameObjDelete(pInstOther);
+		break;
+	case OTYPE_AIMONSTER:
+		AIMonsterDead(pInstOther);
+		break;
+	case OTYPE_MONSTER:
+		MonsterDead(pInstOther);
 		break;
 	default:
 		break;
@@ -285,4 +292,9 @@ Status PlayerClearReload()
 Vector2D PlayerPosGet()
 {
 	return pHero->posCurr;
+}
+
+float PlayerScaleGet()
+{
+	return defaultHeroScale;
 }

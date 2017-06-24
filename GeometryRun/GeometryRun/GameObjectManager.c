@@ -186,7 +186,6 @@ Status GameObjDelete(GameObj* theGameObj)
 	return OK;
 }
 
-//遍历函数，可能无用
 Status ListTraverse(GameObjList * L, Status(*Visit)(insNode* pinsNode))
 {
 	insNode *pt;
@@ -197,7 +196,6 @@ Status ListTraverse(GameObjList * L, Status(*Visit)(insNode* pinsNode))
 	return OK;
 }
 
-//遍历函数，可能无用
 Status BaseListTraverse(Status(*Visit)(insNode* pinsNode))
 {
 	baseNode *pt;
@@ -205,8 +203,6 @@ Status BaseListTraverse(Status(*Visit)(insNode* pinsNode))
 		ListTraverse(&pt->gameobj_list, Visit);
 	return OK;
 }
-
-//static Status Visit_SearchInactiveObj(insNode** ppInsNode, int *pflag);
 
 //创建新实例对象
 GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties)

@@ -1,3 +1,9 @@
+/**
+* Project:		GeometryRun
+* File Name:	KeyAndObjUpdate.h
+* Author:		»Æ¼ÎÎ¬
+* Date:
+*/
 #pragma once
 
 #include "GameObjectManager.h"

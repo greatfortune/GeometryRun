@@ -1,3 +1,10 @@
+/**
+* Project:		GeometryRun
+* File Name:	Menu.c
+* Author:		ª∆ºŒŒ¨
+* Date:		2017-6-5
+* Purpose:		≤Àµ•ΩÁ√Ê
+*/
 #include "Menu.h"
 
 void Load_Menu(void)

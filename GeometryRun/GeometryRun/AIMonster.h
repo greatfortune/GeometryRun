@@ -23,3 +23,5 @@ Status AIMonsterDefaultVelSet(float vx, float vy);
 Status AIMonsterDefaultVxChange(float change);
 
 Status AIMonsterDefaultVelyABSChange(float change);
+
+Status AIMonsterDead(GameObj* theInst);

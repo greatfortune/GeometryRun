@@ -1,3 +1,9 @@
+/**
+* Project:		GeometryRun
+* File Name:	Bullet.h
+* Author:		»Æ¼ÎÎ¬
+* Date:		2017-6-17
+*/
 #pragma once
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"

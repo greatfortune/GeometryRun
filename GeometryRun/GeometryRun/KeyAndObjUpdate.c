@@ -1,3 +1,9 @@
+/**
+* Project:		GeometryRun
+* File Name:	KeyAndObjUpdate.c
+* Author:		黄嘉维
+* Date:
+*/
 #include "KeyAndObjUpdate.h"
 
 // 碰撞检测主对象，方便遍历时使用
@@ -174,6 +180,10 @@ Status ObjUpdate()
 				break;
 			case OTYPE_BOSS2:
 				ListTraverse(pL, Boss2Update);
+				break;
+			case OTYPE_BOOM1:
+			case OTYPE_BOOM2:
+				ListTraverse(pL, BoomUpdate);
 				break;
 			default:
 			break;

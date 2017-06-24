@@ -1,19 +1,27 @@
+/**
+* Project:		GeometryRun
+* File Name:	TimeManager.h
+* Author:		黄嘉维
+* Date:
+* Purpose:		游戏定时触发器管理
+*/
 #include "TimeManager.h"
 
 static Timer Timers[MaxTimers];
 static int timerCount;
 
 // 关卡过去的时间
-float passTime;
+float passTime, levelTime;
 
 
-Status TimerIni(clock_t* LevelTime)
+Status TimerIni(clock_t LevelTime)
 {
 	int i;
 	for (i = 0; i < MaxTimers; i++)
 		Timers[i].flag = FLAG_INACTIVE;
 	timerCount = 0;
 	srand(time(0));
+	levelTime = LevelTime / 1000.0f;
 	return OK;
 }
 
@@ -75,7 +83,7 @@ static Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *t
 	return OK;
 }
 
-Status CreateOneObjAtTime(float theTime, unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties)
+Status CreateOneObjAtTime(float theTime, unsigned long theType, float scale, Vector2D Pos, Vector2D Vel, float dir, GameObjBaseList L, int thePropertyCount, Property* theProperties, GameObj** theInst)
 {
 	int i;
 	for (i = 0; i < MaxTimers; i++)
@@ -88,6 +96,7 @@ Status CreateOneObjAtTime(float theTime, unsigned long theType, float scale, Vec
 			Timers[i].time = theTime;
 			SetTDStatic(&Timers[i].data.TDCreateOneObj.TD_static, Pos, Vel, dir);
 			SetTDObj(&Timers[i].data.TDCreateOneObj.TD_obj, theType, scale, L, thePropertyCount, theProperties);
+			Timers[i].data.TDCreateOneObj.pInst = *theInst;
 			return OK;
 		}
 	}
@@ -270,7 +279,7 @@ Status TimerUpdate(clock_t LevelTime)
 						theTD_obj = Timers[i].data.TDCreateOneObj.TD_obj;
 						theTD_static = Timers[i].data.TDCreateOneObj.TD_static;
 						if (theTD_obj.t_Type != OTYPE_BOSS2)
-							CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
+							Timers[i].data.TDCreateOneObj.pInst = CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
 						else
 							pBoss2 = CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, theTD_static.t_Pos, theTD_static.t_Vel, theTD_static.t_Dir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
 						break;

@@ -10,9 +10,6 @@
 
 void Load_Staff(void)
 {
-	// 初始化时间系统
-	//TimerIni(&timeStart_level_Lose);
-
 	printf("Level_Staff: Load\n");
 	theBaseList = NULL;
 	// 设置常量
@@ -26,8 +23,6 @@ void Load_Staff(void)
 void Ini_Staff(void)
 {
 	printf("Level_Staff: Ini\n");
-	// 获取当前关卡时间
-	//timeStart_level_Lose = clock();
 	BackGroundStart();
 }
 

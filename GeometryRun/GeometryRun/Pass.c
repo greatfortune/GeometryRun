@@ -1,3 +1,10 @@
+/**
+* Project:		GeometryRun
+* File Name:	Pass.c
+* Author:		黄嘉维
+* Date:		2017-6-5
+* Purpose:		过关界面
+*/
 #include "Lose.h"
 
 clock_t timeStart_level_Pass;
@@ -5,9 +12,6 @@ clock_t timeStart_level_Pass;
 
 void Load_Pass(void)
 {
-	// 初始化时间系统
-	//TimerIni(&timeStart_level_Pass);
-
 	printf("Level_Pass: Load\n");
 	theBaseList = NULL;
 	// 设置常量
@@ -24,8 +28,6 @@ void Load_Pass(void)
 void Ini_Pass(void)
 {
 	printf("Level_Pass: Ini\n");
-	// 获取当前关卡时间
-	//timeStart_level_Pass = clock();
 	BackGroundStart();
 
 	// 播放音乐

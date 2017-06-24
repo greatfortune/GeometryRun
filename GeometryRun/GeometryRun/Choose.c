@@ -10,7 +10,6 @@
 
 void Load_Choose(void)
 {
-
 	printf("Level_Choose: Load\n");
 	theBaseList = NULL;
 	// …Ë÷√≥£¡ø

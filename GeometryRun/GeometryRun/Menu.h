@@ -1,3 +1,10 @@
+/**
+* Project:		GeometryRun
+* File Name:	Menu.h
+* Author:		ª∆ºŒŒ¨
+* Date:		2017-6-5
+* Purpose:		≤Àµ•ΩÁ√Ê
+*/
 #pragma once
 
 #include "BackGround.h"

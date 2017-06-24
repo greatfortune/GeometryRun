@@ -44,7 +44,7 @@ void Load4(void)
 void Ini4(void)
 {
 	// 初始化时间系统
-	TimerIni(&timeStart_level4);
+	TimerIni(timeStart_level4);
 
 	// 设置当前关卡的一些属性值
 	float BlockVel = -400.0f;
