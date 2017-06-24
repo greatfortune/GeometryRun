@@ -1,8 +1,10 @@
-/* Project:GeometryRun
+/**
+Project:    GeometryRun
 File Name:	Level0.c
 Author:		帅晓雨
 Date:
-Purpose:		关卡0（故事模式）  */
+Purpose:	关卡0（故事模式）  
+*/
 
 #include "Level0.h"
 

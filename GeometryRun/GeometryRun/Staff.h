@@ -1,3 +1,10 @@
+/**
+* Project:		GeometryRun
+* File Name:	Staff.h
+* Author:		帅晓雨
+* Date:
+* Purpose:	    制作人员名单
+*/
 #pragma once
 
 #include "BackGround.h"

@@ -1,4 +1,10 @@
-
+/**
+* Project:		GeometryRun
+* File Name:	Choose.h
+* Author:		Ë§ÏþÓê
+* Date:
+* Purpose:		¹Ø¿¨Ñ¡Ôñ
+*/
 #include "BackGround.h"
 
 void Load_Choose(void);

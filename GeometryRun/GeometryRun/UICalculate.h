@@ -1,4 +1,10 @@
-#pragma once
+/**
+Project:    GeometryRun
+File Name:	UICalculate.c
+Author:		帅晓雨
+Date:
+Purpose:	无尽模式关卡结算
+*/
 
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"

@@ -1,8 +1,10 @@
-/* Project:GeometryRun
-File Name:	Help.c
-Author:		Ë§ÏşÓê
-Date:
-Purpose:		°ïÖú  */
+/**
+* Project:		GeometryRun
+* File Name:	Help.h
+* Author:		Ë§ÏşÓê
+* Date:
+* Purpose:	    °ïÖú
+*/
 
 #include "Help.h"
 

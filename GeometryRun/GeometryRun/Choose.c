@@ -1,4 +1,10 @@
-
+/**
+* Project:		GeometryRun
+* File Name:	Choose.c
+* Author:		Ë§ÏþÓê
+* Date:
+* Purpose:		¹Ø¿¨Ñ¡Ôñ
+*/
 #include "Choose.h"
 
 

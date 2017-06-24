@@ -3,7 +3,7 @@
  * File Name:	Level0.h
  * Author:		帅晓雨
  * Date:
- * Purpose:		关卡0
+ * Purpose:		关卡0（故事模式）
  */
 #pragma once
 

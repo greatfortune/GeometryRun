@@ -3,7 +3,7 @@
 * File Name:	Help.h
 * Author:		Ë§ÏşÓê
 * Date:
-* Purpose:	
+* Purpose:	    °ïÖú
 */
 #pragma once
 #include "BackGround.h"
