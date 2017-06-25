@@ -9,6 +9,7 @@
 #include "KeyAndObjUpdate.h"
 #include "Bullet.h"
 #include "Platform.h"
+#include "AddLife.h"
 
 #define GRAVITY 620.0f	// 重力
 #define JUMP_VELOCITY 350.0f		// 主角纵向跳跃速度
@@ -31,6 +32,8 @@ Status PlayerGetHurt(int hurt);
 Status PlayerDead();
 
 Status PlayerClear(insNode* pinsNode);//清屏技能
+
+extern Status PlayerAddLife(int life);
 
 extern int PlayerHPGet();
 

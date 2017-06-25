@@ -1,7 +1,7 @@
 /**
 * Project:		GeometryRun
 * File Name:	Player.c
-* Author:		»Æ¼ÎÎ¬(Playerload¡¢PlayerStart¡­¡­) »Æ½§Ë®(PlayerClear¡¢PlayerCollision¡¢PlayerUpdate)
+* Author:		»Æ¼ÎÎ¬(Playerload¡¢PlayerStart¡­¡­) »Æ½§Ë®(PlayerClear¡¢PlayerCollision¡¢PlayerUpdate¡¢PlayerAddLife)
 * Date:		2017-6-17
 */
 #include "Player.h"
@@ -214,10 +214,10 @@ Status PlayerCollision(insNode* pinsNode)
 			printf("\n Collision with the Boss2: Pos(%.1f, %.1f)\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
 		}
 		break;
+
 		default:
 			break;
 	}
-
 	return OK;
 }
 
@@ -242,7 +242,6 @@ Status PlayerClear(insNode* pinsNode)
 	default:
 		break;
 	}
-
 	return OK;
 }
 
@@ -255,6 +254,14 @@ Status PlayerGetHurt(int hurt)
 	{
 		isProtected = 1;
 	}
+	return OK;
+}
+
+Status PlayerAddLife(int life)
+{
+	if (PlayerHP <= 2)
+		PlayerHP += life;
+	else
 	return OK;
 }
 

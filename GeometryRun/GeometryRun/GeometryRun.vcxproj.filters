@@ -159,6 +159,9 @@
     <ClInclude Include="UICalculate.h">
       <Filter>Sprites\头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AddLife.h">
+      <Filter>Sprites\头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KeyAndObjUpdate.c">
@@ -270,6 +273,9 @@
       <Filter>Scenes\源文件</Filter>
     </ClCompile>
     <ClCompile Include="UICalculate.c">
+      <Filter>Sprites\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AddLife.c">
       <Filter>Sprites\源文件</Filter>
     </ClCompile>
   </ItemGroup>
