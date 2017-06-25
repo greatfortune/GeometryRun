@@ -1,7 +1,7 @@
 /**
 * Project:		GeometryRun
 * File Name:	Player.c
-* Author:		»Æ¼ÎÎ¬(Playerload¡¢PlayerStart¡­¡­) »Æ½§Ë®(PlayerClear¡¢PlayerCollision)
+* Author:		»Æ¼ÎÎ¬(Playerload¡¢PlayerStart¡­¡­) »Æ½§Ë®(PlayerClear¡¢PlayerCollision¡¢PlayerUpdate)
 * Date:		2017-6-17
 */
 #include "Player.h"
