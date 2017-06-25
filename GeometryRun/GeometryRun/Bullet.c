@@ -43,10 +43,8 @@ Status BulletUpdate(GameObj* pInst)
 	return OK;
 }
 
-Status BulletCollision(insNode* pinsNode)
+Status BulletCollision(GameObj* pInstOther)
 {
-	GameObj* pInstOther = &(pinsNode->gameobj);
-
 	switch (pInstOther->pObject->type)
 	{
 		//BULLET VS MONSTER/AIMONSTER

@@ -44,9 +44,8 @@ Status AddLifeUpdate(GameObj* pInst)
 	return OK;
 }
 
-Status AddLifeCollision(insNode* pinsNode)
+Status AddLifeCollision(GameObj* pInstOther)
 {
-	GameObj* pInstOther = &(pinsNode->gameobj);
 	if (pInstOther->pObject->type == OTYPE_PLAYER)
 	{
 		//prop VS Player

@@ -15,7 +15,7 @@ Status BulletStart();
 
 Status BulletUpdate(GameObj* pInst);
 
-Status BulletCollision(insNode* pinsNode);
+Status BulletCollision(GameObj* pInst);
 
 GameObj* BulletCreateAtPos(Vector2D bulletPos);
 

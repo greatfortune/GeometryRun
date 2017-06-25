@@ -32,14 +32,14 @@ Status KeyUpdate();
 
 Status ObjUpdate();
 
-Status Visit_CollisionDetect(insNode* pinsNode);
+Status Visit_CollisionDetect(GameObj* pInst);
 
-Status Visit_Matrix2DCount(insNode* pinsNode);
+Status Visit_Matrix2DCount(GameObj* pInst);
 
 // never used
 Status BossUpdate(int level, clock_t LevelTime, float bossOccurTime);
 
-Status Visit_DestroyObj(insNode* pinsNode);
+Status Visit_DestroyObj(GameObj* pInst);
 
-Status Visit_DrawObj(insNode* pinsNode);
+Status Visit_DrawObj(GameObj* pInst);
 

@@ -25,13 +25,13 @@ Status PlayerStart();
 
 Status PlayerUpdate(GameObj* pInst);
 
-Status PlayerCollision(insNode* pinsNode);
+Status PlayerCollision(GameObj* pInst);
 
 Status PlayerGetHurt(int hurt);
 
 Status PlayerDead();
 
-Status PlayerClear(insNode* pinsNode);//清屏技能
+Status PlayerClear(GameObj* pInst);//清屏技能
 
 extern Status PlayerAddLife(int life);
 

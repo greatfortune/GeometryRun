@@ -134,9 +134,8 @@ Status PlayerUpdate(GameObj* pInst)
 	return OK;
 }
 
-Status PlayerCollision(insNode* pinsNode)
+Status PlayerCollision(GameObj* pInstOther)
 {
-	GameObj* pInstOther = &(pinsNode->gameobj);
 	float CurPlatformHeight = PlatformHeightGet();
 	switch (pInstOther->pObject->type)
 	{
@@ -222,10 +221,8 @@ Status PlayerCollision(insNode* pinsNode)
 }
 
 //ÇåÆÁ¼¼ÄÜ
-Status PlayerClear(insNode* pinsNode)
+Status PlayerClear(GameObj* pInstOther)
 {
-	GameObj* pInstOther = &(pinsNode->gameobj);
-
 	switch (pInstOther->pObject->type)
 	{
 	case OTYPE_BLOCK:

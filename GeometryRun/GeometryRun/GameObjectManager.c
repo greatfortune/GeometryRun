@@ -12,7 +12,6 @@ Vector2D zero;
 // 用于调试输出对象类型名称
 char ObjTypeName[OTYPE_COUNT][20];
 
-
 static Status GetpBaseNodeWithType(unsigned long theType, GameObjBaseList L, baseNode** ppBaseNode);
 
 static Status GetpBaseNodeWithType(unsigned long theType, GameObjBaseList L, baseNode** ppBaseNode)
@@ -198,7 +197,7 @@ Status ListTraverse(GameObjList L, Status(*Visit)(GameObj* pinsNode))
 	return OK;
 }
 
-Status BaseListTraverse(Status(*Visit)(insNode* pinsNode))
+Status BaseListTraverse(Status(*Visit)(GameObj* pinsNode))
 {
 	baseNode *pt;
 	for (pt = theBaseList->head->next; pt != theBaseList->tail; pt = pt->next)

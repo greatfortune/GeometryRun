@@ -16,7 +16,7 @@ Status AddLifeStart();
 
 Status AddLifeUpdate(GameObj* pInst);
 
-Status AddLifeCollision(insNode* pinsNode);
+Status AddLifeCollision(GameObj* pInst);
 
 GameObj* AddLifeCreateAtPosWithVel(Vector2D AddLifePos, Vector2D AddLifeVel);
 

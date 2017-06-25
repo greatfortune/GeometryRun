@@ -149,7 +149,7 @@ Status GameObjDelete(GameObj* theGameObj);
 
 Status ListTraverse(GameObjList L, Status(*Visit)(GameObj* pinsNode));
 
-Status BaseListTraverse(Status(*Visit)(insNode* pinsNode));
+Status BaseListTraverse(Status(*Visit)(GameObj* pinsNode));
 
 Status SetProperty(Property* theProperty, char* name, int value);
 

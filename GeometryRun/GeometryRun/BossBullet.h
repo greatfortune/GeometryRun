@@ -19,7 +19,7 @@ Status BossBulletStart();
 
 Status BossBulletUpdate(GameObj* pInst);
 
-Status BossBulletCollision(insNode* pinsNode);
+Status BossBulletCollision(GameObj* pInst);
 
 GameObj* BossBulletCreateAtDefaultPosWithDefaultVel();
 

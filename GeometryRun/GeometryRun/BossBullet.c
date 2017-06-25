@@ -44,9 +44,8 @@ Status BossBulletUpdate(GameObj* pInst)
 	return OK;
 }
 
-Status BossBulletCollision(insNode* pinsNode)
+Status BossBulletCollision(GameObj* pInstOther)
 {
-	GameObj* pInstOther = &(pinsNode->gameobj);
 	if (pInstOther->pObject->type == OTYPE_PLAYER)
 	{
 		//BossBullet VS Player

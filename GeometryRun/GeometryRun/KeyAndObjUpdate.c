@@ -200,25 +200,24 @@ Status ObjUpdate()
 }
 
 //对象碰撞检测
-static Status Visit_CollisionDetectAnother(insNode* pinsNode)
+static Status Visit_CollisionDetectAnother(GameObj* pInstOther)
 {
-	GameObj* pInstOther = &(pinsNode->gameobj);
 	// 跳过非活动对象和主对象自身
 	if (pInstOther->flag == FLAG_INACTIVE || (pInstOther->pObject->type == pInstForCollisionDetect->pObject->type))
 		return OK;
 	switch (pInstForCollisionDetect->pObject->type)
 	{
 		case OTYPE_PLAYER:
-			PlayerCollision(pinsNode);
+			PlayerCollision(pInstOther);
 			break;
 		case OTYPE_BULLET:
-			BulletCollision(pinsNode);
+			BulletCollision(pInstOther);
 			break;
 		case OTYPE_BOSSBULLET:
-			BossBulletCollision(pinsNode);
+			BossBulletCollision(pInstOther);
 			break;
 		case OTYPE_ADDLIFE:
-			AddLifeCollision(pinsNode);
+			AddLifeCollision(pInstOther);
 			break;
 		default:
 			break;
@@ -227,9 +226,9 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode)
 	return OK;
 }
 
-Status Visit_CollisionDetect(insNode* pinsNode)
+Status Visit_CollisionDetect(GameObj* pInst)
 {
-	pInstForCollisionDetect = &(pinsNode->gameobj);
+	pInstForCollisionDetect = pInst;
 	// 不处理非活动对象
 	if (pInstForCollisionDetect->flag == FLAG_INACTIVE)
 		return OK;
@@ -239,9 +238,8 @@ Status Visit_CollisionDetect(insNode* pinsNode)
 	return OK;
 }
  
-Status Visit_Matrix2DCount(insNode* pinsNode)
+Status Visit_Matrix2DCount(GameObj* pInst)
 {
-	GameObj* pInst = &(pinsNode->gameobj);
 	Matrix2D		 trans, rot, scale;
 
 	// 不处理非活动对象
@@ -264,18 +262,15 @@ Status Visit_Matrix2DCount(insNode* pinsNode)
 }
 
 
-Status Visit_DestroyObj(insNode* pinsNode)
+Status Visit_DestroyObj(GameObj* pInst)
 {
-	GameObj* pInst = &(pinsNode->gameobj);
 	if (pInst->flag == FLAG_ACTIVE)
 		GameObjDelete(pInst);
 	return OK;
 }
 
-Status Visit_DrawObj(insNode* pinsNode)
+Status Visit_DrawObj(GameObj* pInst)
 {
-	GameObj* pInst = &(pinsNode->gameobj);
-
 	// 跳过非活动对象
 	if (pInst->flag == FLAG_INACTIVE)
 		return OK;
