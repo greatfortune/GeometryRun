@@ -70,7 +70,7 @@ GameObj* BossBulletCreateAtDefaultPosWithDefaultVel()
 	float CurBoss2Scale = Boss2ScaleGet();
 	Vector2D CurPlayerPos = PlayerPosGet();
 	Vector2D iniBossBulletPos, Velocity_BossBullet;
-	Vector2DSet(&iniBossBulletPos, pBoss2->posCurr.x - 1.5 * CurBoss2Scale, pBoss2->posCurr.y);
+	Vector2DSet(&iniBossBulletPos, pBoss2->posCurr.x - 1.5f * CurBoss2Scale, pBoss2->posCurr.y);
 	BossBulletDir = Vector2DAngle(&iniBossBulletPos, &CurPlayerPos);
 	Vector2DSet(&Velocity_BossBullet, defaultBossBulletVelyABS * cosf(BossBulletDir / 180 * PI), defaultBossBulletVelyABS * sinf(BossBulletDir / 180 * PI));
 	// 最终版取消控制台printf("  vel : %.1f   %.1f\n", Velocity_BossBullet.x, Velocity_BossBullet.y);

@@ -17,7 +17,7 @@ int posType;
 
 LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	HDC dc;
+	// HDC dc;
 	PAINTSTRUCT ps;
 
 	switch (msg)

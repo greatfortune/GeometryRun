@@ -1,9 +1,9 @@
 /**
-* Project:		GeometryRun
-* File Name:	Platform.c
-* Author:		黄嘉维
-* Date:
-*/
+ * Project:		GeometryRun
+ * File Name:	Platform.c
+ * Author:		�Ƽ�ά
+ * Date:		2017-6-2
+ */
 #include "Platform.h"
 
 static float defaultPlatformScale = 1000.0f;

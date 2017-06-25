@@ -20,7 +20,7 @@ Status TimerIni(clock_t LevelTime)
 	for (i = 0; i < MaxTimers; i++)
 		Timers[i].flag = FLAG_INACTIVE;
 	timerCount = 0;
-	srand(time(0));
+	srand((unsigned int)time(0));
 	levelTime = LevelTime / 1000.0f;
 	return OK;
 }

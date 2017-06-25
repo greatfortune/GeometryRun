@@ -1,8 +1,8 @@
 /**
 * Project:		GeometryRun
 * File Name:	Bullet.c
-* Author:		»Æ½§Ë®(BulletCollision) »Æ¼ÎÎ¬(others)
-* Date:		
+* Author:		»Æ½§Ë®(BulletCollision), Íõ¾§(others)
+* Date:			2017-6-3
 */
 #include "Bullet.h"
 

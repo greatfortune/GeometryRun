@@ -1,3 +1,11 @@
+/**
+ * Project:		Geometry Run
+ * File Name:	AIMonster.h
+ * Author:		王晶
+ * Date:		2017-6-11
+ * Purpose:		游戏对象AIMonster
+ */
+
 #pragma once
 
 #include "GameObjectManager.h"

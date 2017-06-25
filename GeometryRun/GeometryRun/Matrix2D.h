@@ -8,7 +8,9 @@
 
 #pragma once
 
-#define PI 3.1415926535897932384626433832795
+#ifndef PI
+	#define	PI		3.14159265359f
+#endif
 
 #include "Vector2D.h"
 

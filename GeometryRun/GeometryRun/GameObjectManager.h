@@ -147,7 +147,7 @@ Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxT
 
 Status GameObjDelete(GameObj* theGameObj);
 
-Status ListTraverse(GameObjList * L, Status(*Visit)(insNode* pinsNode));
+Status ListTraverse(GameObjList L, Status(*Visit)(GameObj* pinsNode));
 
 Status BaseListTraverse(Status(*Visit)(insNode* pinsNode));
 

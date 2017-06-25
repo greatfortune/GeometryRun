@@ -1,9 +1,9 @@
 /**
-* Project:		GeometryRun
-* File Name:	Boss2.h
-* Author:		»Æ¼ÎÎ¬
-* Date:		2017-6-17
-*/
+ * Project:		GeometryRun
+ * File Name:	Boss2.h
+ * Author:		»Æ¼ÎÎ¬
+ * Date:		2017-6-2
+ */
 #pragma once
 
 #include "GameObjectManager.h"

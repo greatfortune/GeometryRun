@@ -188,12 +188,12 @@ Status GameObjDelete(GameObj* theGameObj)
 	return OK;
 }
 
-Status ListTraverse(GameObjList * L, Status(*Visit)(insNode* pinsNode))
+Status ListTraverse(GameObjList L, Status(*Visit)(GameObj* pinsNode))
 {
 	insNode *pt;
-	for (pt = (*L)->head->next; pt != (*L)->tail; pt = pt->next)
+	for (pt = L->head->next; pt != L->tail; pt = pt->next)
 		if (pt->gameobj.flag == FLAG_ACTIVE)
-			Visit(pt);
+			Visit(&(pt->gameobj));
 
 	return OK;
 }
@@ -202,7 +202,7 @@ Status BaseListTraverse(Status(*Visit)(insNode* pinsNode))
 {
 	baseNode *pt;
 	for (pt = theBaseList->head->next; pt != theBaseList->tail; pt = pt->next)
-		ListTraverse(&pt->gameobj_list, Visit);
+		ListTraverse(pt->gameobj_list, Visit);
 	return OK;
 }
 

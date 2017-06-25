@@ -2,7 +2,7 @@
  * Project:		GeometryRun
  * File Name:	AddLife.c
  * Author:		»Æ½§Ë®
- * Date:		2017-6-17
+ * Date:		2017-6-24
  */
 #include "AddLife.h"
 

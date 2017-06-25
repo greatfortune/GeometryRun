@@ -1,9 +1,9 @@
 /**
-* Project:		GeometryRun
-* File Name:	Player.c
-* Author:		黄嘉维(Playerload、PlayerStart……) 黄涧水(PlayerClear、PlayerCollision、PlayerUpdate、PlayerAddLife)
-* Date:		2017-6-17
-*/
+ * Project:		GeometryRun
+ * File Name:	Player.c
+ * Author:		黄嘉维(Playerload、PlayerStart……) 黄涧水(PlayerClear、PlayerCollision、PlayerUpdate、PlayerAddLife)
+ * Date:		2017-6-2
+ */
 #include "Player.h"
 
 // Player对象：因为是Player，所以单独声明，方便程序设计
@@ -111,7 +111,7 @@ Status PlayerUpdate(GameObj* pInst)
 	}
 	if (KeyPressed[KeyJ] == TRUE || KeyPressed[KeySpace] == TRUE)
 	{
-		Vector2D iniBulletPos = { pHero->posCurr.x + 1.5 * pHero->scale, pHero->posCurr.y };
+		Vector2D iniBulletPos = { pHero->posCurr.x + 1.5f * pHero->scale, pHero->posCurr.y };
 		if (BulletCount > 0)
 			BulletCount--;
 		else

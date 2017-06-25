@@ -1,12 +1,12 @@
-#include "Pause.h"
-
 /**
-* Project:		Geometry Run
-* File Name:	Pause.c
-* Author:		Íõ¾§
-* Date:			2017-6-7
-* Purpose:		realize pause function
-*/
+ * Project:		Geometry Run
+ * File Name:	Pause.c
+ * Author:		Íõ¾§
+ * Date:		2017-6-7
+ * Purpose:		realize pause function
+ */
+
+#include "Pause.h"
 
 static float defaultPauseScale;
 

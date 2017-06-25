@@ -1,9 +1,9 @@
 /**
-* Project:		GeometryRun
-* File Name:	BackGround.c
-* Author:		黄嘉维
-* Date:		2017-6-17
-*/
+ * Project:		GeometryRun
+ * File Name:	BackGround.c
+ * Author:		黄嘉维
+ * Date:		2017-6-2
+ */
 #include "BackGround.h"
 
 // 仅在Level0与Help中控制动画播放

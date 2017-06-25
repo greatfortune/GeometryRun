@@ -1,9 +1,9 @@
 /**
-* Project:		GeometryRun
-* File Name:	Monster.c
-* Author:		黄嘉维
-* Date:
-*/
+ * Project:		GeometryRun
+ * File Name:	Monster.c
+ * Author:		黄嘉维
+ * Date:		2017-6-2
+ */
 #include "Monster.h"
 
 // 怪物默认速度（与关卡相关）
@@ -123,7 +123,7 @@ Status BoomUpdate(GameObj* pInst)
 	pInst->properties[0].value++;
 	if (pInst->properties[0].value == 25)
 		GameObjDelete(pInst);
-
+	return OK;
 }
 
 Status MonsterCollision(insNode* pinsNode)

@@ -1,7 +1,7 @@
 /**
  * Project:		GeometryRun
  * File Name:	CreateObjectInMap.h
- * Author:		闷声发大财
+ * Author:		王晶
  * Date:		2017-5-28
  * Purpose:		障碍物创建模型素材库
  */

@@ -1,7 +1,7 @@
 /**
 * Project:		GeometryRun
 * File Name:	KeyAndObjUpdate.c
-* Author:		»Æ¼ÎÎ¬
+* Author:		Íõ¾§(KeyUpdate)¡¢»Æ½§Ë®(ObjUpdate)¡¢»Æ¼ÎÎ¬(others)
 * Date:
 */
 #include "KeyAndObjUpdate.h"
@@ -147,11 +147,11 @@ Status KeyUpdate()
 Status ObjUpdate()
 {
 	baseNode *pBaseNode;
-	GameObjList *pL;
+	GameObjList pL;
 	frameTime = (float)AEFrameRateControllerGetFrameTime();
 	for (pBaseNode = theBaseList->head->next; pBaseNode != theBaseList->tail; pBaseNode = pBaseNode->next)
 	{
-		pL = &(pBaseNode->gameobj_list);
+		pL = pBaseNode->gameobj_list;
 		switch (pBaseNode->gameobj_base.type)
 		{
 			case OTYPE_PLAYER:

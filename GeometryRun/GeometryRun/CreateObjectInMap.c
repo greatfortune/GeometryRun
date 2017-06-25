@@ -1,7 +1,9 @@
 /**
  * Project:		GeometryRun
  * File Name:	CreateObjectInMap.c
- * Author:		闷声发大财
+ * Author:		王晶(IniCreateRandomArrays、CreateObjInMap(0/1/7/8/9)、CreateAddLifeInMap)
+ *				王彦钊(CreateObjInMap(2/3/4/5/6))
+ *				黄嘉维(CreateBossInMap_Level2)
  * Date:		2017-5-28
  * Purpose:		障碍物创建模型素材库
  */
@@ -38,7 +40,7 @@ float CreateObjInMap0(float startTime)
 	Vector2D pos[7];
 	for (i = 0; i < 7; i++)
 	{
-		Vector2DSet(&(pos[i]), winMaxX, 245 - 70 * i);
+		Vector2DSet(&(pos[i]), winMaxX, 245 - 70.0f * i);
 		CreateMonsterAtTimeWithPos(startTime + 0.5f * i, pos[i]);
 	}
 	for (i = 0; i < 6; i++)
@@ -57,7 +59,7 @@ float CreateObjInMap1(float startTime)
 	Vector2D pos[7];
 	for (i = 0; i < 7; i++)
 	{
-		Vector2DSet(&(pos[i]), winMaxX, 245 - 70 * i);
+		Vector2DSet(&(pos[i]), winMaxX, 245 - 70.0f * i);
 		CreateBlockAtTimeWithPos(startTime + 0.5f * i, pos[i]);
 	}
 	for (i = 0; i < 6; i++)

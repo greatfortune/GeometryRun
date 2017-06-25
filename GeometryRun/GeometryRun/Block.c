@@ -1,9 +1,9 @@
 /**
-* Project:		GeometryRun
-* File Name:	Block.c
-* Author:		黄嘉维
-* Date:		2017-6-17
-*/
+ * Project:		GeometryRun
+ * File Name:	Block.c
+ * Author:		黄嘉维
+ * Date:		2017-6-2
+ */
 #include "Block.h"
 
 // 障碍物默认速度（与关卡相关）

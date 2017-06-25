@@ -1,3 +1,11 @@
+/**
+ * Project:		Geometry Run
+ * File Name:	AIMonster.c
+ * Author:		王晶
+ * Date:		2017-6-11
+ * Purpose:		游戏对象AIMonster
+ */
+
 #include "AIMonster.h"
 
 #define MAXBOOMCOUNT 10

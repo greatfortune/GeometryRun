@@ -9,8 +9,13 @@
 
 #include "Vector2D.h"
 
-#define EPSILON 0.0001
-#define PI      3.1415926535897932384626433832795
+#ifndef EPSILON
+	#define EPSILON 0.00001f
+#endif
+#ifndef PI
+	#define	PI		3.14159265359f
+#endif
+
 
 // ---------------------------------------------------------------------------
 /*
