@@ -12,7 +12,7 @@ clock_t timeStart_level1;
 
 void Load1(void)
 {
-	printf("Level1: Load\n");
+	// 最终版取消控制台printf("Level1: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -34,6 +34,8 @@ void Load1(void)
 
 void Ini1(void)
 {
+	// 获取当前关卡时间
+	timeStart_level1 = clock();
 	// 初始化时间系统
 	TimerIni(timeStart_level1);
 
@@ -41,9 +43,7 @@ void Ini1(void)
 	float BlockVel = -320.0f;
 	float MonsterVel = -320.0f;
 
-	printf("Level1: Ini\n");
-	// 获取当前关卡时间
-	timeStart_level1 = clock();
+	// 最终版取消控制台printf("Level1: Ini\n");
 
 	PlayerStart();
 	BlockStart();
@@ -130,7 +130,7 @@ void Draw1(void)
 void Free1(void)
 {
 
-	printf("Level1: free\n");
+	// 最终版取消控制台printf("Level1: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 
@@ -142,6 +142,6 @@ void Free1(void)
 
 void Unload1(void)
 {
-	printf("Level1: Unload\n");
+	// 最终版取消控制台printf("Level1: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

@@ -99,8 +99,8 @@ Status AIMonsterDefaultVxChange(float change)
 Status AIMonsterDead(GameObj* theInst)
 {
 	GameObj *boom1, *boom2;
-	CreateOneObjAtTime(levelTime + passTime + 0.1f, OTYPE_BOOM1, defaultAIMonsterScale * 2, theInst->posCurr, theInst->velCurr, 0.0f, theBaseList, 1, MonsterBoomPro, &boom1);
-	CreateOneObjAtTime(levelTime + passTime + 0.5f, OTYPE_BOOM2, defaultAIMonsterScale * 2, theInst->posCurr, theInst->velCurr, 0.0f, theBaseList, 1, MonsterBoomPro, &boom2);
+	CreateOneObjAtTime(passTime + 0.1f, OTYPE_BOOM1, defaultAIMonsterScale * 2, theInst->posCurr, theInst->velCurr, 0.0f, theBaseList, 1, MonsterBoomPro, &boom1);
+	CreateOneObjAtTime(passTime + 0.5f, OTYPE_BOOM2, defaultAIMonsterScale * 2, theInst->posCurr, theInst->velCurr, 0.0f, theBaseList, 1, MonsterBoomPro, &boom2);
 	GameObjDelete(theInst);
 	return OK;
 }

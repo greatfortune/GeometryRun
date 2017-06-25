@@ -70,7 +70,7 @@ Status Boss2Ini()
 	Boss2SkillLoad();
 	Vector2DSet(&Boss2MoveUpward, 0.0f, 90.0f);
 	Vector2DSet(&Boss2MoveDownward, 0.0f, -90.0f);
-	printf("\nBossHP : %d   BosAngHP: %d\n", Boss2HP, Boss2AngerHP);
+	// 最终版取消控制台printf("\nBossHP : %d   BosAngHP: %d\n", Boss2HP, Boss2AngerHP);
 	return OK;
 }
 

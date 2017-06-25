@@ -10,7 +10,7 @@
 
 void Load_Calculate(void)
 {
-	printf("Level_Calculate: Load\n");
+	// 最终版取消控制台printf("Level_Calculate: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -23,7 +23,7 @@ void Load_Calculate(void)
 
 void Ini_Calculate(void)
 {
-	printf("Level_Calculate: Ini\n");
+	// 最终版取消控制台printf("Level_Calculate: Ini\n");
 	// 获取当前关卡时间
 	//timeStart_level_Win = clock();
 	BackGroundStart();
@@ -64,7 +64,7 @@ void Draw_Calculate(void)
 void Free_Calculate(void)
 {
 
-	printf("Level_Calculate: free\n");
+	// 最终版取消控制台printf("Level_Calculate: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 	TimerFree();
@@ -72,6 +72,6 @@ void Free_Calculate(void)
 
 void Unload_Calculate(void)
 {
-	printf("Level_Calculate: Unload\n");
+	// 最终版取消控制台printf("Level_Calculate: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

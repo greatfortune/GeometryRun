@@ -76,9 +76,9 @@ static Status GetRandomPosVelAndDir(Vector2D* thePos, Vector2D* theVel, float *t
 	theVel->x = GetRanFloatFromTo(theIniMinVx, theIniMaxVx);
 	theVel->y = GetRanFloatFromTo(theIniMinVy, theIniMaxVy);
 	*theDir = GetRanFloatFromTo(theIniMinDir, theIniMaxDir);
-	printf("test 1 iniMaxX: %.2f\n", theIniMaxX);
-	printf("test 1 iniMinx: %.2f\n", theIniMinX);
-	printf("x: %.2f\n", thePos->x);
+	// 最终版取消控制台printf("test 1 iniMaxX: %.2f\n", theIniMaxX);
+	// 最终版取消控制台printf("test 1 iniMinx: %.2f\n", theIniMinX);
+	// 最终版取消控制台printf("x: %.2f\n", thePos->x);
 	
 	return OK;
 }
@@ -321,8 +321,8 @@ Status TimerUpdate(clock_t LevelTime)
 						for (j = 0; j < Timers[i].data.TDCreateSomeObjRandomly.amountToCreate; j++)
 						{
 							GetRandomPosVelAndDir(&iniPos, &iniVel, &iniDir, theTD_random.iniMinX, theTD_random.iniMaxX, theTD_random.iniMinY, theTD_random.iniMaxY, theTD_random.iniMinVx, theTD_random.iniMaxVx, theTD_random.iniMinVy, theTD_random.iniMaxVy, theTD_random.iniMinDir, theTD_random.iniMaxDir);
-							printf("test 0 iniMaxX: %.2f\n", theTD_random.iniMaxX);
-							printf("max x: %.2f\n", iniPos.x);
+							// 最终版取消控制台printf("test 0 iniMaxX: %.2f\n", theTD_random.iniMaxX);
+							// 最终版取消控制台printf("max x: %.2f\n", iniPos.x);
 							CreateGameObj(theTD_obj.t_Type, theTD_obj.t_Scale, iniPos, iniVel, iniDir, theTD_obj.t_L, theTD_obj.t_PropertyCount, theTD_obj.t_Properties);
 						}
 						break;
@@ -332,7 +332,7 @@ Status TimerUpdate(clock_t LevelTime)
 						theObj = Timers[i].data.TDChangeSpeed.t_obj;
 						if (theObj->flag == FLAG_ACTIVE)
 						{
-							printf("ofvx = %.1f, ofvy = %.1f\n", Timers[i].data.TDChangeSpeed.Offset_Vx, Timers[i].data.TDChangeSpeed.Offset_Vy);
+							// 最终版取消控制台printf("ofvx = %.1f, ofvy = %.1f\n", Timers[i].data.TDChangeSpeed.Offset_Vx, Timers[i].data.TDChangeSpeed.Offset_Vy);
 							Timers[i].data.TDChangeSpeed.t_obj->velCurr.x += Timers[i].data.TDChangeSpeed.Offset_Vx;
 							Timers[i].data.TDChangeSpeed.t_obj->velCurr.y += Timers[i].data.TDChangeSpeed.Offset_Vy;
 						}

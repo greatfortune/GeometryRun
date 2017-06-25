@@ -10,7 +10,7 @@
 
 void Load_Staff(void)
 {
-	printf("Level_Staff: Load\n");
+	// 最终版取消控制台printf("Level_Staff: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -22,7 +22,7 @@ void Load_Staff(void)
 
 void Ini_Staff(void)
 {
-	printf("Level_Staff: Ini\n");
+	// 最终版取消控制台printf("Level_Staff: Ini\n");
 	BackGroundStart();
 }
 
@@ -58,7 +58,7 @@ void Draw_Staff(void)
 void Free_Staff(void)
 {
 
-	printf("Level_Staff: free\n");
+	// 最终版取消控制台printf("Level_Staff: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 	TimerFree();
@@ -66,6 +66,6 @@ void Free_Staff(void)
 
 void Unload_Staff(void)
 {
-	printf("Level_Staff: Unload\n");
+	// 最终版取消控制台printf("Level_Staff: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

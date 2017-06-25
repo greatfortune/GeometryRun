@@ -12,7 +12,7 @@ const float bossOccurTime_level2 = 28.0f;
 
 void Load2(void)
 {
-	printf("Level2: Load\n");
+	// 最终版取消控制台printf("Level2: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -37,6 +37,8 @@ void Load2(void)
 
 void Ini2(void)
 {
+	// 获取当前关卡时间
+	timeStart_level2 = clock();
 	// 初始化时间系统
 	TimerIni(timeStart_level2);
 
@@ -46,9 +48,8 @@ void Ini2(void)
 	int bossMaxHP = 20;
 	float BossBulletVelAbs = 400.0f;
 
-	printf("Level2: Ini\n");
-	// 获取当前关卡时间
-	timeStart_level2 = clock();
+	// 最终版取消控制台printf("Level2: Ini\n");
+
 	PlayerStart();
 	BlockStart();
 	PlatformStart();
@@ -144,7 +145,7 @@ void Draw2(void)
 void Free2(void)
 {
 	
-	printf("Level2: free\n");
+	// 最终版取消控制台printf("Level2: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 
@@ -156,6 +157,6 @@ void Free2(void)
 
 void Unload2(void)
 {
-	printf("Level2: Unload\n");
+	// 最终版取消控制台printf("Level2: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

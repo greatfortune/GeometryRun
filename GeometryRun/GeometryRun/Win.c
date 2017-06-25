@@ -12,7 +12,7 @@ clock_t timeStart_level_Win;
 
 void Load_Win(void)
 {
-	printf("Level_Win: Load\n");
+	// 最终版取消控制台printf("Level_Win: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -27,7 +27,7 @@ void Load_Win(void)
 
 void Ini_Win(void)
 {
-	printf("Level_Win: Ini\n");
+	// 最终版取消控制台printf("Level_Win: Ini\n");
 	BackGroundStart();
 
 	// 播放音乐
@@ -67,7 +67,7 @@ void Draw_Win(void)
 void Free_Win(void)
 {
 
-	printf("Level_Win: free\n");
+	// 最终版取消控制台printf("Level_Win: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 	TimerFree();
@@ -75,6 +75,6 @@ void Free_Win(void)
 
 void Unload_Win(void)
 {
-	printf("Level_Win: Unload\n");
+	// 最终版取消控制台printf("Level_Win: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

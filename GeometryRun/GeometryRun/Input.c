@@ -36,13 +36,13 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		// 窗口关闭
 	case WM_DESTROY:
 		KeyPressed[KeyESC] = TRUE;
-		printf("Input:Forcing Shut Down\n");
+		// 最终版取消控制台printf("Input:Forcing Shut Down\n");
 		break;
 	case WM_LBUTTONDOWN:
 		KeyPressed[KeyLButton] = TRUE;
 		GetCursorPos(&mousPos);
 		ScreenToClient(hWnd, &mousPos);
-		printf("MousePos: %d, %d\n", mousPos.x, mousPos.y);
+		// 最终版取消控制台printf("MousePos: %d, %d\n", mousPos.x, mousPos.y);
 		break;
 	case WM_LBUTTONUP:
 		KeyPressed[KeyLButton] = FALSE;
@@ -51,42 +51,42 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		if (wParam == VK_ESCAPE)
 		{
 			KeyPressed[KeyESC] = TRUE;
-			printf("Input:ESC\n");
+			// 最终版取消控制台printf("Input:ESC\n");
 		}
 		if (wParam == 'R')
 		{
 			KeyPressed[KeyR] = TRUE;
-			printf("Input:R\n");
+			// 最终版取消控制台printf("Input:R\n");
 		}
 		if (wParam == 'M')
 		{
 			KeyPressed[KeyM] = TRUE;
-			printf("Input:M\n");
+			// 最终版取消控制台printf("Input:M\n");
 		}
 		if (wParam == '0')
 		{
 			KeyPressed[Key0] = TRUE;
-			printf("Input:0\n");
+			// 最终版取消控制台printf("Input:0\n");
 		}
 		if (wParam == '1')
 		{
 			KeyPressed[Key1] = TRUE;
-			printf("Input:1\n");
+			// 最终版取消控制台printf("Input:1\n");
 		}
 		if (wParam == '2')
 		{
 			KeyPressed[Key2] = TRUE;
-			printf("Input:2\n");
+			// 最终版取消控制台printf("Input:2\n");
 		}
 		if (wParam == '3')
 		{
 			KeyPressed[Key3] = TRUE;
-			printf("Input:3\n");
+			// 最终版取消控制台printf("Input:3\n");
 		}
 		if (wParam == '4')
 		{
 			KeyPressed[Key4] = TRUE;
-			printf("Input:4\n");
+			// 最终版取消控制台printf("Input:4\n");
 		}
 		if (wParam == '6')
 			KeyPressed[Key6] = TRUE;
@@ -101,52 +101,52 @@ LRESULT CALLBACK Input_Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		if (wParam == VK_SPACE)
 		{
 			KeyPressed[KeySpace] = TRUE;
-			printf("Input:Space\n");
+			// 最终版取消控制台printf("Input:Space\n");
 		}
 		if (wParam == 'W')
 		{
 			KeyPressed[KeyW] = TRUE;
-			printf("Input:W\n");
+			// 最终版取消控制台printf("Input:W\n");
 		}
 		if (wParam == 'S')
 		{
 			KeyPressed[KeyS] = TRUE;
-			printf("Input:S\n");
+			// 最终版取消控制台printf("Input:S\n");
 		}
 		if (wParam == 'J')
 		{
 			KeyPressed[KeyJ] = TRUE;
-			printf("Input:J\n");
+			// 最终版取消控制台printf("Input:J\n");
 		}
 		if (wParam == 'P')
 		{
 			KeyPressed[KeyP] = TRUE;
-			printf("Input:P\n");
+			// 最终版取消控制台printf("Input:P\n");
 		}
 		if (wParam == 'K')
 		{
 			KeyPressed[KeyK] = TRUE;
-			printf("Input:K\n");
+			// 最终版取消控制台printf("Input:K\n");
 		}
 		if (wParam == 'B')
 		{
 			KeyPressed[KeyB] = TRUE;
-			printf("Input:B\n");
+			// 最终版取消控制台printf("Input:B\n");
 		}
 		if (wParam == VK_F1)
 		{
 			KeyPressed[KeyVolumeStop] = TRUE;
-			printf("Input:=\n");
+			// 最终版取消控制台printf("Input:=\n");
 		}
 		if (wParam == VK_F2)
 		{
 			KeyPressed[KeyVolumeDown] = TRUE;
-			printf("Input:-\n");
+			// 最终版取消控制台printf("Input:-\n");
 		}
 		if (wParam == VK_F3)
 		{
 			KeyPressed[KeyVolumeUp] = TRUE;
-			printf("Input:+\n");
+			// 最终版取消控制台printf("Input:+\n");
 		}
 		break;
 

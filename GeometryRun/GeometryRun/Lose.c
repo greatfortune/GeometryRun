@@ -12,7 +12,7 @@ clock_t timeStart_level_Lose;
 
 void Load_Lose(void)
 {
-	printf("Level_Lose: Load\n");
+	// 最终版取消控制台printf("Level_Lose: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -27,7 +27,7 @@ void Load_Lose(void)
 
 void Ini_Lose(void)
 {
-	printf("Level_Lose: Ini\n");
+	// 最终版取消控制台printf("Level_Lose: Ini\n");
 	BackGroundStart();
 
 	// 播放音乐
@@ -66,7 +66,7 @@ void Draw_Lose(void)
 void Free_Lose(void)
 {
 
-	printf("Level_Lose: free\n");
+	// 最终版取消控制台printf("Level_Lose: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 	TimerFree();
@@ -74,6 +74,6 @@ void Free_Lose(void)
 
 void Unload_Lose(void)
 {
-	printf("Level_Lose: Unload\n");
+	// 最终版取消控制台printf("Level_Lose: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

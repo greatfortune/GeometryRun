@@ -29,29 +29,30 @@ static Status GetpBaseNodeWithType(unsigned long theType, GameObjBaseList L, bas
 
 void SetConstants()
 {
-	strcpy(ObjTypeName[OTYPE_PLAYER], "TYPE_PLAYER");
-	strcpy(ObjTypeName[OTYPE_PLATFORM], "TYPE_PLATFORM");
-	strcpy(ObjTypeName[OTYPE_BACKGROUND], "TYPE_BACKGROUND");
-	strcpy(ObjTypeName[OTYPE_PAUSE], "TYPE_PAUSE");
-	strcpy(ObjTypeName[OTYPE_MONSTER], "TYPE_MONSTER");
-	strcpy(ObjTypeName[OTYPE_AIMONSTER], "TYPE_AIMONSTER");
-	strcpy(ObjTypeName[OTYPE_ADDLIFE], "TYPE_ADDLIFE");
-	strcpy(ObjTypeName[OTYPE_BLOCK], "TYPE_BLOCK");
-	strcpy(ObjTypeName[OTYPE_BULLET], "TYPE_BULLET");
-	strcpy(ObjTypeName[OTYPE_BOSSBULLET], "TYPE_BOSSBULLET");
-	strcpy(ObjTypeName[OTYPE_BOSS1], "TYPE_BOSS1");
-	strcpy(ObjTypeName[OTYPE_BOSS2], "TYPE_BOSS2");
-	strcpy(ObjTypeName[OTYPE_UI_STATUS], "OTYPE_UI_STATUS");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_0], "OTYPE_UI_NUMBER_0");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_1], "OTYPE_UI_NUMBER_1");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_2], "OTYPE_UI_NUMBER_2");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_3], "OTYPE_UI_NUMBER_3");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_4], "OTYPE_UI_NUMBER_4");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_5], "OTYPE_UI_NUMBER_5");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_6], "OTYPE_UI_NUMBER_6");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_7], "OTYPE_UI_NUMBER_7");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_8], "OTYPE_UI_NUMBER_8");
-	strcpy(ObjTypeName[OTYPE_UI_NUMBER_9], "OTYPE_UI_NUMBER_9");
+	// 最终版取消控制台输出
+	//strcpy(ObjTypeName[OTYPE_PLAYER], "TYPE_PLAYER");
+	//strcpy(ObjTypeName[OTYPE_PLATFORM], "TYPE_PLATFORM");
+	//strcpy(ObjTypeName[OTYPE_BACKGROUND], "TYPE_BACKGROUND");
+	//strcpy(ObjTypeName[OTYPE_PAUSE], "TYPE_PAUSE");
+	//strcpy(ObjTypeName[OTYPE_MONSTER], "TYPE_MONSTER");
+	//strcpy(ObjTypeName[OTYPE_AIMONSTER], "TYPE_AIMONSTER");
+	//strcpy(ObjTypeName[OTYPE_ADDLIFE], "TYPE_ADDLIFE");
+	//strcpy(ObjTypeName[OTYPE_BLOCK], "TYPE_BLOCK");
+	//strcpy(ObjTypeName[OTYPE_BULLET], "TYPE_BULLET");
+	//strcpy(ObjTypeName[OTYPE_BOSSBULLET], "TYPE_BOSSBULLET");
+	//strcpy(ObjTypeName[OTYPE_BOSS1], "TYPE_BOSS1");
+	//strcpy(ObjTypeName[OTYPE_BOSS2], "TYPE_BOSS2");
+	//strcpy(ObjTypeName[OTYPE_UI_STATUS], "OTYPE_UI_STATUS");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_0], "OTYPE_UI_NUMBER_0");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_1], "OTYPE_UI_NUMBER_1");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_2], "OTYPE_UI_NUMBER_2");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_3], "OTYPE_UI_NUMBER_3");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_4], "OTYPE_UI_NUMBER_4");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_5], "OTYPE_UI_NUMBER_5");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_6], "OTYPE_UI_NUMBER_6");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_7], "OTYPE_UI_NUMBER_7");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_8], "OTYPE_UI_NUMBER_8");
+	//strcpy(ObjTypeName[OTYPE_UI_NUMBER_9], "OTYPE_UI_NUMBER_9");
 	zero.x = 0, zero.y = 0;
 }
 
@@ -70,7 +71,7 @@ Status InitialGameObjList(GameObjList *L)
 	(*L)->tail->next = (*L)->head;
 	(*L)->tail->pre = (*L)->head;
 	(*L)->count = 0;
-	printf("InitialGameObjList\n");
+	// 最终版取消控制台printf("InitialGameObjList\n");
 	return OK;
 }
 
@@ -88,7 +89,7 @@ Status InitialGameObjBaseList(GameObjBaseList *L)
 	(*L)->tail->next = (*L)->head;
 	(*L)->tail->pre = (*L)->head;
 	(*L)->count = 0;
-	printf("InitialGameObjBaseList\n");
+	// 最终版取消控制台printf("InitialGameObjBaseList\n");
 	return OK;
 }
 
@@ -115,7 +116,7 @@ Status DestroyGameObjBaseList(GameObjBaseList *L)
 		if ((pt1 != (*L)->head) && (pt1 != (*L)->tail))
 		{
 			DestroyGameObjList(&(pt1->gameobj_list));
-			printf("DestroyGameObjList:type: %-16s\n", ObjTypeName[pt1->gameobj_base.type]);
+			// 最终版取消控制台printf("DestroyGameObjList:type: %-16s\n", ObjTypeName[pt1->gameobj_base.type]);
 			// 卸载对象形状定义资源，使用函数：AEGfxMeshFree
 			AEGfxMeshFree(pt1->gameobj_base.pMesh);
 		}
@@ -124,7 +125,7 @@ Status DestroyGameObjBaseList(GameObjBaseList *L)
 	}
 	free(pt2);
 	free(*L);
-	printf("DestroyGameObjBaseList\n");
+	// 最终版取消控制台printf("DestroyGameObjBaseList\n");
 	return OK;
 }
 
@@ -176,14 +177,14 @@ Status BaseListIsEmpty(GameObjBaseList L)
 
 Status GameObjDelete(GameObj* theGameObj)
 {
-	int i;
-	if (theGameObj->flag == FLAG_INACTIVE)
-		printf("Warn: trying to delete an inactive gameobj.\n");
+	//int i;
+	//if (theGameObj->flag == FLAG_INACTIVE)
+		// 最终版取消控制台printf("Warn: trying to delete an inactive gameobj.\n");
 	theGameObj->flag = FLAG_INACTIVE;
-	printf("DeleteGameObj:type: %-16s scale:%.2f pos: (%.1f, %.1f) vel: (%.1f, %.1f) dir: %.1f\n", ObjTypeName[theGameObj->pObject->type], theGameObj->scale, theGameObj->posCurr.x, theGameObj->posCurr.y, theGameObj->velCurr.x, theGameObj->velCurr.y, theGameObj->dirCurr);
-	if (theGameObj->propertyCount)
-	for (i = 0; i < theGameObj->propertyCount; i++)
-		printf("Property %-10s: %d", theGameObj->properties[i].name, theGameObj->properties[i].value);
+	// 最终版取消控制台printf("DeleteGameObj:type: %-16s scale:%.2f pos: (%.1f, %.1f) vel: (%.1f, %.1f) dir: %.1f\n", ObjTypeName[theGameObj->pObject->type], theGameObj->scale, theGameObj->posCurr.x, theGameObj->posCurr.y, theGameObj->velCurr.x, theGameObj->velCurr.y, theGameObj->dirCurr);
+	//if (theGameObj->propertyCount)
+	//for (i = 0; i < theGameObj->propertyCount; i++)
+		// 最终版取消控制台printf("Property %-10s: %d", theGameObj->properties[i].name, theGameObj->properties[i].value);
 	return OK;
 }
 
@@ -246,10 +247,10 @@ GameObj* CreateGameObj(unsigned long theType, float scale, Vector2D Pos, Vector2
 	for (i = 0; i < thePropertyCount; i++)
 		pInstNode->gameobj.properties[i] = theProperties[i];
 	pBaseNode->gameobj_list->count++;
-	printf("CreateGameObj:type: %-16s scale: %.2f Pos: (%.1f, %.1f) Vel: (%.1f, %.1f) dir: %.1f\n", ObjTypeName[theType], scale, Pos.x, Pos.y, Vel.x, Vel.y, dir);
-	if (thePropertyCount != 0)
-	for (i = 0; i < thePropertyCount; i++)
-		printf("Property %s: %d", theProperties[i].name, theProperties[i].value);
+	// 最终版取消控制台printf("CreateGameObj:type: %-16s scale: %.2f Pos: (%.1f, %.1f) Vel: (%.1f, %.1f) dir: %.1f\n", ObjTypeName[theType], scale, Pos.x, Pos.y, Vel.x, Vel.y, dir);
+	//if (thePropertyCount != 0)
+	//for (i = 0; i < thePropertyCount; i++)
+		// 最终版取消控制台printf("Property %s: %d", theProperties[i].name, theProperties[i].value);
 	// 返回新创建的对象实例
 	return &(pInstNode->gameobj);
 }
@@ -271,7 +272,7 @@ Status CreateGameObjBase(unsigned long theType, AEGfxVertexList* theMesh, AEGfxT
 	pBaseNode->gameobj_base.pMesh = theMesh;
 	pBaseNode->gameobj_base.pTex = theTexture;
 	L->count++;
-	printf("CreateGameObjBase:type: %-16s\n", ObjTypeName[theType]);
+	// 最终版取消控制台printf("CreateGameObjBase:type: %-16s\n", ObjTypeName[theType]);
 	return OK;
 }
 

@@ -16,7 +16,7 @@ float toCreateTime;		// 下一波障碍物生成时间
 
 void Load4(void)
 {
-	printf("Level4: Load\n");
+	// 最终版取消控制台printf("Level4: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -44,6 +44,8 @@ void Load4(void)
 
 void Ini4(void)
 {
+	// 获取当前关卡时间
+	timeStart_level4 = clock();
 	// 初始化时间系统
 	TimerIni(timeStart_level4);
 
@@ -59,9 +61,8 @@ void Ini4(void)
 	currentWave = 0;
 	toCreateTime = 0.0f;
 
-	printf("Level4: Ini\n");
-	// 获取当前关卡时间
-	timeStart_level4 = clock();
+	// 最终版取消控制台printf("Level4: Ini\n");
+
 
 	PlayerStart();
 	BlockStart();
@@ -195,7 +196,7 @@ void Draw4(void)
 void Free4(void)
 {
 
-	printf("Level4: free\n");
+	// 最终版取消控制台printf("Level4: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 
@@ -207,6 +208,6 @@ void Free4(void)
 
 void Unload4(void)
 {
-	printf("Level4: Unload\n");
+	// 最终版取消控制台printf("Level4: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

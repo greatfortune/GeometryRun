@@ -87,7 +87,7 @@ Status PlayerUpdate(GameObj* pInst)
 	}
 	if (KeyPressed[KeyW] == TRUE || KeyPressed[KeyUp] == TRUE)
 	{
-		printf("Input : up\n");
+		// 最终版取消控制台printf("Input : up\n");
 		if (jumpCheck == -1 && !dropCheck)		// 倒挂或在平台底下
 		{
 			jumpCheck = 0;
@@ -199,7 +199,7 @@ Status PlayerCollision(insNode* pinsNode)
 				// 重新开始关卡
 				if (!isProtected)
 					PlayerGetHurt(1);
-				printf("\n Collision with the %s: Pos(%.1f, %.1f)\n Restart\n", ObjTypeName[pInstOther->pObject->type], pInstOther->posCurr.x, pInstOther->posCurr.y);
+				// 最终版取消控制台printf("\n Collision with the %s: Pos(%.1f, %.1f)\n Restart\n", ObjTypeName[pInstOther->pObject->type], pInstOther->posCurr.x, pInstOther->posCurr.y);
 			}
 		}
 		break;// Player vs. Block/Monster/AIMonster结束
@@ -211,7 +211,7 @@ Status PlayerCollision(insNode* pinsNode)
 			// hero HP-1
 			if (!isProtected)
 				PlayerGetHurt(2);
-			printf("\n Collision with the Boss2: Pos(%.1f, %.1f)\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
+			// 最终版取消控制台printf("\n Collision with the Boss2: Pos(%.1f, %.1f)\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
 		}
 		break;
 

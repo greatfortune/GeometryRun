@@ -56,7 +56,7 @@ Status BossBulletCollision(insNode* pinsNode)
 			// 撞上Player，Player掉血
 			if (!isProtected)
 				PlayerGetHurt(1);
-			printf("\n Collision with the %s: Pos(%.1f, %.1f)\n Restart\n", ObjTypeName[pInstOther->pObject->type], pInstOther->posCurr.x, pInstOther->posCurr.y);
+			// 最终版取消控制台printf("\n Collision with the %s: Pos(%.1f, %.1f)\n Restart\n", ObjTypeName[pInstOther->pObject->type], pInstOther->posCurr.x, pInstOther->posCurr.y);
 			GameObjDelete(pInstForCollisionDetect);
 		}
 	}
@@ -73,7 +73,7 @@ GameObj* BossBulletCreateAtDefaultPosWithDefaultVel()
 	Vector2DSet(&iniBossBulletPos, pBoss2->posCurr.x - 1.5 * CurBoss2Scale, pBoss2->posCurr.y);
 	BossBulletDir = Vector2DAngle(&iniBossBulletPos, &CurPlayerPos);
 	Vector2DSet(&Velocity_BossBullet, defaultBossBulletVelyABS * cosf(BossBulletDir / 180 * PI), defaultBossBulletVelyABS * sinf(BossBulletDir / 180 * PI));
-	printf("  vel : %.1f   %.1f\n", Velocity_BossBullet.x, Velocity_BossBullet.y);
+	// 最终版取消控制台printf("  vel : %.1f   %.1f\n", Velocity_BossBullet.x, Velocity_BossBullet.y);
 	return CreateGameObj(OTYPE_BOSSBULLET, defaultBossBulletScale, iniBossBulletPos, Velocity_BossBullet, BossBulletDir, theBaseList, 0, NULL);
 }
 

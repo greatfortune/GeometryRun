@@ -10,7 +10,7 @@
 
 void Load_Choose(void)
 {
-	printf("Level_Choose: Load\n");
+	// 最终版取消控制台printf("Level_Choose: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -22,7 +22,7 @@ void Load_Choose(void)
 
 void Ini_Choose(void)
 {
-	printf("Level_Choose: Ini\n");
+	// 最终版取消控制台printf("Level_Choose: Ini\n");
 
 	BackGroundStart();
 
@@ -60,7 +60,7 @@ void Draw_Choose(void)
 void Free_Choose(void)
 {
 
-	printf("Level_Choose: free\n");
+	// 最终版取消控制台printf("Level_Choose: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 	TimerFree();
@@ -68,6 +68,6 @@ void Free_Choose(void)
 
 void Unload_Choose(void)
 {
-	printf("Level_Calculate: Unload\n");
+	// 最终版取消控制台printf("Level_Calculate: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

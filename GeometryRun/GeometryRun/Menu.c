@@ -9,7 +9,7 @@
 
 void Load_Menu(void)
 {
-	printf("Level2: Load\n");
+	// 最终版取消控制台printf("Level2: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -21,7 +21,7 @@ void Load_Menu(void)
 
 void Ini_Menu(void)
 {
-	printf("Level2: Ini\n");
+	// 最终版取消控制台printf("Level2: Ini\n");
 
 	BackGroundStart();
 
@@ -59,7 +59,7 @@ void Draw_Menu(void)
 void Free_Menu(void)
 {
 
-	printf("Level_Menu: free\n");
+	// 最终版取消控制台printf("Level_Menu: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 	TimerFree();
@@ -67,6 +67,6 @@ void Free_Menu(void)
 
 void Unload_Menu(void)
 {
-	printf("Level_Menu: Unload\n");
+	// 最终版取消控制台printf("Level_Menu: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

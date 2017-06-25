@@ -12,7 +12,7 @@ Purpose:	关卡0（故事模式）
 
 void Load0(void)
 {
-	printf("Level0: Load\n");
+	// 最终版取消控制台printf("Level0: Load\n");
 	theBaseList = NULL;
 
 	// 设置常量
@@ -26,7 +26,7 @@ void Load0(void)
 
 void Ini0(void)
 {
-	printf("Level0: Ini\n");
+	// 最终版取消控制台printf("Level0: Ini\n");
 	Vector2D iniPosition_Images = { 0.0f, 0.0f };
 	Vector2D iniVelocity_Images = { 0.0f, 0.0f };
 
@@ -81,13 +81,13 @@ void Draw0(void)
 
 void Free0(void)
 {
-	printf("Level0: free\n");
+	// 最终版取消控制台printf("Level0: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 }
 
 void Unload0(void)
 {
-	printf("Level0: Unload\n");
+	// 最终版取消控制台printf("Level0: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

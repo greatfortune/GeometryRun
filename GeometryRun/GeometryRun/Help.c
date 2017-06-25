@@ -12,7 +12,7 @@
 
 void Load_Help(void)
 {
-	printf("Level_Help: Load\n");
+	// 最终版取消控制台printf("Level_Help: Load\n");
 	theBaseList = NULL;
 
 	// 设置常量
@@ -26,7 +26,7 @@ void Load_Help(void)
 
 void Ini_Help(void)
 {
-	printf("Level_Help: Ini\n");
+	// 最终版取消控制台printf("Level_Help: Ini\n");
 	Vector2D iniPosition_Images = { 0.0f, 0.0f };
 	Vector2D iniVelocity_Images = { 0.0f, 0.0f };
 
@@ -81,13 +81,13 @@ void Draw_Help(void)
 
 void Free_Help(void)
 {
-	printf("Level_Help: free\n");
+	// 最终版取消控制台printf("Level_Help: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 }
 
 void Unload_Help(void)
 {
-	printf("Level_Help: Unload\n");
+	// 最终版取消控制台printf("Level_Help: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }

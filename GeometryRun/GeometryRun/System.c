@@ -24,7 +24,8 @@ int System_Initialize(HINSTANCE hInstance, int nCmdShow)
 	sysInitInfo.mShow = nCmdShow;		// WinMain的第4个参数
 	sysInitInfo.mWinWidth = 800;
 	sysInitInfo.mWinHeight = 600;
-	sysInitInfo.mCreateConsole = 1;			// 是否需要打开控制台
+	// 最终版取消控制台
+	sysInitInfo.mCreateConsole = 0;			// 是否需要打开控制台
 	sysInitInfo.mCreateWindow = 1;			// 是否需要创建窗口
 	sysInitInfo.mMaxFrameRate = 60;			// 设置帧率（如果使用Alpha的帧率控制功能的话）
 	sysInitInfo.mpWinCallBack = Input_Handle;
@@ -34,10 +35,11 @@ int System_Initialize(HINSTANCE hInstance, int nCmdShow)
 	if (0 == AESysInit(&sysInitInfo))
 		return -1;
 	AESysReset();
-	AllocConsole();
+	// 最终版取消控制台
+	// AllocConsole();
 	freopen("conout$", "w", stdout);
-	printf("hello!\n");
-	printf("System:Initialize\n");
+	// 最终版取消控制台// 最终版取消控制台printf("hello!\n");
+	// 最终版取消控制台// 最终版取消控制台printf("System:Initialize\n");
 
 	// 音乐初始化
 	SoundSystemLoad();
@@ -53,5 +55,5 @@ void System_Exit(void)
 
 	// 音乐系统退出
 	SoundSystemExit();
-	printf("System:Exit\n");
+	// 最终版取消控制台// 最终版取消控制台printf("System:Exit\n");
 }

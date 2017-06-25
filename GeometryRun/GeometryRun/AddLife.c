@@ -56,7 +56,7 @@ Status AddLifeCollision(insNode* pinsNode)
 			// 撞上Player，Player掉血
 			// hero HP+1
 			PlayerAddLife(1);
-			printf("\n AddLife with the prop: Pos(%.1f, %.1f)\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
+			// 最终版取消控制台printf("\n AddLife with the prop: Pos(%.1f, %.1f)\n", pInstOther->posCurr.x, pInstOther->posCurr.y);
 			GameObjDelete(pInstForCollisionDetect);
 		}
 	}

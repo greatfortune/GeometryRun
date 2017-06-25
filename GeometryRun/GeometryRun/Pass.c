@@ -12,7 +12,7 @@ clock_t timeStart_level_Pass;
 
 void Load_Pass(void)
 {
-	printf("Level_Pass: Load\n");
+	// 最终版取消控制台printf("Level_Pass: Load\n");
 	theBaseList = NULL;
 	// 设置常量
 	SetConstants();
@@ -27,7 +27,7 @@ void Load_Pass(void)
 
 void Ini_Pass(void)
 {
-	printf("Level_Pass: Ini\n");
+	// 最终版取消控制台printf("Level_Pass: Ini\n");
 	BackGroundStart();
 
 	// 播放音乐
@@ -66,7 +66,7 @@ void Draw_Pass(void)
 void Free_Pass(void)
 {
 
-	printf("Level_Pass: free\n");
+	// 最终版取消控制台printf("Level_Pass: free\n");
 	// 使用函数gameObjDestroy删除列表中的对象
 	BaseListTraverse(Visit_DestroyObj);
 	TimerFree();
@@ -74,6 +74,6 @@ void Free_Pass(void)
 
 void Unload_Pass(void)
 {
-	printf("Level_Pass: Unload\n");
+	// 最终版取消控制台printf("Level_Pass: Unload\n");
 	DestroyGameObjBaseList(&theBaseList);
 }
