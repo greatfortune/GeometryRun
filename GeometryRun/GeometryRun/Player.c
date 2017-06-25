@@ -56,7 +56,7 @@ Status PlayerStart()
 	defaultHeroScale = 30.0f;
 	MaxBulletCount = 8;
 	CurSupplyTime = 0;
-	SupplyTime = 30;
+	SupplyTime = 20;
 	BulletCount = 4;
 	pHero = CreateGameObj(OTYPE_PLAYER, PlayerScaleGet(), iniPosition_Player, zero, 0, theBaseList, 0, NULL);
 	return OK;
@@ -261,7 +261,6 @@ Status PlayerAddLife(int life)
 {
 	if (PlayerHP <= 2)
 		PlayerHP += life;
-	else
 	return OK;
 }
 

@@ -31,6 +31,7 @@ void Load4(void)
 	BossBulletLoad();
 	MonsterLoad();
 	AIMonsterLoad();
+	AddLifeLoad();
 	PlatformLoad();
 	Boss2Load();
 	BackGroundLoad();
@@ -51,6 +52,7 @@ void Ini4(void)
 	float MonsterVel = -400.0f;
 	int bossMaxHP = 5;
 	float BossBulletVelAbs = 400.0f;
+	float AddLifeVel = -430.0f;
 
 	stage = 0;
 	stageWaves = 5 + rand() % 2;	// 第一关波数随机5~6
@@ -67,6 +69,7 @@ void Ini4(void)
 	BackGroundStart();
 	MonsterStart();
 	AIMonsterStart();
+	AddLifeStart();
 	BulletStart();
 	BossBulletStart();
 	Boss2Start();
@@ -76,6 +79,7 @@ void Ini4(void)
 	BlockDefaultVelSet(BlockVel, 0);
 	MonsterDefaultVelSet(MonsterVel, 0);
 	AIMonsterDefaultVelSet(MonsterVel, 0);
+	AddLifeDefaultVelSet(AddLifeVel, 0);
 	BossBulletDefaultBossBulletVelyABSSet(BossBulletVelAbs);
 	Boss2MaxHPSet(bossMaxHP);
 
@@ -122,15 +126,18 @@ void Update4(void)
 			{
 				if (currentWave == 0)
 				{
+					// 加血道具
+					if (stage > 0)
+						CreateAddLifeInMap(passTime + 1.0f);
 					// 更新阶段变量
 					stage++;
 					// 增加难度
-					BlockDefaultVxChange(-20.0f);
-					MonsterDefaultVxChange(-20.0f);
-					AIMonsterDefaultVxChange(-20.0f);
+					BlockDefaultVxChange(-15.0f);
+					MonsterDefaultVxChange(-15.0f);
+					AIMonsterDefaultVxChange(-15.0f);
 					AIMonsterDefaultVelyABSChange(10.0f);
 					BossBulletDefaultVelyABSChange(20.0f);
-					Boss2MaxHPChange(4);
+					Boss2MaxHPChange(5);
 					stageWaves = 5 + rand() % 3;	// 波数随机为5~7
 					
 					if (!PlayerClearCountGet())
@@ -142,7 +149,7 @@ void Update4(void)
 				}
 				else
 				{
-					// 当前时刻随机用一种方式生成一波障碍物，并这波结束后延迟2.5s生成下一波
+					// 当前时刻随机用一种方式生成一波障碍物，并在这波结束后延迟2.5s生成下一波
 					int createMethod = rand() % CreateMethods;
 					toCreateTime =	passTime + (CreateObjInMapRamdom[createMethod])(passTime) + 2.5f;
 					currentWave++;
@@ -152,12 +159,9 @@ void Update4(void)
 			{
 				Boss2Alive = TRUE;
 				pBoss2 = Boss2Create();
-				//printf("\nBossHP : %d\n", Boss2HP);
-				//printf("Boss vx : %f, vy: %f\n", Boss2EnterVel.x, Boss2EnterVel.y);
 
 				// 准备进入下个阶段
 				currentWave = 0;
-
 			}
 		}
 

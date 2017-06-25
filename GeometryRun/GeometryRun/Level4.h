@@ -18,6 +18,7 @@
 #include "AIMonster.h"
 #include "Platform.h"
 #include "Player.h"
+#include "AddLife.h"
 #include "SoundSystem.h"
 
 extern int stage;

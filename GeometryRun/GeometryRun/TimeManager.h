@@ -22,6 +22,7 @@ enum TimerType{
 	TTYPE_BLOCK_WITHPOS,
 	TTYPE_MONSTER_WITHPOS,
 	TTYPE_AIMONSTER_WITHPOS,
+	TTYPE_ADDLIFE_WITHPOS,
 	TTYPE_BOSS2
 };
 
@@ -100,6 +101,8 @@ Status CreateBlockAtTimeWithPos(float theTime, Vector2D Pos);
 Status CreateMonsterAtTimeWithPos(float theTime, Vector2D Pos);
 
 Status CreateAIMonsterAtTimeWithPos(float theTime, Vector2D Pos);
+
+Status CreateAddLifeAtTimeWithPos(float theTime, Vector2D Pos);
 
 Status CreateBoss2AtTime(float theTime);
 

@@ -216,14 +216,28 @@ float CreateObjInMap9(float startTime)
 	CreateBlockAtTimeWithPos(startTime, pos3);
 	CreateMonsterAtTimeWithPos(startTime + 0.6f, pos3);
 	CreateBlockAtTimeWithPos(startTime + 0.6f, pos1);
-	CreateBlockAtTimeWithPos(startTime + 1.2f, pos1);
-	CreateBlockAtTimeWithPos(startTime + 1.2f, pos2);
-	CreateBlockAtTimeWithPos(startTime + 1.2f, pos3);
-	CreateMonsterAtTimeWithPos(startTime + 1.8f, pos3);
-	CreateBlockAtTimeWithPos(startTime + 1.8f, pos2);
-	return 1.8f;
+	CreateBlockAtTimeWithPos(startTime + 1.3f, pos1);
+	CreateBlockAtTimeWithPos(startTime + 1.3f, pos2);
+	CreateBlockAtTimeWithPos(startTime + 1.3f, pos3);
+	CreateMonsterAtTimeWithPos(startTime + 1.9f, pos3);
+	CreateBlockAtTimeWithPos(startTime + 1.9f, pos2);
+	return 1.9f;
 }
 
+/*
+ * By WJ
+ * 加血道具
+ * 占用时间：1.8s
+ */
+float CreateAddLifeInMap(float startTime)
+{
+	float CurAddLifeScale = AddLifeScaleGet();
+	float CurPlatformHeight = PlatformHeightGet();
+	Vector2D pos1 = { winMaxX, CurAddLifeScale + CurPlatformHeight };
+
+	CreateAddLifeAtTimeWithPos(startTime, pos1);
+	return 0.0f;
+}
 
 /*
  * By HJW

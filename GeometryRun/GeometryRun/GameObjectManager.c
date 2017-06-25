@@ -35,6 +35,7 @@ void SetConstants()
 	strcpy(ObjTypeName[OTYPE_PAUSE], "TYPE_PAUSE");
 	strcpy(ObjTypeName[OTYPE_MONSTER], "TYPE_MONSTER");
 	strcpy(ObjTypeName[OTYPE_AIMONSTER], "TYPE_AIMONSTER");
+	strcpy(ObjTypeName[OTYPE_ADDLIFE], "TYPE_ADDLIFE");
 	strcpy(ObjTypeName[OTYPE_BLOCK], "TYPE_BLOCK");
 	strcpy(ObjTypeName[OTYPE_BULLET], "TYPE_BULLET");
 	strcpy(ObjTypeName[OTYPE_BOSSBULLET], "TYPE_BOSSBULLET");

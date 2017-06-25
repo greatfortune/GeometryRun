@@ -75,8 +75,3 @@ Status BlockDefaultVxChange(float change)
 	defaultBlockVel.x += change;
 	return OK;
 }
-
-////Status BlockDead()
-//{
-//
-//}

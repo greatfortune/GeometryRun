@@ -157,6 +157,24 @@ Status CreateAIMonsterAtTimeWithPos(float theTime, Vector2D Pos)
 	return OK;
 }
 
+Status CreateAddLifeAtTimeWithPos(float theTime, Vector2D Pos)
+{
+	int i;
+	for (i = 0; i < MaxTimers; i++)
+	{
+		if (Timers[i].flag == FLAG_INACTIVE)
+		{
+			timerCount++;
+			Timers[i].flag = FLAG_ACTIVE;
+			Timers[i].type = TTYPE_ADDLIFE_WITHPOS;
+			Timers[i].time = theTime;
+			Timers[i].data.iniPos = Pos;
+			return OK;
+		}
+	}
+	return OK;
+}
+
 Status CreateBoss2AtTime(float theTime)
 {
 	int i;
@@ -338,6 +356,11 @@ Status TimerUpdate(clock_t LevelTime)
 					case TTYPE_AIMONSTER_WITHPOS:
 					{
 						AIMonsterCreateAtPos(Timers[i].data.iniPos);
+						break;
+					}
+					case TTYPE_ADDLIFE_WITHPOS:
+					{
+						AddLifeCreateAtPos(Timers[i].data.iniPos);
 						break;
 					}
 					case TTYPE_BOSS2:

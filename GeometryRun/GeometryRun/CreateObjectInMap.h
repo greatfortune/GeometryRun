@@ -10,6 +10,7 @@
 #include "GameObjectManager.h"
 #include "KeyAndObjUpdate.h"
 #include "Block.h"
+#include "AddLife.h"
 #include "Platform.h"
 #include "Boss2.h"
 
@@ -38,5 +39,7 @@ float CreateObjInMap7(float startTime);
 float CreateObjInMap8(float startTime);
 
 float CreateObjInMap9(float startTime);
+
+float CreateAddLifeInMap(float startTime);
 
 float CreateBossInMap_Level2(float startTime);

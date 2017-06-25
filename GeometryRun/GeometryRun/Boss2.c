@@ -68,6 +68,8 @@ Status Boss2Ini()
 	Boss2HP = Boss2MaxHP;
 	Boss2AngerHP = Boss2MaxHP / 2;
 	Boss2SkillLoad();
+	Vector2DSet(&Boss2MoveUpward, 0.0f, 90.0f);
+	Vector2DSet(&Boss2MoveDownward, 0.0f, -90.0f);
 	printf("\nBossHP : %d   BosAngHP: %d\n", Boss2HP, Boss2AngerHP);
 	return OK;
 }
@@ -89,8 +91,8 @@ Status Boss2Start()
 	// 冲撞至的x
 	Boss2ImpactX = -400.0f;
 	Vector2DSet(&Boss2EnterVel, -138.0f, 0.0f);
-	Vector2DSet(&Boss2MoveUpward, 0.0f, 90.0f);
-	Vector2DSet(&Boss2MoveDownward, 0.0f, -90.0f);
+	//Vector2DSet(&Boss2MoveUpward, 0.0f, 90.0f);	// 在Boss2Ini中设置
+	//Vector2DSet(&Boss2MoveDownward, 0.0f, -90.0f);
 	Vector2DSet(&Boss2IniPos, 500.0f, 0.0f);
 	Vector2DSet(&Boss2ImpactVelLeft, -600.0f, 0.0f);
 	Vector2DSet(&Boss2ImpactVelRight, 600.0f, 0.0f);
@@ -274,12 +276,16 @@ float Boss2ScaleGet()
 
 Status Boss2MaxHPSet(int boss2HP)
 {
-	Boss2HP = boss2HP;
+	Boss2HP = Boss2MaxHP = boss2HP;
+	Boss2AngerHP = Boss2MaxHP / 2;
 	return OK;
 }
 
+// 修改Boss生命值
 Status Boss2MaxHPChange(int change)
 {
-	Boss2HP += change;
+	Boss2MaxHP += change;
+	Boss2HP = Boss2MaxHP;
+	Boss2AngerHP = Boss2MaxHP / 2;
 	return OK;
 }

@@ -169,6 +169,9 @@ Status ObjUpdate()
 			case OTYPE_AIMONSTER:
 				ListTraverse(pL, AIMonsterUpdate);
 				break;
+			case OTYPE_ADDLIFE:
+				ListTraverse(pL, AddLifeUpdate);
+				break;
 			case OTYPE_BLOCK:
 				ListTraverse(pL, BlockUpdate);
 				break;
@@ -214,7 +217,9 @@ static Status Visit_CollisionDetectAnother(insNode* pinsNode)
 		case OTYPE_BOSSBULLET:
 			BossBulletCollision(pinsNode);
 			break;
-		
+		case OTYPE_ADDLIFE:
+			AddLifeCollision(pinsNode);
+			break;
 		default:
 			break;
 	}

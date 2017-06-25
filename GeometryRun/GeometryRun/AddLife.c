@@ -1,9 +1,9 @@
 /**
-* Project:		GeometryRun
-* File Name:	AddLife.c
-* Author:		黄涧水
-* Date:		2017-6-17
-*/
+ * Project:		GeometryRun
+ * File Name:	AddLife.c
+ * Author:		黄涧水
+ * Date:		2017-6-17
+ */
 #include "AddLife.h"
 
 // 道具默认速度（与关卡相关）
@@ -30,7 +30,7 @@ Status AddLifeLoad()
 
 Status AddLifeStart()
 {
-	defaultAddLifeScale = 9.0f;
+	defaultAddLifeScale = 25.0f;
 	Vector2DSet(&defaultAddLifeVel, -10.0f, 0.0f);
 	return OK;
 }
